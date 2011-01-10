@@ -112,7 +112,7 @@ public class Notizbuch {
 
 		ClassLoader cl = ClassLoader.getSystemClassLoader();
 		try {
-			bg = ImageIO.read(cl.getResource("de/martin_ueding/util/notizbuch/bg1600alpha.jpg"));
+			bg = ImageIO.read(cl.getResource("bg1600alpha.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
