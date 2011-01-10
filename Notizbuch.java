@@ -1,7 +1,3 @@
-package de.martin_ueding.util.notizbuch;
-
-// Copyright (c) 2008 Martin Ueding [mu@martin-ueding.de]
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
