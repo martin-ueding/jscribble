@@ -5,3 +5,6 @@ jscribble.jar: Notizbuch.class
 
 Notizbuch.class: *.java
 	javac Notizbuch.java
+
+clean:
+	rm -rf *.jar *.class
