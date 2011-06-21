@@ -4,13 +4,13 @@ import java.awt.event.MouseMotionListener;
 
 
 public class PaintListener implements MouseMotionListener {
-	
+
 	private NoteBook notebook;
-	
+
 	public PaintListener(NoteBook notebook) {
 		this.notebook = notebook;
 	}
-	
+
 	private int x = -1;
 
 	private int y = -1;

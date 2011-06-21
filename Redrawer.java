@@ -5,10 +5,10 @@ import javax.swing.JPanel;
 
 
 public class Redrawer implements ActionListener {
-	
+
 	private JPanel panel;
 
-	public Redrawer (JPanel panel) {
+	public Redrawer(JPanel panel) {
 		this.panel = panel;
 	}
 
