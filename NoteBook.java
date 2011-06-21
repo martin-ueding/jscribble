@@ -1,5 +1,8 @@
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.LinkedList;
+
+import javax.swing.JOptionPane;
 
 
 public class NoteBook {
@@ -30,10 +33,14 @@ public class NoteBook {
 		updateCurrrentItem();
 	}
 	
+	private boolean touched = false;
+	
 	public void drawLine(int x, int y, int x2, int y2) {
 		current.drawLine(x, y, x2, y2);
 		
 		fireDoneDrawing();
+		
+		touched = true;
 	}
 
 	public void setDoneDrawing(ActionListener doneDrawing) {
@@ -76,5 +83,30 @@ public class NoteBook {
 		assert(currentSheet >= 0);
 		assert(currentSheet < sheets.size());
 		current = sheets.get(currentSheet);
+	}
+	
+	public void saveToFiles() {
+		if (!touched) {
+			return;
+		}
+		
+		String basename = JOptionPane.showInputDialog("Please enter basename (press cancel to stop saving)");
+		if (basename == null) {
+			return;
+		}
+		
+		Calendar now = Calendar.getInstance();
+		
+		int maxnum = sheets.size()-1;
+		int length = 1;
+		while (Math.pow(10, length) < maxnum+1) {
+			length++;
+		}
+		
+		for (NoteSheet s : sheets) {
+			String filename = (now.get(Calendar.YEAR)-2000)+""+now.get(Calendar.MONTH)+""+now.get(Calendar.DAY_OF_MONTH)+"-" + basename + "-" + String.format("%0"+length+"d", s.getPagenumber()) + ".png";
+			s.saveToFile(filename);
+		}
+
 	}
 }

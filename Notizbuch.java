@@ -1,21 +1,10 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.LinkedList;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class Notizbuch {
 	public static final int br = 1024, ho = 600;
@@ -27,9 +16,17 @@ public class Notizbuch {
 	
 	public static void main (String[] args) {	
 		notebook = new NoteBook(br, ho);	
-		JFrame f = new JFrame("neuenotiz");
+		JFrame f = new JFrame("Notebook");
 		f.setSize(br, ho);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		f.addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(WindowEvent winEvt) {
+		    	notebook.saveToFiles();
+		        System.exit(0); 
+		    }
+		});
+		
+		
 		panel = new MalPanel(notebook);
 		f.add(panel);
 		

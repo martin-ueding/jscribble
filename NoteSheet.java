@@ -92,7 +92,6 @@ public class NoteSheet {
 	}
 	
 	public void drawLine(int x, int y, int x2, int y2) {
-		System.out.println("drawing a line from "+x+" "+y);
 		touched = true;
 		graphics.setColor(new Color(0, 0, 0));
 		graphics.drawLine(x, y, x2, y2);

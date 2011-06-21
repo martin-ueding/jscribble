@@ -10,12 +10,16 @@ import javax.swing.JPanel;
 public class MalPanel extends JPanel {
 	private NoteBook notebook;
 	
+	/**
+	 * Creates a new display panel that will listen to changes from a specific notebook.
+	 * @param notebook 
+	 */
 	public MalPanel (NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
 	}
 	
-	ImageObserver io = this;
+	private ImageObserver io = this;
 	
 	protected void paintComponent (Graphics g) {		
 		Graphics2D g2 = (Graphics2D)g;
