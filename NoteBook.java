@@ -1,18 +1,19 @@
-import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 
 public class NoteBook {
-
 	private LinkedList<NoteSheet> sheets;
-	
+
 	private int currentSheet = 0;
+
 	private NoteSheet current;
 	
 	private int width;
 	private int height;
 	
+	private ActionListener doneDrawing;
+
 	/**
 	 * Creates an empty note book with a single note sheet.
 	 * 
@@ -29,9 +30,11 @@ public class NoteBook {
 		updateCurrrentItem();
 	}
 	
-	private ActionListener doneDrawing;
-	
-	
+	public void drawLine(int x, int y, int x2, int y2) {
+		current.drawLine(x, y, x2, y2);
+		
+		fireDoneDrawing();
+	}
 
 	public void setDoneDrawing(ActionListener doneDrawing) {
 		this.doneDrawing = doneDrawing;
@@ -43,16 +46,6 @@ public class NoteBook {
 		}
 	}
 
-	public void drawLine(int x, int y, int x2, int y2) {
-		current.drawLine(x, y, x2, y2);
-		
-		fireDoneDrawing();
-	}
-	
-	public NoteSheet getCurrentSheet() {
-		return sheets.get(currentSheet);
-	}
-	
 	public void forward() {
 		if (sheets.size() <= currentSheet -1) {
 		}
@@ -75,6 +68,10 @@ public class NoteBook {
 		}
 	}
 	
+	public NoteSheet getCurrentSheet() {
+		return sheets.get(currentSheet);
+	}
+
 	private void updateCurrrentItem() {
 		assert(currentSheet >= 0);
 		assert(currentSheet < sheets.size());

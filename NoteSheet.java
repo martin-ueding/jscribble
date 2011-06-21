@@ -33,6 +33,26 @@ public class NoteSheet {
 
 	private int height;
 	
+	/**
+	 * Creates an empty note sheet at the end of all other sheets.
+	 * 
+	 * @param width width of the sheet in pixels
+	 * @param height height of the sheet in pixels
+	 */
+	public NoteSheet(int width, int height) {
+		pagenumber = pagecount++;
+		
+		this.width = width;
+		this.height = height;
+		
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		graphics = (Graphics2D)(img.getGraphics());
+		graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		
+		graphics.setColor(new Color(255, 255, 255));
+		graphics.fillRect(0, 0, width, height);
+	}
+
 	public int getPagenumber() {
 		return pagenumber;
 	}
@@ -54,26 +74,6 @@ public class NoteSheet {
 		return height;
 	}
 
-	/**
-	 * Creates an empty note sheet at the end of all other sheets.
-	 * 
-	 * @param width width of the sheet in pixels
-	 * @param height height of the sheet in pixels
-	 */
-	public NoteSheet(int width, int height) {
-		pagenumber = pagecount++;
-		
-		this.width = width;
-		this.height = height;
-		
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		graphics = (Graphics2D)(img.getGraphics());
-		graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-		
-		graphics.setColor(new Color(255, 255, 255));
-		graphics.fillRect(0, 0, width, height);
-	}
-	
 	/**
 	 * Saves the picture to a PNG file.
 	 * 
@@ -104,5 +104,4 @@ public class NoteSheet {
 	public boolean touched() {
 		return touched;
 	}
-
 }

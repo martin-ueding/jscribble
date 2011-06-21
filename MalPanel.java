@@ -8,12 +8,15 @@ import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 public class MalPanel extends JPanel {
+	private NoteBook notebook;
+	
 	public MalPanel (NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
 	}
-	private NoteBook notebook;
+	
 	ImageObserver io = this;
+	
 	protected void paintComponent (Graphics g) {		
 		Graphics2D g2 = (Graphics2D)g;
 

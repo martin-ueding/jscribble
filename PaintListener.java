@@ -5,13 +5,16 @@ import java.awt.event.MouseMotionListener;
 
 public class PaintListener implements MouseMotionListener {
 	
-	private int x = -1, y = -1;
 	private NoteBook notebook;
 	
 	public PaintListener(NoteBook notebook) {
 		this.notebook = notebook;
 	}
 	
+	private int x = -1;
+
+	private int y = -1;
+
 	public void mouseDragged(MouseEvent arg0) {
 		notebook.drawLine(x, y, arg0.getX(), arg0.getY());
 		x = arg0.getX();
