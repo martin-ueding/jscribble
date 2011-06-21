@@ -54,7 +54,8 @@ public class NoteBook {
 	}
 
 	public void forward() {
-		if (sheets.size() <= currentSheet -1) {
+		currentSheet++;
+		if (sheets.size() > currentSheet) {
 		}
 		else if (current.touched()) {
 			sheets.add(new NoteSheet(width, height));
@@ -62,7 +63,6 @@ public class NoteBook {
 		else {
 			return;
 		}
-		currentSheet++;
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
