@@ -80,14 +80,14 @@ public class NoteSheet {
 	 * @param outfile filename to use, needs to be png
 	 */
 	public void saveToFile(String outfile) {
-		try {
-			javax.imageio.ImageIO.write(img, "png", new FileOutputStream(outfile));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (touched) {
+			try {
+				javax.imageio.ImageIO.write(img, "png", new FileOutputStream(outfile));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
