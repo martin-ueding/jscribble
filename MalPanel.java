@@ -18,14 +18,13 @@ public class MalPanel extends JPanel {
 		
 		Graphics2D g2 = (Graphics2D)g;
 
-		g.drawImage(Notizbuch.bg, 0, 0, io);
+		g2.drawImage(Notizbuch.img, 0, 0, io);
 		
+
         int rule = AlphaComposite.SRC_OVER;
         AlphaComposite ac = AlphaComposite.getInstance(rule, 0.5f);
         g2.setComposite(ac);
         
-
-		g2.drawImage(Notizbuch.img, 0, 0, io);
 //		g.setColor(Color.BLUE);
 //		g.drawString(Spr.get("speichern")+": [S]", 10, 25);
 //		g.drawString(Spr.get("speichern")+" ("+Notizbuch.autoName+"): [A]", 10, 45);

@@ -22,7 +22,7 @@ public class Notizbuch {
 	public static final String preDir = "";
 	
 	static MalPanel panel = new MalPanel();
-	static BufferedImage img, bg;
+	static BufferedImage img;
 	
 	static String autoName = null;
 	
@@ -111,14 +111,6 @@ public class Notizbuch {
 	}
 
 	private static Graphics2D initBild() {
-
-		ClassLoader cl = ClassLoader.getSystemClassLoader();
-		try {
-			bg = ImageIO.read(cl.getResource("bg1600alpha.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		img = new BufferedImage(br, ho, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g = (Graphics2D)(img.getGraphics());
 		g.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
