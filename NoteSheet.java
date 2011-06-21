@@ -26,6 +26,8 @@ public class NoteSheet {
 	 * The picture for storing the drawing on.
 	 */
 	private BufferedImage img;
+	
+	private Graphics2D graphics;
 
 	private int width;
 
@@ -38,6 +40,7 @@ public class NoteSheet {
 	public static int getPagecount() {
 		return pagecount;
 	}
+
 
 	public BufferedImage getImg() {
 		return img;
@@ -64,11 +67,11 @@ public class NoteSheet {
 		this.height = height;
 		
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		final Graphics2D g = (Graphics2D)(img.getGraphics());
-		g.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		graphics = (Graphics2D)(img.getGraphics());
+		graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		
-		g.setColor(new Color(255, 255, 255, 255));
-		g.fillRect(0, 0, width, height);
+		graphics.setColor(new Color(255, 255, 255));
+		graphics.fillRect(0, 0, width, height);
 	}
 	
 	/**
@@ -86,6 +89,20 @@ public class NoteSheet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void drawLine(int x, int y, int x2, int y2) {
+		System.out.println("drawing a line from "+x+" "+y);
+		touched = true;
+		graphics.setColor(new Color(0, 0, 0));
+		graphics.drawLine(x, y, x2, y2);
+		
+	}
+	
+	private boolean touched = false;
+
+	public boolean touched() {
+		return touched;
 	}
 
 }

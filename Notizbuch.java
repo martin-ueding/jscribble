@@ -12,77 +12,40 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Notizbuch {
-	public static final int br = 1600, ho = 1000;
+	public static final int br = 1024, ho = 600;
 	public static final String preDir = "";
 	
-	static MalPanel panel = new MalPanel();
-	static BufferedImage img;
+	static MalPanel panel;
 	
-	static String autoName = null;
+	static NoteBook notebook;
 	
-	static Graphics2D g;
-	
-	public static void main (String[] args) {
-		g = initBild();
-		
-		
+	public static void main (String[] args) {	
+		notebook = new NoteBook(br, ho);	
 		JFrame f = new JFrame("neuenotiz");
 		f.setSize(br, ho);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel = new MalPanel(notebook);
 		f.add(panel);
 		
-		panel.addMouseMotionListener(new MouseMotionListener() {
-			private int x = -1, y = -1;
-			
-			public void mouseDragged(MouseEvent arg0) {
-				if (x > 0) {			
-					g.setColor(Color.BLACK);
-					g.drawLine(x, y, arg0.getX(), arg0.getY());
-				}
-				x = arg0.getX();
-				y = arg0.getY();
-				panel.repaint();
-			}
-
-			public void mouseMoved(MouseEvent arg0) {
-				x = arg0.getX();
-				y = arg0.getY();
-			}
-		});
+		
+		panel.addMouseMotionListener(new PaintListener(notebook));
 		
 		f.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent arg0) {}
 
 			public void keyReleased(KeyEvent ev) {
-				if (ev.getKeyChar() == 's') {
-					try {
-						String name = JOptionPane.showInputDialog("titel");
-						if (name != null)
-							javax.imageio.ImageIO.write(img, "png", new FileOutputStream(name+".png"));
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-					
-					g = initBild();
-					panel.repaint();
+				if (ev.getKeyChar() == 'j') {
+					notebook.forward();
 				}
 				
-				if (ev.getKeyChar() == 'a') {
-					try {
-						javax.imageio.ImageIO.write(img, "png", new FileOutputStream(autoName));
-					}
-					catch (IOException e) {
-						e.printStackTrace();
-					}
-					
-					g = initBild();
-					panel.repaint();
+				if (ev.getKeyChar() == 'k') {
+					notebook.backward();
 				}
 
 			}
@@ -107,32 +70,5 @@ public class Notizbuch {
 //			System.exit(0);
 
 		
-	}
-
-	private static Graphics2D initBild() {
-		img = new BufferedImage(br, ho, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g = (Graphics2D)(img.getGraphics());
-		g.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-		
-		g.setColor(new Color(255, 255, 255, 255));
-		g.fillRect(0, 0, br, ho);
-		
-		/* Autospeichern-Name herausfinden */
-		Calendar rightNow = Calendar.getInstance();
-		String pre = "Notiz"+"-"+rightNow.get(Calendar.YEAR)+"-"+rightNow.get(Calendar.MONTH)+"-"+rightNow.get(Calendar.DAY_OF_MONTH)+"-";
-		
-		boolean search = true;
-		int i = 0;
-		while (search) {
-			
-			i++;
-			File act = new File(preDir+pre+i+".png");
-			search = act.exists();
-			
-			
-		}
-		
-		autoName = preDir+pre+i+".png";
-		return g;
 	}
 }
