@@ -109,4 +109,9 @@ public class NoteBook {
 		}
 
 	}
+
+	public int getSheetCount() {
+		return sheets.size();
+	}
+
 }

@@ -27,6 +27,6 @@ public class MalPanel extends JPanel {
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 		
 		g2.setColor(Color.BLUE);
-		g2.drawString("Page "+notebook.getCurrentSheet().getPagenumber(), 20, 20);
+		g2.drawString("Page "+notebook.getCurrentSheet().getPagenumber()+"/"+notebook.getSheetCount()-1, 20, 20);
 	}
 }
