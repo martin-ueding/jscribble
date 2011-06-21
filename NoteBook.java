@@ -36,13 +36,17 @@ public class NoteBook {
 	public void setDoneDrawing(ActionListener doneDrawing) {
 		this.doneDrawing = doneDrawing;
 	}
+	
+	private void fireDoneDrawing() {
+		if (doneDrawing != null) {
+			doneDrawing.actionPerformed(null);
+		}
+	}
 
 	public void drawLine(int x, int y, int x2, int y2) {
 		current.drawLine(x, y, x2, y2);
 		
-		if (doneDrawing != null) {
-			doneDrawing.actionPerformed(null);
-		}
+		fireDoneDrawing();
 	}
 	
 	public NoteSheet getCurrentSheet() {
@@ -50,30 +54,30 @@ public class NoteBook {
 	}
 	
 	public void forward() {
-		if (sheets.size() > currentSheet -1) {
-			currentSheet++;
-			updateCurrrentItem();
+		if (sheets.size() <= currentSheet -1) {
 		}
 		else if (current.touched()) {
 			sheets.add(new NoteSheet(width, height));
-			currentSheet++;
-			updateCurrrentItem();
 		}
+		else {
+			return;
+		}
+		currentSheet++;
+		updateCurrrentItem();
+		fireDoneDrawing();
 	}
 	
 	public void backward() {
 		if (currentSheet > 0) {
 			currentSheet--;
 			updateCurrrentItem();
+			fireDoneDrawing();
 		}
 	}
 	
 	private void updateCurrrentItem() {
+		assert(currentSheet >= 0);
+		assert(currentSheet < sheets.size());
 		current = sheets.get(currentSheet);
-		
-	}
-
-	public Image getCurrentImage() {
-		return current.getImg();
 	}
 }

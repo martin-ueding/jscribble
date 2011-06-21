@@ -18,7 +18,7 @@ public class NoteSheet {
 	private int pagenumber;
 	
 	/**
-	 * Highest page number given out so far.
+	 * Count of pages. Latest page number is pagecount-1.
 	 */
 	private static int pagecount;
 
@@ -61,7 +61,7 @@ public class NoteSheet {
 	 * @param height height of the sheet in pixels
 	 */
 	public NoteSheet(int width, int height) {
-		pagenumber = ++pagecount;
+		pagenumber = pagecount++;
 		
 		this.width = width;
 		this.height = height;
