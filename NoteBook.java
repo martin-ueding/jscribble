@@ -104,7 +104,14 @@ public class NoteBook {
 		}
 		
 		for (NoteSheet s : sheets) {
-			String filename = (now.get(Calendar.YEAR)-2000)+""+now.get(Calendar.MONTH)+""+now.get(Calendar.DAY_OF_MONTH)+"-" + basename + "-" + String.format("%0"+length+"d", s.getPagenumber()) + ".png";
+			String filename = 
+				String.format("%02d%02d%02d-%s-%s",
+						(now.get(Calendar.YEAR)%100),
+						now.get(Calendar.MONTH),
+						now.get(Calendar.DAY_OF_MONTH),
+						basename,
+						String.format("%0"+length+"d", s.getPagenumber()) + ".png"
+				);
 			s.saveToFile(filename);
 		}
 
