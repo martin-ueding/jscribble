@@ -1,4 +1,4 @@
-// Copyright (c) Martin Ueding <dev@martin-ueding.de>
+// Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Color;
 import java.awt.Graphics2D;
