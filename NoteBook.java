@@ -80,6 +80,8 @@ public class NoteBook {
 			sheets.add(new NoteSheet(width, height));
 		}
 		else {
+			// correct the advancing
+			currentSheet--;
 			return;
 		}
 		updateCurrrentItem();
