@@ -1,9 +1,9 @@
 # Copyright (c) Martin Ueding <dev@martin-ueding.de>
 
-all: jscribble.jar javadoc/.javadoc
-
 jscribble.jar: Notizbuch.class
 	jar -cfm jscribble.jar manifest.txt *.class
+
+all: jscribble.jar javadoc/.javadoc
 
 Notizbuch.class: *.java
 	javac Notizbuch.java
