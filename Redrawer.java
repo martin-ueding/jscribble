@@ -1,3 +1,5 @@
+// Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
