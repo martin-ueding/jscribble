@@ -13,4 +13,5 @@ javadoc/.javadoc: *.java
 	touch javadoc/.javadoc
 
 clean:
-	rm -rf *.jar *.class
+	$(RM) *.jar *.class
+	$(RM) -r javadoc
