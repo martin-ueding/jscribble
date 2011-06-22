@@ -7,11 +7,15 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
 
+/**
+ * Displays a NoteBook.
+ */
 public class MalPanel extends JPanel {
 	private NoteBook notebook;
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific notebook.
+	 *
 	 * @param notebook
 	 */
 	public MalPanel(NoteBook notebook) {

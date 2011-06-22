@@ -5,6 +5,13 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 
+/**
+ * A container for several NoteSheets.
+ *
+ * The NoteBook contains at least one NoteSheet and adds new sheets whenever
+ * the forward() function is called. The whole notebook can be saved into
+ * individual pictures.
+ */
 public class NoteBook {
 	private LinkedList<NoteSheet> sheets;
 
@@ -35,6 +42,9 @@ public class NoteBook {
 
 	private boolean touched = false;
 
+	/**
+	 * Draws a line onto the current sheet.
+	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		current.drawLine(x, y, x2, y2);
 
@@ -43,6 +53,11 @@ public class NoteBook {
 		touched = true;
 	}
 
+	/**
+	 * Sets an action listener to be called when something new was drawn.
+	 *
+	 * @param doneDrawing ActionListener to be called after drawing a new line.
+	 */
 	public void setDoneDrawing(ActionListener doneDrawing) {
 		this.doneDrawing = doneDrawing;
 	}
@@ -53,6 +68,10 @@ public class NoteBook {
 		}
 	}
 
+	/**
+	 * Flip the pages forward. It creates a new page if needed. If the current
+	 * page is a blank page, no new blank page will be added.
+	 */
 	public void forward() {
 		currentSheet++;
 		if (sheets.size() > currentSheet) {
@@ -67,6 +86,9 @@ public class NoteBook {
 		fireDoneDrawing();
 	}
 
+	/**
+	 * Goes back one sheet.
+	 */
 	public void backward() {
 		if (currentSheet > 0) {
 			currentSheet--;
@@ -85,6 +107,14 @@ public class NoteBook {
 		current = sheets.get(currentSheet);
 	}
 
+	/**
+	 * Persists the whole notebook into individual files. The user is promted
+	 * for a basename, the current date is added to the front. Each sheet
+	 * suffixed with the page number, padded with as many zeros as needed.
+	 *
+	 * The filename will look like this:
+	 * YYMMDD-basename-001.png
+	 */
 	public void saveToFiles() {
 		if (!touched) {
 			return;
@@ -114,9 +144,11 @@ public class NoteBook {
 			                 );
 			s.saveToFile(filename);
 		}
-
 	}
 
+	/**
+	 * @return number of sheets in the notebook
+	 */
 	public int getSheetCount() {
 		return sheets.size();
 	}

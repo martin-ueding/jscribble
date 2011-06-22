@@ -34,7 +34,7 @@ public class NoteSheet {
 	private int height;
 
 	/**
-	 * Creates an empty note sheet at the end of all other sheets.
+	 * Creates an empty note sheet.
 	 *
 	 * @param width width of the sheet in pixels
 	 * @param height height of the sheet in pixels
@@ -57,6 +57,9 @@ public class NoteSheet {
 		return pagenumber;
 	}
 
+	/**
+	 * @return The number of pages given out so far.
+	 */
 	public static int getPagecount() {
 		return pagecount;
 	}
@@ -93,6 +96,9 @@ public class NoteSheet {
 		}
 	}
 
+	/**
+	 * Draws a line onto the sheet.
+	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		touched = true;
 		graphics.setColor(new Color(0, 0, 0));
@@ -102,7 +108,11 @@ public class NoteSheet {
 
 	private boolean touched = false;
 
+	/**
+	 * @return whether this sheet has any lines drawn onto it
+	 */
 	public boolean touched() {
 		return touched;
 	}
 }
+

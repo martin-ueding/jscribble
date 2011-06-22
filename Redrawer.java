@@ -4,6 +4,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 
+/**
+ * Listens to changes from the notebook and updates the panel.
+ */
 public class Redrawer implements ActionListener {
 
 	private JPanel panel;

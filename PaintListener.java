@@ -3,6 +3,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 
+/**
+ * Listens to mouse movements on the displaying panel and updates the notebook.
+ */
 public class PaintListener implements MouseMotionListener {
 
 	private NoteBook notebook;
