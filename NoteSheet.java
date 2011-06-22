@@ -92,7 +92,7 @@ public class NoteSheet {
 	 * Save the image to a temp file. This can be used to free up RAM but keep
 	 * the image.
 	 */
-	public saveToSwap() {
+	public void saveToSwap() {
 		if (!isSwapped) {
 			if (swapname == null)
 				swapname = String.format("/tmp/jscribble-%d-%d.png", (int)(Math.random()*10000), pagenumber);
@@ -111,7 +111,7 @@ public class NoteSheet {
 	 * Loads the image from the swap file. This is done automatically when the
 	 * image is requested with the getter.
 	 */
-	private loadFromSwap() {
+	private void loadFromSwap() {
 		if (isSwapped) {
 			if (swapname != null) {
 				loadFromFile(swapname);
