@@ -54,6 +54,8 @@ public class Notizbuch {
 
 
 
+		// TODO only set to fullscreen if the screen resolution is as big as
+		// the paper size
 		GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
 		if (myDevice.isFullScreenSupported()) {
@@ -63,9 +65,6 @@ public class Notizbuch {
 
 			f.setLocation(0, 0);
 
-		}
-		else {
-			System.exit(0);
 		}
 
 		f.setVisible(true);
