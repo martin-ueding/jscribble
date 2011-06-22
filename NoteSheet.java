@@ -66,6 +66,9 @@ public class NoteSheet {
 
 
 	public BufferedImage getImg() {
+		if (isSwapped) {
+			loadFromSwap();
+		}
 		return img;
 	}
 
@@ -78,6 +81,56 @@ public class NoteSheet {
 	}
 
 	/**
+	 * Whether the picture is swapped to disk. To save RAM, the pictures might
+	 * be swapped into a tempfile if the user is in another part of the
+	 * notebook.
+	 */
+	private boolean isSwapped = false;
+	private String swapname = null;
+
+	/**
+	 * Save the image to a temp file. This can be used to free up RAM but keep
+	 * the image.
+	 */
+	public saveToSwap() {
+		if (!isSwapped) {
+			if (swapname == null)
+				swapname = String.format("/tmp/jscribble-%d-%d.png", (int)(Math.random()*10000), pagenumber);
+
+			saveToFile(swapname);
+
+			// delete the image from the heap
+			img = null;
+
+
+			isSwapped = true;
+		}
+	}
+
+	/**
+	 * Loads the image from the swap file. This is done automatically when the
+	 * image is requested with the getter.
+	 */
+	private loadFromSwap() {
+		if (isSwapped) {
+			if (swapname != null) {
+				loadFromFile(swapname);
+			}
+		}
+	}
+
+	/**
+	 * Loads the image from a given file. Everything else is left intact.
+	 *
+	 * @param infile filename to load from
+	 */
+	public void loadFromFile(String infile) {
+		// TODO implement loading
+
+		isSwapped = false;
+	}
+
+	/**
 	 * Saves the picture to a PNG file.
 	 *
 	 * @param outfile filename to use, needs to be png
@@ -85,7 +138,7 @@ public class NoteSheet {
 	public void saveToFile(String outfile) {
 		if (touched) {
 			try {
-				javax.imageio.ImageIO.write(img, "png", new FileOutputStream(outfile));
+				javax.imageio.ImageIO.write(getImg(), "png", new FileOutputStream(outfile));
 			}
 			catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -103,7 +156,6 @@ public class NoteSheet {
 		touched = true;
 		graphics.setColor(new Color(0, 0, 0));
 		graphics.drawLine(x, y, x2, y2);
-
 	}
 
 	private boolean touched = false;

@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  * individual pictures.
  */
 public class NoteBook {
+	// TODO save sheets that are far away in the list to save RAM space then
+	// reload images when the user is going back in the history
 	private LinkedList<NoteSheet> sheets;
 
 	private int currentSheet = 0;
