@@ -24,6 +24,7 @@ public class MalPanel extends JPanel {
 	}
 
 	private ImageObserver io = this;
+	private boolean lines = true;
 
 	// TODO add helping lines
 
@@ -34,5 +35,20 @@ public class MalPanel extends JPanel {
 
 		g2.setColor(Color.BLUE);
 		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + (notebook.getSheetCount() - 1), 20, 20);
+		
+		if (lines) {
+			int lineSpacing = 40;
+			g2.setColor(new Color(200, 200, 200));
+			for (int i = lineSpacing; i < getWidth(); i+= lineSpacing)
+				g2.drawLine(i, 0, i, getHeight());
+			
+
+			for (int i = lineSpacing; i < getHeight(); i+= lineSpacing)
+				g2.drawLine(0, i, getWidth(), i);
+		}
+	}
+
+	public void setLines(boolean b) {
+		this.lines  = b;
 	}
 }

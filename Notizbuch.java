@@ -51,6 +51,11 @@ public class Notizbuch {
 
 			public void keyTyped(KeyEvent arg0) {}
 		});
+		
+
+		ColonListener cl = new ColonListener(panel);
+		f.addKeyListener(cl);
+		cl.addChangeListener(new Redrawer(panel));
 
 
 
