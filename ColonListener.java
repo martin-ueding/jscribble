@@ -1,14 +1,23 @@
+// Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
-
+/**
+ * Listens to the keyboard for the command key and then polls the user for a
+ * command. The command is then executed.
+ */
 public class ColonListener implements KeyListener {
 
 	private MalPanel panel;
 	private Redrawer redrawer;
 
+	/**
+	 * Creates a new listener that listens to the given panel
+	 * @param malPanel panel to listen to
+	 */
 	public ColonListener(MalPanel malPanel) {
 		panel = malPanel;
 	}
@@ -38,6 +47,11 @@ public class ColonListener implements KeyListener {
 
 	}
 
+	/**
+	 * A listener to be called when a setting causes the panel to need
+	 * refreshing.
+	 * @param redrawer listener to call after setting change
+	 */
 	public void addChangeListener(Redrawer redrawer) {
 		this.redrawer = redrawer;
 

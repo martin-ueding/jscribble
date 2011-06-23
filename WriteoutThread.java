@@ -5,14 +5,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * In order to make the user interface faster, the writing of unneeded images is
+ * put into a second thread. That way, the UI does not freeze during the little
+ * IO time.
+ */
 public class WriteoutThread extends Thread {
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
+	/**
+	 * Creates and starts the thread.
+	 */
 	public WriteoutThread() {
 		tasks = new LinkedBlockingQueue<ImageSwapTask>();
 		this.start();
 	}
 
+	/**
+	 * Schedules a new task.
+	 * @param t task to schedule
+	 */
 	public void schedule(ImageSwapTask t) {
 		try {
 			tasks.put(t);
@@ -37,10 +49,12 @@ public class WriteoutThread extends Thread {
 
 				assert(task.getImg() != null);
 				assert(task.getOutfile() != null);
-				//assert(filename.canWrite());
+				// assert(filename.canWrite());
 
-				System.out.println("writing out " + task.getOutfile().getCanonicalPath());
-				javax.imageio.ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
+				System.out.println("writing out "
+				                   + task.getOutfile().getCanonicalPath());
+				javax.imageio.ImageIO.write(task.getImg(), "png",
+				                            new FileOutputStream(task.getOutfile()));
 			}
 			catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -61,6 +75,9 @@ public class WriteoutThread extends Thread {
 
 	private boolean stopAfterLastItem = false;
 
+	/**
+	 * Stops the thread's daemon mode and lets it die when the queue is empty.
+	 */
 	public void stopAfterLast() {
 		stopAfterLastItem = true;
 	}

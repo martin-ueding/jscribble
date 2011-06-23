@@ -29,18 +29,19 @@ public class NoteSheet {
 	private int height;
 
 	/**
-	 * Whether the picture is swapped to disk. To save RAM, the pictures might
-	 * be swapped into a temp file if the user is in another part of the
-	 * notebook.
+	 * Whether the picture was changed in any way since the last saving. A blank
+	 * picture is untouched and one which was loaded from disk as well.
 	 */
-	private boolean isSwapped() {
-		return img == null;
-	}
-
 	private boolean touched = false;
 
+	/**
+	 * Storage point of the image of this sheet.
+	 */
 	private File filename;
 
+	/**
+	 * A singleton thread that handles all the writing to disk.
+	 */
 	private static WriteoutThread writethread;
 
 	/**
@@ -82,11 +83,19 @@ public class NoteSheet {
 		}
 	}
 
+	/**
+	 * Get the sheet's page number.
+	 * @return pagenumber
+	 */
 	public int getPagenumber() {
 		return pagenumber;
 	}
 
 
+	/**
+	 * Gets the image, loads it from disk id needed.
+	 * @return the image
+	 */
 	public BufferedImage getImg() {
 		if (isSwapped()) {
 			loadFromFile();
@@ -94,10 +103,18 @@ public class NoteSheet {
 		return img;
 	}
 
+	/**
+	 * Width of the image.
+	 * @return width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Height of the image.
+	 * @return height
+	 */
 	public int getHeight() {
 		return height;
 	}
@@ -124,7 +141,7 @@ public class NoteSheet {
 	}
 
 	/**
-	 * Saves the picture to a PNG file.
+	 * Saves the picture to a PNG file. The image is then removed from the heap.
 	 */
 	public void saveToFile() {
 		if (touched) {
@@ -138,7 +155,7 @@ public class NoteSheet {
 	}
 
 	/**
-	 * Draws a line onto the sheet.
+	 * Draws a line onto the sheet. The sheet is then marked as "touched".
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		touched = true;
@@ -149,15 +166,6 @@ public class NoteSheet {
 		graphics.drawLine(x, y, x2, y2);
 	}
 
-	private Graphics2D getGraphics() {
-		if (graphics == null) {
-			graphics = (Graphics2D)(getImg().getGraphics());
-			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-		}
-
-		return graphics;
-	}
-
 	/**
 	 * @return whether this sheet has any lines drawn onto it
 	 */
@@ -165,6 +173,10 @@ public class NoteSheet {
 		return touched;
 	}
 
+	/**
+	 * Stops the writeout thread and waits for it. This ensures that everything
+	 * is written to disk properly.
+	 */
 	public void stopWriteoutThread() {
 		try {
 			writethread.stopAfterLast();
@@ -175,6 +187,28 @@ public class NoteSheet {
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * Gets the graphics context of the image.
+	 * @return graphics object
+	 */
+	private Graphics2D getGraphics() {
+		if (graphics == null) {
+			graphics = (Graphics2D)(getImg().getGraphics());
+			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		}
+
+		return graphics;
+	}
+
+	/**
+	 * Whether the picture is swapped to disk. To save RAM, the pictures might
+	 * be swapped into a temp file if the user is in another part of the
+	 * notebook.
+	 */
+	private boolean isSwapped() {
+		return img == null;
 	}
 }
 

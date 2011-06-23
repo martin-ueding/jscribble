@@ -3,7 +3,10 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-
+/**
+ * A set of an image and a filename that is supposed to be loaded or saved to
+ * disk.
+ */
 public class ImageSwapTask {
 	private BufferedImage img;
 	private File outfile;

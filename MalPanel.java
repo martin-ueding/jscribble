@@ -8,16 +8,19 @@ import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 /**
- * Displays a NoteBook.
+ * Displays the current page of a notebook. It also listens to the mouse and
+ * relays the movements to the notebook as line drawing commands. It also
+ * features a command listener for more user interaction.
  */
 @SuppressWarnings("serial")
 public class MalPanel extends JPanel {
 	private NoteBook notebook;
 
 	/**
-	 * Creates a new display panel that will listen to changes from a specific notebook.
+	 * Creates a new display panel that will listen to changes from a specific
+	 * notebook.
 	 *
-	 * @param notebook
+	 * @param notebook the notebook to display
 	 */
 	public MalPanel(NoteBook notebook) {
 		this.notebook = notebook;
@@ -56,12 +59,21 @@ public class MalPanel extends JPanel {
 		}
 
 		g2.setColor(Color.BLUE);
-		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + notebook.getSheetCount(), 20, 20);
+		g2.drawString(String.format("Page %d/%d",
+		                            notebook.getCurrentSheet().getPagenumber(),
+		                            notebook.getSheetCount()), 15, 15);
 
-		g2.drawString(String.format("%d MB used, %d MB free, %d MB total", (r.totalMemory() - r.freeMemory()) / 1024 / 1024, r.freeMemory() / 1024 / 1024, r.totalMemory() / 1024 / 1024), getWidth() / 2, 20);
+		g2.drawString(String.format("%d MB used, %d MB free, %d MB total",
+		                            (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
+		                            r.freeMemory() / 1024 / 1024, r.totalMemory() / 1024 / 1024),
+		              getWidth() / 2, 15);
 
 	}
 
+	/**
+	 * Set whether help lines are to be drawn.
+	 * @param b status of the lines
+	 */
 	public void setLines(boolean b) {
 		this.lines  = b;
 	}
