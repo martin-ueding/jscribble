@@ -6,7 +6,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -39,6 +38,8 @@ public class NoteSheet {
 	private boolean touched = false;
 
 	private File filename;
+	
+	private static WriteoutThread writethread;
 
 	/**
 	 * Creates an empty note sheet.
@@ -47,6 +48,10 @@ public class NoteSheet {
 	 * @param height height of the sheet in pixels
 	 */
 	public NoteSheet(int width, int height, int pagenumber, File infile) {
+		if (writethread == null) {
+			writethread = new WriteoutThread();
+		}
+		
 		this.width = width;
 		this.height = height;
 		this.pagenumber = pagenumber;
@@ -103,6 +108,7 @@ public class NoteSheet {
 	 */
 	public void loadFromFile() {
 		try {
+			System.out.println("reading " + filename.getCanonicalPath());
 			img = javax.imageio.ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {
@@ -124,27 +130,14 @@ public class NoteSheet {
 	 */
 	public void saveToFile() {
 		if (touched) {
-			try {
-				assert(getImg() != null);
-				assert(filename != null);
-				//assert(filename.canWrite());
-
-				javax.imageio.ImageIO.write(getImg(), "png", new FileOutputStream(filename));
-			}
-			catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			writethread.schedule(new ImageSwapTask(img, filename));
 		}
 
 		// remove the image from the memory
 		img = null;
 
 		isSwapped = true;
+		touched = false;
 	}
 
 	/**

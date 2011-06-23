@@ -133,7 +133,7 @@ public class NoteBook {
 	 * page is a blank page, no new blank page will be added.
 	 */
 	public void forward() {
-		if (sheets.size() > currentSheet+1) {
+		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
 		}
 		else if (current.touched()) {
@@ -145,6 +145,7 @@ public class NoteBook {
 		else {
 			return;
 		}
+		current.saveToFile();
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
