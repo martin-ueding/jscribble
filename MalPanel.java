@@ -28,7 +28,7 @@ public class MalPanel extends JPanel {
 	}
 
 	private ImageObserver io = this;
-	private boolean lines = true;
+	private boolean lines = false;
 
 	private static final Color lineColor = new Color(200, 200, 200);
 	private static final int lineSpacing = 40;
