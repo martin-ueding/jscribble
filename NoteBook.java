@@ -100,8 +100,6 @@ public class NoteBook {
 		return null;
 	}
 
-	private boolean touched = false;
-
 	/**
 	 * Draws a line onto the current sheet.
 	 */
@@ -109,8 +107,6 @@ public class NoteBook {
 		current.drawLine(x, y, x2, y2);
 
 		fireDoneDrawing();
-
-		touched = true;
 	}
 
 	/**
@@ -145,7 +141,12 @@ public class NoteBook {
 		else {
 			return;
 		}
-		current.saveToFile();
+
+
+		if (currentSheet >= cacheWidth) {
+			sheets.get(currentSheet - cacheWidth).saveToFile();
+		}
+
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
@@ -160,11 +161,20 @@ public class NoteBook {
 	}
 
 	/**
+	 * How many images to cache back and front.
+	 */
+	private int cacheWidth = 10;
+
+	/**
 	 * Goes back one sheet.
 	 */
 	public void backward() {
 		if (currentSheet > 0) {
-			current.saveToFile();
+			if (currentSheet + cacheWidth < sheets.size()) {
+				System.out.println(String.format("%s + %s < %s", currentSheet, cacheWidth, sheets.size()));
+				sheets.get(currentSheet + cacheWidth).saveToFile();
+			}
+
 			currentSheet--;
 			updateCurrrentItem();
 			fireDoneDrawing();
@@ -182,24 +192,13 @@ public class NoteBook {
 	}
 
 	/**
-	 * Persists the whole notebook into individual files. The user is prompted
-	 * for a basename, the current date is added to the front. Each sheet
-	 * suffixed with the page number, padded with as many zeros as needed.
+	 * Persists the whole notebook into individual files.
 	 */
 	public void saveToFiles() {
-		if (!touched) {
-			return;
-		}
-
-		int maxnum = sheets.size() - 1;
-		int length = 1;
-		while (Math.pow(10, length) < maxnum + 1) {
-			length++;
-		}
-
 		for (NoteSheet s : sheets) {
 			s.saveToFile();
 		}
+		quitWithWriteoutThread();
 	}
 
 	/**
@@ -207,6 +206,11 @@ public class NoteBook {
 	 */
 	public int getSheetCount() {
 		return sheets.size();
+	}
+
+	private void quitWithWriteoutThread() {
+		sheets.getFirst().stopWriteoutThread();
+
 	}
 
 }

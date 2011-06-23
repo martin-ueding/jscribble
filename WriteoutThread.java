@@ -7,22 +7,34 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class WriteoutThread extends Thread {
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
-	
+
 	public WriteoutThread() {
 		tasks = new LinkedBlockingQueue<ImageSwapTask>();
 		this.start();
 	}
-	
+
 	public void schedule(ImageSwapTask t) {
-		tasks.add(t);
+		try {
+			tasks.put(t);
+		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void run() {
-		while (true) {
-			ImageSwapTask task;
+		ImageSwapTask task;
+		while (!stopAfterLastItem || !tasks.isEmpty()) {
 			try {
-				task = tasks.take();
-				
+				System.out.println("waiting for task in queue");
+				if (stopAfterLastItem) {
+					task = tasks.poll();
+				}
+				else {
+					task = tasks.take();
+				}
+
 				assert(task.getImg() != null);
 				assert(task.getOutfile() != null);
 				//assert(filename.canWrite());
@@ -37,10 +49,19 @@ public class WriteoutThread extends Thread {
 			catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InterruptedException e1) {
+			}
+			catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+
 		}
+		System.out.println("thread dies");
+	}
+
+	private boolean stopAfterLastItem = false;
+
+	public void stopAfterLast() {
+		stopAfterLastItem = true;
 	}
 }

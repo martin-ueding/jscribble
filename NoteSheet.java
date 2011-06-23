@@ -40,7 +40,7 @@ public class NoteSheet {
 	private boolean touched = false;
 
 	private File filename;
-	
+
 	private static WriteoutThread writethread;
 
 	/**
@@ -53,7 +53,7 @@ public class NoteSheet {
 		if (writethread == null) {
 			writethread = new WriteoutThread();
 		}
-		
+
 		this.width = width;
 		this.height = height;
 		this.pagenumber = pagenumber;
@@ -125,8 +125,6 @@ public class NoteSheet {
 
 	/**
 	 * Saves the picture to a PNG file.
-	 *
-	 * @param outfile filename to use, needs to be png
 	 */
 	public void saveToFile() {
 		if (touched) {
@@ -165,6 +163,18 @@ public class NoteSheet {
 	 */
 	public boolean touched() {
 		return touched;
+	}
+
+	public void stopWriteoutThread() {
+		try {
+			writethread.stopAfterLast();
+			writethread.join();
+		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
 
