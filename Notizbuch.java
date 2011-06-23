@@ -3,6 +3,7 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.Toolkit;
 
@@ -56,22 +57,18 @@ public class Notizbuch {
 		cl.addChangeListener(new Redrawer(panel));
 
 
+		if (Toolkit.getDefaultToolkit().getScreenSize().equals(new Dimension(br, ho))) {
+			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-		// TODO only set to fullscreen if the screen resolution is as big as
-		// the paper size
-		GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+			if (myDevice.isFullScreenSupported()) {
+				f.setUndecorated(true);
+				f.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+				myDevice.setFullScreenWindow(f);
 
-		if (myDevice.isFullScreenSupported()) {
-			f.setUndecorated(true);
-			f.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-			myDevice.setFullScreenWindow(f);
-
-			f.setLocation(0, 0);
-
+				f.setLocation(0, 0);
+			}
 		}
 
 		f.setVisible(true);
-
-
 	}
 }
