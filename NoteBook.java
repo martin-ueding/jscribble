@@ -133,18 +133,16 @@ public class NoteBook {
 	 * page is a blank page, no new blank page will be added.
 	 */
 	public void forward() {
-		currentSheet++;
-		if (sheets.size() > currentSheet) {
+		if (sheets.size() > currentSheet+1) {
+			currentSheet++;
 		}
 		else if (current.touched()) {
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
-
+			currentSheet++;
 
 			pagecount++;
 		}
 		else {
-			// correct the advancing
-			currentSheet--;
 			return;
 		}
 		updateCurrrentItem();
