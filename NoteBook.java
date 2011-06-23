@@ -1,6 +1,7 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -20,6 +21,8 @@ public class NoteBook {
 	private LinkedList<NoteSheet> sheets;
 
 	private int currentSheet = 0;
+	
+	private File folder;
 
 	private NoteSheet current;
 
