@@ -25,6 +25,8 @@ public class MalPanel extends JPanel {
 
 	private ImageObserver io = this;
 
+	// TODO add helping lines
+
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
 
