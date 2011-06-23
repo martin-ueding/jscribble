@@ -3,7 +3,7 @@ import java.io.FilenameFilter;
 
 
 public class NoteSheetFileFilter implements FilenameFilter {
-	
+
 	private String basename;
 
 	public NoteSheetFileFilter(String name) {
@@ -15,7 +15,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 		if (!arg1.contains(basename)) {
 			return false;
 		}
-		
+
 		return true;
 	}
 

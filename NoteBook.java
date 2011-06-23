@@ -19,7 +19,7 @@ public class NoteBook {
 	private LinkedList<NoteSheet> sheets;
 
 	private int currentSheet = 0;
-	
+
 	private File folder;
 
 	private NoteSheet current;
@@ -28,12 +28,12 @@ public class NoteBook {
 	private int height;
 
 	private ActionListener doneDrawing;
-	
+
 	/**
 	 * Count of pages. Latest page number is pagecount.
 	 */
 	private static int pagecount = 1;
-	
+
 	String name;
 
 	/**
@@ -45,36 +45,37 @@ public class NoteBook {
 	public NoteBook(int width, int height, File folder, String name) {
 		this.width = width;
 		this.height = height;
-		
+
 		this.folder = folder;
 		this.name = name;
 
 		sheets = new LinkedList<NoteSheet>();
-		
+
 		// if a notebook should be used
 		if (folder != null && name != null) {
 			if (!folder.exists()) {
 				folder.mkdirs();
 			}
-			
+
 			// try to load all images that match the name
 			File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
-			
+
 			// FIXME load pictures in correct order
 			for (File file : allImages) {
 				try {
 					System.out.println(String.format("loading from file %s", file.getCanonicalPath()));
-				} catch (IOException e) {
+				}
+				catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				sheets.add(new NoteSheet(width, height, pagecount++, file));
 			}
-			
-			
-			
+
+
+
 		}
-		
+
 		// add an empty sheet if the notebook would be empty otherwise
 		if (sheets.size() == 0) {
 			System.out.println("generating new sheet in empty notebook");
@@ -82,18 +83,19 @@ public class NoteBook {
 			pagecount++;
 		}
 
-		
+
 		updateCurrrentItem();
 	}
-	
+
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
-		try {
-			return new File(folder.getCanonicalPath() + File.separator + name + "-" +String.valueOf(pagenumber) + ".png");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.valueOf(pagenumber) + ".png");
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
@@ -136,8 +138,8 @@ public class NoteBook {
 		}
 		else if (current.touched()) {
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
-			
-			
+
+
 			pagecount++;
 		}
 		else {
@@ -148,7 +150,7 @@ public class NoteBook {
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
-	
+
 
 
 	/**

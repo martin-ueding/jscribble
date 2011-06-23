@@ -24,23 +24,23 @@ public class Notizbuch {
 
 		File in = null;
 		if (nickname != null) {
-			
+
 			JFileChooser ladenChooser = new JFileChooser();
 			ladenChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			
-			
+
+
 			int result = ladenChooser.showOpenDialog(null);
 			if (result == JFileChooser.APPROVE_OPTION) {
 				in = ladenChooser.getSelectedFile();
 			}
-			
+
 			// if there is no file selected, abort right here
 			if (in == null) {
 				System.exit(1);
 			}
 		}
 
-		
+
 		notebook = new NoteBook(br, ho, in, nickname);
 		JFrame f = new JFrame("Notebook");
 		f.setSize(br, ho);

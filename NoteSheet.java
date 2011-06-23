@@ -51,7 +51,7 @@ public class NoteSheet {
 		this.height = height;
 		this.pagenumber = pagenumber;
 		this.filename = infile;
-		
+
 		if (filename != null && filename.exists()) {
 			loadFromFile();
 		}
@@ -60,14 +60,15 @@ public class NoteSheet {
 				System.out.println("generating tempfile");
 				try {
 					filename = File.createTempFile("jscribble-", ".png");
-				} catch (IOException e) {
+				}
+				catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
+
 			img = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-			
+
 			graphics = getGraphics();
 			graphics.setColor(new Color(255, 255, 255));
 			graphics.fillRect(0, 0, width, height);
@@ -112,7 +113,7 @@ public class NoteSheet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		isSwapped = false;
 	}
 
@@ -127,7 +128,7 @@ public class NoteSheet {
 				assert(getImg() != null);
 				assert(filename != null);
 				//assert(filename.canWrite());
-				
+
 				javax.imageio.ImageIO.write(getImg(), "png", new FileOutputStream(filename));
 			}
 			catch (FileNotFoundException e) {
@@ -139,10 +140,10 @@ public class NoteSheet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// remove the image from the memory
 		img = null;
-		
+
 		isSwapped = true;
 	}
 
@@ -151,9 +152,9 @@ public class NoteSheet {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		touched = true;
-		
+
 		Graphics2D graphics = getGraphics();
-		
+
 		graphics.setColor(new Color(0, 0, 0));
 		graphics.drawLine(x, y, x2, y2);
 	}
@@ -163,7 +164,7 @@ public class NoteSheet {
 			graphics = (Graphics2D)(getImg().getGraphics());
 			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		}
-		
+
 		return graphics;
 	}
 
