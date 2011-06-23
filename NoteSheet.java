@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,6 +35,17 @@ public class NoteSheet {
 	private int height;
 
 	/**
+	 * Whether the picture is swapped to disk. To save RAM, the pictures might
+	 * be swapped into a tempfile if the user is in another part of the
+	 * notebook.
+	 */
+	private boolean isSwapped = false;
+
+	private String swapname = null;
+
+	private boolean touched = false;
+
+	/**
 	 * Creates an empty note sheet.
 	 *
 	 * @param width width of the sheet in pixels
@@ -45,12 +57,15 @@ public class NoteSheet {
 		this.width = width;
 		this.height = height;
 
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		graphics = (Graphics2D)(img.getGraphics());
-		graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-
+		img = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+		
+		graphics = getGraphics();
 		graphics.setColor(new Color(255, 255, 255));
 		graphics.fillRect(0, 0, width, height);
+	}
+	
+	public NoteSheet(int pagenumber, File infile) {
+		this.pagenumber = pagenumber;
 	}
 
 	public int getPagenumber() {
@@ -79,14 +94,6 @@ public class NoteSheet {
 	public int getHeight() {
 		return height;
 	}
-
-	/**
-	 * Whether the picture is swapped to disk. To save RAM, the pictures might
-	 * be swapped into a tempfile if the user is in another part of the
-	 * notebook.
-	 */
-	private boolean isSwapped = false;
-	private String swapname = null;
 
 	/**
 	 * Save the image to a temp file. This can be used to free up RAM but keep
@@ -155,11 +162,21 @@ public class NoteSheet {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		touched = true;
+		
+		Graphics2D graphics = getGraphics();
+		
 		graphics.setColor(new Color(0, 0, 0));
 		graphics.drawLine(x, y, x2, y2);
 	}
 
-	private boolean touched = false;
+	private Graphics2D getGraphics() {
+		if (graphics == null) {
+			graphics = (Graphics2D)(img.getGraphics());
+			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		}
+		
+		return graphics;
+	}
 
 	/**
 	 * @return whether this sheet has any lines drawn onto it
