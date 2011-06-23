@@ -26,7 +26,8 @@ public class MalPanel extends JPanel {
 	private ImageObserver io = this;
 	private boolean lines = true;
 
-	// TODO add helping lines
+	private static final Color lineColor = new Color(200, 200, 200);
+	private static final int lineSpacing = 40;
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
@@ -37,8 +38,7 @@ public class MalPanel extends JPanel {
 		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + (notebook.getSheetCount() - 1), 20, 20);
 		
 		if (lines) {
-			int lineSpacing = 40;
-			g2.setColor(new Color(200, 200, 200));
+			g2.setColor(lineColor);
 			for (int i = lineSpacing; i < getWidth(); i+= lineSpacing)
 				g2.drawLine(i, 0, i, getHeight());
 			
