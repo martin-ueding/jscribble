@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 /**
  * Displays a NoteBook.
  */
+@SuppressWarnings("serial")
 public class MalPanel extends JPanel {
 	private NoteBook notebook;
 
@@ -25,6 +26,8 @@ public class MalPanel extends JPanel {
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
+		
+		r = Runtime.getRuntime();
 	}
 
 	private ImageObserver io = this;
@@ -32,14 +35,13 @@ public class MalPanel extends JPanel {
 
 	private static final Color lineColor = new Color(200, 200, 200);
 	private static final int lineSpacing = 40;
+	
+	private Runtime r;
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
 
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
-
-		g2.setColor(Color.BLUE);
-		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + notebook.getSheetCount(), 20, 20);
 
 		if (lines) {
 			g2.setColor(lineColor);
@@ -52,6 +54,12 @@ public class MalPanel extends JPanel {
 				g2.drawLine(0, i, getWidth(), i);
 			}
 		}
+
+		g2.setColor(Color.BLUE);
+		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + notebook.getSheetCount(), 20, 20);
+		
+		g2.drawString(String.format("%d MB used, %d MB free, %d MB total", (r.totalMemory()-r.freeMemory())/1024/1024, r.freeMemory()/1024/1024, r.totalMemory()/1024/1024), getWidth()/2, 20);
+		
 	}
 
 	public void setLines(boolean b) {
