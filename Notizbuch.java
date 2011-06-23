@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 
 public class Notizbuch {
 	public static final int br = 1024, ho = 600;
-	public static final String preDir = "";
 
 	static MalPanel panel;
 
