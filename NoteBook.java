@@ -180,12 +180,9 @@ public class NoteBook {
 	}
 
 	/**
-	 * Persists the whole notebook into individual files. The user is promted
+	 * Persists the whole notebook into individual files. The user is prompted
 	 * for a basename, the current date is added to the front. Each sheet
 	 * suffixed with the page number, padded with as many zeros as needed.
-	 *
-	 * The filename will look like this:
-	 * basename-1.png
 	 */
 	public void saveToFiles() {
 		if (!touched) {
