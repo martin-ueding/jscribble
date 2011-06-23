@@ -2,6 +2,7 @@
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -30,6 +31,13 @@ public class NoteBook {
 	private int height;
 
 	private ActionListener doneDrawing;
+	
+	/**
+	 * Count of pages. Latest page number is pagecount.
+	 */
+	private static int pagecount = 1;
+	
+	String name;
 
 	/**
 	 * Creates an empty note book with a single note sheet.
@@ -37,14 +45,60 @@ public class NoteBook {
 	 * @param width width of the individual sheets
 	 * @param height height of the individual sheets
 	 */
-	public NoteBook(int width, int height) {
+	public NoteBook(int width, int height, File folder, String name) {
 		this.width = width;
 		this.height = height;
+		
+		this.folder = folder;
+		this.name = name;
 
 		sheets = new LinkedList<NoteSheet>();
+		
+		// if a notebook should be used
+		if (folder != null && name != null) {
+			if (!folder.exists()) {
+				folder.mkdirs();
+			}
+			
+			// try to load all images that match the name
+			File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
+			
+			// FIXME load pictures in correct order
+			for (File file : allImages) {
+				try {
+					System.out.println(String.format("loading from file %s", file.getCanonicalPath()));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				sheets.add(new NoteSheet(width, height, pagecount++, file));
+			}
+			
+			
+			
+		}
+		
+		// add an empty sheet if the notebook would be empty otherwise
+		if (sheets.size() == 0) {
+			System.out.println("generating new sheet in empty notebook");
+			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
+			pagecount++;
+		}
 
-		sheets.add(new NoteSheet(width, height));
+		
 		updateCurrrentItem();
+	}
+	
+	private File generateNextFilename(int pagenumber) {
+		if (folder != null && name != null) {
+		try {
+			return new File(folder.getCanonicalPath() + File.separator + name + "-" +String.valueOf(pagenumber) + ".png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		return null;
 	}
 
 	private boolean touched = false;
@@ -84,7 +138,10 @@ public class NoteBook {
 		if (sheets.size() > currentSheet) {
 		}
 		else if (current.touched()) {
-			sheets.add(new NoteSheet(width, height));
+			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
+			
+			
+			pagecount++;
 		}
 		else {
 			// correct the advancing
@@ -93,6 +150,15 @@ public class NoteBook {
 		}
 		updateCurrrentItem();
 		fireDoneDrawing();
+	}
+	
+
+
+	/**
+	 * @return The number of pages given out so far.
+	 */
+	public static int getPagecount() {
+		return pagecount;
 	}
 
 	/**
@@ -122,19 +188,12 @@ public class NoteBook {
 	 * suffixed with the page number, padded with as many zeros as needed.
 	 *
 	 * The filename will look like this:
-	 * YYMMDD-basename-001.png
+	 * basename-1.png
 	 */
 	public void saveToFiles() {
 		if (!touched) {
 			return;
 		}
-
-		String basename = JOptionPane.showInputDialog("Please enter basename (press cancel to stop saving)");
-		if (basename == null) {
-			return;
-		}
-
-		Calendar now = Calendar.getInstance();
 
 		int maxnum = sheets.size() - 1;
 		int length = 1;
@@ -143,15 +202,7 @@ public class NoteBook {
 		}
 
 		for (NoteSheet s : sheets) {
-			String filename =
-			    String.format("%02d%02d%02d-%s-%s",
-			                  (now.get(Calendar.YEAR) % 100),
-			                  now.get(Calendar.MONTH),
-			                  now.get(Calendar.DAY_OF_MONTH),
-			                  basename,
-			                  String.format("%0" + length + "d", s.getPagenumber()) + ".png"
-			                 );
-			s.saveToFile(filename);
+			s.saveToFile();
 		}
 	}
 

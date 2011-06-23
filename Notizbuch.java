@@ -1,13 +1,16 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Notizbuch {
 	public static final int br = 1024, ho = 600;
@@ -17,7 +20,28 @@ public class Notizbuch {
 	static NoteBook notebook;
 
 	public static void main(String[] args) {
-		notebook = new NoteBook(br, ho);
+		String nickname = JOptionPane.showInputDialog("Nickname of your Notebook:");
+
+		File in = null;
+		if (nickname != null) {
+			
+			JFileChooser ladenChooser = new JFileChooser();
+			ladenChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			
+			
+			int result = ladenChooser.showOpenDialog(null);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				in = ladenChooser.getSelectedFile();
+			}
+			
+			// if there is no file selected, abort right here
+			if (in == null) {
+				System.exit(1);
+			}
+		}
+
+		
+		notebook = new NoteBook(br, ho, in, nickname);
 		JFrame f = new JFrame("Notebook");
 		f.setSize(br, ho);
 

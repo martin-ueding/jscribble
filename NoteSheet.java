@@ -19,11 +19,6 @@ public class NoteSheet {
 	private int pagenumber;
 
 	/**
-	 * Count of pages. Latest page number is pagecount-1.
-	 */
-	private static int pagecount;
-
-	/**
 	 * The picture for storing the drawing on.
 	 */
 	private BufferedImage img;
@@ -36,14 +31,14 @@ public class NoteSheet {
 
 	/**
 	 * Whether the picture is swapped to disk. To save RAM, the pictures might
-	 * be swapped into a tempfile if the user is in another part of the
+	 * be swapped into a temp file if the user is in another part of the
 	 * notebook.
 	 */
 	private boolean isSwapped = false;
 
-	private String swapname = null;
-
 	private boolean touched = false;
+
+	private File filename;
 
 	/**
 	 * Creates an empty note sheet.
@@ -51,38 +46,42 @@ public class NoteSheet {
 	 * @param width width of the sheet in pixels
 	 * @param height height of the sheet in pixels
 	 */
-	public NoteSheet(int width, int height) {
-		pagenumber = pagecount++;
-
+	public NoteSheet(int width, int height, int pagenumber, File infile) {
 		this.width = width;
 		this.height = height;
-
-		img = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-		
-		graphics = getGraphics();
-		graphics.setColor(new Color(255, 255, 255));
-		graphics.fillRect(0, 0, width, height);
-	}
-	
-	public NoteSheet(int pagenumber, File infile) {
 		this.pagenumber = pagenumber;
+		this.filename = infile;
+		
+		if (filename != null && filename.exists()) {
+			loadFromFile();
+		}
+		else {
+			if (filename == null) {
+				System.out.println("generating tempfile");
+				try {
+					filename = File.createTempFile("jscribble-", ".png");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			img = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+			
+			graphics = getGraphics();
+			graphics.setColor(new Color(255, 255, 255));
+			graphics.fillRect(0, 0, width, height);
+		}
 	}
 
 	public int getPagenumber() {
 		return pagenumber;
 	}
 
-	/**
-	 * @return The number of pages given out so far.
-	 */
-	public static int getPagecount() {
-		return pagecount;
-	}
-
 
 	public BufferedImage getImg() {
 		if (isSwapped) {
-			loadFromSwap();
+			loadFromFile();
 		}
 		return img;
 	}
@@ -95,46 +94,25 @@ public class NoteSheet {
 		return height;
 	}
 
-	/**
-	 * Save the image to a temp file. This can be used to free up RAM but keep
-	 * the image.
-	 */
-	public void saveToSwap() {
-		if (!isSwapped) {
-			if (swapname == null) {
-				swapname = String.format("/tmp/jscribble-%d-%d.png", (int)(Math.random() * 10000), pagenumber);
-			}
-
-			saveToFile(swapname);
-
-			// delete the image from the heap
-			img = null;
-
-
-			isSwapped = true;
-		}
-	}
-
-	/**
-	 * Loads the image from the swap file. This is done automatically when the
-	 * image is requested with the getter.
-	 */
-	private void loadFromSwap() {
-		if (isSwapped) {
-			if (swapname != null) {
-				loadFromFile(swapname);
-			}
-		}
-	}
 
 	/**
 	 * Loads the image from a given file. Everything else is left intact.
 	 *
 	 * @param infile filename to load from
 	 */
-	public void loadFromFile(String infile) {
-		// TODO implement loading
-
+	public void loadFromFile() {
+		try {
+			img = javax.imageio.ImageIO.read(filename);
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		isSwapped = false;
 	}
 
@@ -143,18 +121,29 @@ public class NoteSheet {
 	 *
 	 * @param outfile filename to use, needs to be png
 	 */
-	public void saveToFile(String outfile) {
+	public void saveToFile() {
 		if (touched) {
 			try {
-				javax.imageio.ImageIO.write(getImg(), "png", new FileOutputStream(outfile));
+				assert(getImg() != null);
+				assert(filename != null);
+				//assert(filename.canWrite());
+				
+				javax.imageio.ImageIO.write(getImg(), "png", new FileOutputStream(filename));
 			}
 			catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
+		// remove the image from the memory
+		img = null;
+		
+		isSwapped = true;
 	}
 
 	/**
@@ -171,7 +160,7 @@ public class NoteSheet {
 
 	private Graphics2D getGraphics() {
 		if (graphics == null) {
-			graphics = (Graphics2D)(img.getGraphics());
+			graphics = (Graphics2D)(getImg().getGraphics());
 			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		}
 		
