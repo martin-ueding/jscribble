@@ -33,7 +33,9 @@ public class NoteSheet {
 	 * be swapped into a temp file if the user is in another part of the
 	 * notebook.
 	 */
-	private boolean isSwapped = false;
+	private boolean isSwapped() {
+		return img == null;
+	}
 
 	private boolean touched = false;
 
@@ -86,7 +88,7 @@ public class NoteSheet {
 
 
 	public BufferedImage getImg() {
-		if (isSwapped) {
+		if (isSwapped()) {
 			loadFromFile();
 		}
 		return img;
@@ -119,8 +121,6 @@ public class NoteSheet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		isSwapped = false;
 	}
 
 	/**
@@ -136,7 +136,6 @@ public class NoteSheet {
 		// remove the image from the memory
 		img = null;
 
-		isSwapped = true;
 		touched = false;
 	}
 
