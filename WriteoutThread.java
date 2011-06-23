@@ -27,11 +27,11 @@ public class WriteoutThread extends Thread {
 		ImageSwapTask task;
 		while (!stopAfterLastItem || !tasks.isEmpty()) {
 			try {
-				System.out.println("waiting for task in queue");
 				if (stopAfterLastItem) {
 					task = tasks.poll();
 				}
 				else {
+					System.out.println("waiting for task in queue");
 					task = tasks.take();
 				}
 
