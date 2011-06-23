@@ -164,6 +164,7 @@ public class NoteBook {
 	 */
 	public void backward() {
 		if (currentSheet > 0) {
+			current.saveToFile();
 			currentSheet--;
 			updateCurrrentItem();
 			fireDoneDrawing();
