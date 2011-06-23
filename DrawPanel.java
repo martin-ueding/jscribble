@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * features a command listener for more user interaction.
  */
 @SuppressWarnings("serial")
-public class MalPanel extends JPanel {
+public class DrawPanel extends JPanel {
 	private NoteBook notebook;
 
 	/**
@@ -22,7 +22,7 @@ public class MalPanel extends JPanel {
 	 *
 	 * @param notebook the notebook to display
 	 */
-	public MalPanel(NoteBook notebook) {
+	public DrawPanel(NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
 

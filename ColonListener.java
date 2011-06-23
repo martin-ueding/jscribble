@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
  */
 public class ColonListener implements KeyListener {
 
-	private MalPanel panel;
+	private DrawPanel panel;
 	private Redrawer redrawer;
 
 	/**
 	 * Creates a new listener that listens to the given panel
 	 * @param malPanel panel to listen to
 	 */
-	public ColonListener(MalPanel malPanel) {
+	public ColonListener(DrawPanel malPanel) {
 		panel = malPanel;
 	}
 

@@ -12,13 +12,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Notizbuch {
-	public static final int br = 1024, ho = 600;
+public class NoteBookProgram {
+	public static final int width = 1024, height = 600;
 
-	static MalPanel panel;
+	static DrawPanel panel;
 
 	static NoteBook notebook;
-	
+
 	// TODO add a better chooser for notebooks
 
 	public static void main(String[] args) {
@@ -27,13 +27,13 @@ public class Notizbuch {
 		File in = null;
 		if (nickname != null) {
 
-			JFileChooser ladenChooser = new JFileChooser();
-			ladenChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			JFileChooser loadChooser = new JFileChooser();
+			loadChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 
-			int result = ladenChooser.showOpenDialog(null);
+			int result = loadChooser.showOpenDialog(null);
 			if (result == JFileChooser.APPROVE_OPTION) {
-				in = ladenChooser.getSelectedFile();
+				in = loadChooser.getSelectedFile();
 			}
 
 			// if there is no file selected, abort right here
@@ -43,9 +43,9 @@ public class Notizbuch {
 		}
 
 
-		notebook = new NoteBook(br, ho, in, nickname);
+		notebook = new NoteBook(width, height, in, nickname);
 		JFrame f = new JFrame("Notebook");
-		f.setSize(br, ho);
+		f.setSize(width, height);
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
@@ -55,7 +55,7 @@ public class Notizbuch {
 		});
 
 
-		panel = new MalPanel(notebook);
+		panel = new DrawPanel(notebook);
 		f.add(panel);
 
 
@@ -82,7 +82,7 @@ public class Notizbuch {
 		cl.addChangeListener(new Redrawer(panel));
 
 
-		if (Toolkit.getDefaultToolkit().getScreenSize().equals(new Dimension(br, ho))) {
+		if (Toolkit.getDefaultToolkit().getScreenSize().equals(new Dimension(width, height))) {
 			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
 			if (myDevice.isFullScreenSupported()) {

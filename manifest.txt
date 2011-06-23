@@ -1,2 +1,2 @@
-Main-Class: Notizbuch
+Main-Class: NoteBookProgram
 
