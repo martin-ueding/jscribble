@@ -21,6 +21,8 @@ public class MalPanel extends JPanel {
 	public MalPanel(NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
+		
+		addMouseMotionListener(new PaintListener(notebook));
 	}
 
 	private ImageObserver io = this;

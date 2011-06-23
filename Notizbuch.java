@@ -33,7 +33,6 @@ public class Notizbuch {
 		f.add(panel);
 
 
-		panel.addMouseMotionListener(new PaintListener(notebook));
 
 		f.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent arg0) {}
