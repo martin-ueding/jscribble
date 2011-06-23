@@ -18,6 +18,8 @@ public class Notizbuch {
 	static MalPanel panel;
 
 	static NoteBook notebook;
+	
+	// TODO add a better chooser for notebooks
 
 	public static void main(String[] args) {
 		String nickname = JOptionPane.showInputDialog("Nickname of your Notebook:");

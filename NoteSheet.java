@@ -128,6 +128,8 @@ public class NoteSheet {
 	public void loadFromFile() {
 		try {
 			System.out.println("reading " + filename.getCanonicalPath());
+			
+			// TODO load in a separate thread
 			img = javax.imageio.ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {

@@ -47,6 +47,7 @@ public class MalPanel extends JPanel {
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 
 		if (lines) {
+			// TODO draw the lines below the drawing
 			g2.setColor(lineColor);
 			for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
 				g2.drawLine(i, 0, i, getHeight());
