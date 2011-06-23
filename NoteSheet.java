@@ -94,8 +94,9 @@ public class NoteSheet {
 	 */
 	public void saveToSwap() {
 		if (!isSwapped) {
-			if (swapname == null)
-				swapname = String.format("/tmp/jscribble-%d-%d.png", (int)(Math.random()*10000), pagenumber);
+			if (swapname == null) {
+				swapname = String.format("/tmp/jscribble-%d-%d.png", (int)(Math.random() * 10000), pagenumber);
+			}
 
 			saveToFile(swapname);
 

@@ -35,31 +35,31 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 
 		notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

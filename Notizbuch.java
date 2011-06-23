@@ -33,7 +33,6 @@ public class Notizbuch {
 		f.add(panel);
 
 
-
 		f.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent arg0) {}
 
@@ -50,7 +49,7 @@ public class Notizbuch {
 
 			public void keyTyped(KeyEvent arg0) {}
 		});
-		
+
 
 		ColonListener cl = new ColonListener(panel);
 		f.addKeyListener(cl);

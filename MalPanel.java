@@ -21,7 +21,7 @@ public class MalPanel extends JPanel {
 	public MalPanel(NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
-		
+
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
@@ -40,15 +40,17 @@ public class MalPanel extends JPanel {
 
 		g2.setColor(Color.BLUE);
 		g2.drawString("Page " + notebook.getCurrentSheet().getPagenumber() + "/" + (notebook.getSheetCount() - 1), 20, 20);
-		
+
 		if (lines) {
 			g2.setColor(lineColor);
-			for (int i = lineSpacing; i < getWidth(); i+= lineSpacing)
+			for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
 				g2.drawLine(i, 0, i, getHeight());
-			
+			}
 
-			for (int i = lineSpacing; i < getHeight(); i+= lineSpacing)
+
+			for (int i = lineSpacing; i < getHeight(); i += lineSpacing) {
 				g2.drawLine(0, i, getWidth(), i);
+			}
 		}
 	}
 

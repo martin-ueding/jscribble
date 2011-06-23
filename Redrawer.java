@@ -21,5 +21,4 @@ public class Redrawer implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		panel.repaint();
 	}
-
 }
