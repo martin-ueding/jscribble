@@ -65,7 +65,7 @@ public class NotebookSelectionWindow {
 				openNotebook(notebooks.get(selection));
 			}
 			else {
-				Logger.getLogger(this.getClass().getName()).info("nothing selected");
+				System.out.println("nothing selected");
 			}
 		}
 	}
@@ -160,7 +160,7 @@ public class NotebookSelectionWindow {
 
 
 		if (configdir.exists()) {
-			Logger.getLogger(this.getClass().getName()).info("found a config dir");
+			System.out.println("found a config dir");
 			File[] configfiles = configdir.listFiles(new FilenameFilter() {
 
 				@Override
@@ -199,7 +199,7 @@ public class NotebookSelectionWindow {
 		}
 		else {
 			try {
-				Logger.getLogger(this.getClass().getName()).info("creating config dir in " + configdir.getCanonicalPath());
+				System.out.println("creating config dir in " + configdir.getCanonicalPath());
 			}
 			catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -272,9 +272,9 @@ public class NotebookSelectionWindow {
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
-				Logger.getLogger(this.getClass().getName()).info("caught exit event");
+				System.out.println("caught exit event");
 				notebook.saveToFiles();
-				Logger.getLogger(this.getClass().getName()).info("done saving");
+				System.out.println("done saving");
 				System.exit(0);
 			}
 		});

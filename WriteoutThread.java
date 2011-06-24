@@ -44,12 +44,12 @@ public class WriteoutThread extends Thread {
 					task = tasks.poll();
 				}
 				else {
-					Logger.getLogger(this.getClass().getName()).info("waiting for task in queue");
+					System.out.println("waiting for task in queue");
 					task = tasks.take();
 				}
 
 				if (task.getImg() != null) {
-					Logger.getLogger(this.getClass().getName()).info("writing out " + task.getOutfile().getCanonicalPath());
+					System.out.println("writing out " + task.getOutfile().getCanonicalPath());
 					javax.imageio.ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}
 			}
@@ -67,7 +67,7 @@ public class WriteoutThread extends Thread {
 			}
 
 		}
-		Logger.getLogger(this.getClass().getName()).info("thread dies");
+		System.out.println("thread dies");
 	}
 
 	private boolean stopAfterLastItem = false;

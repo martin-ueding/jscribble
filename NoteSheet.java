@@ -65,7 +65,7 @@ public class NoteSheet {
 
 		if (filename == null || !filename.exists()) {
 			if (filename == null) {
-				Logger.getLogger(this.getClass().getName()).info("generating tempfile");
+				System.out.println("generating tempfile");
 				try {
 					filename = File.createTempFile("jscribble-", ".png");
 				}
@@ -129,7 +129,7 @@ public class NoteSheet {
 	 */
 	public void loadFromFile() {
 		try {
-			Logger.getLogger(this.getClass().getName()).info("reading " + filename.getCanonicalPath());
+			System.out.println("reading " + filename.getCanonicalPath());
 
 			// TODO load in a separate thread
 			img = javax.imageio.ImageIO.read(filename);

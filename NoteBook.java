@@ -92,7 +92,7 @@ public class NoteBook {
 				// FIXME load pictures in correct order
 				for (File file : allImages) {
 					try {
-						Logger.getLogger(this.getClass().getName()).info(String.format("adding sheet with file %s", file.getCanonicalPath()));
+						System.out.println(String.format("adding sheet with file %s", file.getCanonicalPath()));
 					}
 					catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -106,7 +106,7 @@ public class NoteBook {
 
 		// add an empty sheet if the notebook would be empty otherwise
 		if (sheets.size() == 0) {
-			Logger.getLogger(this.getClass().getName()).info("generating new sheet in empty notebook");
+			System.out.println("generating new sheet in empty notebook");
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
 			pagecount++;
 		}
@@ -202,7 +202,7 @@ public class NoteBook {
 	public void backward() {
 		if (currentSheet > 0) {
 			if (currentSheet + cacheWidth < sheets.size()) {
-				Logger.getLogger(this.getClass().getName()).info(String.format("%s + %s < %s", currentSheet, cacheWidth, sheets.size()));
+				System.out.println(String.format("%s + %s < %s", currentSheet, cacheWidth, sheets.size()));
 				sheets.get(currentSheet + cacheWidth).saveToFile();
 			}
 
