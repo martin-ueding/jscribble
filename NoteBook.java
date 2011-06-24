@@ -87,16 +87,7 @@ public class NoteBook {
 					}
 				});
 
-
-				// FIXME load pictures in correct order
 				for (File file : allImages) {
-					try {
-						System.out.println(String.format("adding sheet with file %s", file.getCanonicalPath()));
-					}
-					catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					sheets.add(new NoteSheet(width, height, pagecount++, file));
 				}
 			}
