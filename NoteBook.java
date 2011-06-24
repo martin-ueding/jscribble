@@ -1,5 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -25,8 +26,7 @@ public class NoteBook {
 
 	private NoteSheet current;
 
-	private int width;
-	private int height;
+	private Dimension noteSize;
 
 	private ActionListener doneDrawing;
 
@@ -43,9 +43,8 @@ public class NoteBook {
 	 * @param width width of the individual sheets
 	 * @param height height of the individual sheets
 	 */
-	public NoteBook(int width, int height, File folder, String name) {
-		this.width = width;
-		this.height = height;
+	public NoteBook(Dimension noteSize, File folder, String name) {
+		this.noteSize = noteSize;
 
 		this.folder = folder;
 		this.name = name;
@@ -86,7 +85,7 @@ public class NoteBook {
 				});
 
 				for (File file : allImages) {
-					sheets.add(new NoteSheet(width, height, pagecount++, file));
+					sheets.add(new NoteSheet(noteSize, pagecount++, file));
 				}
 			}
 
@@ -94,7 +93,7 @@ public class NoteBook {
 
 		// add an empty sheet if the notebook would be empty otherwise
 		if (sheets.size() == 0) {
-			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
+			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
 			pagecount++;
 		}
 
@@ -148,7 +147,7 @@ public class NoteBook {
 			currentSheet++;
 		}
 		else if (current.touched()) {
-			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
+			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
 			currentSheet++;
 
 			pagecount++;

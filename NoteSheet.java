@@ -1,6 +1,7 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -26,9 +27,7 @@ public class NoteSheet {
 
 	private Graphics2D graphics;
 
-	private int width;
-
-	private int height;
+	private Dimension noteSize;
 
 	/**
 	 * Whether the picture was changed in any way since the last saving. A blank
@@ -54,13 +53,12 @@ public class NoteSheet {
 	 * @param width width of the sheet in pixels
 	 * @param height height of the sheet in pixels
 	 */
-	public NoteSheet(int width, int height, int pagenumber, File infile) {
+	public NoteSheet(Dimension noteSize, int pagenumber, File infile) {
 		if (writethread == null) {
 			writethread = new WriteoutThread();
 		}
 
-		this.width = width;
-		this.height = height;
+		this.noteSize = noteSize;
 		this.pagenumber = pagenumber;
 		this.filename = infile;
 
@@ -75,11 +73,11 @@ public class NoteSheet {
 				}
 			}
 
-			img = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+			img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
 
 			graphics = getGraphics();
 			graphics.setColor(new Color(255, 255, 255));
-			graphics.fillRect(0, 0, width, height);
+			graphics.fillRect(0, 0, noteSize.width, noteSize.height);
 
 			unsaved = true;
 		}
@@ -110,7 +108,7 @@ public class NoteSheet {
 	 * @return width
 	 */
 	public int getWidth() {
-		return width;
+		return noteSize.width;
 	}
 
 	/**
@@ -118,7 +116,7 @@ public class NoteSheet {
 	 * @return height
 	 */
 	public int getHeight() {
-		return height;
+		return noteSize.height;
 	}
 
 

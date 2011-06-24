@@ -31,7 +31,7 @@ import javax.swing.JScrollPane;
 
 
 public class NotebookSelectionWindow {
-	private static final int width = 1024, height = 600;
+	private static final Dimension noteSize = new Dimension(1024, 600);
 
 	@SuppressWarnings("serial")
 	private class ButtonScribble extends JButton implements ActionListener {
@@ -43,7 +43,7 @@ public class NotebookSelectionWindow {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			openNotebook(new NoteBook(width, height, null, null));
+			openNotebook(new NoteBook(noteSize, null, null));
 		}
 	}
 
@@ -173,12 +173,11 @@ public class NotebookSelectionWindow {
 				try {
 					p.loadFromXML(new FileInputStream(configfile));
 
-					int width = Integer.parseInt(p.getProperty("width"));
-					int height = Integer.parseInt(p.getProperty("height"));
+					Dimension noteSize = new Dimension(Integer.parseInt(p.getProperty("width")), Integer.parseInt(p.getProperty("height")));
 					File folder = new File(p.getProperty("folder"));
 					String name = p.getProperty("name");
 
-					NoteBook nb = new NoteBook(width, height, folder, name);
+					NoteBook nb = new NoteBook(noteSize, folder, name);
 					notebooks.add(nb);
 				}
 				catch (InvalidPropertiesFormatException e) {
@@ -227,8 +226,8 @@ public class NotebookSelectionWindow {
 
 		// persist this notebook in the config file
 		Properties p = new Properties();
-		p.setProperty("width", String.valueOf(width));
-		p.setProperty("height", String.valueOf(height));
+		p.setProperty("width", String.valueOf(noteSize.width));
+		p.setProperty("height", String.valueOf(noteSize.height));
 		try {
 			p.setProperty("folder", in.getCanonicalPath());
 		}
@@ -251,7 +250,7 @@ public class NotebookSelectionWindow {
 		}
 
 
-		return new NoteBook(width, height, in, nickname);
+		return new NoteBook(noteSize, in, nickname);
 	}
 
 
@@ -259,7 +258,7 @@ public class NotebookSelectionWindow {
 
 	public static void openNotebook(final NoteBook notebook) {
 		JFrame f = new JFrame("Notebook");
-		f.setSize(width, height);
+		f.setSize(noteSize);
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
@@ -296,7 +295,7 @@ public class NotebookSelectionWindow {
 		cl.addChangeListener(new Redrawer(panel));
 
 
-		if (Toolkit.getDefaultToolkit().getScreenSize().equals(new Dimension(width, height))) {
+		if (Toolkit.getDefaultToolkit().getScreenSize().equals(noteSize)) {
 			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
 			if (myDevice.isFullScreenSupported()) {
