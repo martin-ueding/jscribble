@@ -3,6 +3,9 @@
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.Collator;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.logging.Logger;
 
@@ -61,19 +64,43 @@ public class NoteBook {
 			// try to load all images that match the name
 			File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
 
-			// FIXME load pictures in correct order
-			for (File file : allImages) {
-				try {
-					Logger.getLogger(this.getClass().getName()).info(String.format("adding sheet with file %s", file.getCanonicalPath()));
+			if (allImages != null) {
+				Arrays.sort(allImages, new Comparator<File>() {
+
+					private Collator c = Collator.getInstance();
+
+					public int compare(File o1, File o2) {
+						if (o1 == o2) {
+							return 0;
+						}
+
+						File f1 = (File) o1;
+						File f2 = (File) o2;
+
+						if (f1.isDirectory() && f2.isFile()) {
+							return -1;
+						}
+						if (f1.isFile() && f2.isDirectory()) {
+							return 1;
+						}
+
+						return c.compare(f1.getName(), f2.getName());
+					}
+				});
+
+
+				// FIXME load pictures in correct order
+				for (File file : allImages) {
+					try {
+						Logger.getLogger(this.getClass().getName()).info(String.format("adding sheet with file %s", file.getCanonicalPath()));
+					}
+					catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					sheets.add(new NoteSheet(width, height, pagecount++, file));
 				}
-				catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				sheets.add(new NoteSheet(width, height, pagecount++, file));
 			}
-
-
 
 		}
 
@@ -91,7 +118,7 @@ public class NoteBook {
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
 			try {
-				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.valueOf(pagenumber) + ".png");
+				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -203,7 +230,7 @@ public class NoteBook {
 			s.saveToFile();
 		}
 		quitWithWriteoutThread();
-	
+
 	}
 
 	/**

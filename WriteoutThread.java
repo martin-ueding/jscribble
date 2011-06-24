@@ -47,8 +47,8 @@ public class WriteoutThread extends Thread {
 					Logger.getLogger(this.getClass().getName()).info("waiting for task in queue");
 					task = tasks.take();
 				}
-				
-				if (task.getImg() != null) {	
+
+				if (task.getImg() != null) {
 					Logger.getLogger(this.getClass().getName()).info("writing out " + task.getOutfile().getCanonicalPath());
 					javax.imageio.ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}

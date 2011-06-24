@@ -98,9 +98,9 @@ public class NotebookSelectionWindow {
 			listData[j] = noteBook.toString();
 
 
-			
+
 		}
-		
+
 
 		myList = new JList(listData);
 		if (myList != null && myList.isShowing()) {
@@ -124,7 +124,7 @@ public class NotebookSelectionWindow {
 
 	public NotebookSelectionWindow() {
 		notebooks = findNotebooks();
-		
+
 		updateList();
 
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 3));

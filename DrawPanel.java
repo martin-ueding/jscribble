@@ -70,11 +70,13 @@ public class DrawPanel extends JPanel {
 		                            (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
 		                            r.freeMemory() / 1024 / 1024, r.totalMemory() / 1024 / 1024),
 		              getWidth() / 2, 15);
-		
-		if (notebook.getCurrentSheet().touched())
-			g.drawString("touched", 15, getHeight()-20);
-		if (notebook.getCurrentSheet().unsaved())
-			g.drawString("unsaved", 100, getHeight()-20);
+
+		if (notebook.getCurrentSheet().touched()) {
+			g.drawString("touched", 15, getHeight() - 20);
+		}
+		if (notebook.getCurrentSheet().unsaved()) {
+			g.drawString("unsaved", 100, getHeight() - 20);
+		}
 
 	}
 

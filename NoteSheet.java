@@ -34,7 +34,7 @@ public class NoteSheet {
 	 * picture is untouched.
 	 */
 	private boolean touched = false;
-	
+
 	private boolean unsaved = false;
 
 	/**
@@ -80,7 +80,7 @@ public class NoteSheet {
 			graphics = getGraphics();
 			graphics.setColor(new Color(255, 255, 255));
 			graphics.fillRect(0, 0, width, height);
-			
+
 			unsaved = true;
 		}
 	}
@@ -142,7 +142,7 @@ public class NoteSheet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		touched = true;
 	}
 
@@ -180,7 +180,7 @@ public class NoteSheet {
 	public boolean touched() {
 		return touched;
 	}
-	
+
 	public boolean unsaved() {
 		return unsaved;
 	}
