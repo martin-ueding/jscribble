@@ -2,11 +2,14 @@
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.regex.Pattern;
 
 
 public class NoteSheetFileFilter implements FilenameFilter {
 
 	private String basename;
+	
+	private Pattern p = Pattern.compile("^[\\d-]+-(\\d)+\\.png");
 
 	public NoteSheetFileFilter(String name) {
 		basename = name;
@@ -14,8 +17,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	@Override
 	public boolean accept(File arg0, String arg1) {
-		// TODO add better testing with RegEx
-		if (!arg1.contains(basename)) {
+		if (p.matcher(arg1).matches() && arg1.startsWith(basename)) {
 			return false;
 		}
 
