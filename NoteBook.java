@@ -193,7 +193,7 @@ public class NoteBook {
 	}
 
 	public String toString() {
-		return name;
+		return String.format("%s (%d)", name, getSheetCount());
 	}
 
 	/**
