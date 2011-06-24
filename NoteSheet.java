@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
 /**
  * Represents a single note sheet.
  */
@@ -64,7 +66,6 @@ public class NoteSheet {
 
 		if (filename == null || !filename.exists()) {
 			if (filename == null) {
-				System.out.println("generating tempfile");
 				try {
 					filename = File.createTempFile("jscribble-", ".png");
 				}
@@ -128,10 +129,8 @@ public class NoteSheet {
 	 */
 	public void loadFromFile() {
 		try {
-			System.out.println("reading " + filename.getCanonicalPath());
-
 			// TODO load in a separate thread
-			img = javax.imageio.ImageIO.read(filename);
+			img = ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {
 			NoteBookProgram.handleError("Could not find the note sheet image.");

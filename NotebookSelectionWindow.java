@@ -63,9 +63,6 @@ public class NotebookSelectionWindow {
 			if (selection >= 0) {
 				openNotebook(notebooks.get(selection));
 			}
-			else {
-				System.out.println("nothing selected");
-			}
 		}
 	}
 
@@ -162,7 +159,6 @@ public class NotebookSelectionWindow {
 
 
 		if (configdir.exists()) {
-			System.out.println("found a config dir");
 			File[] configfiles = configdir.listFiles(new FilenameFilter() {
 
 				@Override
@@ -267,9 +263,7 @@ public class NotebookSelectionWindow {
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
-				System.out.println("caught exit event");
 				notebook.saveToFiles();
-				System.out.println("done saving");
 				System.exit(0);
 			}
 		});

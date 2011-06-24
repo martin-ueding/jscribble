@@ -94,7 +94,6 @@ public class NoteBook {
 
 		// add an empty sheet if the notebook would be empty otherwise
 		if (sheets.size() == 0) {
-			System.out.println("generating new sheet in empty notebook");
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
 			pagecount++;
 		}
@@ -147,17 +146,14 @@ public class NoteBook {
 	public void forward() {
 		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
-			System.out.println("advancing a sheet");
 		}
 		else if (current.touched()) {
-			System.out.println("adding a blank sheet");
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
 			currentSheet++;
 
 			pagecount++;
 		}
 		else {
-			System.out.println("you are at the last one and it is blank");
 			return;
 		}
 
@@ -190,7 +186,6 @@ public class NoteBook {
 	public void backward() {
 		if (currentSheet > 0) {
 			if (currentSheet + cacheWidth < sheets.size()) {
-				System.out.println(String.format("%s + %s < %s", currentSheet, cacheWidth, sheets.size()));
 				sheets.get(currentSheet + cacheWidth).saveToFile();
 			}
 

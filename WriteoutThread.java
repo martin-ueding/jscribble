@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import javax.imageio.ImageIO;
+
 /**
  * In order to make the user interface faster, the writing of unneeded images is
  * put into a second thread. That way, the UI does not freeze during the little
@@ -43,13 +45,11 @@ public class WriteoutThread extends Thread {
 					task = tasks.poll();
 				}
 				else {
-					System.out.println("waiting for task in queue");
 					task = tasks.take();
 				}
 
 				if (task.getImg() != null) {
-					System.out.println("writing out " + task.getOutfile().getCanonicalPath());
-					javax.imageio.ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
+					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}
 			}
 			catch (FileNotFoundException e) {
@@ -64,9 +64,7 @@ public class WriteoutThread extends Thread {
 				NoteBookProgram.handleError("Writing thread was interupted.");
 				e1.printStackTrace();
 			}
-
 		}
-		System.out.println("thread dies");
 	}
 
 	private boolean stopAfterLastItem = false;
