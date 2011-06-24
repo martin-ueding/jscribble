@@ -22,6 +22,16 @@ public class ColonListener implements KeyListener {
 		panel = malPanel;
 	}
 
+	/**
+	 * A listener to be called when a setting causes the panel to need
+	 * refreshing.
+	 * @param redrawer listener to call after setting change
+	 */
+	public void addChangeListener(Redrawer redrawer) {
+		this.redrawer = redrawer;
+	
+	}
+
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 	}
@@ -44,16 +54,6 @@ public class ColonListener implements KeyListener {
 
 			redrawer.actionPerformed(null);
 		}
-
-	}
-
-	/**
-	 * A listener to be called when a setting causes the panel to need
-	 * refreshing.
-	 * @param redrawer listener to call after setting change
-	 */
-	public void addChangeListener(Redrawer redrawer) {
-		this.redrawer = redrawer;
 
 	}
 

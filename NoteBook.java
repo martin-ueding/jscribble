@@ -35,6 +35,11 @@ public class NoteBook {
 	 */
 	private int pagecount = 1;
 
+	/**
+	 * How many images to cache back and front.
+	 */
+	private int cacheWidth = 10;
+
 	private String name;
 
 	/**
@@ -101,19 +106,6 @@ public class NoteBook {
 		updateCurrrentItem();
 	}
 
-	private File generateNextFilename(int pagenumber) {
-		if (folder != null && name != null) {
-			try {
-				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError("Could not determine path of notebook folder.");
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
-
 	/**
 	 * Draws a line onto the current sheet.
 	 */
@@ -121,21 +113,6 @@ public class NoteBook {
 		current.drawLine(x, y, x2, y2);
 
 		fireDoneDrawing();
-	}
-
-	/**
-	 * Sets an action listener to be called when something new was drawn.
-	 *
-	 * @param doneDrawing ActionListener to be called after drawing a new line.
-	 */
-	public void setDoneDrawing(ActionListener doneDrawing) {
-		this.doneDrawing = doneDrawing;
-	}
-
-	private void fireDoneDrawing() {
-		if (doneDrawing != null) {
-			doneDrawing.actionPerformed(null);
-		}
 	}
 
 	/**
@@ -175,11 +152,6 @@ public class NoteBook {
 	}
 
 	/**
-	 * How many images to cache back and front.
-	 */
-	private int cacheWidth = 10;
-
-	/**
 	 * Goes back one sheet.
 	 */
 	public void goBackwards() {
@@ -194,16 +166,6 @@ public class NoteBook {
 		}
 	}
 
-	public NoteSheet getCurrentSheet() {
-		return sheets.get(currentSheet);
-	}
-
-	private void updateCurrrentItem() {
-		assert(currentSheet >= 0);
-		assert(currentSheet < sheets.size());
-		current = sheets.get(currentSheet);
-	}
-
 	/**
 	 * Persists the whole notebook into individual files.
 	 */
@@ -215,6 +177,23 @@ public class NoteBook {
 
 	}
 
+	public String toString() {
+		return name;
+	}
+	
+	/**
+	 * Sets an action listener to be called when something new was drawn.
+	 *
+	 * @param doneDrawing ActionListener to be called after drawing a new line.
+	 */
+	public void setDoneDrawing(ActionListener doneDrawing) {
+		this.doneDrawing = doneDrawing;
+	}
+
+	public NoteSheet getCurrentSheet() {
+		return sheets.get(currentSheet);
+	}
+
 	/**
 	 * @return number of sheets in the notebook
 	 */
@@ -222,15 +201,6 @@ public class NoteBook {
 		return sheets.size();
 	}
 
-	private void quitWithWriteoutThread() {
-		sheets.getFirst().stopWriteoutThread();
-
-	}
-
-	public String toString() {
-		return name;
-	}
-	
 	public void gotoFirst() {
 		currentSheet = 0;
 		updateCurrrentItem();
@@ -245,6 +215,36 @@ public class NoteBook {
 
 	public String getName() {
 		return name;
+	}
+
+	private void fireDoneDrawing() {
+		if (doneDrawing != null) {
+			doneDrawing.actionPerformed(null);
+		}
+	}
+
+	private void updateCurrrentItem() {
+		assert(currentSheet >= 0);
+		assert(currentSheet < sheets.size());
+		current = sheets.get(currentSheet);
+	}
+
+	private void quitWithWriteoutThread() {
+		sheets.getFirst().stopWriteoutThread();
+	
+	}
+
+	private File generateNextFilename(int pagenumber) {
+		if (folder != null && name != null) {
+			try {
+				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError("Could not determine path of notebook folder.");
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 }

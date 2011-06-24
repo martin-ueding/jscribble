@@ -15,7 +15,14 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {
+	private static final Color lineColor = new Color(200, 200, 200);
+
+	private static final int lineSpacing = 40;
+
 	private NoteBook notebook;
+
+	private ImageObserver io = this;
+	private boolean lines = false;
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
@@ -26,17 +33,19 @@ public class DrawPanel extends JPanel {
 	public DrawPanel(NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
-
+	
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
 	}
 
-	private ImageObserver io = this;
-	private boolean lines = false;
-
-	private static final Color lineColor = new Color(200, 200, 200);
-	private static final int lineSpacing = 40;
+	/**
+	 * Set whether help lines are to be drawn.
+	 * @param b status of the lines
+	 */
+	public void setLines(boolean b) {
+		this.lines  = b;
+	}
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
@@ -60,13 +69,5 @@ public class DrawPanel extends JPanel {
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth()/2, 15);
 
-	}
-
-	/**
-	 * Set whether help lines are to be drawn.
-	 * @param b status of the lines
-	 */
-	public void setLines(boolean b) {
-		this.lines  = b;
 	}
 }

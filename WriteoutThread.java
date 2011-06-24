@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
 public class WriteoutThread extends Thread {
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
+	private boolean stopAfterLastItem = false;
+
 	/**
 	 * Creates and starts the thread.
 	 */
@@ -37,6 +39,14 @@ public class WriteoutThread extends Thread {
 		}
 	}
 
+	/**
+	 * Stops the thread's daemon mode and lets it die when the queue is empty.
+	 */
+	public void stopAfterLast() {
+		stopAfterLastItem = true;
+		schedule(new ImageSwapTask(null, null));
+	}
+
 	public void run() {
 		ImageSwapTask task;
 		while (!stopAfterLastItem || !tasks.isEmpty()) {
@@ -47,7 +57,7 @@ public class WriteoutThread extends Thread {
 				else {
 					task = tasks.take();
 				}
-
+	
 				if (task.getImg() != null) {
 					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}
@@ -65,15 +75,5 @@ public class WriteoutThread extends Thread {
 				e1.printStackTrace();
 			}
 		}
-	}
-
-	private boolean stopAfterLastItem = false;
-
-	/**
-	 * Stops the thread's daemon mode and lets it die when the queue is empty.
-	 */
-	public void stopAfterLast() {
-		stopAfterLastItem = true;
-		schedule(new ImageSwapTask(null, null));
 	}
 }

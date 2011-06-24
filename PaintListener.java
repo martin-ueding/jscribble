@@ -12,13 +12,13 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 
 	private NoteBook notebook;
 
-	public PaintListener(NoteBook notebook) {
-		this.notebook = notebook;
-	}
-
 	private int x = -1;
 
 	private int y = -1;
+
+	public PaintListener(NoteBook notebook) {
+		this.notebook = notebook;
+	}
 
 	public void mouseDragged(MouseEvent arg0) {
 		notebook.drawLine(x, y, arg0.getX(), arg0.getY());
