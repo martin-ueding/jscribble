@@ -33,7 +33,7 @@ public class DrawPanel extends JPanel {
 	public DrawPanel(NoteBook notebook) {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
-	
+
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
@@ -67,7 +67,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		g2.setColor(Color.BLUE);
-		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth()/2, 15);
+		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
 
 	}
 }

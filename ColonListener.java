@@ -29,7 +29,7 @@ public class ColonListener implements KeyListener {
 	 */
 	public void addChangeListener(Redrawer redrawer) {
 		this.redrawer = redrawer;
-	
+
 	}
 
 	@Override

@@ -47,6 +47,7 @@ public class WriteoutThread extends Thread {
 		schedule(new ImageSwapTask(null, null));
 	}
 
+
 	public void run() {
 		ImageSwapTask task;
 		while (!stopAfterLastItem || !tasks.isEmpty()) {
@@ -57,7 +58,7 @@ public class WriteoutThread extends Thread {
 				else {
 					task = tasks.take();
 				}
-	
+
 				if (task.getImg() != null) {
 					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}

@@ -12,7 +12,7 @@ import java.awt.event.MouseMotionListener;
 public class PaintListener implements MouseMotionListener, MouseListener {
 
 	private NoteBook notebook;
-	
+
 	private Point lastPosition = new Point(-1, -1);
 
 	public PaintListener(NoteBook notebook) {

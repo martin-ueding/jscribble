@@ -180,7 +180,7 @@ public class NoteBook {
 	public String toString() {
 		return name;
 	}
-	
+
 	/**
 	 * Sets an action listener to be called when something new was drawn.
 	 *
@@ -206,9 +206,9 @@ public class NoteBook {
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
-	
+
 	public void gotoLast() {
-		currentSheet = sheets.size()-1;
+		currentSheet = sheets.size() - 1;
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
@@ -231,7 +231,7 @@ public class NoteBook {
 
 	private void quitWithWriteoutThread() {
 		sheets.getFirst().stopWriteoutThread();
-	
+
 	}
 
 	private File generateNextFilename(int pagenumber) {
