@@ -14,6 +14,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	@Override
 	public boolean accept(File arg0, String arg1) {
+		// TODO add better testing with RegEx
 		if (!arg1.contains(basename)) {
 			return false;
 		}

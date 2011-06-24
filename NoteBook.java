@@ -90,8 +90,11 @@ public class NoteBook {
 				});
 
 				for (File file : allImages) {
+					// TODO determine pagecount from filename
 					sheets.add(new NoteSheet(noteSize, pagecount++, file));
 				}
+				
+				// TODO set pagecount to the maximum found
 			}
 
 		}
