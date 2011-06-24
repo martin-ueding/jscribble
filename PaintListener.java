@@ -1,5 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,31 +12,25 @@ import java.awt.event.MouseMotionListener;
 public class PaintListener implements MouseMotionListener, MouseListener {
 
 	private NoteBook notebook;
-
-	private int x = -1;
-
-	private int y = -1;
+	
+	private Point lastPosition = new Point(-1, -1);
 
 	public PaintListener(NoteBook notebook) {
 		this.notebook = notebook;
 	}
 
 	public void mouseDragged(MouseEvent arg0) {
-		notebook.drawLine(x, y, arg0.getX(), arg0.getY());
-		x = arg0.getX();
-		y = arg0.getY();
+		notebook.drawLine(lastPosition.x, lastPosition.y, arg0.getX(), arg0.getY());
+		lastPosition = arg0.getPoint();
 	}
 
 	public void mouseMoved(MouseEvent arg0) {
-		x = arg0.getX();
-		y = arg0.getY();
+		lastPosition = arg0.getPoint();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
 		notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
-
 	}
 
 	@Override
@@ -53,6 +48,4 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
-
-
 }
