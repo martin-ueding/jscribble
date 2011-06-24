@@ -20,7 +20,6 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -28,7 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
+import javax.swing.JScrollPane;
 
 
 public class NotebookSelectionWindow {
@@ -134,7 +133,7 @@ public class NotebookSelectionWindow {
 		// TODO add delete button
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.add(myList, BorderLayout.CENTER);
+		mainPanel.add(new JScrollPane(myList), BorderLayout.CENTER);
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 
