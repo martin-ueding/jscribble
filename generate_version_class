@@ -3,7 +3,7 @@
 
 outfile=VersionName.java
 
-version=$(bzr tags | head -n1 | sed "s/\s.*//")
+version=$(bzr tags | tail -n1 | sed "s/\s.*//")
 revno=$(bzr revno)
 
 echo "public class VersionName {" > $outfile
