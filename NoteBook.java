@@ -132,14 +132,17 @@ public class NoteBook {
 	public void forward() {
 		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
+			System.out.println("advancing a sheet");
 		}
 		else if (current.touched()) {
+			System.out.println("adding a blank sheet");
 			sheets.add(new NoteSheet(width, height, pagecount, generateNextFilename(pagecount)));
 			currentSheet++;
 
 			pagecount++;
 		}
 		else {
+			System.out.println("you are at the last one and it is blank");
 			return;
 		}
 

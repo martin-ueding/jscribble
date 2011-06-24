@@ -3,6 +3,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
@@ -43,6 +44,7 @@ public class DrawPanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 
@@ -68,6 +70,11 @@ public class DrawPanel extends JPanel {
 		                            (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
 		                            r.freeMemory() / 1024 / 1024, r.totalMemory() / 1024 / 1024),
 		              getWidth() / 2, 15);
+		
+		if (notebook.getCurrentSheet().touched())
+			g.drawString("touched", 15, getHeight()-20);
+		if (notebook.getCurrentSheet().unsaved())
+			g.drawString("unsaved", 100, getHeight()-20);
 
 	}
 

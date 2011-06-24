@@ -31,9 +31,11 @@ public class NoteSheet {
 
 	/**
 	 * Whether the picture was changed in any way since the last saving. A blank
-	 * picture is untouched and one which was loaded from disk as well.
+	 * picture is untouched.
 	 */
 	private boolean touched = false;
+	
+	private boolean unsaved = false;
 
 	/**
 	 * Storage point of the image of this sheet.
@@ -78,6 +80,8 @@ public class NoteSheet {
 			graphics = getGraphics();
 			graphics.setColor(new Color(255, 255, 255));
 			graphics.fillRect(0, 0, width, height);
+			
+			unsaved = true;
 		}
 	}
 
@@ -138,13 +142,15 @@ public class NoteSheet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		touched = true;
 	}
 
 	/**
 	 * Saves the picture to a PNG file. The image is then removed from the heap.
 	 */
 	public void saveToFile() {
-		if (touched) {
+		if (touched && unsaved) {
 			writethread.schedule(new ImageSwapTask(img, filename));
 		}
 
@@ -152,6 +158,7 @@ public class NoteSheet {
 		img = null;
 
 		touched = false;
+		unsaved = false;
 	}
 
 	/**
@@ -159,6 +166,7 @@ public class NoteSheet {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		touched = true;
+		unsaved = true;
 
 		Graphics2D graphics = getGraphics();
 
@@ -171,6 +179,10 @@ public class NoteSheet {
 	 */
 	public boolean touched() {
 		return touched;
+	}
+	
+	public boolean unsaved() {
+		return unsaved;
 	}
 
 	/**
