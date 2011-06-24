@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
  * Represents a single note sheet.
  */
 public class NoteSheet {
+	private static final boolean showLoadWriteMessages = false;
+
 	/**
 	 * Page number for the current page.
 	 */
@@ -127,7 +129,8 @@ public class NoteSheet {
 	 */
 	public void loadFromFile() {
 		try {
-			// TODO load in a separate thread
+			if (showLoadWriteMessages)
+				System.out.println(String.format("loading %s", filename.getAbsolutePath()));
 			img = ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {
@@ -147,6 +150,8 @@ public class NoteSheet {
 	 */
 	public void saveToFile() {
 		if (touched && unsaved) {
+			if (showLoadWriteMessages)
+				System.out.println(String.format("writing %s", filename.getAbsolutePath()));
 			writethread.schedule(new ImageSwapTask(img, filename));
 		}
 

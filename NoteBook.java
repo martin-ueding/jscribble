@@ -234,11 +234,13 @@ public class NoteBook {
 	public void gotoFirst() {
 		currentSheet = 0;
 		updateCurrrentItem();
+		fireDoneDrawing();
 	}
 	
 	public void gotoLast() {
 		currentSheet = sheets.size()-1;
 		updateCurrrentItem();
+		fireDoneDrawing();
 	}
 
 	public String getName() {
