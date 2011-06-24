@@ -35,9 +35,16 @@ public class NotebookSelectionWindow {
 	private static final int width = 1024, height = 600;
 
 	@SuppressWarnings("serial")
-	private class ButtonScribble extends JButton {
+	private class ButtonScribble extends JButton implements ActionListener {
 		public ButtonScribble() {
 			setText("Scribble");
+
+			addActionListener(this);
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			openNotebook(new NoteBook(width, height, null, null));
 		}
 	}
 
