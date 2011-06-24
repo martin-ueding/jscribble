@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
 
 /**
  * In order to make the user interface faster, the writing of unneeded images is
@@ -44,7 +45,7 @@ public class WriteoutThread extends Thread {
 				}
 				else {
 					// TODO add possibility to kill thread here
-					System.out.println("waiting for task in queue");
+					Logger.getLogger(this.getClass().getName()).info("waiting for task in queue");
 					task = tasks.take();
 				}
 
@@ -52,7 +53,7 @@ public class WriteoutThread extends Thread {
 				assert(task.getOutfile() != null);
 				// assert(filename.canWrite());
 
-				System.out.println("writing out "
+				Logger.getLogger(this.getClass().getName()).info("writing out "
 				                   + task.getOutfile().getCanonicalPath());
 				javax.imageio.ImageIO.write(task.getImg(), "png",
 				                            new FileOutputStream(task.getOutfile()));
@@ -71,7 +72,7 @@ public class WriteoutThread extends Thread {
 			}
 
 		}
-		System.out.println("thread dies");
+		Logger.getLogger(this.getClass().getName()).info("thread dies");
 	}
 
 	private boolean stopAfterLastItem = false;

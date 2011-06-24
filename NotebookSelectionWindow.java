@@ -160,7 +160,7 @@ public class NotebookSelectionWindow {
 
 
 		if (configdir.exists()) {
-			System.out.println("found a config dir");
+			Logger.getLogger(this.getClass().getName()).info("found a config dir");
 			File[] configfiles = configdir.listFiles(new FilenameFilter() {
 
 				@Override
@@ -199,7 +199,7 @@ public class NotebookSelectionWindow {
 		}
 		else {
 			try {
-				System.out.println("creating config dir in " + configdir.getCanonicalPath());
+				Logger.getLogger(this.getClass().getName()).info("creating config dir in " + configdir.getCanonicalPath());
 			}
 			catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -272,9 +272,9 @@ public class NotebookSelectionWindow {
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
-				System.out.println("caught exit event");
+				Logger.getLogger(this.getClass().getName()).info("caught exit event");
 				notebook.saveToFiles();
-				System.out.println("done saving");
+				Logger.getLogger(this.getClass().getName()).info("done saving");
 				System.exit(0);
 			}
 		});
