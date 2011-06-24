@@ -241,4 +241,8 @@ public class NoteBook {
 		updateCurrrentItem();
 	}
 
+	public String getName() {
+		return name;
+	}
+
 }

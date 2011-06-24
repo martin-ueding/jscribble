@@ -256,7 +256,7 @@ public class NotebookSelectionWindow {
 	static DrawPanel panel;
 
 	public static void openNotebook(final NoteBook notebook) {
-		JFrame f = new JFrame("Notebook");
+		JFrame f = new JFrame("Notebook "+notebook.getName());
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 

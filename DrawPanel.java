@@ -30,8 +30,6 @@ public class DrawPanel extends JPanel {
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
-
-		r = Runtime.getRuntime();
 	}
 
 	private ImageObserver io = this;
@@ -39,8 +37,6 @@ public class DrawPanel extends JPanel {
 
 	private static final Color lineColor = new Color(200, 200, 200);
 	private static final int lineSpacing = 40;
-
-	private Runtime r;
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
@@ -62,21 +58,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		g2.setColor(Color.BLUE);
-		g2.drawString(String.format("Page %d/%d",
-		                            notebook.getCurrentSheet().getPagenumber(),
-		                            notebook.getSheetCount()), 15, 15);
-
-		g2.drawString(String.format("%d MB used, %d MB free, %d MB total",
-		                            (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
-		                            r.freeMemory() / 1024 / 1024, r.totalMemory() / 1024 / 1024),
-		              getWidth() / 2, 15);
-
-		if (notebook.getCurrentSheet().touched()) {
-			g.drawString("touched", 15, getHeight() - 20);
-		}
-		if (notebook.getCurrentSheet().unsaved()) {
-			g.drawString("unsaved", 100, getHeight() - 20);
-		}
+		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth()/2, 15);
 
 	}
 
