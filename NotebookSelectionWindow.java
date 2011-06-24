@@ -139,9 +139,12 @@ public class NotebookSelectionWindow {
 
 		frame = new JFrame("Select your Notebook");
 		frame.setSize(new Dimension(300, 400));
-		frame.setVisible(true);
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void showDialogue() {
+		frame.setVisible(true);
 	}
 
 
