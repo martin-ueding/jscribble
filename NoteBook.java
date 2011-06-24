@@ -17,8 +17,6 @@ import java.util.LinkedList;
  * individual pictures.
  */
 public class NoteBook {
-	// TODO save sheets that are far away in the list to save RAM space then
-	// reload images when the user is going back in the history
 	private LinkedList<NoteSheet> sheets;
 
 	private int currentSheet = 0;
@@ -111,7 +109,7 @@ public class NoteBook {
 				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
-				// TODO Auto-generated catch block
+				NoteBookProgram.handleError("Could not determine path of notebook folder.");
 				e.printStackTrace();
 			}
 		}

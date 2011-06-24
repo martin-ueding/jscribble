@@ -30,7 +30,7 @@ public class WriteoutThread extends Thread {
 			tasks.put(t);
 		}
 		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			NoteBookProgram.handleError("Interrupted while scheduling a disk write task.");
 			e.printStackTrace();
 		}
 	}
@@ -53,15 +53,15 @@ public class WriteoutThread extends Thread {
 				}
 			}
 			catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				NoteBookProgram.handleError("Could not find the file to write.");
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				// TODO Auto-generated catch block
+				NoteBookProgram.handleError("IO error while saving the note image.");
 				e.printStackTrace();
 			}
 			catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+				NoteBookProgram.handleError("Writing thread was interupted.");
 				e1.printStackTrace();
 			}
 

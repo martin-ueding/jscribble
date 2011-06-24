@@ -69,7 +69,7 @@ public class NoteSheet {
 					filename = File.createTempFile("jscribble-", ".png");
 				}
 				catch (IOException e) {
-					// TODO Auto-generated catch block
+					NoteBookProgram.handleError("Could not create a temp file.");
 					e.printStackTrace();
 				}
 			}
@@ -134,11 +134,11 @@ public class NoteSheet {
 			img = javax.imageio.ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			NoteBookProgram.handleError("Could not find the note sheet image.");
 			e.printStackTrace();
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
+			NoteBookProgram.handleError("Could not read the note sheet image.");
 			e.printStackTrace();
 		}
 
@@ -194,7 +194,7 @@ public class NoteSheet {
 			writethread.join();
 		}
 		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			NoteBookProgram.handleError("WriteThread was interrupted.");
 			e.printStackTrace();
 		}
 
