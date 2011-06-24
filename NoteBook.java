@@ -101,14 +101,10 @@ public class NoteBook {
 					if (m.matches()) {
 						pagecount = Math.max(pagecount, Integer.parseInt(m.group(1)));
 						sheets.add(new NoteSheet(noteSize, Integer.parseInt(m.group(1)), file));
-						System.out.println("match!");
 					}
-					System.out.println("pagecount is now "+pagecount+" for "+basename);
 				}
-				
 				pagecount++;
 			}
-
 		}
 
 		// add an empty sheet if the notebook would be empty otherwise

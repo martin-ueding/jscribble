@@ -19,12 +19,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	public boolean accept(File arg0, String arg1) {
 		String[] nameparts = arg1.split(Pattern.quote(File.separator));
 		String fileBasename = nameparts[nameparts.length-1];
-		System.out.println("filtering "+fileBasename);
-		if (p.matcher(fileBasename).matches() && fileBasename.startsWith(basename)) {
-			System.out.println("match in filter");
-			return true;
-		}
-		return false;
+		return p.matcher(fileBasename).matches() && fileBasename.startsWith(basename);
 	}
 
 }
