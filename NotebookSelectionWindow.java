@@ -84,6 +84,7 @@ public class NotebookSelectionWindow {
 			if (newNoteBook != null) {
 				notebooks.add(newNoteBook);
 				updateList();
+				openNotebook(newNoteBook);
 			}
 
 		}
@@ -96,11 +97,14 @@ public class NotebookSelectionWindow {
 			NoteBook noteBook = (NoteBook) iterator.next();
 			listData[j] = noteBook.toString();
 
-			myList = new JList(listData);
 
-			if (myList != null) {
-				myList.repaint();
-			}
+			
+		}
+		
+
+		myList = new JList(listData);
+		if (myList != null && myList.isShowing()) {
+			myList.repaint();
 		}
 
 		buttonOpen.setEnabled(notebooks.size() > 0);
@@ -120,18 +124,8 @@ public class NotebookSelectionWindow {
 
 	public NotebookSelectionWindow() {
 		notebooks = findNotebooks();
-
-
+		
 		updateList();
-
-
-		// The automatically created model is stored in JList's "model"
-		// property, which you can retrieve
-		ListModel model = myList.getModel();
-		for (int i = 0; i < model.getSize(); i++) {
-			System.out.println(model.getElementAt(i));
-		}
-
 
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
 		buttonPanel.add(buttonNew);
