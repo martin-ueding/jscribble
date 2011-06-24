@@ -44,19 +44,14 @@ public class WriteoutThread extends Thread {
 					task = tasks.poll();
 				}
 				else {
-					// TODO add possibility to kill thread here
 					Logger.getLogger(this.getClass().getName()).info("waiting for task in queue");
 					task = tasks.take();
 				}
-
-				assert(task.getImg() != null);
-				assert(task.getOutfile() != null);
-				// assert(filename.canWrite());
-
-				Logger.getLogger(this.getClass().getName()).info("writing out "
-				                   + task.getOutfile().getCanonicalPath());
-				javax.imageio.ImageIO.write(task.getImg(), "png",
-				                            new FileOutputStream(task.getOutfile()));
+				
+				if (task.getImg() != null) {	
+					Logger.getLogger(this.getClass().getName()).info("writing out " + task.getOutfile().getCanonicalPath());
+					javax.imageio.ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
+				}
 			}
 			catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -82,5 +77,6 @@ public class WriteoutThread extends Thread {
 	 */
 	public void stopAfterLast() {
 		stopAfterLastItem = true;
+		schedule(new ImageSwapTask(null, null));
 	}
 }

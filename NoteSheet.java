@@ -61,10 +61,7 @@ public class NoteSheet {
 		this.pagenumber = pagenumber;
 		this.filename = infile;
 
-		if (filename != null && filename.exists()) {
-			loadFromFile();
-		}
-		else {
+		if (filename == null || !filename.exists()) {
 			if (filename == null) {
 				Logger.getLogger(this.getClass().getName()).info("generating tempfile");
 				try {

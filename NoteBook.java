@@ -33,7 +33,7 @@ public class NoteBook {
 	/**
 	 * Count of pages. Latest page number is pagecount.
 	 */
-	private static int pagecount = 1;
+	private int pagecount = 1;
 
 	private String name;
 
@@ -64,7 +64,7 @@ public class NoteBook {
 			// FIXME load pictures in correct order
 			for (File file : allImages) {
 				try {
-					Logger.getLogger(this.getClass().getName()).info(String.format("loading from file %s", file.getCanonicalPath()));
+					Logger.getLogger(this.getClass().getName()).info(String.format("adding sheet with file %s", file.getCanonicalPath()));
 				}
 				catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -157,7 +157,7 @@ public class NoteBook {
 	/**
 	 * @return The number of pages given out so far.
 	 */
-	public static int getPagecount() {
+	public int getPagecount() {
 		return pagecount;
 	}
 
@@ -200,6 +200,7 @@ public class NoteBook {
 			s.saveToFile();
 		}
 		quitWithWriteoutThread();
+	
 	}
 
 	/**
