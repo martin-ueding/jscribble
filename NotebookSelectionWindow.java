@@ -136,6 +136,7 @@ public class NotebookSelectionWindow {
 
 		frame = new JFrame("Select your Notebook");
 		frame.setSize(new Dimension(300, 400));
+		frame.setLocationRelativeTo(null);
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -155,8 +156,6 @@ public class NotebookSelectionWindow {
 	 */
 	private LinkedList<NoteBook> findNotebooks() {
 		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
-
-
 
 		if (configdir.exists()) {
 			File[] configfiles = configdir.listFiles(new FilenameFilter() {
@@ -259,6 +258,7 @@ public class NotebookSelectionWindow {
 	public static void openNotebook(final NoteBook notebook) {
 		JFrame f = new JFrame("Notebook");
 		f.setSize(noteSize);
+		f.setLocationRelativeTo(null);
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
