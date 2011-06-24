@@ -43,6 +43,7 @@ public class WriteoutThread extends Thread {
 					task = tasks.poll();
 				}
 				else {
+					// TODO add possibility to kill thread here
 					System.out.println("waiting for task in queue");
 					task = tasks.take();
 				}
