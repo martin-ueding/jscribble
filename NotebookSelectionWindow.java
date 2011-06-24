@@ -54,7 +54,7 @@ public class NotebookSelectionWindow {
 		public void actionPerformed(ActionEvent arg0) {
 			int selection = myList.getSelectedIndex();
 
-			if (selection > 0) {
+			if (selection >= 0) {
 				openNotebook(notebooks.get(selection));
 			}
 			else {
@@ -273,6 +273,7 @@ public class NotebookSelectionWindow {
 			public void windowClosing(WindowEvent winEvt) {
 				System.out.println("caught exit event");
 				notebook.saveToFiles();
+				System.out.println("done saving");
 				System.exit(0);
 			}
 		});
