@@ -1,0 +1,12 @@
+#!/bin/bash
+# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+outfile=VersionName.java
+
+version=$(bzr tags | head -n1 | sed "s/\s.*//")
+revno=$(bzr revno)
+
+echo "public class VersionName {" > $outfile
+echo "	public static final String version = \"$version~$revno\";" >> $outfile
+echo "}" >> $outfile
+

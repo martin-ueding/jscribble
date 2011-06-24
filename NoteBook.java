@@ -34,7 +34,7 @@ public class NoteBook {
 	 */
 	private static int pagecount = 1;
 
-	String name;
+	private String name;
 
 	/**
 	 * Creates an empty note book with a single note sheet.
@@ -211,6 +211,10 @@ public class NoteBook {
 	private void quitWithWriteoutThread() {
 		sheets.getFirst().stopWriteoutThread();
 
+	}
+
+	public String toString() {
+		return name;
 	}
 
 }

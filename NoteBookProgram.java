@@ -6,11 +6,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class NoteBookProgram {
 	public static final int width = 1024, height = 600;
@@ -22,33 +19,16 @@ public class NoteBookProgram {
 	// TODO add a better chooser for notebooks
 
 	public static void main(String[] args) {
-		String nickname = JOptionPane.showInputDialog("Nickname of your Notebook:");
+		NotebookSelectionWindow nsw = new NotebookSelectionWindow(width, height);
+	}
 
-		File in = null;
-		if (nickname != null) {
-
-			JFileChooser loadChooser = new JFileChooser();
-			loadChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-
-			int result = loadChooser.showOpenDialog(null);
-			if (result == JFileChooser.APPROVE_OPTION) {
-				in = loadChooser.getSelectedFile();
-			}
-
-			// if there is no file selected, abort right here
-			if (in == null) {
-				System.exit(1);
-			}
-		}
-
-
-		notebook = new NoteBook(width, height, in, nickname);
+	public static void openNotebook(final NoteBook notebook) {
 		JFrame f = new JFrame("Notebook");
 		f.setSize(width, height);
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
+				System.out.println("caught exit event");
 				notebook.saveToFiles();
 				System.exit(0);
 			}
