@@ -230,5 +230,15 @@ public class NoteBook {
 	public String toString() {
 		return name;
 	}
+	
+	public void gotoFirst() {
+		currentSheet = 0;
+		updateCurrrentItem();
+	}
+	
+	public void gotoLast() {
+		currentSheet = sheets.size()-1;
+		updateCurrrentItem();
+	}
 
 }

@@ -284,10 +284,19 @@ public class NotebookSelectionWindow {
 					notebook.backward();
 				}
 
+				if (ev.getKeyChar() == 'h') {
+					notebook.gotoFirst();
+				}
+
+				if (ev.getKeyChar() == 'l') {
+					notebook.gotoLast();
+				}
 			}
 
 			public void keyTyped(KeyEvent arg0) {}
 		});
+		
+		notebook.gotoLast();
 
 
 		ColonListener cl = new ColonListener(panel);
