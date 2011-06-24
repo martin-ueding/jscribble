@@ -142,7 +142,7 @@ public class NoteBook {
 	 * Flip the pages forward. It creates a new page if needed. If the current
 	 * page is a blank page, no new blank page will be added.
 	 */
-	public void forward() {
+	public void goForward() {
 		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
 		}
@@ -182,7 +182,7 @@ public class NoteBook {
 	/**
 	 * Goes back one sheet.
 	 */
-	public void backward() {
+	public void goBackwards() {
 		if (currentSheet > 0) {
 			if (currentSheet + cacheWidth < sheets.size()) {
 				sheets.get(currentSheet + cacheWidth).saveToFile();

@@ -277,11 +277,11 @@ public class NotebookSelectionWindow {
 
 			public void keyReleased(KeyEvent ev) {
 				if (ev.getKeyChar() == 'j') {
-					notebook.forward();
+					notebook.goForward();
 				}
 
 				if (ev.getKeyChar() == 'k') {
-					notebook.backward();
+					notebook.goBackwards();
 				}
 
 				if (ev.getKeyChar() == 'h') {
