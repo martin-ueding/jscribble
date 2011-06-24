@@ -8,6 +8,8 @@ import java.text.Collator;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -65,7 +67,7 @@ public class NoteBook {
 			// try to load all images that match the name
 			File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
 
-			if (allImages != null) {
+			if (allImages != null && allImages.length > 0) {
 				Arrays.sort(allImages, new Comparator<File>() {
 
 					private Collator c = Collator.getInstance();
@@ -88,13 +90,23 @@ public class NoteBook {
 						return c.compare(f1.getName(), f2.getName());
 					}
 				});
+				
+
+				Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
 				for (File file : allImages) {
-					// TODO determine pagecount from filename
-					sheets.add(new NoteSheet(noteSize, pagecount++, file));
+					String[] nameparts = file.getName().split(Pattern.quote(File.separator));
+					String basename = nameparts[nameparts.length-1];
+					Matcher m = p.matcher(basename);
+					if (m.matches()) {
+						pagecount = Math.max(pagecount, Integer.parseInt(m.group(1)));
+						sheets.add(new NoteSheet(noteSize, Integer.parseInt(m.group(1)), file));
+						System.out.println("match!");
+					}
+					System.out.println("pagecount is now "+pagecount+" for "+basename);
 				}
 				
-				// TODO set pagecount to the maximum found
+				pagecount++;
 			}
 
 		}

@@ -9,7 +9,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	private String basename;
 	
-	private Pattern p = Pattern.compile("^[\\d-]+-(\\d)+\\.png");
+	private Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
 	public NoteSheetFileFilter(String name) {
 		basename = name;
@@ -17,11 +17,14 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	@Override
 	public boolean accept(File arg0, String arg1) {
-		if (p.matcher(arg1).matches() && arg1.startsWith(basename)) {
-			return false;
+		String[] nameparts = arg1.split(Pattern.quote(File.separator));
+		String fileBasename = nameparts[nameparts.length-1];
+		System.out.println("filtering "+fileBasename);
+		if (p.matcher(fileBasename).matches() && fileBasename.startsWith(basename)) {
+			System.out.println("match in filter");
+			return true;
 		}
-
-		return true;
+		return false;
 	}
 
 }
