@@ -276,19 +276,28 @@ public class NotebookSelectionWindow {
 			public void keyPressed(KeyEvent arg0) {}
 
 			public void keyReleased(KeyEvent ev) {
-				if (ev.getKeyChar() == 'j' || ev.getKeyCode() == KeyEvent.VK_DOWN || ev.getKeyCode() == KeyEvent.VK_RIGHT || ev.getKeyCode() == KeyEvent.VK_SPACE || ev.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (ev.getKeyChar() == 'j' ||
+						ev.getKeyCode() == KeyEvent.VK_DOWN ||
+						ev.getKeyCode() == KeyEvent.VK_RIGHT ||
+						ev.getKeyCode() == KeyEvent.VK_SPACE ||
+						ev.getKeyCode() == KeyEvent.VK_ENTER) {
 					notebook.goForward();
 				}
 
-				if (ev.getKeyChar() == 'k' || ev.getKeyCode() == KeyEvent.VK_UP || ev.getKeyCode() == KeyEvent.VK_LEFT || ev.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+				if (ev.getKeyChar() == 'k' ||
+						ev.getKeyCode() == KeyEvent.VK_UP ||
+						ev.getKeyCode() == KeyEvent.VK_LEFT ||
+						ev.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 					notebook.goBackwards();
 				}
 
-				if (ev.getKeyChar() == 'h' || ev.getKeyCode() == KeyEvent.VK_HOME) {
+				if (ev.getKeyChar() == 'h' ||
+						ev.getKeyCode() == KeyEvent.VK_HOME) {
 					notebook.gotoFirst();
 				}
 
-				if (ev.getKeyChar() == 'l' || ev.getKeyCode() == KeyEvent.VK_END) {
+				if (ev.getKeyChar() == 'l' ||
+						ev.getKeyCode() == KeyEvent.VK_END) {
 					notebook.gotoLast();
 				}
 			}
