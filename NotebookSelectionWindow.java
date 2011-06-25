@@ -64,7 +64,7 @@ public class NotebookSelectionWindow {
 	private JFrame frame;
 
 	/**
-	 * List that holds all the found notebooks from the user's configuration
+	 * List that holds all the found NoteBook from the user's configuration
 	 * directory.
 	 */
 	private LinkedList<NoteBook> notebooks;
