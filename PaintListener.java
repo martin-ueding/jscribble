@@ -42,7 +42,7 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseDragged(MouseEvent arg0) {
 		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
 			notebook.drawLine(lastPosition.x, lastPosition.y,
-					arg0.getX(), arg0.getY());
+			                  arg0.getX(), arg0.getY());
 			lastPosition = arg0.getPoint();
 		}
 	}
