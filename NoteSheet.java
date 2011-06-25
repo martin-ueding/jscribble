@@ -210,7 +210,7 @@ public class NoteSheet {
 
 
 	/**
-	 * @return whether this sheet has any lines drawn onto it
+	 * Whether this sheet has any lines drawn onto it.
 	 */
 	public boolean touched() {
 		return touched;
@@ -218,7 +218,7 @@ public class NoteSheet {
 
 
 	/**
-	 * @return whether this sheet has unsaved changes
+	 * Whether this sheet has unsaved changes.
 	 */
 	public boolean unsaved() {
 		return unsaved;
