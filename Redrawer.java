@@ -15,6 +15,12 @@ public class Redrawer implements ActionListener {
 
 	private JPanel panel;
 
+	
+	/**
+	 * Creates a new Redrawer that tells the given Panel to redraw.
+	 * 
+	 * @param panel panel to redraw when notified
+	 */
 	public Redrawer(JPanel panel) {
 		this.panel = panel;
 	}

@@ -10,6 +10,10 @@ echo "/**" > "$outfile"
 echo " * Version name dummy." >> "$outfile"
 echo " */" >> "$outfile"
 echo "public class VersionName {" >> $outfile
+echo "	/**" >> "$outfile"
+echo "	 * Current version number of the VCS." >> "$outfile"
+echo "	 */" >> "$outfile"
 echo "	public static final String version = \"$version~$revno\";" >> $outfile
 echo "}" >> $outfile
+echo >> $outfile
 

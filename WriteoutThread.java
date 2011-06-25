@@ -57,6 +57,11 @@ public class WriteoutThread extends Thread {
 	}
 
 
+	/**
+	 * Works on the queue with tasks. The thread waits for the next task. If you
+	 * want to terminate the thread when the queue is empty, you have to push an
+	 * empty Task Object into the queue.
+	 */
 	public void run() {
 		ImageSwapTask task;
 		while (!stopAfterLastItem || !tasks.isEmpty()) {
@@ -87,4 +92,3 @@ public class WriteoutThread extends Thread {
 		}
 	}
 }
-

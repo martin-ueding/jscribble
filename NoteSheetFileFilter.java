@@ -29,6 +29,10 @@ public class NoteSheetFileFilter implements FilenameFilter {
 		basename = name;
 	}
 
+	/**
+	 * Determines whether a file is accepted or not. A file is accepted if it
+	 * starts with the correct prefix and matches the regular expression.
+	 */
 	@Override
 	public boolean accept(File arg0, String arg1) {
 		String[] nameparts = arg1.split(Pattern.quote(File.separator));

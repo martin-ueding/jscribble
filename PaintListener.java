@@ -7,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 
 
 /**
- * Listens to mouse movements on the displaying panel and updates the notebook.
+ * Listens to mouse movements on the displaying panel and updates the NoteBook.
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */

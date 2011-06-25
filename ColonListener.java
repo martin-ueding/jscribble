@@ -36,14 +36,26 @@ public class ColonListener implements KeyListener {
 
 	}
 
+	
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 	}
 
+	
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 	}
 
+	
+	/**
+	 * Listens for the ':' character and polls the user for a command.
+	 */
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		if (arg0.getKeyChar() == ':') {
@@ -60,4 +72,3 @@ public class ColonListener implements KeyListener {
 		}
 	}
 }
-

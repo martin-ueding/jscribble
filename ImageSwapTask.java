@@ -13,15 +13,27 @@ public class ImageSwapTask {
 	private BufferedImage img;
 	private File outfile;
 
+	/**
+	 * A task for the WriteoutTread.
+	 * 
+	 * @param img image to save
+	 * @param outfile file to save the image to
+	 */
 	public ImageSwapTask(BufferedImage img, File outfile) {
 		this.img = img;
 		this.outfile = outfile;
 	}
 
+	/**
+	 * @return the image
+	 */
 	public BufferedImage getImg() {
 		return img;
 	}
 
+	/**
+	 * @return the file to write to
+	 */
 	public File getOutfile() {
 		return outfile;
 	}

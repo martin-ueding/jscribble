@@ -8,6 +8,11 @@ import javax.swing.JOptionPane;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookProgram {
+	/**
+	 * Displays the NotebookSelectionWindow.
+	 * 
+	 * @param args ignored CLI arguments
+	 */
 	public static void main(String[] args) {
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialogue();

@@ -16,22 +16,45 @@ import java.util.regex.Pattern;
  * A container for several NoteSheets.
  *
  * The NoteBook contains at least one NoteSheet and adds new sheets whenever
- * the forward() function is called. The whole notebook can be saved into
+ * the forward() function is called. The whole NoteBook can be saved into
  * individual pictures.
  * 
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBook {
+	/**
+	 * A List with all the NoteSheet this NoteBook contains,
+	 */
 	private LinkedList<NoteSheet> sheets;
 
+	
+	/**
+	 * The currently opened page.
+	 */
 	private int currentSheet = 0;
 
+	
+	/**
+	 * The folder which contains the NoteSheets.
+	 */
 	private File folder;
 
+	
+	/**
+	 * The currently opened page -- actual object.
+	 */
 	private NoteSheet current;
 
+	
+	/**
+	 * Size of the individual NoteSheets.
+	 */
 	private Dimension noteSize;
 
+	
+	/**
+	 * Listener that needs to be notified after the current sheet is changed.
+	 */
 	private ActionListener doneDrawing;
 
 	
@@ -46,14 +69,20 @@ public class NoteBook {
 	 */
 	private int cacheWidth = 10;
 
+	
+	/**
+	 * The name of the NoteBook. This is also used as a prefix for the file
+	 * names.
+	 */
 	private String name;
 
 
 	/**
 	 * Creates an empty note book with a single note sheet.
 	 *
-	 * @param width width of the individual sheets
-	 * @param height height of the individual sheets
+	 * @param noteSize size of the NoteSheets within the NoteBook
+	 * @param folder place to store images
+	 * @param name name of the NoteBook
 	 */
 	public NoteBook(Dimension noteSize, File folder, String name) {
 		this.noteSize = noteSize;
@@ -63,7 +92,7 @@ public class NoteBook {
 
 		sheets = new LinkedList<NoteSheet>();
 
-		// if a notebook should be used
+		// if a NoteBook should be used
 		if (folder != null && name != null) {
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -112,12 +141,11 @@ public class NoteBook {
 			}
 		}
 
-		// add an empty sheet if the notebook would be empty otherwise
+		// add an empty sheet if the NoteBook would be empty otherwise
 		if (sheets.size() == 0) {
 			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
 			pagecount++;
 		}
-
 
 		updateCurrrentItem();
 	}
@@ -186,7 +214,7 @@ public class NoteBook {
 
 
 	/**
-	 * Persists the whole notebook into individual files.
+	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {
 		for (NoteSheet s : sheets) {
@@ -197,6 +225,10 @@ public class NoteBook {
 	}
 
 
+	/**
+	 * Returns a string representation of the NoteBook, consisting of the name
+	 * and pagecount.
+	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
@@ -212,19 +244,27 @@ public class NoteBook {
 	}
 
 
+	/**
+	 * Gets the NoteSheet object which the currently open page of the NoteBook.
+	 * 
+	 * @return current NoteSheet
+	 */
 	public NoteSheet getCurrentSheet() {
 		return sheets.get(currentSheet);
 	}
 
 
 	/**
-	 * @return number of sheets in the notebook
+	 * @return number of sheets in the NoteBook
 	 */
 	public int getSheetCount() {
 		return sheets.size();
 	}
 
 
+	/**
+	 * Goes to the first page in the NoteBook.
+	 */
 	public void gotoFirst() {
 		currentSheet = 0;
 		updateCurrrentItem();
@@ -232,6 +272,9 @@ public class NoteBook {
 	}
 
 
+	/**
+	 * Goes to the last page in the NoteBook.
+	 */
 	public void gotoLast() {
 		currentSheet = sheets.size() - 1;
 		updateCurrrentItem();
@@ -239,11 +282,20 @@ public class NoteBook {
 	}
 
 
+	/**
+	 * Returns the name of the NoteBook.
+	 * 
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
 
+	/**
+	 * Tell the listener (the DrawPanel) that the NoteBook has changed and
+	 * needs to be redrawn.
+	 */
 	private void fireDoneDrawing() {
 		if (doneDrawing != null) {
 			doneDrawing.actionPerformed(null);
@@ -251,6 +303,10 @@ public class NoteBook {
 	}
 
 
+	/**
+	 * If the index of the current item was changed, the object reference needs
+	 * to be updated as well. This method does just that.
+	 */
 	private void updateCurrrentItem() {
 		assert(currentSheet >= 0);
 		assert(currentSheet < sheets.size());
@@ -258,23 +314,31 @@ public class NoteBook {
 	}
 
 	
+	/**
+	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
+	 */
 	private void quitWithWriteoutThread() {
 		sheets.getFirst().stopWriteoutThread();
 
 	}
 
 
+	/**
+	 * Generates the File for the next NoteSheet.
+	 * 
+	 * @param pagenumber page number to use
+	 * @return File object with correct name
+	 */
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
 			try {
 				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError("Could not determine path of notebook folder.");
+				NoteBookProgram.handleError("Could not determine path of NoteBook folder.");
 				e.printStackTrace();
 			}
 		}
 		return null;
 	}
 }
-

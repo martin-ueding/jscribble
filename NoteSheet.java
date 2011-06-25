@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class NoteSheet {
 	/**
-	 * whether to write debug messages while loading and writing notesheets.
+	 * whether to write debug messages while loading and writing NoteSheet.
 	 */
 	private static final boolean showLoadWriteMessages = true;
 
@@ -71,8 +71,9 @@ public class NoteSheet {
 	/**
 	 * Creates an empty note sheet.
 	 *
-	 * @param width width of the sheet in pixels
-	 * @param height height of the sheet in pixels
+	 * @param noteSize size of the sheet
+	 * @param pagenumber given page number
+	 * @param infile File to save image in
 	 */
 	public NoteSheet(Dimension noteSize, int pagenumber, File infile) {
 		if (writethread == null) {
@@ -108,7 +109,7 @@ public class NoteSheet {
 	/**
 	 * Get the sheet's page number.
 	 * 
-	 * @return pagenumber
+	 * @return page number
 	 */
 	public int getPagenumber() {
 		return pagenumber;
@@ -149,9 +150,7 @@ public class NoteSheet {
 
 
 	/**
-	 * Loads the image from a given file. Everything else is left intact.
-	 *
-	 * @param infile filename to load from
+	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
 		try {
@@ -256,7 +255,7 @@ public class NoteSheet {
 	/**
 	 * Whether the picture is swapped to disk. To save RAM, the pictures might
 	 * be swapped into a temporary file if the user is in another part of the
-	 * notebook.
+	 * NoteBook.
 	 */
 	private boolean isSwapped() {
 		return img == null;

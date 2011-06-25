@@ -9,8 +9,8 @@ import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 /**
- * Displays the current page of a notebook. It also listens to the mouse and
- * relays the movements to the notebook as line drawing commands. It also
+ * Displays the current page of a NoteBook. It also listens to the mouse and
+ * relays the movements to the NoteBook as line drawing commands. It also
  * features a command listener for more user interaction.
  * 
  * @author Martin Ueding <dev@martin-ueding.de>
@@ -28,9 +28,9 @@ public class DrawPanel extends JPanel {
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
-	 * notebook.
+	 * NoteBook.
 	 *
-	 * @param notebook the notebook to display
+	 * @param notebook the NoteBook to display
 	 */
 	public DrawPanel(NoteBook notebook) {
 		this.notebook = notebook;
@@ -50,6 +50,11 @@ public class DrawPanel extends JPanel {
 		this.lines  = b;
 	}
 
+	
+	/**
+	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
+	 * top of the image as well.
+	 */
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
