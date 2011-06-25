@@ -341,4 +341,13 @@ public class NoteBook {
 		}
 		return null;
 	}
+
+
+	/**
+	 * Delete the NoteBook from the file system.
+	 */
+	public void delete() {
+		// TODO Auto-generated method stub
+		
+	}
 }

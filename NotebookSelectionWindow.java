@@ -53,6 +53,16 @@ public class NotebookSelectionWindow {
 	private ButtonOpen buttonOpen = new ButtonOpen();
 	
 	/**
+	 * Button to handle deletion of a NoteBook.
+	 */
+	private ButtonDelete buttonDelete = new ButtonDelete();
+	
+	/**
+	 * Button to handle config.
+	 */
+	private ButtonConfig buttonConfig = new ButtonConfig();
+	
+	/**
 	 * Button to enter the scribble mode.
 	 */
 	private ButtonScribble buttonScribble = new ButtonScribble();
@@ -95,6 +105,8 @@ public class NotebookSelectionWindow {
 	 */
 	private DrawPanel panel;
 
+	private File centralConfigFile;
+
 	/**
 	 * Creates a new window to select NoteBook from. It automatically searches
 	 * the user's configuration directory for NoteBook configuration files.
@@ -104,12 +116,13 @@ public class NotebookSelectionWindow {
 
 		updateList();
 
-		JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
+		GridLayout gl = new GridLayout(2, 3);
+		JPanel buttonPanel = new JPanel(gl);
 		buttonPanel.add(buttonNew);
 		buttonPanel.add(buttonOpen);
 		buttonPanel.add(buttonScribble);
-		// TODO add delete button
-		// TODO add configuration button
+		buttonPanel.add(buttonDelete);
+		buttonPanel.add(buttonConfig);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.add(new JScrollPane(myList), BorderLayout.CENTER);
@@ -122,6 +135,11 @@ public class NotebookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		centralConfigFile = new File(
+		    configdir.getAbsolutePath() +
+		    File.separator +
+		    "jscribblerc"
+		);
 		getCentralConfig();
 	}
 
@@ -194,11 +212,6 @@ public class NotebookSelectionWindow {
 	private Properties getCentralConfig() {
 		// load the default folder for notebooks
 		Properties centralConfig = new Properties();
-		File centralConfigFile = new File(
-		    configdir.getAbsolutePath() +
-		    File.separator +
-		    "jscribblerc"
-		);
 		if (centralConfigFile.exists()) {
 			try {
 				centralConfig.loadFromXML(new FileInputStream(centralConfigFile));
@@ -223,21 +236,26 @@ public class NotebookSelectionWindow {
 		if (!centralConfigFile.exists() || !defaultDirectory.exists()) {
 			centralConfig.setProperty("defaultDirectory", pollUserForDefaultDir(!centralConfigFile.exists()).getAbsolutePath());
 
-			// save this new rc
-			try {
-				centralConfig.storeToXML(new FileOutputStream(centralConfigFile), generatedComment());
-			}
-			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError("Could not find config file.");
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError("IO error while writing config file.");
-				e.printStackTrace();
-			}
+			saveConfig(centralConfig);
 		}
 
 		return centralConfig;
+	}
+
+
+	private void saveConfig(Properties centralConfig) {
+		// save this new rc
+		try {
+			centralConfig.storeToXML(new FileOutputStream(centralConfigFile), generatedComment());
+		}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError("Could not find config file.");
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO error while writing config file.");
+			e.printStackTrace();
+		}
 	}
 
 
@@ -527,6 +545,58 @@ public class NotebookSelectionWindow {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			openNotebook(new NoteBook(noteSize, null, null));
+		}
+	}
+	
+	/**
+	 * Button to delete a NoteBook.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonDelete extends JButton implements ActionListener {
+		ButtonDelete() {
+			setText("Delete");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the deletion of a NoteBook.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int selection = myList.getSelectedIndex();
+
+			if (selection >= 0) {
+				notebooks.get(selection).delete();
+				updateList();
+			}
+
+		}
+	}
+	
+	/**
+	 * Button to go through the config dialog.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonConfig extends JButton implements ActionListener {
+		ButtonConfig() {
+			setText("Config");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the configuration dialog.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Properties p = getCentralConfig();
+			p.setProperty("defaultDirectory", pollUserForDefaultDir(true).getAbsolutePath());
+			saveConfig(p);
 		}
 	}
 }

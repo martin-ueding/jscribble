@@ -1,7 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -116,8 +115,6 @@ public class DrawPanel extends JPanel {
 				g2.drawLine(0, i, getWidth(), i);
 			}
 		}
-		
-		// TODO offer a list with keyboard shortcuts
 
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
@@ -141,9 +138,19 @@ public class DrawPanel extends JPanel {
 		
 	}
 	class HelpItem {
+		/**
+		 * The buttons(s) that cause some action.
+		 */
 		public String key;
+		
+		/**
+		 * The action the buttons cause.
+		 */
 		public String helptext;
 		
+		/**
+		 * Generates a new HelpItem.
+		 */
 		public HelpItem(String key, String helptext) {
 			this.key = key;
 			this.helptext = helptext;
@@ -151,6 +158,10 @@ public class DrawPanel extends JPanel {
 		
 		
 	}
+	
+	/**
+	 * Sets whether the help dialog is displayed.
+	 */
 	public void setShowHelp(boolean showHelp) {
 		this.showHelp = showHelp;
 	}
