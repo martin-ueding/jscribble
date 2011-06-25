@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class NoteSheetFileFilter implements FilenameFilter {
 
 	private String basename;
-	
+
 	private Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
 	public NoteSheetFileFilter(String name) {
