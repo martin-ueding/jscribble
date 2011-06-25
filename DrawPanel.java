@@ -88,6 +88,8 @@ public class DrawPanel extends JPanel {
 				g2.drawLine(0, i, getWidth(), i);
 			}
 		}
+		
+		// TODO offer a list with keyboard shortcuts
 
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
