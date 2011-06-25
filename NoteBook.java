@@ -3,13 +3,20 @@
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.Collator;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 
 /**
@@ -258,7 +265,12 @@ public class NoteBook {
 	 * @return number of sheets in the NoteBook
 	 */
 	public int getSheetCount() {
-		return sheets.size();
+		if (sheets != null) {
+			return sheets.size();
+		}
+		else {
+			return 0;
+		}
 	}
 
 
@@ -347,7 +359,73 @@ public class NoteBook {
 	 * Delete the NoteBook from the file system.
 	 */
 	public void delete() {
-		// TODO Auto-generated method stub
+		int answer = JOptionPane.showConfirmDialog(null, String.format("Do you really want to delete \"%s\"?", name), "Really delete?", JOptionPane.YES_NO_OPTION);
 		
+		if (answer == 1) {
+			return;
+		};
+		
+		if (configFile != null) {
+			configFile.delete();
+			configFile = null;
+		}
+	}
+	
+	private File configFile;
+	
+	
+	/**
+	 * Creates a NoteBook with data read from a configuration file.
+	 */
+	public NoteBook(File configFile) {
+		this.configFile = configFile;
+		
+		Properties p = new Properties();
+		try {
+			p.loadFromXML(new FileInputStream(configFile));
+
+			noteSize = new Dimension(Integer.parseInt(p.getProperty("width")), Integer.parseInt(p.getProperty("height")));
+			folder = new File(p.getProperty("folder"));
+			name = p.getProperty("name");
+		}
+		catch (InvalidPropertiesFormatException e) {
+			NoteBookProgram.handleError("The NoteBook config file is malformed.");
+			e.printStackTrace();
+		}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError("The NoteBook config file could not be found.");
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO during NoteBook config file loading.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveToConfig(File configdir) {
+		// persist this NoteBook in the configuration file
+		Properties p = new Properties();
+		p.setProperty("width", String.valueOf(noteSize.width));
+		p.setProperty("height", String.valueOf(noteSize.height));
+		try {
+			p.setProperty("folder", folder.getCanonicalPath());
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO error while retrieving the path of the image folder.");
+			e.printStackTrace();
+		}
+		p.setProperty("name", name);
+
+		try {
+			p.storeToXML(new FileOutputStream(new File(configdir.getCanonicalPath() + File.separator + name + NoteBookProgram.configFileSuffix)), NoteBookProgram.generatedComment());
+		}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError("Could not find NoteBook config file for writing.");
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO error while writing NoteBook config file.");
+			e.printStackTrace();
+		}
 	}
 }
