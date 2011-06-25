@@ -16,10 +16,15 @@ import javax.imageio.ImageIO;
  */
 public class WriteoutThread extends Thread {
 	/**
-	 *
+	 * A queue with the tasks that this thread has to save to disk.
 	 */
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
+	
+	/**
+	 * This flag stops the thread after the last item in the queue. If not set,
+	 * the thread will wait for items in the queue to save.
+	 */
 	private boolean stopAfterLastItem = false;
 
 

@@ -32,6 +32,9 @@ public class DrawPanel extends JPanel {
 	 */
 	private NoteBook notebook;
 
+	/**
+	 * Handles the image output.
+	 */
 	private ImageObserver io = this;
 
 	/**
@@ -54,6 +57,7 @@ public class DrawPanel extends JPanel {
 		addMouseListener(pl);
 	}
 
+	
 	/**
 	 * Set whether help lines are to be drawn.
 	 *

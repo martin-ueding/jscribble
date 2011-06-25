@@ -13,7 +13,14 @@ import javax.swing.JOptionPane;
  */
 public class ColonListener implements KeyListener {
 
+	/**
+	 * The DrawPanel that is displaying the NoteBook.
+	 */
 	private DrawPanel panel;
+	
+	/**
+	 * The listener that is to be notified when something is changed.
+	 */
 	private Redrawer redrawer;
 
 	/**

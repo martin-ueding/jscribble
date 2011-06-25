@@ -16,6 +16,10 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	 */
 	private String basename;
 
+	
+	/**
+	 * The pattern that every filename is matched against.
+	 */
 	private Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
 

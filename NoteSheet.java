@@ -34,6 +34,10 @@ public class NoteSheet {
 	 */
 	private BufferedImage img;
 
+	
+	/**
+	 * Graphics context of the image.
+	 */
 	private Graphics2D graphics;
 
 

@@ -37,26 +37,68 @@ import javax.swing.JScrollPane;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NotebookSelectionWindow {
-	private static final Dimension noteSize = new Dimension(1024, 600);
+	/**
+	 * The size of newly created NoteBook instances.
+	 */
+	private Dimension noteSize = new Dimension(1024, 600);
 
+	/**
+	 * Button to handle creation of a new NoteBook.
+	 */
 	private ButtonNew buttonNew = new ButtonNew();
+	
+	/**
+	 * Button to handle opening of a NoteBook.
+	 */
 	private ButtonOpen buttonOpen = new ButtonOpen();
+	
+	/**
+	 * Button to enter the scribble mode.
+	 */
 	private ButtonScribble buttonScribble = new ButtonScribble();
 
 
+	/**
+	 * Frame to display everything in.
+	 */
 	private JFrame frame;
 
+	/**
+	 * List that holds all the found notebooks from the user's configuration
+	 * directory.
+	 */
 	private LinkedList<NoteBook> notebooks;
+	
+	/**
+	 * String representations of the NoteBook items in the LinkedList.
+	 */
 	private String[] listData;
 
+	/**
+	 * List GUI Element to display the NoteBook items in.
+	 */
 	private JList myList;
 
+	/**
+	 * The central configuration file for storing options like the default
+	 * NoteBook directory.
+	 */
 	private File configdir = new File(System.getProperty("user.home") + File.separator + ".jscribble");
 
+	/**
+	 * Suffix that is appended to every NoteBook configuration file.
+	 */
 	private String configFileSuffix = ".jscribble-notebook";
 
+	/**
+	 * Panel to display the selected NoteBook.
+	 */
 	private DrawPanel panel;
 
+	/**
+	 * Creates a new window to select NoteBook from. It automatically searches
+	 * the user's configuration directory for NoteBook configuration files.
+	 */
 	public NotebookSelectionWindow() {
 		notebooks = findNotebooks();
 
@@ -421,6 +463,9 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+		/**
+		 * Triggers the creation of a new NoteBook.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			NoteBook newNoteBook = createNewNotebook();
@@ -448,6 +493,9 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+		/**
+		 * Triggers the opening of a NoteBook, if one was selected.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			int selection = myList.getSelectedIndex();
@@ -472,6 +520,10 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+		/**
+		 * Triggers the entering into scribble mode with a blank new temporary
+		 * NoteBook.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			openNotebook(new NoteBook(noteSize, null, null));
