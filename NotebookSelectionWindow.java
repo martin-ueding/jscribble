@@ -157,6 +157,8 @@ public class NotebookSelectionWindow {
 
 		File in = null;
 
+		// TODO Open the file dialog in a preset default folder.
+		// TODO Asks for a default folder at first program start.
 		JFileChooser loadChooser = new JFileChooser();
 		loadChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
