@@ -174,32 +174,12 @@ public class NotebookSelectionWindow {
 				e.printStackTrace();
 			}
 		}
-		else {
-			// ask the user for a default directory for his NoteBook
-			JOptionPane.showMessageDialog(null, "Please select a default folder for your NoteBooks in the following dialogue");
-
-			JFileChooser defaultDirectoryChooser = new JFileChooser();
-			defaultDirectoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-
-			int result = defaultDirectoryChooser.showOpenDialog(null);
-
-			File newDefaultDirectory = null;
-			if (result == JFileChooser.APPROVE_OPTION) {
-				newDefaultDirectory = defaultDirectoryChooser.getSelectedFile();
-				try {
-					centralConfig.setProperty("defaultDirectory", newDefaultDirectory.getCanonicalPath());
-				}
-				catch (IOException e) {
-					NoteBookProgram.handleError("IO error while finding path of your new default directory.");
-					e.printStackTrace();
-				}
-			}
-
-			// if there is no file selected, use the users home folder
-			if (newDefaultDirectory == null) {
-				newDefaultDirectory = new File(System.getProperty("user.home"));
-			}
+		
+		File defaultDirectory = new File(centralConfig.getProperty("defaultDirectory"));
+		
+		
+		if (!centralConfigFile.exists() || !defaultDirectory.exists()) {
+			centralConfig.setProperty("defaultDirectory", pollUserForDefaultDir(!centralConfigFile.exists()).getAbsolutePath());
 
 			// save this new rc
 			try {
@@ -216,6 +196,40 @@ public class NotebookSelectionWindow {
 		}
 
 		return centralConfig;
+	}
+
+
+	/**
+	 * Asks the user to select a default directory for his NoteBook.
+	 * 
+	 * @param firstTime whether the configuration file did not have an entry
+	 * before
+	 * @return the chosen directory
+	 */
+	private File pollUserForDefaultDir(boolean firstTime) {
+		// ask the user for a default directory for his NoteBook
+		String message = firstTime ?
+				"Please select a default folder for your NoteBooks in the following dialog." :
+				"Your default directory is not valid. Please choose a new one.";
+		JOptionPane.showMessageDialog(null, message);
+
+		JFileChooser defaultDirectoryChooser = new JFileChooser();
+		defaultDirectoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+
+		int result = defaultDirectoryChooser.showOpenDialog(null);
+
+		File newDefaultDirectory = null;
+		if (result == JFileChooser.APPROVE_OPTION) {
+			newDefaultDirectory = defaultDirectoryChooser.getSelectedFile();
+		}
+
+		// if there is no file selected, use the users home folder
+		if (newDefaultDirectory == null) {
+			newDefaultDirectory = new File(System.getProperty("user.home"));
+		}
+		
+		return newDefaultDirectory;
 	}
 
 
