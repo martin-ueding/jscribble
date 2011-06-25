@@ -37,7 +37,7 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 
 
 	/**
-	 * Tells the notebook to draw a line.
+	 * Tells the NoteBook to draw a line.
 	 */
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO only draw with primary click
