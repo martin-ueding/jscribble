@@ -87,7 +87,7 @@ public class NotebookSelectionWindow {
 	/**
 	 * Displays the dialogue.
 	 */
-	public void showDialogue() {
+	public void showDialog() {
 		frame.setVisible(true);
 	}
 
