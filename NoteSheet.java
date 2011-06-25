@@ -112,8 +112,6 @@ public class NoteSheet {
 
 	/**
 	 * Get the sheet's page number.
-	 *
-	 * @return page number
 	 */
 	public int getPagenumber() {
 		return pagenumber;
@@ -122,8 +120,6 @@ public class NoteSheet {
 
 	/**
 	 * Gets the image, loads it from disk id needed.
-	 *
-	 * @return the image
 	 */
 	public BufferedImage getImg() {
 		if (isSwapped()) {
@@ -135,8 +131,6 @@ public class NoteSheet {
 
 	/**
 	 * Width of the image.
-	 *
-	 * @return width
 	 */
 	public int getWidth() {
 		return noteSize.width;
@@ -145,8 +139,6 @@ public class NoteSheet {
 
 	/**
 	 * Height of the image.
-	 *
-	 * @return height
 	 */
 	public int getHeight() {
 		return noteSize.height;
@@ -243,8 +235,6 @@ public class NoteSheet {
 
 	/**
 	 * Gets the graphics context of the image.
-	 *
-	 * @return graphics object
 	 */
 	private Graphics2D getGraphics() {
 		if (graphics == null) {
