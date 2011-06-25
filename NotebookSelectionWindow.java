@@ -30,7 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- * A window and launcher for individual NoteBooks. It searches the
+ * A window and launcher for individual NoteBook. It searches the
  * configuration directory for NoteBook entries and provides a list to open
  * them. A NoteBook can then be opened in a DrawPanel.
  * 
@@ -92,7 +92,7 @@ public class NotebookSelectionWindow {
 	/**
 	 * Tries to find a configuration directory for this program.
 	 * 
-	 * @return list of NoteBooks
+	 * @return list of NoteBook
 	 */
 	private LinkedList<NoteBook> findNotebooks() {
 		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
@@ -202,7 +202,7 @@ public class NotebookSelectionWindow {
 
 
 	/**
-	 * Updates the list with NoteBooks.
+	 * Updates the list with NoteBook.
 	 */
 	private void updateList() {
 		listData = new String[notebooks.size()];

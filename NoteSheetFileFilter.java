@@ -5,7 +5,7 @@ import java.io.FilenameFilter;
 import java.util.regex.Pattern;
 
 /**
- * Filters filenames that belong to NoteSheets from a specific NoteBook.
+ * Filters filenames that belong to NoteSheet from a specific NoteBook.
  * 
  * @author Martin Ueding <dev@martin-ueding.de>
  */

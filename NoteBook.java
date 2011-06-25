@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * A container for several NoteSheets.
+ * A container for several NoteSheet.
  *
  * The NoteBook contains at least one NoteSheet and adds new sheets whenever
  * the forward() function is called. The whole NoteBook can be saved into
@@ -35,7 +35,7 @@ public class NoteBook {
 
 	
 	/**
-	 * The folder which contains the NoteSheets.
+	 * The folder which contains the NoteSheet.
 	 */
 	private File folder;
 
@@ -47,7 +47,7 @@ public class NoteBook {
 
 	
 	/**
-	 * Size of the individual NoteSheets.
+	 * Size of the individual NoteSheet.
 	 */
 	private Dimension noteSize;
 
@@ -80,7 +80,7 @@ public class NoteBook {
 	/**
 	 * Creates an empty note book with a single note sheet.
 	 *
-	 * @param noteSize size of the NoteSheets within the NoteBook
+	 * @param noteSize size of the NoteSheet within the NoteBook
 	 * @param folder place to store images
 	 * @param name name of the NoteBook
 	 */
