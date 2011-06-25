@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 /**
  * Filters filenames that belong to NoteSheet from a specific NoteBook.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteSheetFileFilter implements FilenameFilter {
@@ -18,11 +18,11 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	private Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
-	
+
 	/**
 	 * Creates a new FileFilter that filters files starting with the given name
 	 * -- the name of the NoteBook.
-	 * 
+	 *
 	 * @param name prefix for the file name
 	 */
 	public NoteSheetFileFilter(String name) {

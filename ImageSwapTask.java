@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * A set of an image and a filename that is supposed to be loaded or saved to
  * disk.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ImageSwapTask {
@@ -15,7 +15,7 @@ public class ImageSwapTask {
 
 	/**
 	 * A task for the WriteoutTread.
-	 * 
+	 *
 	 * @param img image to save
 	 * @param outfile file to save the image to
 	 */

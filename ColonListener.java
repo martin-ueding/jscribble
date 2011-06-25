@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 /**
  * Listens to the keyboard for the command key and then polls the user for a
  * command. The command is then executed.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ColonListener implements KeyListener {
@@ -36,7 +36,7 @@ public class ColonListener implements KeyListener {
 
 	}
 
-	
+
 	/**
 	 * Ignored.
 	 */
@@ -44,7 +44,7 @@ public class ColonListener implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 	}
 
-	
+
 	/**
 	 * Ignored.
 	 */
@@ -52,7 +52,7 @@ public class ColonListener implements KeyListener {
 	public void keyReleased(KeyEvent arg0) {
 	}
 
-	
+
 	/**
 	 * Listens for the ':' character and polls the user for a command.
 	 */

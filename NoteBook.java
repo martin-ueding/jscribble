@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * The NoteBook contains at least one NoteSheet and adds new sheets whenever
  * the forward() function is called. The whole NoteBook can be saved into
  * individual pictures.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBook {
@@ -27,37 +27,37 @@ public class NoteBook {
 	 */
 	private LinkedList<NoteSheet> sheets;
 
-	
+
 	/**
 	 * The currently opened page.
 	 */
 	private int currentSheet = 0;
 
-	
+
 	/**
 	 * The folder which contains the NoteSheet.
 	 */
 	private File folder;
 
-	
+
 	/**
 	 * The currently opened page -- actual object.
 	 */
 	private NoteSheet current;
 
-	
+
 	/**
 	 * Size of the individual NoteSheet.
 	 */
 	private Dimension noteSize;
 
-	
+
 	/**
 	 * Listener that needs to be notified after the current sheet is changed.
 	 */
 	private ActionListener doneDrawing;
 
-	
+
 	/**
 	 * Count of pages. Latest page number is pagecount.
 	 */
@@ -69,7 +69,7 @@ public class NoteBook {
 	 */
 	private int cacheWidth = 10;
 
-	
+
 	/**
 	 * The name of the NoteBook. This is also used as a prefix for the file
 	 * names.
@@ -233,7 +233,7 @@ public class NoteBook {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
 
-	
+
 	/**
 	 * Sets an action listener to be called when something new was drawn.
 	 *
@@ -246,7 +246,7 @@ public class NoteBook {
 
 	/**
 	 * Gets the NoteSheet object which the currently open page of the NoteBook.
-	 * 
+	 *
 	 * @return current NoteSheet
 	 */
 	public NoteSheet getCurrentSheet() {
@@ -284,7 +284,7 @@ public class NoteBook {
 
 	/**
 	 * Returns the name of the NoteBook.
-	 * 
+	 *
 	 * @return the name
 	 */
 	public String getName() {
@@ -313,7 +313,7 @@ public class NoteBook {
 		current = sheets.get(currentSheet);
 	}
 
-	
+
 	/**
 	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
 	 */
@@ -325,7 +325,7 @@ public class NoteBook {
 
 	/**
 	 * Generates the File for the next NoteSheet.
-	 * 
+	 *
 	 * @param pagenumber page number to use
 	 * @return File object with correct name
 	 */

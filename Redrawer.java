@@ -8,17 +8,17 @@ import javax.swing.JPanel;
 
 /**
  * Listens to changes from the NoteBook and updates the panel.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Redrawer implements ActionListener {
 
 	private JPanel panel;
 
-	
+
 	/**
 	 * Creates a new Redrawer that tells the given Panel to redraw.
-	 * 
+	 *
 	 * @param panel panel to redraw when notified
 	 */
 	public Redrawer(JPanel panel) {

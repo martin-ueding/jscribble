@@ -33,7 +33,7 @@ import javax.swing.JScrollPane;
  * A window and launcher for individual NoteBook. It searches the
  * configuration directory for NoteBook entries and provides a list to open
  * them. A NoteBook can then be opened in a DrawPanel.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NotebookSelectionWindow {
@@ -91,7 +91,7 @@ public class NotebookSelectionWindow {
 
 	/**
 	 * Tries to find a configuration directory for this program.
-	 * 
+	 *
 	 * @return list of NoteBook
 	 */
 	private LinkedList<NoteBook> findNotebooks() {
@@ -145,7 +145,7 @@ public class NotebookSelectionWindow {
 	 * Creates a new NoteBook and prompts the user for a name and folder to
 	 * save the images in. A config file is automatically created in the config
 	 * dir.
-	 * 
+	 *
 	 * @return the new NoteBook
 	 */
 	private NoteBook createNewNotebook() {
@@ -226,7 +226,7 @@ public class NotebookSelectionWindow {
 
 	/**
 	 * Opens the given NoteBook in a DrawPanel.
-	 * 
+	 *
 	 * @param notebook NoteBook to open
 	 */
 	private void openNotebook(final NoteBook notebook) {
@@ -305,7 +305,7 @@ public class NotebookSelectionWindow {
 
 	/**
 	 * Button to create a new NoteBook.
-	 * 
+	 *
 	 * @author Martin Ueding <dev@martin-ueding.de>
 	 */
 	@SuppressWarnings("serial")
@@ -327,11 +327,11 @@ public class NotebookSelectionWindow {
 
 		}
 	}
-	
+
 
 	/**
 	 * Button to open a NoteBook.
-	 * 
+	 *
 	 * @author Martin Ueding <dev@martin-ueding.de>
 	 */
 	@SuppressWarnings("serial")
@@ -356,7 +356,7 @@ public class NotebookSelectionWindow {
 
 	/**
 	 * Button to enter the Scribble mode.
-	 * 
+	 *
 	 * @author Martin Ueding <dev@martin-ueding.de>
 	 */
 	@SuppressWarnings("serial")

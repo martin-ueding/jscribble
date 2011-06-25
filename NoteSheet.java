@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 /**
  * Represents a single note sheet.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteSheet {
@@ -22,13 +22,13 @@ public class NoteSheet {
 	 */
 	private static final boolean showLoadWriteMessages = true;
 
-	
+
 	/**
 	 * Page number for the current page.
 	 */
 	private int pagenumber;
 
-	
+
 	/**
 	 * The picture for storing the drawing on.
 	 */
@@ -36,38 +36,38 @@ public class NoteSheet {
 
 	private Graphics2D graphics;
 
-	
+
 	/**
 	 * The size of this sheet in pixels.
 	 */
 	private Dimension noteSize;
 
-	
+
 	/**
 	 * Whether a picture has any lines drawn on it.
 	 */
 	private boolean touched = false;
 
-	
+
 	/**
 	 * Whether the picture was changed after the last save. A newly created
 	 * picture is not unsaved since there is nothing worth saving.
 	 */
 	private boolean unsaved = false;
 
-	
+
 	/**
 	 * Storage point of the image of this sheet.
 	 */
 	private File filename;
 
-	
+
 	/**
 	 * A singleton thread that handles all the writing to disk.
 	 */
 	private static WriteoutThread writethread;
 
-	
+
 	/**
 	 * Creates an empty note sheet.
 	 *
@@ -105,10 +105,10 @@ public class NoteSheet {
 		}
 	}
 
-	
+
 	/**
 	 * Get the sheet's page number.
-	 * 
+	 *
 	 * @return page number
 	 */
 	public int getPagenumber() {
@@ -118,7 +118,7 @@ public class NoteSheet {
 
 	/**
 	 * Gets the image, loads it from disk id needed.
-	 * 
+	 *
 	 * @return the image
 	 */
 	public BufferedImage getImg() {
@@ -128,20 +128,20 @@ public class NoteSheet {
 		return img;
 	}
 
-	
+
 	/**
 	 * Width of the image.
-	 * 
+	 *
 	 * @return width
 	 */
 	public int getWidth() {
 		return noteSize.width;
 	}
-	
+
 
 	/**
 	 * Height of the image.
-	 * 
+	 *
 	 * @return height
 	 */
 	public int getHeight() {
@@ -171,7 +171,7 @@ public class NoteSheet {
 		touched = true;
 	}
 
-	
+
 	/**
 	 * Saves the picture to a PNG file. The image is then removed from the heap.
 	 */
@@ -190,7 +190,7 @@ public class NoteSheet {
 		unsaved = false;
 	}
 
-	
+
 	/**
 	 * Draws a line onto the sheet. The sheet is then marked as "touched".
 	 */
@@ -204,7 +204,7 @@ public class NoteSheet {
 		graphics.drawLine(x, y, x2, y2);
 	}
 
-	
+
 	/**
 	 * @return whether this sheet has any lines drawn onto it
 	 */
@@ -212,7 +212,7 @@ public class NoteSheet {
 		return touched;
 	}
 
-	
+
 	/**
 	 * @return whether this sheet has unsaved changes
 	 */
@@ -220,7 +220,7 @@ public class NoteSheet {
 		return unsaved;
 	}
 
-	
+
 	/**
 	 * Stops the WriteoutThread and waits for it. This ensures that everything
 	 * is written to disk properly.
@@ -236,10 +236,10 @@ public class NoteSheet {
 		}
 	}
 
-	
+
 	/**
 	 * Gets the graphics context of the image.
-	 * 
+	 *
 	 * @return graphics object
 	 */
 	private Graphics2D getGraphics() {
@@ -251,7 +251,7 @@ public class NoteSheet {
 		return graphics;
 	}
 
-	
+
 	/**
 	 * Whether the picture is swapped to disk. To save RAM, the pictures might
 	 * be swapped into a temporary file if the user is in another part of the

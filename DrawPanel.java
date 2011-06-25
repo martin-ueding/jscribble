@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * Displays the current page of a NoteBook. It also listens to the mouse and
  * relays the movements to the NoteBook as line drawing commands. It also
  * features a command listener for more user interaction.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 @SuppressWarnings("serial")
@@ -33,7 +33,7 @@ public class DrawPanel extends JPanel {
 	private NoteBook notebook;
 
 	private ImageObserver io = this;
-	
+
 	/**
 	 * Whether helping lines are enabled.
 	 */
@@ -63,11 +63,11 @@ public class DrawPanel extends JPanel {
 		this.lines  = b;
 	}
 
-	
+
 	/**
 	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
 	 * top of the image as well.
-	 * 
+	 *
 	 * @param g graphics context (usually given by Java itself).
 	 */
 	protected void paintComponent(Graphics g) {
