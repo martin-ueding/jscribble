@@ -227,7 +227,7 @@ public class NotebookSelectionWindow {
 	 * 
 	 * @param notebook NoteBook to open
 	 */
-	public void openNotebook(final NoteBook notebook) {
+	private void openNotebook(final NoteBook notebook) {
 		JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
