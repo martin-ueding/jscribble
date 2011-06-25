@@ -50,7 +50,8 @@ public class NoteSheet {
 
 	
 	/**
-	 * Whether the picture was changed after the last save. A newly created picture is not unsaved since there is nothing worth saving.
+	 * Whether the picture was changed after the last save. A newly created
+	 * picture is not unsaved since there is nothing worth saving.
 	 */
 	private boolean unsaved = false;
 
@@ -261,3 +262,4 @@ public class NoteSheet {
 		return img == null;
 	}
 }
+

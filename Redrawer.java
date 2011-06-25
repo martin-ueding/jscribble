@@ -19,6 +19,7 @@ public class Redrawer implements ActionListener {
 		this.panel = panel;
 	}
 
+
 	/**
 	 * Redraws the previously set panel.
 	 */

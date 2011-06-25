@@ -20,7 +20,8 @@ public class NoteSheetFileFilter implements FilenameFilter {
 
 	
 	/**
-	 * Creates a new FileFilter that filters files starting with the given name -- the name of the NoteBook.
+	 * Creates a new FileFilter that filters files starting with the given name
+	 * -- the name of the NoteBook.
 	 * 
 	 * @param name prefix for the file name
 	 */
@@ -35,3 +36,4 @@ public class NoteSheetFileFilter implements FilenameFilter {
 		return p.matcher(fileBasename).matches() && fileBasename.startsWith(basename);
 	}
 }
+

@@ -34,10 +34,12 @@ public class NoteBook {
 
 	private ActionListener doneDrawing;
 
+	
 	/**
 	 * Count of pages. Latest page number is pagecount.
 	 */
 	private int pagecount = 1;
+
 
 	/**
 	 * How many images to cache back and front.
@@ -45,6 +47,7 @@ public class NoteBook {
 	private int cacheWidth = 10;
 
 	private String name;
+
 
 	/**
 	 * Creates an empty note book with a single note sheet.
@@ -119,6 +122,7 @@ public class NoteBook {
 		updateCurrrentItem();
 	}
 
+
 	/**
 	 * Draws a line onto the current sheet.
 	 */
@@ -127,6 +131,7 @@ public class NoteBook {
 
 		fireDoneDrawing();
 	}
+
 
 	/**
 	 * Flip the pages forward. It creates a new page if needed. If the current
@@ -156,13 +161,13 @@ public class NoteBook {
 	}
 
 
-
 	/**
 	 * @return The number of pages given out so far.
 	 */
 	public int getPagecount() {
 		return pagecount;
 	}
+
 
 	/**
 	 * Goes back one sheet.
@@ -179,6 +184,7 @@ public class NoteBook {
 		}
 	}
 
+
 	/**
 	 * Persists the whole notebook into individual files.
 	 */
@@ -190,10 +196,12 @@ public class NoteBook {
 
 	}
 
+
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
 
+	
 	/**
 	 * Sets an action listener to be called when something new was drawn.
 	 *
@@ -203,9 +211,11 @@ public class NoteBook {
 		this.doneDrawing = doneDrawing;
 	}
 
+
 	public NoteSheet getCurrentSheet() {
 		return sheets.get(currentSheet);
 	}
+
 
 	/**
 	 * @return number of sheets in the notebook
@@ -214,11 +224,13 @@ public class NoteBook {
 		return sheets.size();
 	}
 
+
 	public void gotoFirst() {
 		currentSheet = 0;
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
+
 
 	public void gotoLast() {
 		currentSheet = sheets.size() - 1;
@@ -226,9 +238,11 @@ public class NoteBook {
 		fireDoneDrawing();
 	}
 
+
 	public String getName() {
 		return name;
 	}
+
 
 	private void fireDoneDrawing() {
 		if (doneDrawing != null) {
@@ -236,16 +250,19 @@ public class NoteBook {
 		}
 	}
 
+
 	private void updateCurrrentItem() {
 		assert(currentSheet >= 0);
 		assert(currentSheet < sheets.size());
 		current = sheets.get(currentSheet);
 	}
 
+	
 	private void quitWithWriteoutThread() {
 		sheets.getFirst().stopWriteoutThread();
 
 	}
+
 
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
@@ -259,5 +276,5 @@ public class NoteBook {
 		}
 		return null;
 	}
-
 }
+

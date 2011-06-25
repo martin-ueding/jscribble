@@ -25,7 +25,5 @@ public class ImageSwapTask {
 	public File getOutfile() {
 		return outfile;
 	}
-
-
-
 }
+

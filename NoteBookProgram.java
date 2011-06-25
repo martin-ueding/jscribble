@@ -13,6 +13,7 @@ public class NoteBookProgram {
 		nsw.showDialogue();
 	}
 
+
 	/**
 	 * Handles some error message centrally, right now it just displays a dialog box with the error message.
 	 * 
@@ -22,3 +23,4 @@ public class NoteBookProgram {
 		JOptionPane.showMessageDialog(null, string);
 	}
 }
+

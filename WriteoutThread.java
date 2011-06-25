@@ -8,9 +8,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import javax.imageio.ImageIO;
 
 /**
- * In order to make the user interface faster, the writing of unneeded images is
- * put into a second thread. That way, the UI does not freeze during the little
- * IO time.
+ * In order to make the user interface faster, the writing of unneeded images
+ * is put into a second thread. That way, the UI does not freeze during the
+ * little IO time.
  * 
  * @author Martin Ueding <dev@martin-ueding.de>
  */
@@ -87,3 +87,4 @@ public class WriteoutThread extends Thread {
 		}
 	}
 }
+

@@ -30,7 +30,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- * A window and launcher for individual notebooks. It searches the configuration directory for notebook entries and provides a list to open them. A notebook can then be opened in a DrawPanel.
+ * A window and launcher for individual notebooks. It searches the
+ * configuration directory for notebook entries and provides a list to open
+ * them. A notebook can then be opened in a DrawPanel.
  * 
  * @author Martin Ueding <dev@martin-ueding.de>
  */
@@ -78,12 +80,14 @@ public class NotebookSelectionWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+
 	/**
 	 * Displays the dialogue.
 	 */
 	public void showDialogue() {
 		frame.setVisible(true);
 	}
+
 
 	/**
 	 * Tries to find a configuration directory for this program.
@@ -136,8 +140,11 @@ public class NotebookSelectionWindow {
 		return notebooks;
 	}
 
+
 	/**
-	 * Creates a new NoteBook and prompts the user for a name and folder to save the images in. A config file is automatically created in the config dir.
+	 * Creates a new NoteBook and prompts the user for a name and folder to
+	 * save the images in. A config file is automatically created in the config
+	 * dir.
 	 * 
 	 * @return the new NoteBook
 	 */
@@ -193,6 +200,7 @@ public class NotebookSelectionWindow {
 		return new NoteBook(noteSize, in, nickname);
 	}
 
+
 	/**
 	 * Updates the list with NoteBooks.
 	 */
@@ -212,6 +220,7 @@ public class NotebookSelectionWindow {
 
 		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
+
 
 	/**
 	 * Opens the given NoteBook in a DrawPanel.
@@ -291,6 +300,7 @@ public class NotebookSelectionWindow {
 		f.setVisible(true);
 	}
 
+
 	/**
 	 * Button to create a new NoteBook.
 	 * 
@@ -316,6 +326,7 @@ public class NotebookSelectionWindow {
 		}
 	}
 	
+
 	/**
 	 * Button to open a NoteBook.
 	 * 
@@ -340,6 +351,7 @@ public class NotebookSelectionWindow {
 		}
 	}
 
+
 	/**
 	 * Button to enter the Scribble mode.
 	 * 
@@ -359,3 +371,4 @@ public class NotebookSelectionWindow {
 		}
 	}
 }
+

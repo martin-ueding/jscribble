@@ -43,6 +43,7 @@ public class DrawPanel extends JPanel {
 
 	/**
 	 * Set whether help lines are to be drawn.
+	 *
 	 * @param b status of the lines
 	 */
 	public void setLines(boolean b) {
@@ -70,6 +71,6 @@ public class DrawPanel extends JPanel {
 
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
-
 	}
 }
+

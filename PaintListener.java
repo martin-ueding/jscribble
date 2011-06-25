@@ -24,15 +24,18 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 		this.notebook = notebook;
 	}
 
+
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO only draw with primary click
 		notebook.drawLine(lastPosition.x, lastPosition.y, arg0.getX(), arg0.getY());
 		lastPosition = arg0.getPoint();
 	}
 
+
 	public void mouseMoved(MouseEvent arg0) {
 		lastPosition = arg0.getPoint();
 	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -40,19 +43,16 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 		notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-	}
+	public void mouseEntered(MouseEvent e) { }
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-	}
+	public void mouseExited(MouseEvent e) { }
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
+	public void mousePressed(MouseEvent e) { }
+
+	@Override
+	public void mouseReleased(MouseEvent e) { }
 }
