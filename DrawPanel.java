@@ -12,6 +12,8 @@ import javax.swing.JPanel;
  * Displays the current page of a notebook. It also listens to the mouse and
  * relays the movements to the notebook as line drawing commands. It also
  * features a command listener for more user interaction.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {

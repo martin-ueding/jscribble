@@ -2,13 +2,22 @@
 
 import javax.swing.JOptionPane;
 
-
+/**
+ * The main program.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class NoteBookProgram {
 	public static void main(String[] args) {
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialogue();
 	}
 
+	/**
+	 * Handles some error message centrally, right now it just displays a dialog box with the error message.
+	 * 
+	 * @param string error message
+	 */
 	public static void handleError(String string) {
 		JOptionPane.showMessageDialog(null, string);
 	}

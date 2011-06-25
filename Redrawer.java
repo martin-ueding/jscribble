@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 
 
 /**
- * Listens to changes from the notebook and updates the panel.
+ * Listens to changes from the NoteBook and updates the panel.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Redrawer implements ActionListener {
 
@@ -17,6 +19,9 @@ public class Redrawer implements ActionListener {
 		this.panel = panel;
 	}
 
+	/**
+	 * Redraws the previously set panel.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		panel.repaint();

@@ -29,7 +29,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-
+/**
+ * A window and launcher for individual notebooks. It searches the configuration directory for notebook entries and provides a list to open them. A notebook can then be opened in a DrawPanel.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class NotebookSelectionWindow {
 	private static final Dimension noteSize = new Dimension(1024, 600);
 
@@ -74,12 +78,16 @@ public class NotebookSelectionWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * Displays the dialogue.
+	 */
 	public void showDialogue() {
 		frame.setVisible(true);
 	}
 
 	/**
 	 * Tries to find a configuration directory for this program.
+	 * 
 	 * @return list of notebooks
 	 */
 	private LinkedList<NoteBook> findNotebooks() {
@@ -128,6 +136,11 @@ public class NotebookSelectionWindow {
 		return notebooks;
 	}
 
+	/**
+	 * Creates a new NoteBook and prompts the user for a name and folder to save the images in. A config file is automatically created in the config dir.
+	 * 
+	 * @return the new NoteBook
+	 */
 	private NoteBook createNewNotebook() {
 		String nickname = JOptionPane.showInputDialog("Nickname of your Notebook:");
 
@@ -180,15 +193,15 @@ public class NotebookSelectionWindow {
 		return new NoteBook(noteSize, in, nickname);
 	}
 
+	/**
+	 * Updates the list with NoteBooks.
+	 */
 	private void updateList() {
 		listData = new String[notebooks.size()];
 		int j = 0;
 		for (Iterator<NoteBook> iterator = notebooks.iterator(); iterator.hasNext(); j++) {
 			NoteBook noteBook = (NoteBook) iterator.next();
 			listData[j] = noteBook.toString();
-
-
-
 		}
 
 
@@ -200,6 +213,11 @@ public class NotebookSelectionWindow {
 		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 
+	/**
+	 * Opens the given NoteBook in a DrawPanel.
+	 * 
+	 * @param notebook NoteBook to open
+	 */
 	public void openNotebook(final NoteBook notebook) {
 		JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
 		f.setSize(noteSize);
@@ -273,6 +291,11 @@ public class NotebookSelectionWindow {
 		f.setVisible(true);
 	}
 
+	/**
+	 * Button to create a new NoteBook.
+	 * 
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
 	@SuppressWarnings("serial")
 	private class ButtonNew extends JButton implements ActionListener {
 		ButtonNew() {
@@ -292,7 +315,12 @@ public class NotebookSelectionWindow {
 
 		}
 	}
-
+	
+	/**
+	 * Button to open a NoteBook.
+	 * 
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
 	@SuppressWarnings("serial")
 	private class ButtonOpen extends JButton implements ActionListener {
 		ButtonOpen() {
@@ -312,6 +340,11 @@ public class NotebookSelectionWindow {
 		}
 	}
 
+	/**
+	 * Button to enter the Scribble mode.
+	 * 
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
 	@SuppressWarnings("serial")
 	private class ButtonScribble extends JButton implements ActionListener {
 		public ButtonScribble() {

@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
  * The NoteBook contains at least one NoteSheet and adds new sheets whenever
  * the forward() function is called. The whole notebook can be saved into
  * individual pictures.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBook {
 	private LinkedList<NoteSheet> sheets;

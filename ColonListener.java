@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 /**
  * Listens to the keyboard for the command key and then polls the user for a
  * command. The command is then executed.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ColonListener implements KeyListener {
 

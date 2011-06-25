@@ -4,13 +4,26 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.regex.Pattern;
 
-
+/**
+ * Filters filenames that belong to NoteSheets from a specific NoteBook.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class NoteSheetFileFilter implements FilenameFilter {
 
+	/**
+	 * The prefix of the filenames, the name of the NoteBook.
+	 */
 	private String basename;
 
 	private Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
 
+	
+	/**
+	 * Creates a new FileFilter that filters files starting with the given name -- the name of the NoteBook.
+	 * 
+	 * @param name prefix for the file name
+	 */
 	public NoteSheetFileFilter(String name) {
 		basename = name;
 	}
@@ -21,5 +34,4 @@ public class NoteSheetFileFilter implements FilenameFilter {
 		String fileBasename = nameparts[nameparts.length-1];
 		return p.matcher(fileBasename).matches() && fileBasename.startsWith(basename);
 	}
-
 }

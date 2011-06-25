@@ -11,12 +11,18 @@ import javax.imageio.ImageIO;
  * In order to make the user interface faster, the writing of unneeded images is
  * put into a second thread. That way, the UI does not freeze during the little
  * IO time.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class WriteoutThread extends Thread {
+	/**
+	 * 
+	 */
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
 	private boolean stopAfterLastItem = false;
 
+	
 	/**
 	 * Creates and starts the thread.
 	 */
@@ -25,8 +31,10 @@ public class WriteoutThread extends Thread {
 		this.start();
 	}
 
+	
 	/**
 	 * Schedules a new task.
+	 * 
 	 * @param t task to schedule
 	 */
 	public void schedule(ImageSwapTask t) {
@@ -39,6 +47,7 @@ public class WriteoutThread extends Thread {
 		}
 	}
 
+	
 	/**
 	 * Stops the thread's daemon mode and lets it die when the queue is empty.
 	 */

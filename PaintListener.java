@@ -8,9 +8,14 @@ import java.awt.event.MouseMotionListener;
 
 /**
  * Listens to mouse movements on the displaying panel and updates the notebook.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class PaintListener implements MouseMotionListener, MouseListener {
 
+	/**
+	 * The NoteBook which receives the painting.
+	 */
 	private NoteBook notebook;
 
 	private Point lastPosition = new Point(-1, -1);
