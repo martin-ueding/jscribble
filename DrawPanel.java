@@ -17,13 +17,26 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {
+	/**
+	 * Color of the help lines.
+	 */
 	private static final Color lineColor = new Color(200, 200, 200);
 
+	/**
+	 * The spacing between the help lines.
+	 */
 	private static final int lineSpacing = 40;
 
+	/**
+	 * The NoteBook that is displayed.
+	 */
 	private NoteBook notebook;
 
 	private ImageObserver io = this;
+	
+	/**
+	 * Whether helping lines are enabled.
+	 */
 	private boolean lines = false;
 
 	/**
@@ -54,6 +67,8 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
 	 * top of the image as well.
+	 * 
+	 * @param g graphics context (usually given by Java itself).
 	 */
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
@@ -78,4 +93,3 @@ public class DrawPanel extends JPanel {
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
 	}
 }
-
