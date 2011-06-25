@@ -8,7 +8,7 @@ import java.awt.event.MouseMotionListener;
 
 /**
  * Listens to mouse movements on the displaying panel and updates the notebook.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class PaintListener implements MouseMotionListener, MouseListener {
@@ -18,25 +18,47 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	private NoteBook notebook;
 
+
+	/**
+	 * The last position of the pointer. Since the line commands needs two
+	 * points, but the mouseDragged() only gives the current location, the
+	 * class needs to remember where the pointer was before.
+	 */
 	private Point lastPosition = new Point(-1, -1);
 
+
+	/**
+	 * Generates a new Listener that relays its commands to a given NoteBook.
+	 * @param notebook
+	 */
 	public PaintListener(NoteBook notebook) {
 		this.notebook = notebook;
 	}
 
 
+	/**
+	 * Tells the notebook to draw a line.
+	 */
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO only draw with primary click
-		notebook.drawLine(lastPosition.x, lastPosition.y, arg0.getX(), arg0.getY());
+		notebook.drawLine(lastPosition.x, lastPosition.y,
+				arg0.getX(), arg0.getY());
 		lastPosition = arg0.getPoint();
 	}
 
 
+	/**
+	 * Sets last mouse position so that the next line is not drawn across the
+	 * screen.
+	 */
 	public void mouseMoved(MouseEvent arg0) {
 		lastPosition = arg0.getPoint();
 	}
 
 
+	/**
+	 * Draws a single dot when the mouse is clicked.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO only draw with primary click
@@ -44,15 +66,30 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	}
 
 
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) { }
 
+
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) { }
 
+
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) { }
 
+
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) { }
 }
