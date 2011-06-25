@@ -40,10 +40,11 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * Tells the NoteBook to draw a line.
 	 */
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO only draw with primary click
-		notebook.drawLine(lastPosition.x, lastPosition.y,
-		                  arg0.getX(), arg0.getY());
-		lastPosition = arg0.getPoint();
+		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
+			notebook.drawLine(lastPosition.x, lastPosition.y,
+					arg0.getX(), arg0.getY());
+			lastPosition = arg0.getPoint();
+		}
 	}
 
 
@@ -61,8 +62,9 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO only draw with primary click
-		notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
+		if (e.getModifiers() == MouseEvent.BUTTON1_MASK) {
+			notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
+		}
 	}
 
 
