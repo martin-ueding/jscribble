@@ -1,6 +1,7 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -41,6 +42,21 @@ public class DrawPanel extends JPanel {
 	 * Whether helping lines are enabled.
 	 */
 	private boolean lines = false;
+	
+	/**
+	 * Whether to display the help panel.
+	 */
+	private boolean showHelp = false;
+
+	private HelpItem[] helpItems = {
+			new HelpItem("h", "show help"),
+			new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", "go forward"),
+			new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", "go backward"),
+			new HelpItem("h, <Pos1>", "goto first"),
+			new HelpItem("l, <End", "goto last"),
+			new HelpItem("<Alt-F4>", "save & exit")
+			
+	};
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
@@ -65,6 +81,14 @@ public class DrawPanel extends JPanel {
 	 */
 	public void setLines(boolean b) {
 		this.lines  = b;
+	}
+
+
+	/**
+	 * Whether to display the help panel.
+	 */
+	public void toggleHelp() {
+		showHelp = !showHelp;
 	}
 
 
@@ -97,5 +121,37 @@ public class DrawPanel extends JPanel {
 
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
+		
+		if (showHelp) {
+			g2.setColor(new Color(0, 0, 0, 200));
+			g2.fillRoundRect(50, 50, getWidth()-100, getHeight()-100, 20, 20);
+			g2.setColor(Color.WHITE);
+			
+			int i = 1;
+			int vspacing = 30;
+			int spacing = 150;
+			int padding = 70;
+			for (HelpItem h : helpItems ) {
+				g2.drawString(h.helptext, padding, i*vspacing+padding);
+				g2.drawString(h.key, spacing+padding, i*vspacing+padding);
+				i++;
+			}
+			
+		}
+		
+	}
+	class HelpItem {
+		public String key;
+		public String helptext;
+		
+		public HelpItem(String key, String helptext) {
+			this.key = key;
+			this.helptext = helptext;
+		}
+		
+		
+	}
+	public void setShowHelp(boolean showHelp) {
+		this.showHelp = showHelp;
 	}
 }

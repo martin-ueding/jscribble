@@ -57,6 +57,10 @@ public class ColonListener implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			panel.setShowHelp(false);
+			redrawer.actionPerformed(null);
+		}
 	}
 
 
@@ -75,6 +79,11 @@ public class ColonListener implements KeyListener {
 				panel.setLines(false);
 			}
 
+			redrawer.actionPerformed(null);
+		}
+		
+		if (arg0.getKeyChar() == 'h') {
+			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 	}
