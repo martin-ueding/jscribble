@@ -323,7 +323,7 @@ public class NotebookSelectionWindow {
 	 * Updates the list with NoteBook.
 	 */
 	private void updateList() {
-		// TODO really update the list if it is changed
+		// FIXME really update the list if it is changed
 		listData = new String[notebooks.size()];
 		int j = 0;
 		for (Iterator<NoteBook> iterator = notebooks.iterator(); iterator.hasNext(); j++) {
