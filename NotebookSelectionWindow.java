@@ -111,6 +111,7 @@ public class NotebookSelectionWindow {
 	public NotebookSelectionWindow() {
 		notebooks = findNotebooks();
 
+		// TODO open NoteBook when double clicking on the list
 		updateList();
 
 		GridLayout gl = new GridLayout(2, 3);
