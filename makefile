@@ -31,7 +31,7 @@ jscribble/VersionName.java: .bzr/branch/last-revision
 
 .PHONY: commit
 commit:
-	astyle *.java
+	astyle -r "*.java"
 	bzr commit
 
 clean:
