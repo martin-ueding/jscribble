@@ -1,4 +1,7 @@
+// Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
 package tests.jscribble.notebook;
+
 import java.awt.Dimension;
 
 import jscribble.notebook.NoteSheet;

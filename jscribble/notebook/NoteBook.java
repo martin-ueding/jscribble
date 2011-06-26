@@ -307,19 +307,14 @@ public class NoteBook {
 	 */
 	public int getSheetCount() {
 		if (sheets != null) {
+			if (sheets.size() == 1 && !sheets.get(0).touched()) {
+				return 0;
+			}
 			return sheets.size();
 		}
 		else {
 			return 0;
 		}
-	}
-
-
-	/**
-	 * @return The number of pages given out so far.
-	 */
-	public int getPagecount() {
-		return pagecount;
 	}
 
 

@@ -9,8 +9,8 @@ jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class
 all: jscribble.jar javadoc/.javadoc html/.doxygen
 
 test: $(classfiles)
-	testcasesJava=$(wildcard tests/*Test.java tests/*/*Test.java)
-	testcases=$(testcasesJava:.java=)
+	testcasesJava=$(wildcard tests/*Test.java tests/*/*Test.java tests/*/*/*Test.java)
+	testcases=$(testcasesJava:.java=.test)
 	echo $(testcases)
 	junit -text $(testcases)
 	touch test
