@@ -4,6 +4,7 @@ package tests.jscribble.notebook;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.util.UUID;
 
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
@@ -13,7 +14,7 @@ import junit.framework.TestCase;
 public class NoteBookTest extends TestCase {
 
 	private NoteBook createTempNoteBook() {
-		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), "JUnit-Test");
+		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
 	}
 
 	public NoteBookTest() {
@@ -28,11 +29,6 @@ public class NoteBookTest extends TestCase {
 	public void testUntouchedFirstPage() {
 		NoteBook nb = createTempNoteBook();
 		assertFalse(nb.getCurrentSheet().touched());
-	}
-
-	public void testName() {
-		NoteBook nb = createTempNoteBook();
-		assertEquals("JUnit-Test", nb.getName());
 	}
 
 	public void testCurrentSheet() {
@@ -134,13 +130,33 @@ public class NoteBookTest extends TestCase {
 
 	public void testGoBackwards() {
 		NoteBook nb = createTempNoteBook();
+
+		// Try going back although the notebook is already at the first page.
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 		nb.goBackwards();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
+
+		// Go one page forward.
 		nb.drawLine(0, 0, 0, 0);
 		nb.goForward();
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
+
+		// Go back to the start.
 		nb.goBackwards();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
+
+		// Advance several pages.
+		for (int i = 0; i < 15; i++) {
+			nb.goForward();
+			nb.drawLine(0, 0, 0, 0);
+			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
+		}
+
+		// Go back again
+		for (int i = 15; i > 0; i--) {
+			nb.goBackwards();
+			nb.drawLine(0, 0, 0, 0);
+			assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());
+		}
 	}
 }
