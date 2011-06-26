@@ -23,8 +23,7 @@ html/.doxygen: *.java
 	doxygen
 	touch html/.doxygen
 
-.PHONY: VersionName.java
-VersionName.java:
+VersionName.java: .bzr/branch/last-revision
 	./generate_version_class
 
 .PHONY: commit
