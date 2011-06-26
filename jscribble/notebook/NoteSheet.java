@@ -13,9 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import jscribble.ImageSwapTask;
 import jscribble.NoteBookProgram;
-import jscribble.WriteoutThread;
 
 /**
  * Represents a single note sheet.

@@ -1,6 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-package jscribble;
+package jscribble.notebook;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.imageio.ImageIO;
+
+import jscribble.NoteBookProgram;
 
 /**
  * In order to make the user interface faster, the writing of unneeded images

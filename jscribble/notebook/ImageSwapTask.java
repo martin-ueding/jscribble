@@ -1,6 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-package jscribble;
+package jscribble.notebook;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
