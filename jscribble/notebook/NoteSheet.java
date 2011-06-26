@@ -160,7 +160,7 @@ public class NoteSheet {
 			}
 
 
-			if (writethread == null) {
+			if (writethread == null || !writethread.isAlive()) {
 				writethread = new WriteoutThread();
 			}
 			writethread.schedule(new ImageSwapTask(img, filename));
