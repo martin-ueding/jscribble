@@ -52,12 +52,47 @@ public class NoteBookTest extends TestCase {
 		assertFalse(outfile.exists());
 	}
 
-	public void testSaving() {
+	public void testSavingAfterDrawing() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
+		assertTrue(current.getFilename().exists());
 		assertNotSame(0, current.getFilename().length());
+	}
+
+	public void testSavingAfterDrawingAndAdvance() {
+		NoteBook nb = createTempNoteBook();
+		NoteSheet current = nb.getCurrentSheet();
+		nb.drawLine(0, 0, 0, 0);
+		nb.goForward();
+		nb.saveToFiles();
+		assertTrue(current.getFilename().exists());
+		assertNotSame(0, current.getFilename().length());
+		current = nb.getCurrentSheet();
+		assertFalse(current.getFilename().exists());
+	}
+
+	public void testSavingAfterTwoDrawingAndAdvance() {
+		NoteBook nb = createTempNoteBook();
+		NoteSheet current = nb.getCurrentSheet();
+		nb.drawLine(0, 0, 0, 0);
+		nb.goForward();
+		nb.drawLine(0, 0, 0, 0);
+		nb.saveToFiles();
+		assertTrue(current.getFilename().exists());
+		assertNotSame(0, current.getFilename().length());
+		current = nb.getCurrentSheet();
+		assertTrue(current.getFilename().exists());
+		assertNotSame(0, current.getFilename().length());
+	}
+
+	public void testSavingAfterNew() {
+		NoteBook nb = createTempNoteBook();
+		NoteSheet current = nb.getCurrentSheet();
+		nb.saveToFiles();
+		assertFalse(current.getFilename().exists());
+		//assertSame(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
 	}
 
 	/**
