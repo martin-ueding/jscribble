@@ -43,5 +43,10 @@ public class NoteBookProgram {
 	 * Suffix that is appended to every NoteBook configuration file.
 	 */
 	public static String configFileSuffix = ".jscribble-notebook";
-}
 
+
+	public static void log(String string) {
+		System.out.println(string);
+	}
+
+}

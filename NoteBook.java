@@ -232,11 +232,11 @@ public class NoteBook {
 	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {
+		NoteBookProgram.log("Starting to write out image files.");
 		for (NoteSheet s : sheets) {
 			s.saveToFile();
 		}
 		quitWithWriteoutThread();
-
 	}
 
 
