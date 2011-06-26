@@ -53,7 +53,7 @@ public class DrawPanel extends JPanel {
 		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", "go backward"),
 		new HelpItem("f, <Pos1>", "goto first"),
 		new HelpItem("l, <End", "goto last"),
-		new HelpItem("<Alt-F4>", "save & exit")
+		new HelpItem("<Alt-F4> / <CMD-Q>", "save & exit")
 
 	};
 
