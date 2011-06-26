@@ -60,6 +60,9 @@ public class NoteBookTest extends TestCase {
 		assertNotSame(0, current.getFilename().length());
 	}
 
+	/**
+	 * Tests whether the page number advances when you go a page forward.
+	 */
 	public void testPageNumber() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
