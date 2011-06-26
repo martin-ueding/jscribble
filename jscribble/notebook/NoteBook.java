@@ -9,9 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.Collator;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
 import java.util.Properties;
@@ -21,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import jscribble.NoteBookProgram;
+import tests.jscribble.notebook.FileComparator;
 
 
 
@@ -353,28 +352,7 @@ public class NoteBook {
 		File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
 
 		if (allImages != null && allImages.length > 0) {
-			Arrays.sort(allImages, new Comparator<File>() {
-
-				private Collator c = Collator.getInstance();
-
-				public int compare(File o1, File o2) {
-					if (o1 == o2) {
-						return 0;
-					}
-
-					File f1 = (File) o1;
-					File f2 = (File) o2;
-
-					if (f1.isDirectory() && f2.isFile()) {
-						return -1;
-					}
-					if (f1.isFile() && f2.isDirectory()) {
-						return 1;
-					}
-
-					return c.compare(f1.getName(), f2.getName());
-				}
-			});
+			Arrays.sort(allImages, new FileComparator());
 
 
 			Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");

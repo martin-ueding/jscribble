@@ -131,7 +131,7 @@ public class NoteBookTest extends TestCase {
 		}
 		nb.getConfigFile().delete();
 	}
-	
+
 	public void testGoBackwards() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
