@@ -5,6 +5,13 @@ jscribble.jar: VersionName.java NoteBookProgram.class
 
 all: jscribble.jar javadoc/.javadoc html/.doxygen
 
+.PHONY: test
+test:
+	testcasesJava=$(wildcard *Test.java)
+	testcases=$(testcasesJava:.java=)
+	echo $(testcases)
+	junit -text $(testcases)
+
 NoteBookProgram.class: *.java
 	javac NoteBookProgram.java
 
