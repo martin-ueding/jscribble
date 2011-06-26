@@ -124,7 +124,7 @@ public class DrawPanel extends JPanel {
 			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20, 20);
 			g2.setColor(Color.WHITE);
 
-			int i = 1;
+			int i = 0;
 			int vspacing = 30;
 			int spacing = 150;
 			int padding = 70;
