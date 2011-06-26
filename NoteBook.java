@@ -156,13 +156,20 @@ public class NoteBook {
 			pagecount++;
 		}
 
-		// add an empty sheet if the NoteBook would be empty otherwise
+
+		updateCurrrentItem();
+	}
+
+
+	/**
+	 * Add an empty sheet if the NoteBook would be empty otherwise.
+	 */
+	private void addPageIfEmpty() {
 		if (sheets.size() == 0) {
 			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
 			pagecount++;
+			currentSheet = 0;
 		}
-
-		updateCurrrentItem();
 	}
 
 
@@ -296,7 +303,7 @@ public class NoteBook {
 	 * Goes to the last page in the NoteBook.
 	 */
 	public void gotoLast() {
-		currentSheet = sheets.size() - 1;
+		currentSheet = Math.max(0, sheets.size() - 1);
 		updateCurrrentItem();
 		fireDoneDrawing();
 	}
@@ -328,9 +335,9 @@ public class NoteBook {
 	 * to be updated as well. This method does just that.
 	 */
 	private void updateCurrrentItem() {
+		addPageIfEmpty();
 		if (currentSheet < 0 || currentSheet >= sheets.size()) {
-			NoteBookProgram.handleError(String.format("Index error with NoteBook \"%s\"", name));
-			currentSheet = 0;
+			throw new IndexOutOfBoundsException(String.format("Index error with NoteBook \"%s\", Index %d of %s", name, currentSheet, sheets.size()));
 		}
 		current = sheets.get(currentSheet);
 	}
