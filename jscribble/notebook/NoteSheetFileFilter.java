@@ -1,5 +1,6 @@
-package jscribble.notebook;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+package jscribble.notebook;
 
 import java.io.File;
 import java.io.FilenameFilter;

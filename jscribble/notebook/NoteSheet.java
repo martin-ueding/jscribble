@@ -1,6 +1,6 @@
-package jscribble.notebook;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
+package jscribble.notebook;
 
 import java.awt.Color;
 import java.awt.Dimension;

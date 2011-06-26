@@ -1,5 +1,6 @@
-package jscribble.notebook;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+package jscribble.notebook;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -295,8 +296,6 @@ public class NoteBook {
 
 	/**
 	 * Returns the name of the NoteBook.
-	 *
-	 * @return the name
 	 */
 	public String getName() {
 		return name;
@@ -304,25 +303,23 @@ public class NoteBook {
 
 
 	/**
-	 * @return number of sheets in the NoteBook
+	 * Number of sheets in the NoteBook
 	 */
 	public int getSheetCount() {
-		if (sheets != null) {
-			if (sheets.size() == 1 && !sheets.get(0).touched()) {
-				return 0;
-			}
-			return sheets.size();
-		}
-		else {
+		if (sheets == null) {
 			return 0;
 		}
+
+		if (sheets.size() == 1 && !sheets.get(0).touched()) {
+			return 0;
+		}
+
+		return sheets.size();
 	}
 
 
 	/**
 	 * Gets the NoteSheet object which the currently open page of the NoteBook.
-	 *
-	 * @return current NoteSheet
 	 */
 	public NoteSheet getCurrentSheet() {
 		return sheets.get(currentSheet);

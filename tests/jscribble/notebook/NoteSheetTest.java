@@ -3,6 +3,8 @@
 package tests.jscribble.notebook;
 
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
 
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
@@ -35,14 +37,28 @@ public class NoteSheetTest extends TestCase {
 	public void testTouched() {
 		NoteSheet n = getTempNoteSheet();
 		assertFalse(n.touched());
-		n.drawLine(0, 0, 0, 0);
-		assertTrue(n.touched());
-	}
-
-	public void testUnsaved() {
-		NoteSheet n = getTempNoteSheet();
 		assertFalse(n.unsaved());
 		n.drawLine(0, 0, 0, 0);
+		assertTrue(n.touched());
 		assertTrue(n.unsaved());
+	}
+
+	public void testTouchedWithEmptyTempfile() {
+		try {
+			File tempfile = File.createTempFile("JUnit-", "");
+			tempfile.createNewFile();
+			NoteSheet n = new NoteSheet(new Dimension(100, 100), 0, tempfile);
+
+			assertFalse(n.unsaved());
+			assertFalse(n.touched());
+			n.drawLine(0, 0, 0, 0);
+			assertTrue(n.touched());
+			assertTrue(n.unsaved());
+
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

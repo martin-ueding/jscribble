@@ -24,6 +24,11 @@ public class NoteBookTest extends TestCase {
 		assertEquals(0, nb.getSheetCount());
 	}
 
+	public void testUntouchedFirstPage() {
+		NoteBook nb = createTempNoteBook();
+		assertFalse(nb.getCurrentSheet().touched());
+	}
+
 	public void testName() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals("JUnit_Test", nb.getName());
