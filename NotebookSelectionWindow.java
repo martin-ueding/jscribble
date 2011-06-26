@@ -283,6 +283,8 @@ public class NotebookSelectionWindow {
 		if (nickname == null) {
 			return null;
 		}
+		
+		// TODO clean up name for use as file name
 
 
 		File defaultDirectory = new File(getCentralConfig().getProperty("defaultDirectory"));
