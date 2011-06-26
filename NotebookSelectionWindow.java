@@ -308,7 +308,7 @@ public class NotebookSelectionWindow {
 		}
 
 		NoteBook nb = new NoteBook(noteSize, in, nickname);
-		nb.saveToConfig(in);
+		nb.saveToConfig(configdir);
 
 		return nb;
 	}
