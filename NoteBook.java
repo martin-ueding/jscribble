@@ -328,8 +328,9 @@ public class NoteBook {
 	 * to be updated as well. This method does just that.
 	 */
 	private void updateCurrrentItem() {
-		assert(currentSheet >= 0);
-		assert(currentSheet < sheets.size());
+		if (currentSheet >= 0 || currentSheet < sheets.size()) {
+			currentSheet = 0;
+		}
 		current = sheets.get(currentSheet);
 	}
 
