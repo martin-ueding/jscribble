@@ -88,6 +88,11 @@ public class NoteBook {
 
 	private File configFile;
 
+	private NoteBook() {
+		sheets = new LinkedList<NoteSheet>();
+	}
+
+
 	/**
 	 * Creates an empty note book with a single note sheet.
 	 *
@@ -141,8 +146,15 @@ public class NoteBook {
 	}
 
 
-	private NoteBook() {
-		sheets = new LinkedList<NoteSheet>();
+	/**
+	 * Add an empty sheet if the NoteBook would be empty otherwise.
+	 */
+	private void addPageIfEmpty() {
+		if (sheets.size() == 0) {
+			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
+			pagecount++;
+			currentSheet = 0;
+		}
 	}
 
 
@@ -170,34 +182,6 @@ public class NoteBook {
 
 
 	/**
-	 * Persist this NoteBook in the configuration file.
-	 *
-	 * @param configdir folder where the config file goes
-	 */
-	public void saveToConfig(File configdir) {
-		//
-		Properties p = new Properties();
-		p.setProperty("width", String.valueOf(noteSize.width));
-		p.setProperty("height", String.valueOf(noteSize.height));
-		p.setProperty("folder", folder.getAbsolutePath());
-		p.setProperty("name", name);
-
-		try {
-			configFile = new File(configdir.getAbsolutePath() + File.separator + name + NoteBookProgram.configFileSuffix);
-			p.storeToXML(new FileOutputStream(configFile), NoteBookProgram.generatedComment());
-		}
-		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError("Could not find NoteBook config file for writing.");
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError("IO error while writing NoteBook config file.");
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
 	 * Draws a line onto the current sheet.
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
@@ -208,14 +192,70 @@ public class NoteBook {
 
 
 	/**
-	 * Persists the whole NoteBook into individual files.
+	 * Tell the listener (the DrawPanel) that the NoteBook has changed and
+	 * needs to be redrawn.
 	 */
-	public void saveToFiles() {
-		NoteBookProgram.log(getClass().getName(), "Starting to write out image files.");
-		for (NoteSheet s : sheets) {
-			s.saveToFile();
+	private void fireDoneDrawing() {
+		if (doneDrawing != null) {
+			doneDrawing.actionPerformed(null);
 		}
-		quitWithWriteoutThread();
+	}
+
+
+	/**
+	 * Generates the File for the next NoteSheet.
+	 *
+	 * @param pagenumber page number to use
+	 * @return File object with correct name
+	 */
+	private File generateNextFilename(int pagenumber) {
+		if (folder != null && name != null) {
+			try {
+				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError("Could not determine path of NoteBook folder.");
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+
+	public File getConfigFile() {
+		return configFile;
+	}
+
+
+	/**
+	 * Gets the NoteSheet object which the currently open page of the NoteBook.
+	 */
+	public NoteSheet getCurrentSheet() {
+		return sheets.get(currentSheet);
+	}
+
+
+	/**
+	 * Returns the name of the NoteBook.
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * Number of sheets in the NoteBook
+	 */
+	public int getSheetCount() {
+		if (sheets == null) {
+			return 0;
+		}
+
+		if (sheets.size() == 1 && !sheets.get(0).touched()) {
+			return 0;
+		}
+
+		return sheets.size();
 	}
 
 
@@ -284,62 +324,6 @@ public class NoteBook {
 
 
 	/**
-	 * Returns a string representation of the NoteBook, consisting of the name
-	 * and pagecount.
-	 */
-	public String toString() {
-		return String.format("%s (%d)", name, getSheetCount());
-	}
-
-
-	/**
-	 * Returns the name of the NoteBook.
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
-	 * Number of sheets in the NoteBook
-	 */
-	public int getSheetCount() {
-		if (sheets == null) {
-			return 0;
-		}
-
-		if (sheets.size() == 1 && !sheets.get(0).touched()) {
-			return 0;
-		}
-
-		return sheets.size();
-	}
-
-
-	/**
-	 * Gets the NoteSheet object which the currently open page of the NoteBook.
-	 */
-	public NoteSheet getCurrentSheet() {
-		return sheets.get(currentSheet);
-	}
-
-
-	public File getConfigFile() {
-		return configFile;
-	}
-
-
-	/**
-	 * Sets an action listener to be called when something new was drawn.
-	 *
-	 * @param doneDrawing ActionListener to be called after drawing a new line.
-	 */
-	public void setDoneDrawing(ActionListener doneDrawing) {
-		this.doneDrawing = doneDrawing;
-	}
-
-
-	/**
 	 * Loads the images from the previously set folder.
 	 */
 	private void loadImagesFromFolder() {
@@ -374,25 +358,70 @@ public class NoteBook {
 
 
 	/**
-	 * Add an empty sheet if the NoteBook would be empty otherwise.
+	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
 	 */
-	private void addPageIfEmpty() {
-		if (sheets.size() == 0) {
-			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
-			pagecount++;
-			currentSheet = 0;
+	private void quitWithWriteoutThread() {
+		sheets.getFirst().stopWriteoutThread();
+
+	}
+
+
+	/**
+	 * Persist this NoteBook in the configuration file.
+	 *
+	 * @param configdir folder where the config file goes
+	 */
+	public void saveToConfig(File configdir) {
+		//
+		Properties p = new Properties();
+		p.setProperty("width", String.valueOf(noteSize.width));
+		p.setProperty("height", String.valueOf(noteSize.height));
+		p.setProperty("folder", folder.getAbsolutePath());
+		p.setProperty("name", name);
+
+		try {
+			configFile = new File(configdir.getAbsolutePath() + File.separator + name + NoteBookProgram.configFileSuffix);
+			p.storeToXML(new FileOutputStream(configFile), NoteBookProgram.generatedComment());
+		}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError("Could not find NoteBook config file for writing.");
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO error while writing NoteBook config file.");
+			e.printStackTrace();
 		}
 	}
 
 
 	/**
-	 * Tell the listener (the DrawPanel) that the NoteBook has changed and
-	 * needs to be redrawn.
+	 * Persists the whole NoteBook into individual files.
 	 */
-	private void fireDoneDrawing() {
-		if (doneDrawing != null) {
-			doneDrawing.actionPerformed(null);
+	public void saveToFiles() {
+		NoteBookProgram.log(getClass().getName(), "Starting to write out image files.");
+		for (NoteSheet s : sheets) {
+			s.saveToFile();
 		}
+		quitWithWriteoutThread();
+	}
+
+
+	/**
+	 * Sets an action listener to be called when something new was drawn.
+	 *
+	 * @param doneDrawing ActionListener to be called after drawing a new line.
+	 */
+	public void setDoneDrawing(ActionListener doneDrawing) {
+		this.doneDrawing = doneDrawing;
+	}
+
+
+	/**
+	 * Returns a string representation of the NoteBook, consisting of the name
+	 * and pagecount.
+	 */
+	public String toString() {
+		return String.format("%s (%d)", name, getSheetCount());
 	}
 
 
@@ -406,34 +435,5 @@ public class NoteBook {
 			throw new IndexOutOfBoundsException(String.format("Index error with NoteBook \"%s\", Index %d of %s", name, currentSheet, sheets.size()));
 		}
 		current = sheets.get(currentSheet);
-	}
-
-
-	/**
-	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
-	 */
-	private void quitWithWriteoutThread() {
-		sheets.getFirst().stopWriteoutThread();
-
-	}
-
-
-	/**
-	 * Generates the File for the next NoteSheet.
-	 *
-	 * @param pagenumber page number to use
-	 * @return File object with correct name
-	 */
-	private File generateNextFilename(int pagenumber) {
-		if (folder != null && name != null) {
-			try {
-				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError("Could not determine path of NoteBook folder.");
-				e.printStackTrace();
-			}
-		}
-		return null;
 	}
 }

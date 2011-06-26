@@ -42,31 +42,6 @@ public class WriteoutThread extends Thread {
 
 
 	/**
-	 * Schedules a new task.
-	 *
-	 * @param t task to schedule
-	 */
-	public void schedule(ImageSwapTask t) {
-		try {
-			tasks.put(t);
-		}
-		catch (InterruptedException e) {
-			NoteBookProgram.handleError("Interrupted while scheduling a disk write task.");
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
-	 * Stops the thread's daemon mode and lets it die when the queue is empty.
-	 */
-	public void stopAfterLast() {
-		stopAfterLastItem = true;
-		schedule(new ImageSwapTask(null, null));
-	}
-
-
-	/**
 	 * Works on the queue with tasks. The thread waits for the next task. If you
 	 * want to terminate the thread when the queue is empty, you have to push an
 	 * empty Task Object into the queue.
@@ -102,5 +77,30 @@ public class WriteoutThread extends Thread {
 		}
 
 		NoteBookProgram.log(getClass().getName(), "thread dies");
+	}
+
+
+	/**
+	 * Schedules a new task.
+	 *
+	 * @param t task to schedule
+	 */
+	public void schedule(ImageSwapTask t) {
+		try {
+			tasks.put(t);
+		}
+		catch (InterruptedException e) {
+			NoteBookProgram.handleError("Interrupted while scheduling a disk write task.");
+			e.printStackTrace();
+		}
+	}
+
+
+	/**
+	 * Stops the thread's daemon mode and lets it die when the queue is empty.
+	 */
+	public void stopAfterLast() {
+		stopAfterLastItem = true;
+		schedule(new ImageSwapTask(null, null));
 	}
 }

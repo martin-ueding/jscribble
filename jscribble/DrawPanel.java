@@ -21,6 +21,28 @@ import jscribble.notebook.NoteBook;
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {
+	class HelpItem {
+		/**
+		 * The buttons(s) that cause some action.
+		 */
+		public String key;
+
+		/**
+		 * The action the buttons cause.
+		 */
+		public String helptext;
+
+		/**
+		 * Generates a new HelpItem.
+		 */
+		public HelpItem(String key, String helptext) {
+			this.key = key;
+			this.helptext = helptext;
+		}
+
+
+	}
+
 	/**
 	 * Color of the help lines.
 	 */
@@ -61,6 +83,7 @@ public class DrawPanel extends JPanel {
 
 	};
 
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -74,24 +97,6 @@ public class DrawPanel extends JPanel {
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
-	}
-
-
-	/**
-	 * Set whether help lines are to be drawn.
-	 *
-	 * @param b status of the lines
-	 */
-	public void setLines(boolean b) {
-		this.lines  = b;
-	}
-
-
-	/**
-	 * Whether to display the help panel.
-	 */
-	public void toggleHelp() {
-		showHelp = !showHelp;
 	}
 
 
@@ -144,32 +149,27 @@ public class DrawPanel extends JPanel {
 		}
 
 	}
-	class HelpItem {
-		/**
-		 * The buttons(s) that cause some action.
-		 */
-		public String key;
-
-		/**
-		 * The action the buttons cause.
-		 */
-		public String helptext;
-
-		/**
-		 * Generates a new HelpItem.
-		 */
-		public HelpItem(String key, String helptext) {
-			this.key = key;
-			this.helptext = helptext;
-		}
 
 
+	/**
+	 * Set whether help lines are to be drawn.
+	 *
+	 * @param b status of the lines
+	 */
+	public void setLines(boolean b) {
+		this.lines  = b;
 	}
-
 	/**
 	 * Sets whether the help dialog is displayed.
 	 */
 	public void setShowHelp(boolean showHelp) {
 		this.showHelp = showHelp;
+	}
+
+	/**
+	 * Whether to display the help panel.
+	 */
+	public void toggleHelp() {
+		showHelp = !showHelp;
 	}
 }

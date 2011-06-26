@@ -12,15 +12,15 @@ import junit.framework.TestCase;
 
 public class NoteSheetTest extends TestCase {
 
+	public NoteSheetTest() {
+		super();
+	}
+
 	/**
 	 * Generates a temporary NoteSheet for testing.
 	 */
 	private NoteSheet getTempNoteSheet() {
 		return new NoteSheet(new Dimension(1024, 600), 0, null);
-	}
-
-	public NoteSheetTest() {
-		super();
 	}
 
 	/**

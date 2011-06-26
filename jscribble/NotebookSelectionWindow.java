@@ -42,9 +42,140 @@ import jscribble.notebook.NoteBook;
  */
 public class NotebookSelectionWindow {
 	/**
+	 * Button to go through the config dialog.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonConfig extends JButton implements ActionListener {
+		ButtonConfig() {
+			setText("Config");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the configuration dialog.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Properties p = getCentralConfig();
+			p.setProperty("defaultDirectory", pollUserForDefaultDir(true).getAbsolutePath());
+			saveConfig(p);
+		}
+	}
+
+	/**
+	 * Button to delete a NoteBook.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonDelete extends JButton implements ActionListener {
+		ButtonDelete() {
+			setText("Delete");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the deletion of a NoteBook.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int selection = myList.getSelectedIndex();
+
+			if (selection >= 0) {
+				notebooks.get(selection).delete();
+				updateList();
+			}
+
+		}
+	}
+
+	/**
+	 * Button to create a new NoteBook.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonNew extends JButton implements ActionListener {
+		ButtonNew() {
+			setText("New");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the creation of a new NoteBook.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			NoteBook newNoteBook = createNewNotebook();
+			if (newNoteBook != null) {
+				notebooks.add(newNoteBook);
+				updateList();
+				openNotebook(newNoteBook);
+			}
+
+		}
+	}
+
+	/**
+	 * Button to open a NoteBook.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonOpen extends JButton implements ActionListener {
+		ButtonOpen() {
+			setText("Open");
+			setEnabled(false);
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the opening of a NoteBook, if one was selected.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int selection = myList.getSelectedIndex();
+
+			if (selection >= 0) {
+				openNotebook(notebooks.get(selection));
+			}
+		}
+	}
+
+	/**
+	 * Button to enter the Scribble mode.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
+	@SuppressWarnings("serial")
+	private class ButtonScribble extends JButton implements ActionListener {
+		public ButtonScribble() {
+			setText("Scribble");
+
+			addActionListener(this);
+		}
+
+		/**
+		 * Triggers the entering into scribble mode with a blank new temporary
+		 * NoteBook.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			openNotebook(new NoteBook(noteSize, null, null));
+		}
+	}
+
+	/**
 	 * The size of newly created NoteBook instances.
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
+
 
 	/**
 	 * Button to handle creation of a new NoteBook.
@@ -72,6 +203,7 @@ public class NotebookSelectionWindow {
 	private ButtonScribble buttonScribble = new ButtonScribble();
 
 
+
 	/**
 	 * Frame to display everything in.
 	 */
@@ -88,10 +220,12 @@ public class NotebookSelectionWindow {
 	 */
 	private String[] listData;
 
+
 	/**
 	 * List GUI Element to display the NoteBook items in.
 	 */
 	private JList myList;
+
 
 	/**
 	 * The central configuration file for storing options like the default
@@ -99,14 +233,14 @@ public class NotebookSelectionWindow {
 	 */
 	private File configdir = new File(System.getProperty("user.home") + File.separator + ".jscribble");
 
-
-
 	/**
 	 * Panel to display the selected NoteBook.
 	 */
 	private DrawPanel panel;
 
+
 	private File centralConfigFile;
+
 
 	/**
 	 * Creates a new window to select NoteBook from. It automatically searches
@@ -143,135 +277,6 @@ public class NotebookSelectionWindow {
 		    "jscribblerc"
 		);
 		getCentralConfig();
-	}
-
-
-	/**
-	 * Displays the dialogue.
-	 */
-	public void showDialog() {
-		frame.setVisible(true);
-	}
-
-
-	/**
-	 * Tries to find a configuration directory for this program.
-	 *
-	 * @return list of NoteBook
-	 */
-	private LinkedList<NoteBook> findNotebooks() {
-		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
-
-		if (configdir.exists()) {
-			File[] configfiles = configdir.listFiles(new FilenameFilter() {
-
-				@Override
-				public boolean accept(File arg0, String arg1) {
-					return arg1.contains(NoteBookProgram.configFileSuffix);
-				}
-
-			});
-
-			for (File configfile : configfiles) {
-				notebooks.add(new NoteBook(configfile));
-			}
-		}
-		else {
-			configdir.mkdirs();
-		}
-
-		return notebooks;
-	}
-
-	/**
-	 * Loads the central properties from the rc file. If this does not exist,
-	 * the user is polled for the options.
-	 *
-	 * @return the central properties
-	 */
-	private Properties getCentralConfig() {
-		// load the default folder for notebooks
-		Properties centralConfig = new Properties();
-
-		File defaultDirectory = null;
-
-		if (centralConfigFile.exists()) {
-			try {
-				centralConfig.loadFromXML(new FileInputStream(centralConfigFile));
-				defaultDirectory = new File(centralConfig.getProperty("defaultDirectory"));
-			}
-			catch (InvalidPropertiesFormatException e) {
-				NoteBookProgram.handleError("The config file is not valid.");
-				e.printStackTrace();
-			}
-			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError("Could not find config file.");
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError("IO error while reading config file.");
-				e.printStackTrace();
-			}
-		}
-
-
-		if (!centralConfigFile.exists() || (defaultDirectory != null && !defaultDirectory.exists())) {
-			centralConfig.setProperty("defaultDirectory", pollUserForDefaultDir(!centralConfigFile.exists()).getAbsolutePath());
-
-			saveConfig(centralConfig);
-		}
-
-		return centralConfig;
-	}
-
-
-	private void saveConfig(Properties centralConfig) {
-		// save this new rc
-		try {
-			centralConfig.storeToXML(new FileOutputStream(centralConfigFile), NoteBookProgram.generatedComment());
-		}
-		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError("Could not find config file.");
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError("IO error while writing config file.");
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
-	 * Asks the user to select a default directory for his NoteBook.
-	 *
-	 * @param firstTime whether the configuration file did not have an entry
-	 * before
-	 * @return the chosen directory
-	 */
-	private File pollUserForDefaultDir(boolean firstTime) {
-		// ask the user for a default directory for his NoteBook
-		String message = firstTime ?
-		                 "Please select a default folder for your NoteBooks in the following dialog." :
-		                 "Your default directory is not valid. Please choose a new one.";
-		JOptionPane.showMessageDialog(null, message);
-
-		JFileChooser defaultDirectoryChooser = new JFileChooser();
-		defaultDirectoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-
-		int result = defaultDirectoryChooser.showOpenDialog(null);
-
-		File newDefaultDirectory = null;
-		if (result == JFileChooser.APPROVE_OPTION) {
-			newDefaultDirectory = defaultDirectoryChooser.getSelectedFile();
-		}
-
-		// if there is no file selected, use the users home folder
-		if (newDefaultDirectory == null) {
-			newDefaultDirectory = new File(System.getProperty("user.home"));
-		}
-
-		return newDefaultDirectory;
 	}
 
 
@@ -320,24 +325,74 @@ public class NotebookSelectionWindow {
 
 
 	/**
-	 * Updates the list with NoteBook.
+	 * Tries to find a configuration directory for this program.
+	 *
+	 * @return list of NoteBook
 	 */
-	private void updateList() {
-		// FIXME really update the list if it is changed
-		listData = new String[notebooks.size()];
-		int j = 0;
-		for (Iterator<NoteBook> iterator = notebooks.iterator(); iterator.hasNext(); j++) {
-			NoteBook noteBook = (NoteBook) iterator.next();
-			listData[j] = noteBook.toString();
+	private LinkedList<NoteBook> findNotebooks() {
+		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
+
+		if (configdir.exists()) {
+			File[] configfiles = configdir.listFiles(new FilenameFilter() {
+
+				@Override
+				public boolean accept(File arg0, String arg1) {
+					return arg1.contains(NoteBookProgram.configFileSuffix);
+				}
+
+			});
+
+			for (File configfile : configfiles) {
+				notebooks.add(new NoteBook(configfile));
+			}
+		}
+		else {
+			configdir.mkdirs();
+		}
+
+		return notebooks;
+	}
+
+
+	/**
+	 * Loads the central properties from the rc file. If this does not exist,
+	 * the user is polled for the options.
+	 *
+	 * @return the central properties
+	 */
+	private Properties getCentralConfig() {
+		// load the default folder for notebooks
+		Properties centralConfig = new Properties();
+
+		File defaultDirectory = null;
+
+		if (centralConfigFile.exists()) {
+			try {
+				centralConfig.loadFromXML(new FileInputStream(centralConfigFile));
+				defaultDirectory = new File(centralConfig.getProperty("defaultDirectory"));
+			}
+			catch (InvalidPropertiesFormatException e) {
+				NoteBookProgram.handleError("The config file is not valid.");
+				e.printStackTrace();
+			}
+			catch (FileNotFoundException e) {
+				NoteBookProgram.handleError("Could not find config file.");
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError("IO error while reading config file.");
+				e.printStackTrace();
+			}
 		}
 
 
-		myList = new JList(listData);
-		if (myList != null && myList.isShowing()) {
-			myList.repaint();
+		if (!centralConfigFile.exists() || (defaultDirectory != null && !defaultDirectory.exists())) {
+			centralConfig.setProperty("defaultDirectory", pollUserForDefaultDir(!centralConfigFile.exists()).getAbsolutePath());
+
+			saveConfig(centralConfig);
 		}
 
-		buttonOpen.setEnabled(notebooks.size() > 0);
+		return centralConfig;
 	}
 
 
@@ -421,135 +476,80 @@ public class NotebookSelectionWindow {
 
 
 	/**
-	 * Button to create a new NoteBook.
+	 * Asks the user to select a default directory for his NoteBook.
 	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
+	 * @param firstTime whether the configuration file did not have an entry
+	 * before
+	 * @return the chosen directory
 	 */
-	@SuppressWarnings("serial")
-	private class ButtonNew extends JButton implements ActionListener {
-		ButtonNew() {
-			setText("New");
+	private File pollUserForDefaultDir(boolean firstTime) {
+		// ask the user for a default directory for his NoteBook
+		String message = firstTime ?
+		                 "Please select a default folder for your NoteBooks in the following dialog." :
+		                 "Your default directory is not valid. Please choose a new one.";
+		JOptionPane.showMessageDialog(null, message);
 
-			addActionListener(this);
+		JFileChooser defaultDirectoryChooser = new JFileChooser();
+		defaultDirectoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+
+		int result = defaultDirectoryChooser.showOpenDialog(null);
+
+		File newDefaultDirectory = null;
+		if (result == JFileChooser.APPROVE_OPTION) {
+			newDefaultDirectory = defaultDirectoryChooser.getSelectedFile();
 		}
 
-		/**
-		 * Triggers the creation of a new NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			NoteBook newNoteBook = createNewNotebook();
-			if (newNoteBook != null) {
-				notebooks.add(newNoteBook);
-				updateList();
-				openNotebook(newNoteBook);
-			}
-
+		// if there is no file selected, use the users home folder
+		if (newDefaultDirectory == null) {
+			newDefaultDirectory = new File(System.getProperty("user.home"));
 		}
+
+		return newDefaultDirectory;
 	}
 
 
-	/**
-	 * Button to open a NoteBook.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonOpen extends JButton implements ActionListener {
-		ButtonOpen() {
-			setText("Open");
-			setEnabled(false);
-
-			addActionListener(this);
+	private void saveConfig(Properties centralConfig) {
+		// save this new rc
+		try {
+			centralConfig.storeToXML(new FileOutputStream(centralConfigFile), NoteBookProgram.generatedComment());
 		}
-
-		/**
-		 * Triggers the opening of a NoteBook, if one was selected.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			int selection = myList.getSelectedIndex();
-
-			if (selection >= 0) {
-				openNotebook(notebooks.get(selection));
-			}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError("Could not find config file.");
+			e.printStackTrace();
 		}
-	}
-
-
-	/**
-	 * Button to enter the Scribble mode.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonScribble extends JButton implements ActionListener {
-		public ButtonScribble() {
-			setText("Scribble");
-
-			addActionListener(this);
-		}
-
-		/**
-		 * Triggers the entering into scribble mode with a blank new temporary
-		 * NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			openNotebook(new NoteBook(noteSize, null, null));
+		catch (IOException e) {
+			NoteBookProgram.handleError("IO error while writing config file.");
+			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Button to delete a NoteBook.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
+	 * Displays the dialogue.
 	 */
-	@SuppressWarnings("serial")
-	private class ButtonDelete extends JButton implements ActionListener {
-		ButtonDelete() {
-			setText("Delete");
-
-			addActionListener(this);
-		}
-
-		/**
-		 * Triggers the deletion of a NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			int selection = myList.getSelectedIndex();
-
-			if (selection >= 0) {
-				notebooks.get(selection).delete();
-				updateList();
-			}
-
-		}
+	public void showDialog() {
+		frame.setVisible(true);
 	}
 
 	/**
-	 * Button to go through the config dialog.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
+	 * Updates the list with NoteBook.
 	 */
-	@SuppressWarnings("serial")
-	private class ButtonConfig extends JButton implements ActionListener {
-		ButtonConfig() {
-			setText("Config");
-
-			addActionListener(this);
+	private void updateList() {
+		// FIXME really update the list if it is changed
+		listData = new String[notebooks.size()];
+		int j = 0;
+		for (Iterator<NoteBook> iterator = notebooks.iterator(); iterator.hasNext(); j++) {
+			NoteBook noteBook = (NoteBook) iterator.next();
+			listData[j] = noteBook.toString();
 		}
 
-		/**
-		 * Triggers the configuration dialog.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			Properties p = getCentralConfig();
-			p.setProperty("defaultDirectory", pollUserForDefaultDir(true).getAbsolutePath());
-			saveConfig(p);
+
+		myList = new JList(listData);
+		if (myList != null && myList.isShowing()) {
+			myList.repaint();
 		}
+
+		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 }
 

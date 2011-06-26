@@ -103,10 +103,34 @@ public class NoteSheet {
 
 
 	/**
-	 * Get the sheet's page number.
+	 * Draws a line onto the sheet. The sheet is then marked as "touched".
 	 */
-	public int getPagenumber() {
-		return pagenumber;
+	public void drawLine(int x, int y, int x2, int y2) {
+		touched = true;
+		unsaved = true;
+
+		Graphics2D graphics = getGraphics();
+
+		graphics.setColor(new Color(0, 0, 0));
+		graphics.drawLine(x, y, x2, y2);
+	}
+
+
+	public File getFilename() {
+		return filename;
+	}
+
+
+	/**
+	 * Gets the graphics context of the image.
+	 */
+	private Graphics2D getGraphics() {
+		if (graphics == null) {
+			graphics = (Graphics2D)(getImg().getGraphics());
+			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		}
+
+		return graphics;
 	}
 
 
@@ -121,8 +145,42 @@ public class NoteSheet {
 	}
 
 
-	public File getFilename() {
-		return filename;
+	/**
+	 * Get the sheet's page number.
+	 */
+	public int getPagenumber() {
+		return pagenumber;
+	}
+
+
+	private void initNewImage() {
+		if (filename == null) {
+			try {
+				filename = File.createTempFile("jscribble-", ".png");
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError("Could not create a temp file.");
+				e.printStackTrace();
+			}
+		}
+
+		img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
+
+		graphics = getGraphics();
+		graphics.setColor(new Color(255, 255, 255));
+		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
+
+		unsaved = false;
+	}
+
+
+	/**
+	 * Whether the picture is swapped to disk. To save RAM, the pictures might
+	 * be swapped into a temporary file if the user is in another part of the
+	 * NoteBook.
+	 */
+	private boolean isSwapped() {
+		return img == null;
 	}
 
 
@@ -174,36 +232,6 @@ public class NoteSheet {
 
 
 	/**
-	 * Draws a line onto the sheet. The sheet is then marked as "touched".
-	 */
-	public void drawLine(int x, int y, int x2, int y2) {
-		touched = true;
-		unsaved = true;
-
-		Graphics2D graphics = getGraphics();
-
-		graphics.setColor(new Color(0, 0, 0));
-		graphics.drawLine(x, y, x2, y2);
-	}
-
-
-	/**
-	 * Whether this sheet has any lines drawn onto it.
-	 */
-	public boolean touched() {
-		return touched;
-	}
-
-
-	/**
-	 * Whether this sheet has unsaved changes.
-	 */
-	public boolean unsaved() {
-		return unsaved;
-	}
-
-
-	/**
 	 * Stops the WriteoutThread and waits for it. This ensures that everything
 	 * is written to disk properly.
 	 */
@@ -221,47 +249,19 @@ public class NoteSheet {
 	}
 
 
-	private void initNewImage() {
-		if (filename == null) {
-			try {
-				filename = File.createTempFile("jscribble-", ".png");
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError("Could not create a temp file.");
-				e.printStackTrace();
-			}
-		}
-
-		img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
-
-		graphics = getGraphics();
-		graphics.setColor(new Color(255, 255, 255));
-		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
-
-		unsaved = false;
+	/**
+	 * Whether this sheet has any lines drawn onto it.
+	 */
+	public boolean touched() {
+		return touched;
 	}
 
 
 	/**
-	 * Gets the graphics context of the image.
+	 * Whether this sheet has unsaved changes.
 	 */
-	private Graphics2D getGraphics() {
-		if (graphics == null) {
-			graphics = (Graphics2D)(getImg().getGraphics());
-			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-		}
-
-		return graphics;
-	}
-
-
-	/**
-	 * Whether the picture is swapped to disk. To save RAM, the pictures might
-	 * be swapped into a temporary file if the user is in another part of the
-	 * NoteBook.
-	 */
-	private boolean isSwapped() {
-		return img == null;
+	public boolean unsaved() {
+		return unsaved;
 	}
 }
 
