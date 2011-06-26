@@ -31,4 +31,18 @@ public class NoteSheetTest extends TestCase {
 		assertTrue(rgbarray.length > 0);
 		assertFalse(rgbarray[0] == previousColor);
 	}
+
+	public void testTouched() {
+		NoteSheet n = getTempNoteSheet();
+		assertFalse(n.touched());
+		n.drawLine(0, 0, 0, 0);
+		assertTrue(n.touched());
+	}
+
+	public void testUnsaved() {
+		NoteSheet n = getTempNoteSheet();
+		assertFalse(n.unsaved());
+		n.drawLine(0, 0, 0, 0);
+		assertTrue(n.unsaved());
+	}
 }
