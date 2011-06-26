@@ -91,5 +91,33 @@ public class NoteBookTest extends TestCase {
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
 	}
 
-	// TODO test deletion of an image in the middle of the notebook and then reloading it
+	public void testDeletionOfPictureFile() {
+		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), "testDeletionOfPictureFile");
+		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
+		File outfile = nb.getConfigFile();
+
+		File tenth = null;
+
+		for (int i = 0; i < 20; i++) {
+			nb.drawLine(0, 0, 0, 0);
+			if (i == 10) {
+				tenth = nb.getCurrentSheet().getFilename();
+			}
+			nb.goForward();
+
+		}
+
+		nb.saveToFiles();
+
+		int oldSheetCount = nb.getSheetCount();
+
+		// delete a file from the notebook
+		assertTrue(String.format("File %s should exist.", tenth.getAbsolutePath()), tenth.exists());
+		tenth.delete();
+		assertFalse(tenth.exists());
+
+		NoteBook reloaded = new NoteBook(outfile);
+
+		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
+	}
 }
