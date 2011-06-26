@@ -30,3 +30,5 @@ VersionName.java:
 clean:
 	$(RM) *.jar *.class
 	$(RM) -r javadoc
+	$(RM) -r html
+	$(RM) *.orig
