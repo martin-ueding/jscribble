@@ -1,4 +1,6 @@
+package jscribble.notebook;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import jscribble.ImageSwapTask;
+import jscribble.NoteBookProgram;
+import jscribble.WriteoutThread;
 
 /**
  * Represents a single note sheet.

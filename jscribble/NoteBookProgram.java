@@ -1,3 +1,4 @@
+package jscribble;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import javax.swing.JOptionPane;

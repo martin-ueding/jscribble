@@ -1,3 +1,4 @@
+package jscribble;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.BorderLayout;
@@ -28,6 +29,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import jscribble.notebook.NoteBook;
 
 /**
  * A window and launcher for individual NoteBook. It searches the

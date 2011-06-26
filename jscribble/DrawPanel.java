@@ -1,3 +1,4 @@
+package jscribble;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Color;
@@ -7,6 +8,8 @@ import java.awt.RenderingHints;
 import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
+
+import jscribble.notebook.NoteBook;
 
 /**
  * Displays the current page of a NoteBook. It also listens to the mouse and

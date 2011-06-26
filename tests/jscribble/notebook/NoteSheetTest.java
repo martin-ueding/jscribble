@@ -1,7 +1,7 @@
+package tests.jscribble.notebook;
 import java.awt.Dimension;
-import java.io.File;
-import java.io.IOException;
 
+import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
 
 

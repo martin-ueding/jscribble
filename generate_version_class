@@ -1,12 +1,13 @@
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-outfile=VersionName.java
+outfile=jscribble/VersionName.java
 
 version=$(bzr tags | tail -n1 | sed "s/\s.*//")
 revno=$(bzr revno)
 
-echo "/**" > "$outfile"
+echo "package jscribble;" > "$outfile"
+echo "/**" >> "$outfile"
 echo " * Version name dummy." >> "$outfile"
 echo " */" >> "$outfile"
 echo "public class VersionName {" >> $outfile

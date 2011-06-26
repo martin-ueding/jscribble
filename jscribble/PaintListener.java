@@ -1,9 +1,12 @@
+package jscribble;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import jscribble.notebook.NoteBook;
 
 
 /**

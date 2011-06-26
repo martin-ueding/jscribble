@@ -1,3 +1,4 @@
+package jscribble.notebook;
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 import java.awt.Dimension;
@@ -17,6 +18,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
+
+import jscribble.NoteBookProgram;
+
 
 
 /**
