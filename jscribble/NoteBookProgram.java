@@ -16,7 +16,7 @@ public class NoteBookProgram {
 	 * @param args ignored CLI arguments
 	 */
 	public static void main(String[] args) {
-		if (args[0].equals("--version")) {
+		if (args.length > 0 && args[0].equals("--version")) {
 			System.out.println("Version: " + VersionName.version);
 		}
 
