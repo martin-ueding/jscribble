@@ -83,6 +83,7 @@ public class WriteoutThread extends Thread {
 				}
 
 				if (task.getImg() != null) {
+					NoteBookProgram.log(getClass().getName(), String.format("Writing %s.", task.getOutfile().getAbsolutePath()));
 					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}
 			}
@@ -99,5 +100,7 @@ public class WriteoutThread extends Thread {
 				e1.printStackTrace();
 			}
 		}
+
+		NoteBookProgram.log(getClass().getName(), "thread dies");
 	}
 }

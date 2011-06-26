@@ -5,6 +5,7 @@ package tests.jscribble.notebook;
 import java.awt.Dimension;
 import java.io.File;
 
+import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
@@ -12,7 +13,7 @@ import junit.framework.TestCase;
 public class NoteBookTest extends TestCase {
 
 	private NoteBook createTempNoteBook() {
-		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), "JUnit_Test");
+		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), "JUnit-Test");
 	}
 
 	public NoteBookTest() {
@@ -31,7 +32,7 @@ public class NoteBookTest extends TestCase {
 
 	public void testName() {
 		NoteBook nb = createTempNoteBook();
-		assertEquals("JUnit_Test", nb.getName());
+		assertEquals("JUnit-Test", nb.getName());
 	}
 
 	public void testCurrentSheet() {
@@ -92,19 +93,16 @@ public class NoteBookTest extends TestCase {
 	}
 
 	public void testDeletionOfPictureFile() {
-		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), "testDeletionOfPictureFile");
+		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), "JUnit-testDeletionOfPictureFile");
 		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
 		File outfile = nb.getConfigFile();
 
-		File tenth = null;
+		File[] filenames = new File[20];
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < filenames.length; i++) {
 			nb.drawLine(0, 0, 0, 0);
-			if (i == 10) {
-				tenth = nb.getCurrentSheet().getFilename();
-			}
+			filenames[i] = nb.getCurrentSheet().getFilename();
 			nb.goForward();
-
 		}
 
 		nb.saveToFiles();
@@ -112,12 +110,21 @@ public class NoteBookTest extends TestCase {
 		int oldSheetCount = nb.getSheetCount();
 
 		// delete a file from the notebook
-		assertTrue(String.format("File %s should exist.", tenth.getAbsolutePath()), tenth.exists());
-		tenth.delete();
-		assertFalse(tenth.exists());
+		for (File file : filenames) {
+			assertTrue(String.format("File %s should exist.", file.getAbsolutePath()), file.exists());
+		}
+		filenames[3].delete();
+		assertFalse(filenames[3].exists());
 
 		NoteBook reloaded = new NoteBook(outfile);
 
 		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
+
+		NoteBookProgram.log(getClass().getName(), "Trying to delete test files.");
+		System.out.println("Test");
+		for (File file : filenames) {
+			file.delete();
+		}
+		nb.getConfigFile().delete();
 	}
 }

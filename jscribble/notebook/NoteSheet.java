@@ -132,7 +132,7 @@ public class NoteSheet {
 	public void loadFromFile() {
 		try {
 			if (showLoadWriteMessages) {
-				NoteBookProgram.log(String.format("loading %s", filename.getAbsolutePath()));
+				NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
 			}
 			img = ImageIO.read(filename);
 		}
@@ -153,10 +153,10 @@ public class NoteSheet {
 	 * Saves the picture to a PNG file. The image is then removed from the heap.
 	 */
 	public void saveToFile() {
-		NoteBookProgram.log("Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved"));
+		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved") + ".");
 		if (touched && unsaved) {
 			if (showLoadWriteMessages) {
-				NoteBookProgram.log(String.format("writing %s", filename.getAbsolutePath()));
+				NoteBookProgram.log(getClass().getName(), String.format("Scheduling %s for writing.", filename.getAbsolutePath()));
 			}
 
 
