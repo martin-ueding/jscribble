@@ -21,7 +21,7 @@ public class NoteBookTest extends TestCase {
 
 	public void testEmptySheetCount() {
 		NoteBook nb = createTempNoteBook();
-		assertEquals(nb.getSheetCount(), 0);
+		assertEquals(0, nb.getSheetCount());
 	}
 
 	public void testName() {
@@ -36,9 +36,8 @@ public class NoteBookTest extends TestCase {
 
 	public void testSheetCountAfterFirstLine() {
 		NoteBook nb = createTempNoteBook();
-		assertEquals(nb.getSheetCount(), 0);
 		nb.drawLine(1, 1, 2, 2);
-		assertEquals(nb.getSheetCount(), 1);
+		assertEquals(1, nb.getSheetCount());
 	}
 
 	public void testWritingToConfigFile() {
@@ -56,15 +55,36 @@ public class NoteBookTest extends TestCase {
 		NoteSheet current = nb.getCurrentSheet();
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
-		assertNotSame(current.getFilename().length(), 0);
+		assertNotSame(0, current.getFilename().length());
 	}
 
 	public void testPageNumber() {
 		NoteBook nb = createTempNoteBook();
-		assertEquals(nb.getCurrentSheet().getPagenumber(), 1);
+		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 		nb.drawLine(0, 0, 0, 0);
-		assertEquals(nb.getCurrentSheet().getPagenumber(), 1);
+		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 		nb.goForward();
-		assertEquals(nb.getCurrentSheet().getPagenumber(), 2);
+		assertEquals(2, nb.getCurrentSheet().getPagenumber());
 	}
+
+	public void testLoadFromConfig() {
+		NoteBook nb = createTempNoteBook();
+		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
+		nb.drawLine(0, 0, 0, 0);
+		nb.saveToFiles();
+
+		File outfile = nb.getConfigFile();
+
+		NoteBook reloaded = new NoteBook(outfile);
+
+		assertEquals(nb.getName(), reloaded.getName());
+
+		nb.gotoFirst();
+		reloaded.gotoFirst();
+
+		assertEquals(nb.getCurrentSheet().getFilename().getAbsolutePath(), reloaded.getCurrentSheet().getFilename().getAbsolutePath());
+		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
+	}
+
+	// TODO test deletion of an image in the middle of the notebook and then reloading it
 }

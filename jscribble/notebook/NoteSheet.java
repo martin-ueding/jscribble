@@ -86,32 +86,20 @@ public class NoteSheet {
 	 * @param infile File to save image in
 	 */
 	public NoteSheet(Dimension noteSize, int pagenumber, File infile) {
-		if (writethread == null) {
-			writethread = new WriteoutThread();
-		}
 
 		this.noteSize = noteSize;
 		this.pagenumber = pagenumber;
 		this.filename = infile;
 
-		if (filename == null || !filename.exists()) {
-			if (filename == null) {
-				try {
-					filename = File.createTempFile("jscribble-", ".png");
-				}
-				catch (IOException e) {
-					NoteBookProgram.handleError("Could not create a temp file.");
-					e.printStackTrace();
-				}
-			}
+		// If no filename or a filename that does not exist yet is given or the file is empty (like a newly created temporary file), a new
+		// image needs to be created.
+		if (filename == null || !filename.exists() || filename.length() == 0) {
+			initNewImage();
+		}
 
-			img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
-
-			graphics = getGraphics();
-			graphics.setColor(new Color(255, 255, 255));
-			graphics.fillRect(0, 0, noteSize.width, noteSize.height);
-
-			unsaved = true;
+		// If this branch is reached, then a image file does exist and it is not empty. This sheet has something drawn on it then.
+		else {
+			touched = true;
 		}
 	}
 
@@ -172,6 +160,11 @@ public class NoteSheet {
 			if (showLoadWriteMessages) {
 				NoteBookProgram.log(String.format("writing %s", filename.getAbsolutePath()));
 			}
+
+
+			if (writethread == null) {
+				writethread = new WriteoutThread();
+			}
 			writethread.schedule(new ImageSwapTask(img, filename));
 		}
 
@@ -225,6 +218,27 @@ public class NoteSheet {
 			NoteBookProgram.handleError("WriteThread was interrupted.");
 			e.printStackTrace();
 		}
+	}
+
+
+	private void initNewImage() {
+		if (filename == null) {
+			try {
+				filename = File.createTempFile("jscribble-", ".png");
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError("Could not create a temp file.");
+				e.printStackTrace();
+			}
+		}
+
+		img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
+
+		graphics = getGraphics();
+		graphics.setColor(new Color(255, 255, 255));
+		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
+
+		unsaved = false;
 	}
 
 
