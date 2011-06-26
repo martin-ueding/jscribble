@@ -283,7 +283,7 @@ public class NotebookSelectionWindow {
 		if (nickname == null) {
 			return null;
 		}
-		
+
 		// TODO clean up name for use as file name
 
 

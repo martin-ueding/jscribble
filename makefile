@@ -27,6 +27,11 @@ html/.doxygen: *.java
 VersionName.java:
 	./generate_version_class
 
+.PHONY: commit
+commit:
+	astyle *.java
+	bzr commit
+
 clean:
 	$(RM) *.jar *.class
 	$(RM) -r javadoc
