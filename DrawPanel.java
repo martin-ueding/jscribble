@@ -134,6 +134,9 @@ public class DrawPanel extends JPanel {
 				i++;
 			}
 
+			g2.setColor(Color.GRAY);
+			g.drawString(String.format("Version %s", VersionName.version), padding, getHeight() - padding);
+
 		}
 
 	}

@@ -14,6 +14,8 @@ public class NoteBookProgram {
 	 * @param args ignored CLI arguments
 	 */
 	public static void main(String[] args) {
+		// TODO add --version CLI parameter to show the version
+
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialog();
 	}
