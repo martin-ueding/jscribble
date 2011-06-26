@@ -90,6 +90,9 @@ public class NoteBookTest extends TestCase {
 
 		assertEquals(nb.getCurrentSheet().getFilename().getAbsolutePath(), reloaded.getCurrentSheet().getFilename().getAbsolutePath());
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
+
+		outfile.delete();
+		assertFalse(outfile.exists());
 	}
 
 	public void testDeletionOfPictureFile() {
@@ -99,10 +102,12 @@ public class NoteBookTest extends TestCase {
 
 		File[] filenames = new File[20];
 
+		nb.drawLine(0, 0, 0, 0);
+
 		for (int i = 0; i < filenames.length; i++) {
+			nb.goForward();
 			nb.drawLine(0, 0, 0, 0);
 			filenames[i] = nb.getCurrentSheet().getFilename();
-			nb.goForward();
 		}
 
 		nb.saveToFiles();
@@ -121,7 +126,6 @@ public class NoteBookTest extends TestCase {
 		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
 
 		NoteBookProgram.log(getClass().getName(), "Trying to delete test files.");
-		System.out.println("Test");
 		for (File file : filenames) {
 			file.delete();
 		}
