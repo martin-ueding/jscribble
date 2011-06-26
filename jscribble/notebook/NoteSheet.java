@@ -151,6 +151,11 @@ public class NoteSheet {
 	}
 
 
+	public File getFilename() {
+		return filename;
+	}
+
+
 	/**
 	 * Loads the image from file. Everything else is left intact.
 	 */

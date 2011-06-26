@@ -10,22 +10,19 @@ import junit.framework.TestCase;
 
 public class NoteSheetTest extends TestCase {
 
-	public NoteSheetTest() {
-		super();
+	private NoteSheet getTempNoteSheet() {
+		return new NoteSheet(new Dimension(1024, 600), 0, null);
 	}
 
-	/**
-	 * Positive control.
-	 */
-	public void testPositive() {
-		assertTrue(true);
+	public NoteSheetTest() {
+		super();
 	}
 
 	/**
 	 * Tests whether drawing a line causes a change in color in the image.
 	 */
 	public void testDrawing() {
-		NoteSheet n = new NoteSheet(new Dimension(1024, 600), 0, null);
+		NoteSheet n = getTempNoteSheet();
 		assertNotNull(n);
 		assertNotNull(n.getImg());
 		int previousColor = n.getImg().getRGB(100, 100);

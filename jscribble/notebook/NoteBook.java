@@ -89,11 +89,6 @@ public class NoteBook {
 
 	private File configFile;
 
-	public NoteBook() {
-		sheets = new LinkedList<NoteSheet>();
-	}
-
-
 	/**
 	 * Creates an empty note book with a single note sheet.
 	 *
@@ -147,16 +142,27 @@ public class NoteBook {
 	}
 
 
+	private NoteBook() {
+		sheets = new LinkedList<NoteSheet>();
+	}
+
+
 	/**
-	 * Delete the NoteBook from the file system.
+	 * Asks the user to delete the NoteBook.
 	 */
 	public void delete() {
 		int answer = JOptionPane.showConfirmDialog(null, String.format("Do you really want to delete \"%s\"?", name), "Really delete?", JOptionPane.YES_NO_OPTION);
 
-		if (answer == 1) {
-			return;
+		if (answer == 0) {
+			deleteSure();
 		};
+	}
 
+
+	/**
+	 * Delete the NoteBook from the file system.
+	 */
+	public void deleteSure() {
 		if (configFile != null) {
 			configFile.delete();
 			configFile = null;
@@ -174,17 +180,12 @@ public class NoteBook {
 		Properties p = new Properties();
 		p.setProperty("width", String.valueOf(noteSize.width));
 		p.setProperty("height", String.valueOf(noteSize.height));
-		try {
-			p.setProperty("folder", folder.getCanonicalPath());
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError("IO error while retrieving the path of the image folder.");
-			e.printStackTrace();
-		}
+		p.setProperty("folder", folder.getAbsolutePath());
 		p.setProperty("name", name);
 
 		try {
-			p.storeToXML(new FileOutputStream(new File(configdir.getCanonicalPath() + File.separator + name + NoteBookProgram.configFileSuffix)), NoteBookProgram.generatedComment());
+			configFile = new File(configdir.getAbsolutePath() + File.separator + name + NoteBookProgram.configFileSuffix);
+			p.storeToXML(new FileOutputStream(configFile), NoteBookProgram.generatedComment());
 		}
 		catch (FileNotFoundException e) {
 			NoteBookProgram.handleError("Could not find NoteBook config file for writing.");
@@ -325,6 +326,11 @@ public class NoteBook {
 	 */
 	public NoteSheet getCurrentSheet() {
 		return sheets.get(currentSheet);
+	}
+
+
+	public File getConfigFile() {
+		return configFile;
 	}
 
 
