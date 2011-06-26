@@ -135,22 +135,6 @@ public class NoteSheet {
 	}
 
 
-	/**
-	 * Width of the image.
-	 */
-	public int getWidth() {
-		return noteSize.width;
-	}
-
-
-	/**
-	 * Height of the image.
-	 */
-	public int getHeight() {
-		return noteSize.height;
-	}
-
-
 	public File getFilename() {
 		return filename;
 	}
