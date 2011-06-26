@@ -30,7 +30,8 @@ jscribble/VersionName.java: .bzr/branch/last-revision
 	./generate_version_class
 
 clean:
-	$(RM) -r *.jar *.class
 	$(RM) -r javadoc
 	$(RM) -r html
-	$(RM) -r *.orig
+	find . -name "*.orig" -delete
+	find . -name "*.class" -delete
+	find . -name "*.jar" -delete
