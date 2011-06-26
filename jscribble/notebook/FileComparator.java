@@ -1,4 +1,4 @@
-package tests.jscribble.notebook;
+package jscribble.notebook;
 
 import java.io.File;
 import java.text.Collator;
