@@ -92,7 +92,7 @@ public class NoteBookTest extends TestCase {
 	}
 
 	public void testDeletionOfPictureFile() {
-		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), "JUnit-testDeletionOfPictureFile");
+		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
 		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
 		File outfile = nb.getConfigFile();
 

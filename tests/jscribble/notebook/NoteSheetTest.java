@@ -5,6 +5,7 @@ package tests.jscribble.notebook;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
@@ -45,7 +46,7 @@ public class NoteSheetTest extends TestCase {
 
 	public void testTouchedWithEmptyTempfile() {
 		try {
-			File tempfile = File.createTempFile("JUnit-", "");
+			File tempfile = File.createTempFile(UUID.randomUUID().toString(), "");
 			tempfile.createNewFile();
 			NoteSheet n = new NoteSheet(new Dimension(100, 100), 0, tempfile);
 
