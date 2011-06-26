@@ -54,7 +54,7 @@ public class NoteSheetTest extends TestCase {
 	 */
 	public void testTouchedWithEmptyTempfile() {
 		try {
-			File tempfile = File.createTempFile("", ".png");
+			File tempfile = File.createTempFile("JUnit-", ".png");
 			tempfile.createNewFile();
 			NoteSheet n = new NoteSheet(new Dimension(100, 100), 0, tempfile);
 
