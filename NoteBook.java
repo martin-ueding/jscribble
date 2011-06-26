@@ -106,14 +106,6 @@ public class NoteBook {
 		if (folder != null && name != null) {
 			loadImagesFromFolder();
 		}
-
-		// add an empty sheet if the NoteBook would be empty otherwise
-		if (sheets.size() == 0) {
-			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
-			pagecount++;
-		}
-
-		updateCurrrentItem();
 	}
 
 
@@ -163,6 +155,14 @@ public class NoteBook {
 			}
 			pagecount++;
 		}
+
+		// add an empty sheet if the NoteBook would be empty otherwise
+		if (sheets.size() == 0) {
+			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
+			pagecount++;
+		}
+
+		updateCurrrentItem();
 	}
 
 
