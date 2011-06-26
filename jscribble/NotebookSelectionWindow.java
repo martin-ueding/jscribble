@@ -278,7 +278,7 @@ public class NotebookSelectionWindow {
 	/**
 	 * Creates a new NoteBook and prompts the user for a name and folder to
 	 * save the images in. A config file is automatically created in the config
-	 * dir.
+	 * directory.
 	 *
 	 * @return the new NoteBook
 	 */
