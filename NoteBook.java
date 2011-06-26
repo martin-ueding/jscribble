@@ -83,6 +83,10 @@ public class NoteBook {
 	 */
 	private String name;
 
+	public NoteBook() {
+		sheets = new LinkedList<NoteSheet>();
+	}
+
 
 	/**
 	 * Creates an empty note book with a single note sheet.
@@ -92,60 +96,15 @@ public class NoteBook {
 	 * @param name name of the NoteBook
 	 */
 	public NoteBook(Dimension noteSize, File folder, String name) {
+		this();
 		this.noteSize = noteSize;
 
 		this.folder = folder;
 		this.name = name;
 
-		sheets = new LinkedList<NoteSheet>();
-
 		// if a NoteBook should be used
 		if (folder != null && name != null) {
-			if (!folder.exists()) {
-				folder.mkdirs();
-			}
-
-			// try to load all images that match the name
-			File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
-
-			if (allImages != null && allImages.length > 0) {
-				Arrays.sort(allImages, new Comparator<File>() {
-
-					private Collator c = Collator.getInstance();
-
-					public int compare(File o1, File o2) {
-						if (o1 == o2) {
-							return 0;
-						}
-
-						File f1 = (File) o1;
-						File f2 = (File) o2;
-
-						if (f1.isDirectory() && f2.isFile()) {
-							return -1;
-						}
-						if (f1.isFile() && f2.isDirectory()) {
-							return 1;
-						}
-
-						return c.compare(f1.getName(), f2.getName());
-					}
-				});
-
-
-				Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
-
-				for (File file : allImages) {
-					String[] nameparts = file.getName().split(Pattern.quote(File.separator));
-					String basename = nameparts[nameparts.length-1];
-					Matcher m = p.matcher(basename);
-					if (m.matches()) {
-						pagecount = Math.max(pagecount, Integer.parseInt(m.group(1)));
-						sheets.add(new NoteSheet(noteSize, Integer.parseInt(m.group(1)), file));
-					}
-				}
-				pagecount++;
-			}
+			loadImagesFromFolder();
 		}
 
 		// add an empty sheet if the NoteBook would be empty otherwise
@@ -155,6 +114,55 @@ public class NoteBook {
 		}
 
 		updateCurrrentItem();
+	}
+
+
+	private void loadImagesFromFolder() {
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		// try to load all images that match the name
+		File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
+
+		if (allImages != null && allImages.length > 0) {
+			Arrays.sort(allImages, new Comparator<File>() {
+
+				private Collator c = Collator.getInstance();
+
+				public int compare(File o1, File o2) {
+					if (o1 == o2) {
+						return 0;
+					}
+
+					File f1 = (File) o1;
+					File f2 = (File) o2;
+
+					if (f1.isDirectory() && f2.isFile()) {
+						return -1;
+					}
+					if (f1.isFile() && f2.isDirectory()) {
+						return 1;
+					}
+
+					return c.compare(f1.getName(), f2.getName());
+				}
+			});
+
+
+			Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
+
+			for (File file : allImages) {
+				String[] nameparts = file.getName().split(Pattern.quote(File.separator));
+				String basename = nameparts[nameparts.length-1];
+				Matcher m = p.matcher(basename);
+				if (m.matches()) {
+					pagecount = Math.max(pagecount, Integer.parseInt(m.group(1)));
+					sheets.add(new NoteSheet(noteSize, Integer.parseInt(m.group(1)), file));
+				}
+			}
+			pagecount++;
+		}
 	}
 
 
@@ -378,6 +386,7 @@ public class NoteBook {
 	 * Creates a NoteBook with data read from a configuration file.
 	 */
 	public NoteBook(File configFile) {
+		this();
 		this.configFile = configFile;
 
 		Properties p = new Properties();
@@ -400,6 +409,8 @@ public class NoteBook {
 			NoteBookProgram.handleError("IO during NoteBook config file loading.");
 			e.printStackTrace();
 		}
+
+		loadImagesFromFolder();
 	}
 
 	public void saveToConfig(File configdir) {
