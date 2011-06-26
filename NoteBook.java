@@ -328,7 +328,8 @@ public class NoteBook {
 	 * to be updated as well. This method does just that.
 	 */
 	private void updateCurrrentItem() {
-		if (currentSheet >= 0 || currentSheet < sheets.size()) {
+		if (currentSheet < 0 || currentSheet >= sheets.size()) {
+			NoteBookProgram.handleError(String.format("Index error with NoteBook \"%s\"", name));
 			currentSheet = 0;
 		}
 		current = sheets.get(currentSheet);
