@@ -375,7 +375,7 @@ public class NotebookSelectionWindow {
 					notebook.goBackwards();
 				}
 
-				if (ev.getKeyChar() == 'h' ||
+				if (ev.getKeyChar() == 'f' ||
 				ev.getKeyCode() == KeyEvent.VK_HOME) {
 					notebook.gotoFirst();
 				}
