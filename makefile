@@ -29,11 +29,6 @@ html/.doxygen: *.java
 jscribble/VersionName.java: .bzr/branch/last-revision
 	./generate_version_class
 
-.PHONY: commit
-commit:
-	astyle -r "*.java"
-	bzr commit
-
 clean:
 	$(RM) -r *.jar *.class
 	$(RM) -r javadoc
