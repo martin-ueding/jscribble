@@ -66,7 +66,6 @@ public class NoteSheetTest extends TestCase {
 
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

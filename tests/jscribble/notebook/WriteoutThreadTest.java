@@ -24,7 +24,6 @@ public class WriteoutThreadTest extends TestCase {
 			outfile = File.createTempFile("JUnit-testSingleWriteout-", ".png");
 		}
 		catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -43,7 +42,6 @@ public class WriteoutThreadTest extends TestCase {
 			wt.join();
 		}
 		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertFalse(wt.isAlive());
