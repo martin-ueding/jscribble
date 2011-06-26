@@ -183,7 +183,6 @@ public class NoteSheet {
 		// remove the image from the memory
 		img = null;
 
-		touched = false;
 		unsaved = false;
 	}
 
