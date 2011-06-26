@@ -209,8 +209,10 @@ public class NoteSheet {
 	 */
 	public void stopWriteoutThread() {
 		try {
-			writethread.stopAfterLast();
-			writethread.join();
+			if (writethread != null) {
+				writethread.stopAfterLast();
+				writethread.join();
+			}
 		}
 		catch (InterruptedException e) {
 			NoteBookProgram.handleError("WriteThread was interrupted.");
