@@ -20,7 +20,7 @@ public class WriteoutThread extends Thread {
 	 */
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
-	
+
 	/**
 	 * This flag stops the thread after the last item in the queue. If not set,
 	 * the thread will wait for items in the queue to save.

@@ -41,20 +41,20 @@ public class DrawPanel extends JPanel {
 	 * Whether helping lines are enabled.
 	 */
 	private boolean lines = false;
-	
+
 	/**
 	 * Whether to display the help panel.
 	 */
 	private boolean showHelp = false;
 
 	private HelpItem[] helpItems = {
-			new HelpItem("h", "show help"),
-			new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", "go forward"),
-			new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", "go backward"),
-			new HelpItem("h, <Pos1>", "goto first"),
-			new HelpItem("l, <End", "goto last"),
-			new HelpItem("<Alt-F4>", "save & exit")
-			
+		new HelpItem("h", "show help"),
+		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", "go forward"),
+		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", "go backward"),
+		new HelpItem("h, <Pos1>", "goto first"),
+		new HelpItem("l, <End", "goto last"),
+		new HelpItem("<Alt-F4>", "save & exit")
+
 	};
 
 	/**
@@ -72,7 +72,7 @@ public class DrawPanel extends JPanel {
 		addMouseListener(pl);
 	}
 
-	
+
 	/**
 	 * Set whether help lines are to be drawn.
 	 *
@@ -118,36 +118,36 @@ public class DrawPanel extends JPanel {
 
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
-		
+
 		if (showHelp) {
 			g2.setColor(new Color(0, 0, 0, 200));
-			g2.fillRoundRect(50, 50, getWidth()-100, getHeight()-100, 20, 20);
+			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20, 20);
 			g2.setColor(Color.WHITE);
-			
+
 			int i = 1;
 			int vspacing = 30;
 			int spacing = 150;
 			int padding = 70;
-			for (HelpItem h : helpItems ) {
-				g2.drawString(h.helptext, padding, i*vspacing+padding);
-				g2.drawString(h.key, spacing+padding, i*vspacing+padding);
+			for (HelpItem h : helpItems) {
+				g2.drawString(h.helptext, padding, i * vspacing + padding);
+				g2.drawString(h.key, spacing + padding, i * vspacing + padding);
 				i++;
 			}
-			
+
 		}
-		
+
 	}
 	class HelpItem {
 		/**
 		 * The buttons(s) that cause some action.
 		 */
 		public String key;
-		
+
 		/**
 		 * The action the buttons cause.
 		 */
 		public String helptext;
-		
+
 		/**
 		 * Generates a new HelpItem.
 		 */
@@ -155,10 +155,10 @@ public class DrawPanel extends JPanel {
 			this.key = key;
 			this.helptext = helptext;
 		}
-		
-		
+
+
 	}
-	
+
 	/**
 	 * Sets whether the help dialog is displayed.
 	 */

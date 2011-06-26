@@ -17,7 +17,7 @@ public class ColonListener implements KeyListener {
 	 * The DrawPanel that is displaying the NoteBook.
 	 */
 	private DrawPanel panel;
-	
+
 	/**
 	 * The listener that is to be notified when something is changed.
 	 */
@@ -81,7 +81,7 @@ public class ColonListener implements KeyListener {
 
 			redrawer.actionPerformed(null);
 		}
-		
+
 		if (arg0.getKeyChar() == 'h') {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);

@@ -360,26 +360,26 @@ public class NoteBook {
 	 */
 	public void delete() {
 		int answer = JOptionPane.showConfirmDialog(null, String.format("Do you really want to delete \"%s\"?", name), "Really delete?", JOptionPane.YES_NO_OPTION);
-		
+
 		if (answer == 1) {
 			return;
 		};
-		
+
 		if (configFile != null) {
 			configFile.delete();
 			configFile = null;
 		}
 	}
-	
+
 	private File configFile;
-	
-	
+
+
 	/**
 	 * Creates a NoteBook with data read from a configuration file.
 	 */
 	public NoteBook(File configFile) {
 		this.configFile = configFile;
-		
+
 		Properties p = new Properties();
 		try {
 			p.loadFromXML(new FileInputStream(configFile));
@@ -401,7 +401,7 @@ public class NoteBook {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void saveToConfig(File configdir) {
 		// persist this NoteBook in the configuration file
 		Properties p = new Properties();

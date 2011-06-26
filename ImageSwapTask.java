@@ -14,7 +14,7 @@ public class ImageSwapTask {
 	 * The image that is to be saved.
 	 */
 	private BufferedImage img;
-	
+
 	/**
 	 * The file the image is to be saved to.
 	 */

@@ -16,7 +16,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	 */
 	private String basename;
 
-	
+
 	/**
 	 * The pattern that every filename is matched against.
 	 */
