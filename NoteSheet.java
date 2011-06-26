@@ -172,6 +172,7 @@ public class NoteSheet {
 	 * Saves the picture to a PNG file. The image is then removed from the heap.
 	 */
 	public void saveToFile() {
+		System.out.println("Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved"));
 		if (touched && unsaved) {
 			if (showLoadWriteMessages) {
 				System.out.println(String.format("writing %s", filename.getAbsolutePath()));
