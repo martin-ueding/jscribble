@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -138,7 +139,7 @@ public class NotebookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
 				for (NoteBook notebook : openedNotebooks) {
 
@@ -266,7 +267,7 @@ public class NotebookSelectionWindow {
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 
-		f.addWindowListener(new java.awt.event.WindowAdapter() {
+		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
 				notebook.saveToFiles();
 				NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
