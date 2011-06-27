@@ -61,7 +61,7 @@ public class NoteSheet {
 	/**
 	 * Storage point of the image of this sheet.
 	 */
-	private File filename;
+	private File imagefile;
 
 
 	/**
@@ -81,11 +81,11 @@ public class NoteSheet {
 
 		this.noteSize = noteSize;
 		this.pagenumber = pagenumber;
-		this.filename = infile;
+		this.imagefile = infile;
 
 		// If no filename or a filename that does not exist yet is given or the file is empty (like a newly created temporary file), a new
 		// image needs to be created.
-		if (filename == null || !filename.exists() || filename.length() == 0) {
+		if (imagefile == null || !imagefile.exists() || imagefile.length() == 0) {
 			initNewImage();
 		}
 
@@ -108,8 +108,12 @@ public class NoteSheet {
 	}
 
 
-	public File getFilename() {
-		return filename;
+	/**
+	 * Getter for the file of the image.
+	 * @return
+	 */
+	public File getFile() {
+		return imagefile;
 	}
 
 
@@ -153,9 +157,9 @@ public class NoteSheet {
 
 
 	private void initNewImage() {
-		if (filename == null) {
+		if (imagefile == null) {
 			try {
-				filename = File.createTempFile(NoteBookProgram.getProgramname() + "-", ".png");
+				imagefile = File.createTempFile(NoteBookProgram.getProgramname() + "-", ".png");
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError("Could not create a temp file.");
@@ -187,7 +191,7 @@ public class NoteSheet {
 	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
-		if (!filename.exists() || filename.length() == 0L) {
+		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), "Image file does not exist.");
 
 			// if the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
@@ -195,15 +199,15 @@ public class NoteSheet {
 		}
 
 
-		if (!filename.exists() || filename.length() == 0L) {
+		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), "Image file does not exist after stopping WriteoutThread.");
 		}
 
 
 		try {
-			NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
+			NoteBookProgram.log(getClass().getName(), String.format("loading %s", imagefile.getAbsolutePath()));
 
-			img = ImageIO.read(filename);
+			img = ImageIO.read(imagefile);
 		}
 		catch (FileNotFoundException e) {
 			NoteBookProgram.handleError("Could not find the note sheet image.");
@@ -228,13 +232,13 @@ public class NoteSheet {
 	public void saveToFile() {
 		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved") + ".");
 		if (touched && unsaved) {
-			NoteBookProgram.log(getClass().getName(), String.format("Scheduling %s for writing.", filename.getAbsolutePath()));
+			NoteBookProgram.log(getClass().getName(), String.format("Scheduling %s for writing.", imagefile.getAbsolutePath()));
 
 
 			if (writethread == null || !writethread.isAlive()) {
 				writethread = new WriteoutThread();
 			}
-			writethread.schedule(new ImageSwapTask(img, filename));
+			writethread.schedule(new ImageSwapTask(img, imagefile));
 		}
 
 		// remove the image from the memory

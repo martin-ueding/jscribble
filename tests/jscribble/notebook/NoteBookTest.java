@@ -48,7 +48,7 @@ public class NoteBookTest extends TestCase {
 		for (int i = 0; i < filenames.length; i++) {
 			nb.goForward();
 			nb.drawLine(0, 0, 0, 0);
-			filenames[i] = nb.getCurrentSheet().getFilename();
+			filenames[i] = nb.getCurrentSheet().getFile();
 		}
 
 		nb.saveToFiles();
@@ -164,7 +164,7 @@ public class NoteBookTest extends TestCase {
 		nb.gotoFirst();
 		reloaded.gotoFirst();
 
-		assertEquals(nb.getCurrentSheet().getFilename().getAbsolutePath(), reloaded.getCurrentSheet().getFilename().getAbsolutePath());
+		assertEquals(nb.getCurrentSheet().getFile().getAbsolutePath(), reloaded.getCurrentSheet().getFile().getAbsolutePath());
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
 
 		nb.deleteSure();
@@ -193,8 +193,8 @@ public class NoteBookTest extends TestCase {
 		NoteSheet current = nb.getCurrentSheet();
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
-		assertTrue(current.getFilename().exists());
-		assertNotSame(0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertNotSame(0, current.getFile().length());
 	}
 
 
@@ -208,11 +208,11 @@ public class NoteBookTest extends TestCase {
 		nb.drawLine(0, 0, 0, 0);
 		nb.goForward();
 		nb.saveToFiles();
-		assertTrue(current.getFilename().exists());
-		assertNotSame(0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertNotSame(0, current.getFile().length());
 		current = nb.getCurrentSheet();
-		assertTrue(current.getFilename().exists());
-		assertNotSame(0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertNotSame(0, current.getFile().length());
 	}
 
 
@@ -223,8 +223,8 @@ public class NoteBookTest extends TestCase {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
 		nb.saveToFiles();
-		assertTrue(current.getFilename().exists());
-		assertEquals(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertEquals(String.format("File %s should be empty.", current.getFile().getAbsolutePath()), 0, current.getFile().length());
 	}
 
 
@@ -240,11 +240,11 @@ public class NoteBookTest extends TestCase {
 		nb.goForward();
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
-		assertTrue(current.getFilename().exists());
-		assertNotSame(0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertNotSame(0, current.getFile().length());
 		current = nb.getCurrentSheet();
-		assertTrue(current.getFilename().exists());
-		assertNotSame(0, current.getFilename().length());
+		assertTrue(current.getFile().exists());
+		assertNotSame(0, current.getFile().length());
 	}
 
 
