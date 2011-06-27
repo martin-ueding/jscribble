@@ -16,7 +16,6 @@ import jscribble.notebook.NoteBook;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class PaintListener implements MouseMotionListener, MouseListener {
-
 	/**
 	 * The NoteBook which receives the painting.
 	 */

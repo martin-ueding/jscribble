@@ -14,16 +14,17 @@ import javax.swing.JOptionPane;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ColonListener implements KeyListener {
-
 	/**
 	 * The DrawPanel that is displaying the NoteBook.
 	 */
 	private DrawPanel panel;
 
+
 	/**
 	 * The listener that is to be notified when something is changed.
 	 */
 	private Redrawer redrawer;
+
 
 	/**
 	 * Creates a new listener that listens to the given panel
@@ -33,6 +34,7 @@ public class ColonListener implements KeyListener {
 	public ColonListener(DrawPanel malPanel) {
 		panel = malPanel;
 	}
+
 
 	/**
 	 * A listener to be called when a setting causes the panel to need

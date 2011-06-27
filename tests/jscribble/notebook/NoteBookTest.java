@@ -11,10 +11,10 @@ import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
 
 public class NoteBookTest extends TestCase {
-
 	public NoteBookTest() {
 		super();
 	}
+
 
 	/**
 	 * Creates a NoteBook stored in a temporary folder with a unique name.
@@ -23,6 +23,7 @@ public class NoteBookTest extends TestCase {
 		return new NoteBook(null);
 	}
 
+
 	/**
 	 * Tests whether the current sheet of a new NoteBook is not null.
 	 */
@@ -30,6 +31,7 @@ public class NoteBookTest extends TestCase {
 		NoteBook nb = createTempNoteBook();
 		assertNotNull(nb.getCurrentSheet());
 	}
+
 
 	/**
 	 * Creates a NoteBook with many pages and deletes one of them. The NoteBook
@@ -72,6 +74,7 @@ public class NoteBookTest extends TestCase {
 		nb.deleteSure();
 	}
 
+
 	/**
 	 * Tests whether an newly created NoteBook has zero sheets in it, even if you get the first (untouched) page.
 	 */
@@ -81,6 +84,7 @@ public class NoteBookTest extends TestCase {
 		nb.getCurrentSheet();
 		assertEquals(0, nb.getSheetCount());
 	}
+
 
 	public void testGotoLast() {
 		NoteBook nb = createTempNoteBook();
@@ -101,6 +105,7 @@ public class NoteBookTest extends TestCase {
 		nb.gotoLast();
 		assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
 	}
+
 
 	/**
 	 * Tests the forward and backward functions in the NoteBook.
@@ -143,6 +148,7 @@ public class NoteBookTest extends TestCase {
 		}
 	}
 
+
 	/**
 	 * Tests whether a reloaded NoteBook is the same as the saved one.
 	 */
@@ -164,6 +170,7 @@ public class NoteBookTest extends TestCase {
 		nb.deleteSure();
 	}
 
+
 	/**
 	 * Tests whether the page number advances when you go a page forward.
 	 */
@@ -175,6 +182,7 @@ public class NoteBookTest extends TestCase {
 		nb.goForward();
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
 	}
+
 
 	/**
 	 * Tests whether saving the NoteBook actually creates image files. This
@@ -188,6 +196,7 @@ public class NoteBookTest extends TestCase {
 		assertTrue(current.getFilename().exists());
 		assertNotSame(0, current.getFilename().length());
 	}
+
 
 	/**
 	 * Tests whether saving the NoteBook actually creates image files. This
@@ -206,6 +215,7 @@ public class NoteBookTest extends TestCase {
 		assertNotSame(0, current.getFilename().length());
 	}
 
+
 	/**
 	 * Tests whether saving a new NoteBook without any lines creates no files.
 	 */
@@ -216,6 +226,7 @@ public class NoteBookTest extends TestCase {
 		assertTrue(current.getFilename().exists());
 		assertEquals(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
 	}
+
 
 	/**
 	 * Tests whether saving the NoteBook actually creates image files. This
@@ -236,6 +247,7 @@ public class NoteBookTest extends TestCase {
 		assertNotSame(0, current.getFilename().length());
 	}
 
+
 	/**
 	 * Checks whether a new NoteBook with a line on the first page has one
 	 * page.
@@ -245,6 +257,7 @@ public class NoteBookTest extends TestCase {
 		nb.drawLine(1, 1, 2, 2);
 		assertEquals(1, nb.getSheetCount());
 	}
+
 
 	/**
 	 * Tests whether a new NoteBook has an untouched first page.

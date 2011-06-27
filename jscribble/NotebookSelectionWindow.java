@@ -47,6 +47,7 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+
 		/**
 		 * Triggers the deletion of a NoteBook.
 		 */
@@ -58,9 +59,9 @@ public class NotebookSelectionWindow {
 				notebooks.get(selection).delete();
 				updateList();
 			}
-
 		}
 	}
+
 
 	/**
 	 * Button to create a new NoteBook.
@@ -75,6 +76,7 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+
 		/**
 		 * Triggers the creation of a new NoteBook.
 		 */
@@ -86,9 +88,9 @@ public class NotebookSelectionWindow {
 				updateList();
 				openNotebook(newNoteBook);
 			}
-
 		}
 	}
+
 
 	/**
 	 * Button to open a NoteBook.
@@ -104,6 +106,7 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+
 		/**
 		 * Triggers the opening of a NoteBook, if one was selected.
 		 */
@@ -116,6 +119,7 @@ public class NotebookSelectionWindow {
 			}
 		}
 	}
+
 
 	/**
 	 * Button to enter the Scribble mode.
@@ -130,6 +134,7 @@ public class NotebookSelectionWindow {
 			addActionListener(this);
 		}
 
+
 		/**
 		 * Triggers the entering into scribble mode with a blank new temporary
 		 * NoteBook.
@@ -139,6 +144,7 @@ public class NotebookSelectionWindow {
 			openNotebook(new NoteBook(null));
 		}
 	}
+
 
 	/**
 	 * The size of newly created NoteBook instances.
@@ -151,15 +157,18 @@ public class NotebookSelectionWindow {
 	 */
 	private ButtonNew buttonNew = new ButtonNew();
 
+
 	/**
 	 * Button to handle opening of a NoteBook.
 	 */
 	private ButtonOpen buttonOpen = new ButtonOpen();
 
+
 	/**
 	 * Button to handle deletion of a NoteBook.
 	 */
 	private ButtonDelete buttonDelete = new ButtonDelete();
+
 
 	/**
 	 * Button to enter the scribble mode.
@@ -167,17 +176,18 @@ public class NotebookSelectionWindow {
 	private ButtonScribble buttonScribble = new ButtonScribble();
 
 
-
 	/**
 	 * Frame to display everything in.
 	 */
 	private JFrame frame;
+
 
 	/**
 	 * List that holds all the found NoteBook from the user's configuration
 	 * directory.
 	 */
 	private LinkedList<NoteBook> notebooks;
+
 
 	/**
 	 * String representations of the NoteBook items in the LinkedList.
@@ -354,7 +364,6 @@ public class NotebookSelectionWindow {
 				f.setLocation(0, 0);
 			}
 		}
-
 		f.setVisible(true);
 	}
 
@@ -365,6 +374,7 @@ public class NotebookSelectionWindow {
 	public void showDialog() {
 		frame.setVisible(true);
 	}
+
 
 	/**
 	 * Updates the list with NoteBook.

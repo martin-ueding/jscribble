@@ -11,10 +11,10 @@ import junit.framework.TestCase;
 
 
 public class NoteSheetTest extends TestCase {
-
 	public NoteSheetTest() {
 		super();
 	}
+
 
 	/**
 	 * Generates a temporary NoteSheet for testing.
@@ -22,6 +22,7 @@ public class NoteSheetTest extends TestCase {
 	private NoteSheet getTempNoteSheet() {
 		return new NoteSheet(new Dimension(1024, 600), 0, null);
 	}
+
 
 	/**
 	 * Tests whether drawing a line causes a change in color in the image.
@@ -37,6 +38,7 @@ public class NoteSheetTest extends TestCase {
 		assertFalse(rgbarray[0] == previousColor);
 	}
 
+
 	/**
 	 * Tests whether a new NoteSheet is untouched and does not need any saving.
 	 */
@@ -48,6 +50,7 @@ public class NoteSheetTest extends TestCase {
 		assertTrue(n.touched());
 		assertTrue(n.unsaved());
 	}
+
 
 	/**
 	 * Creates a single NoteSheet with an existing temporary file and tests

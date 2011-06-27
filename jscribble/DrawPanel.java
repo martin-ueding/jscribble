@@ -21,16 +21,23 @@ import jscribble.notebook.NoteBook;
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {
+	/**
+	 * A container for a key and help text.
+	 *
+	 * @author Martin Ueding <dev@martin-ueding.de>
+	 */
 	class HelpItem {
 		/**
 		 * The buttons(s) that cause some action.
 		 */
 		public String key;
 
+
 		/**
 		 * The action the buttons cause.
 		 */
 		public String helptext;
+
 
 		/**
 		 * Generates a new HelpItem.
@@ -39,40 +46,48 @@ public class DrawPanel extends JPanel {
 			this.key = key;
 			this.helptext = helptext;
 		}
-
-
 	}
+
 
 	/**
 	 * Color of the help lines.
 	 */
 	private static final Color lineColor = new Color(200, 200, 200);
 
+
 	/**
 	 * The spacing between the help lines.
 	 */
 	private static final int lineSpacing = 40;
+
 
 	/**
 	 * The NoteBook that is displayed.
 	 */
 	private NoteBook notebook;
 
+
 	/**
 	 * Handles the image output.
 	 */
 	private ImageObserver io = this;
+
 
 	/**
 	 * Whether helping lines are enabled.
 	 */
 	private boolean lines = false;
 
+
 	/**
 	 * Whether to display the help panel.
 	 */
 	private boolean showHelp = false;
 
+
+	/**
+	 * A list with all the HelpItem to display.
+	 */
 	private HelpItem[] helpItems = {
 		new HelpItem("h", "show help"),
 		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", "go forward"),
@@ -145,9 +160,7 @@ public class DrawPanel extends JPanel {
 
 			g2.setColor(Color.GRAY);
 			g.drawString(String.format("Version %s", VersionName.version), padding, getHeight() - padding);
-
 		}
-
 	}
 
 
@@ -159,12 +172,15 @@ public class DrawPanel extends JPanel {
 	public void setLines(boolean b) {
 		this.lines  = b;
 	}
+
+
 	/**
 	 * Sets whether the help dialog is displayed.
 	 */
 	public void setShowHelp(boolean showHelp) {
 		this.showHelp = showHelp;
 	}
+
 
 	/**
 	 * Whether to display the help panel.

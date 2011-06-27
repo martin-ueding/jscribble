@@ -59,7 +59,7 @@ public class NoteBook {
 
 
 	/**
-	 * Count of pages. Latest page number is pagecount.
+	 * Count of pages. Latest page number is page count.
 	 */
 	private int pagecount = 1;
 
@@ -70,6 +70,9 @@ public class NoteBook {
 	private int cacheWidth = 10;
 
 
+	/**
+	 * The name of this NoteBook. It is also the folder name.
+	 */
 	private String name;
 
 
@@ -339,7 +342,7 @@ public class NoteBook {
 
 	/**
 	 * Returns a string representation of the NoteBook, consisting of the name
-	 * and pagecount.
+	 * and page count.
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());

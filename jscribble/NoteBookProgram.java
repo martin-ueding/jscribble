@@ -16,8 +16,15 @@ import javax.swing.JOptionPane;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookProgram {
+	/**
+	 * Stream for the logfile.
+	 */
 	private static BufferedOutputStream outstream;
 
+
+	/**
+	 * The folder where everything is stored.
+	 */
 	private static File dotDir = new File(System.getProperty("user.home") + File.separator + ".jscribble");
 
 
@@ -31,14 +38,21 @@ public class NoteBookProgram {
 	}
 
 
+	/**
+	 * Getter for dotDir.
+	 */
 	public static File getDotDir() {
 		return dotDir;
 	}
 
 
+	/**
+	 * Returns the name of the program.
+	 */
 	private static String getProgramname() {
 		return "jscribble";
 	}
+
 
 	/**
 	 * Handles some error message centrally, right now it just displays a dialog box with the error message.
@@ -49,6 +63,10 @@ public class NoteBookProgram {
 		JOptionPane.showMessageDialog(null, errorMessage);
 	}
 
+
+	/**
+	 * Creates the logfile and initializes the stream.
+	 */
 	private static void initLogfileOutstream() {
 		try {
 			outstream = new BufferedOutputStream(new FileOutputStream(new File("/tmp/jscribble.log")));
@@ -120,5 +138,4 @@ public class NoteBookProgram {
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialog();
 	}
-
 }

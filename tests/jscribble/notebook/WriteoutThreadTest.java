@@ -11,10 +11,10 @@ import jscribble.notebook.WriteoutThread;
 import junit.framework.TestCase;
 
 public class WriteoutThreadTest extends TestCase {
-
 	public WriteoutThreadTest() {
 		super();
 	}
+
 
 	/**
 	 * Schedules a single task and tests whether it is written to disk.
@@ -57,4 +57,3 @@ public class WriteoutThreadTest extends TestCase {
 		assertFalse(outfile.exists());
 	}
 }
-

@@ -4,6 +4,9 @@ import java.io.File;
 import java.text.Collator;
 import java.util.Comparator;
 
+/**
+ * Compares two files.
+ */
 public class FileComparator implements Comparator<File> {
 	private Collator c = Collator.getInstance();
 

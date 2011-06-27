@@ -14,7 +14,6 @@ import javax.swing.JPanel;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Redrawer implements ActionListener {
-
 	/**
 	 * Panel which is to be redrawn.
 	 */

@@ -29,4 +29,3 @@ public class NoteSheetFileFilter implements FilenameFilter {
 		return p.matcher(fileBasename).matches();
 	}
 }
-
