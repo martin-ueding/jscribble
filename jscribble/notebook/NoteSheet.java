@@ -110,7 +110,6 @@ public class NoteSheet {
 
 	/**
 	 * Getter for the file of the image.
-	 * @return
 	 */
 	public File getFile() {
 		return imagefile;
