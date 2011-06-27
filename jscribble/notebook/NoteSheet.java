@@ -155,7 +155,7 @@ public class NoteSheet {
 	private void initNewImage() {
 		if (filename == null) {
 			try {
-				filename = File.createTempFile("jscribble-", ".png");
+				filename = File.createTempFile(NoteBookProgram.getProgramname() + "-", ".png");
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError("Could not create a temp file.");
