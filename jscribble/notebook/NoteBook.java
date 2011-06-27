@@ -5,14 +5,10 @@ package jscribble.notebook;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
-import java.util.Properties;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,7 +55,7 @@ public class NoteBook {
 	/**
 	 * Size of the individual NoteSheet.
 	 */
-	private Dimension noteSize;
+	private Dimension noteSize = new Dimension(1024, 600);
 
 
 	/**
@@ -80,17 +76,7 @@ public class NoteBook {
 	private int cacheWidth = 10;
 
 
-	/**
-	 * The name of the NoteBook. This is also used as a prefix for the file
-	 * names.
-	 */
 	private String name;
-
-	private File configFile;
-
-	private NoteBook() {
-		sheets = new LinkedList<NoteSheet>();
-	}
 
 
 	/**
@@ -100,49 +86,20 @@ public class NoteBook {
 	 * @param folder place to store images
 	 * @param name name of the NoteBook
 	 */
-	public NoteBook(Dimension noteSize, File folder, String name) {
-		this();
-		this.noteSize = noteSize;
+	public NoteBook(String name) {
+		sheets = new LinkedList<NoteSheet>();
 
-		this.folder = folder;
 		this.name = name;
 
 		// if a NoteBook should be used
-		if (folder != null && name != null) {
+		if (name != null) {
+			folder = new File(NoteBookProgram.getDotDir().getAbsolutePath() + File.separator + name);
 			loadImagesFromFolder();
 		}
-	}
-
-
-	/**
-	 * Creates a NoteBook with data read from a configuration file.
-	 */
-	public NoteBook(File configFile) {
-		this();
-		this.configFile = configFile;
-
-		Properties p = new Properties();
-		try {
-			p.loadFromXML(new FileInputStream(configFile));
-
-			noteSize = new Dimension(Integer.parseInt(p.getProperty("width")), Integer.parseInt(p.getProperty("height")));
-			folder = new File(p.getProperty("folder"));
-			name = p.getProperty("name");
+		else {
+			name = UUID.randomUUID().toString();
+			folder = new File(System.getProperty("java.io.tmpdir") + File.separator + name);
 		}
-		catch (InvalidPropertiesFormatException e) {
-			NoteBookProgram.handleError("The NoteBook config file is malformed.");
-			e.printStackTrace();
-		}
-		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError("The NoteBook config file could not be found.");
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError("IO during NoteBook config file loading.");
-			e.printStackTrace();
-		}
-
-		loadImagesFromFolder();
 	}
 
 
@@ -174,10 +131,7 @@ public class NoteBook {
 	 * Delete the NoteBook from the file system.
 	 */
 	public void deleteSure() {
-		if (configFile != null) {
-			configFile.delete();
-			configFile = null;
-		}
+		folder.delete();
 	}
 
 
@@ -185,7 +139,7 @@ public class NoteBook {
 	 * Draws a line onto the current sheet.
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
-		current.drawLine(x, y, x2, y2);
+		getCurrentSheet().drawLine(x, y, x2, y2);
 
 		fireDoneDrawing();
 	}
@@ -211,7 +165,7 @@ public class NoteBook {
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
 			try {
-				return new File(folder.getCanonicalPath() + File.separator + name + "-" + String.format("%06d", pagenumber) + ".png");
+				return new File(folder.getCanonicalPath() + File.separator + String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError("Could not determine path of NoteBook folder.");
@@ -222,15 +176,11 @@ public class NoteBook {
 	}
 
 
-	public File getConfigFile() {
-		return configFile;
-	}
-
-
 	/**
 	 * Gets the NoteSheet object which the currently open page of the NoteBook.
 	 */
 	public NoteSheet getCurrentSheet() {
+		addPageIfEmpty();
 		return sheets.get(currentSheet);
 	}
 
@@ -283,7 +233,7 @@ public class NoteBook {
 		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
 		}
-		else if (current.touched()) {
+		else if (getCurrentSheet().touched()) {
 			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
 			currentSheet++;
 
@@ -332,13 +282,13 @@ public class NoteBook {
 		}
 
 		// try to load all images that match the name
-		File[] allImages = folder.listFiles(new NoteSheetFileFilter(name));
+		File[] allImages = folder.listFiles(new NoteSheetFileFilter());
 
 		if (allImages != null && allImages.length > 0) {
 			Arrays.sort(allImages, new FileComparator());
 
 
-			Pattern p = Pattern.compile("\\D+-(\\d+)\\.png");
+			Pattern p = Pattern.compile("(\\d+)\\.png");
 
 			for (File file : allImages) {
 				String[] nameparts = file.getName().split(Pattern.quote(File.separator));
@@ -363,34 +313,6 @@ public class NoteBook {
 	private void quitWithWriteoutThread() {
 		sheets.getFirst().stopWriteoutThread();
 
-	}
-
-
-	/**
-	 * Persist this NoteBook in the configuration file.
-	 *
-	 * @param configdir folder where the config file goes
-	 */
-	public void saveToConfig(File configdir) {
-		//
-		Properties p = new Properties();
-		p.setProperty("width", String.valueOf(noteSize.width));
-		p.setProperty("height", String.valueOf(noteSize.height));
-		p.setProperty("folder", folder.getAbsolutePath());
-		p.setProperty("name", name);
-
-		try {
-			configFile = new File(configdir.getAbsolutePath() + File.separator + name + NoteBookProgram.configFileSuffix);
-			p.storeToXML(new FileOutputStream(configFile), NoteBookProgram.generatedComment());
-		}
-		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError("Could not find NoteBook config file for writing.");
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError("IO error while writing NoteBook config file.");
-			e.printStackTrace();
-		}
 	}
 
 

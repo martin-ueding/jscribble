@@ -43,16 +43,17 @@ public class NoteBookProgram {
 	static BufferedOutputStream outstream;
 
 	public static void log(String string, String format) {
-		try {
-			outstream.write((string + ":\t" + format + "\n").getBytes());
-		}
-		catch (IOException e) {
-			System.out.println(string + ":\t" + format);
-			e.printStackTrace();
-		}
-		catch (NullPointerException e) {
-			System.out.println(string + ":\t" + format);
-			e.printStackTrace();
+		String output = string + ":\t" + format;
+		System.out.println(output);
+
+		if (outstream != null) {
+			try {
+				outstream.write((output + "\n").getBytes());
+			}
+			catch (IOException e) {
+				System.out.println(output);
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -81,6 +82,12 @@ public class NoteBookProgram {
 		nsw.showDialog();
 
 		log(NoteBookProgram.class.getClass().getName(), "Entering interactive mode.");
+	}
+
+	private static File dotDir = new File(System.getProperty("user.home") + File.separator + ".jscribble");
+
+	public static File getDotDir() {
+		return dotDir;
 	}
 
 }

@@ -22,12 +22,6 @@ import jscribble.NoteBookProgram;
  */
 public class NoteSheet {
 	/**
-	 * whether to write debug messages while loading and writing NoteSheet.
-	 */
-	private static final boolean showLoadWriteMessages = true;
-
-
-	/**
 	 * Page number for the current page.
 	 */
 	private int pagenumber;
@@ -189,9 +183,8 @@ public class NoteSheet {
 	 */
 	public void loadFromFile() {
 		try {
-			if (showLoadWriteMessages) {
-				NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
-			}
+			NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
+
 			img = ImageIO.read(filename);
 		}
 		catch (FileNotFoundException e) {
@@ -213,9 +206,7 @@ public class NoteSheet {
 	public void saveToFile() {
 		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved") + ".");
 		if (touched && unsaved) {
-			if (showLoadWriteMessages) {
-				NoteBookProgram.log(getClass().getName(), String.format("Scheduling %s for writing.", filename.getAbsolutePath()));
-			}
+			NoteBookProgram.log(getClass().getName(), String.format("Scheduling %s for writing.", filename.getAbsolutePath()));
 
 
 			if (writethread == null || !writethread.isAlive()) {

@@ -2,9 +2,7 @@
 
 package tests.jscribble.notebook;
 
-import java.awt.Dimension;
 import java.io.File;
-import java.util.UUID;
 
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
@@ -21,7 +19,7 @@ public class NoteBookTest extends TestCase {
 	 * Creates a NoteBook stored in a temporary folder with a unique name.
 	 */
 	private NoteBook createTempNoteBook() {
-		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
+		return new NoteBook(null);
 	}
 
 	/**
@@ -38,9 +36,7 @@ public class NoteBookTest extends TestCase {
 	 * have one page less than before.
 	 */
 	public void testDeletionOfPictureFile() {
-		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
-		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
-		File outfile = nb.getConfigFile();
+		NoteBook nb = new NoteBook(null);
 
 		File[] filenames = new File[20];
 
@@ -63,7 +59,7 @@ public class NoteBookTest extends TestCase {
 		filenames[3].delete();
 		assertFalse(filenames[3].exists());
 
-		NoteBook reloaded = new NoteBook(outfile);
+		NoteBook reloaded = new NoteBook(nb.getName());
 
 		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
 
@@ -71,7 +67,6 @@ public class NoteBookTest extends TestCase {
 		for (File file : filenames) {
 			file.delete();
 		}
-		nb.getConfigFile().delete();
 	}
 
 	/**
@@ -122,13 +117,10 @@ public class NoteBookTest extends TestCase {
 	 */
 	public void testLoadFromConfig() {
 		NoteBook nb = createTempNoteBook();
-		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
 
-		File outfile = nb.getConfigFile();
-
-		NoteBook reloaded = new NoteBook(outfile);
+		NoteBook reloaded = new NoteBook(nb.getName());
 
 		assertEquals(nb.getName(), reloaded.getName());
 
@@ -137,9 +129,6 @@ public class NoteBookTest extends TestCase {
 
 		assertEquals(nb.getCurrentSheet().getFilename().getAbsolutePath(), reloaded.getCurrentSheet().getFilename().getAbsolutePath());
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
-
-		outfile.delete();
-		assertFalse(outfile.exists());
 	}
 
 	/**
@@ -229,18 +218,5 @@ public class NoteBookTest extends TestCase {
 	public void testUntouchedFirstPage() {
 		NoteBook nb = createTempNoteBook();
 		assertFalse(nb.getCurrentSheet().touched());
-	}
-
-	/**
-	 * Tests the writing to a configuration file and deleting it.
-	 */
-	public void testWritingToConfigFile() {
-		NoteBook nb = createTempNoteBook();
-		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
-		File outfile = nb.getConfigFile();
-		assertNotNull(outfile);
-		assertTrue(outfile.exists());
-		nb.deleteSure();
-		assertFalse(outfile.exists());
 	}
 }
