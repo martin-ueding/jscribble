@@ -104,9 +104,8 @@ public class NotebookSelectionWindow {
 		notebooks = findNotebooks();
 		openedNotebooks = new LinkedList<NoteBook>();
 
-		// TODO open NoteBook when double clicking on the list
-
 		myList = new JList(listModel);
+		myList.addMouseListener(new ListListener(this));
 
 		buttonNew = new JButton("New");
 		buttonNew.addActionListener(new NewActionListener(this));
