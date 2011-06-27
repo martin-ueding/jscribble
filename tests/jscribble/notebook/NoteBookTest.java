@@ -73,11 +73,33 @@ public class NoteBookTest extends TestCase {
 	}
 
 	/**
-	 * Tests whether an newly created NoteBook has zero sheets in it.
+	 * Tests whether an newly created NoteBook has zero sheets in it, even if you get the first (untouched) page.
 	 */
 	public void testEmptySheetCount() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals(0, nb.getSheetCount());
+		nb.getCurrentSheet();
+		assertEquals(0, nb.getSheetCount());
+	}
+
+	public void testGotoLast() {
+		NoteBook nb = createTempNoteBook();
+
+		nb.drawLine(0, 0, 0, 0);
+
+		int numAdvance = 30;
+
+		// Advance several pages.
+		for (int i = 0; i < numAdvance; i++) {
+			nb.goForward();
+			nb.drawLine(0, 0, 0, 0);
+			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
+		}
+
+		nb.gotoFirst();
+		assertEquals(1, nb.getCurrentSheet().getPagenumber());
+		nb.gotoLast();
+		assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
 	}
 
 	/**
@@ -93,6 +115,10 @@ public class NoteBookTest extends TestCase {
 
 		// Go one page forward.
 		nb.drawLine(0, 0, 0, 0);
+		nb.goForward();
+		assertEquals(2, nb.getCurrentSheet().getPagenumber());
+
+		// Try to go once more, which should not work
 		nb.goForward();
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
 
