@@ -155,6 +155,9 @@ public class NoteSheet {
 	}
 
 
+	/**
+	 * Generates a new image and allocates a temporary file if none was set.
+	 */
 	private void initNewImage() {
 		if (imagefile == null) {
 			try {
@@ -190,14 +193,13 @@ public class NoteSheet {
 	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
+		// If the image was scheduled for writing but not written now, force the thread to write it. If the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), "Image file does not exist.");
-
-			// if the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
 			stopWriteoutThread();
 		}
 
-
+		// If the file still does not exist, log it as an error.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), "Image file does not exist after stopping WriteoutThread.");
 		}
@@ -217,10 +219,12 @@ public class NoteSheet {
 			e.printStackTrace();
 		}
 
+		// The image *should* be loaded by now.
 		if (img == null) {
 			throw new NullPointerException("Could not load image from disk.");
 		}
 
+		// Since it was saved, it has to have some lines on it.
 		touched = true;
 	}
 
