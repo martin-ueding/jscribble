@@ -19,7 +19,7 @@ public class NoteBookProgram {
 	/**
 	 * Stream for the logfile.
 	 */
-	private static BufferedOutputStream outstream;
+	private static BufferedOutputStream logfileStream;
 
 
 	/**
@@ -69,7 +69,7 @@ public class NoteBookProgram {
 	 */
 	private static void initLogfileOutstream() {
 		try {
-			outstream = new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + "jscribble.log")));
+			logfileStream = new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + "jscribble.log")));
 		}
 		catch (FileNotFoundException e) {
 			handleError("Cannot create logfile.");
@@ -88,9 +88,9 @@ public class NoteBookProgram {
 		String output = reportingClass + ":\t" + message;
 		System.out.println(output);
 
-		if (outstream != null) {
+		if (logfileStream != null) {
 			try {
-				outstream.write((output + "\n").getBytes());
+				logfileStream.write((output + "\n").getBytes());
 			}
 			catch (IOException e) {
 				System.out.println(output);
