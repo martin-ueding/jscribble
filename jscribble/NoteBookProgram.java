@@ -2,6 +2,12 @@
 
 package jscribble;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -34,8 +40,20 @@ public class NoteBookProgram {
 		JOptionPane.showMessageDialog(null, string);
 	}
 
+	static BufferedOutputStream outstream;
+
 	public static void log(String string, String format) {
-		System.out.println(string + ":\t" + format);
+		try {
+			outstream.write((string + ":\t" + format + "\n").getBytes());
+		}
+		catch (IOException e) {
+			System.out.println(string + ":\t" + format);
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
+			System.out.println(string + ":\t" + format);
+			e.printStackTrace();
+		}
 	}
 
 
@@ -45,12 +63,24 @@ public class NoteBookProgram {
 	 * @param args ignored CLI arguments
 	 */
 	public static void main(String[] args) {
+		try {
+			outstream = new BufferedOutputStream(new FileOutputStream(new File("/tmp/jscribble.log")));
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		log(NoteBookProgram.class.getClass().getName(), "Starting up.");
+
 		if (args.length > 0 && args[0].equals("--version")) {
 			System.out.println("Version: " + VersionName.version);
 		}
 
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialog();
+
+		log(NoteBookProgram.class.getClass().getName(), "Entering interactive mode.");
 	}
 
 }
