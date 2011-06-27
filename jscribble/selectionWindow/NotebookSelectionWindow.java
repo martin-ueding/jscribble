@@ -93,7 +93,10 @@ public class NotebookSelectionWindow {
 	private DrawPanel panel;
 
 
-	protected LinkedList<NoteBook> openedNotebooks;
+	private LinkedList<NoteBook> openedNotebooks;
+
+
+	private DefaultListModel listModel = new DefaultListModel();
 
 
 	/**
@@ -152,11 +155,6 @@ public class NotebookSelectionWindow {
 	}
 
 
-	private void updateOpenButton() {
-		buttonOpen.setEnabled(notebooks.size() > 0);
-	}
-
-
 	/**
 	 * Creates a new NoteBook and prompts the user for a name and folder to
 	 * save the images in. A config file is automatically created in the config
@@ -180,6 +178,21 @@ public class NotebookSelectionWindow {
 
 		NoteBook nb = new NoteBook(nickname);
 		return nb;
+	}
+
+
+	/**
+	 * Deletes the currently selected NoteBook in the list.
+	 */
+	protected void deleteEvent() {
+		int selection = myList.getSelectedIndex();
+
+		if (selection >= 0) {
+			notebooks.get(selection).delete();
+
+			listModel.remove(selection);
+			updateOpenButton();
+		}
 	}
 
 
@@ -212,6 +225,32 @@ public class NotebookSelectionWindow {
 		}
 
 		return notebooks;
+	}
+
+
+	/**
+	 * Creates a new NoteBook.
+	 */
+	protected void newEvent() {
+		NoteBook newNoteBook = createNewNotebook();
+		if (newNoteBook != null) {
+			notebooks.add(newNoteBook);
+			listModel.addElement(newNoteBook);
+			updateOpenButton();
+			openNotebook(newNoteBook);
+		}
+	}
+
+
+	/**
+	 * Opens the currently selected NoteBook in the list.
+	 */
+	protected void openEvent() {
+		int selection = myList.getSelectedIndex();
+
+		if (selection >= 0) {
+			openNotebook(notebooks.get(selection));
+		}
 	}
 
 
@@ -297,6 +336,14 @@ public class NotebookSelectionWindow {
 
 
 	/**
+	 * Starts a scribble mode NoteBook.
+	 */
+	protected void scribbleEvent() {
+		openNotebook(new NoteBook(null));
+	}
+
+
+	/**
 	 * Displays the dialogue.
 	 */
 	public void showDialog() {
@@ -304,43 +351,8 @@ public class NotebookSelectionWindow {
 	}
 
 
-	private DefaultListModel listModel = new DefaultListModel();
-
-
-	protected void deleteEvent() {
-		int selection = myList.getSelectedIndex();
-
-		if (selection >= 0) {
-			notebooks.get(selection).delete();
-
-			listModel.remove(selection);
-			updateOpenButton();
-		}
-	}
-
-
-	protected void openEvent() {
-		int selection = myList.getSelectedIndex();
-
-		if (selection >= 0) {
-			openNotebook(notebooks.get(selection));
-		}
-	}
-
-
-	protected void newEvent() {
-		NoteBook newNoteBook = createNewNotebook();
-		if (newNoteBook != null) {
-			notebooks.add(newNoteBook);
-			listModel.addElement(newNoteBook);
-			updateOpenButton();
-			openNotebook(newNoteBook);
-		}
-	}
-
-
-	protected void scribbleEvent() {
-		openNotebook(new NoteBook(null));
+	private void updateOpenButton() {
+		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 }
 
