@@ -61,6 +61,7 @@ public class NotebookSelectionWindow {
 				notebooks.get(selection).delete();
 
 				listModel.remove(selection);
+				updateOpenButton();
 			}
 		}
 	}
@@ -89,6 +90,7 @@ public class NotebookSelectionWindow {
 			if (newNoteBook != null) {
 				notebooks.add(newNoteBook);
 				listModel.addElement(newNoteBook);
+				updateOpenButton();
 				openNotebook(newNoteBook);
 			}
 		}
@@ -204,12 +206,16 @@ public class NotebookSelectionWindow {
 	private DrawPanel panel;
 
 
+	protected LinkedList<NoteBook> openedNotebooks;
+
+
 	/**
 	 * Creates a new window to select NoteBook from. It automatically searches
 	 * the user's configuration directory for NoteBook configuration files.
 	 */
 	public NotebookSelectionWindow() {
 		notebooks = findNotebooks();
+		openedNotebooks = new LinkedList<NoteBook>();
 
 		// TODO open NoteBook when double clicking on the list
 
@@ -233,7 +239,24 @@ public class NotebookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(WindowEvent winEvt) {
+				for (NoteBook notebook : openedNotebooks) {
 
+
+					notebook.saveToFiles();
+					NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
+				}
+				frame.setVisible(false);
+			}
+		});
+
+
+		updateOpenButton();
+	}
+
+
+	private void updateOpenButton() {
 		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 
@@ -302,6 +325,8 @@ public class NotebookSelectionWindow {
 	 * @param notebook NoteBook to open
 	 */
 	private void openNotebook(final NoteBook notebook) {
+		openedNotebooks.add(notebook);
+
 		final JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
