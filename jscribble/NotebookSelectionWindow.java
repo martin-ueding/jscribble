@@ -295,15 +295,15 @@ public class NotebookSelectionWindow {
 	 * @param notebook NoteBook to open
 	 */
 	private void openNotebook(final NoteBook notebook) {
-		JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
+		final JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
 				notebook.saveToFiles();
-				NoteBookProgram.log(getClass().getName(), "Shutting down.");
-				System.exit(0);
+				NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
+				f.setVisible(false);
 			}
 		});
 
