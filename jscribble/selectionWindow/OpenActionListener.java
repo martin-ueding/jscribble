@@ -1,3 +1,5 @@
+// Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
 package jscribble.selectionWindow;
 
 import java.awt.event.ActionEvent;
