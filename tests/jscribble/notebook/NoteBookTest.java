@@ -100,15 +100,17 @@ public class NoteBookTest extends TestCase {
 		nb.goBackwards();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 
+		int numAdvance = 30;
+
 		// Advance several pages.
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < numAdvance; i++) {
 			nb.goForward();
 			nb.drawLine(0, 0, 0, 0);
 			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
 		}
 
 		// Go back again
-		for (int i = 15; i > 0; i--) {
+		for (int i = numAdvance; i > 0; i--) {
 			nb.goBackwards();
 			nb.drawLine(0, 0, 0, 0);
 			assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());

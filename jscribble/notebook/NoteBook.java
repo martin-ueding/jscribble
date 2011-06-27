@@ -184,6 +184,9 @@ public class NoteBook {
 	 */
 	public NoteSheet getCurrentSheet() {
 		addPageIfEmpty();
+		if (currentSheet < 0 || currentSheet >= sheets.size()) {
+			NoteBookProgram.log(getClass().getName(), "IndexOutOfBounds");
+		}
 		return sheets.get(currentSheet);
 	}
 

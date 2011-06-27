@@ -103,10 +103,8 @@ public class NoteSheet {
 		touched = true;
 		unsaved = true;
 
-		Graphics2D graphics = getGraphics();
-
-		graphics.setColor(new Color(0, 0, 0));
-		graphics.drawLine(x, y, x2, y2);
+		getGraphics().setColor(new Color(0, 0, 0));
+		getGraphics().drawLine(x, y, x2, y2);
 	}
 
 
@@ -120,7 +118,11 @@ public class NoteSheet {
 	 */
 	private Graphics2D getGraphics() {
 		if (graphics == null) {
-			graphics = (Graphics2D)(getImg().getGraphics());
+			BufferedImage im = getImg();
+			if (im == null) {
+				NoteBookProgram.log(getClass().getName(), "BufferedImage is null.");
+			}
+			graphics = (Graphics2D)(im.getGraphics());
 			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		}
 
@@ -134,6 +136,9 @@ public class NoteSheet {
 	public BufferedImage getImg() {
 		if (isSwapped()) {
 			loadFromFile();
+		}
+		if (img == null) {
+			throw new NullPointerException("Could not load image from disk.");
 		}
 		return img;
 	}
@@ -182,6 +187,13 @@ public class NoteSheet {
 	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
+		if (!filename.exists()) {
+			NoteBookProgram.log(getClass().getName(), "Image file does not exist.");
+		}
+
+		// if the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
+		stopWriteoutThread();
+
 		try {
 			NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
 
@@ -194,6 +206,10 @@ public class NoteSheet {
 		catch (IOException e) {
 			NoteBookProgram.handleError("Could not read the note sheet image.");
 			e.printStackTrace();
+		}
+
+		if (img == null) {
+			throw new NullPointerException("Could not load image from disk.");
 		}
 
 		touched = true;
@@ -217,6 +233,7 @@ public class NoteSheet {
 
 		// remove the image from the memory
 		img = null;
+		graphics = null;
 
 		unsaved = false;
 	}
