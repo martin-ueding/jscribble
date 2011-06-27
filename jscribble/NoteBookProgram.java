@@ -64,6 +64,11 @@ public class NoteBookProgram {
 	 * @param args ignored CLI arguments
 	 */
 	public static void main(String[] args) {
+		if (args.length > 0 && args[0].equals("--version")) {
+			System.out.println("Version: " + VersionName.version);
+			System.exit(0);
+		}
+
 		try {
 			outstream = new BufferedOutputStream(new FileOutputStream(new File("/tmp/jscribble.log")));
 		}
@@ -72,16 +77,18 @@ public class NoteBookProgram {
 			e.printStackTrace();
 		}
 
-		log(NoteBookProgram.class.getClass().getName(), "Starting up.");
+		log(getProgramname(), "Starting up.");
 
-		if (args.length > 0 && args[0].equals("--version")) {
-			System.out.println("Version: " + VersionName.version);
-		}
+
 
 		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
 		nsw.showDialog();
 
 		log(NoteBookProgram.class.getClass().getName(), "Entering interactive mode.");
+	}
+
+	private static String getProgramname() {
+		return "jscribble";
 	}
 
 	private static File dotDir = new File(System.getProperty("user.home") + File.separator + ".jscribble");
