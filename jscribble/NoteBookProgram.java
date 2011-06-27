@@ -69,10 +69,10 @@ public class NoteBookProgram {
 	 */
 	private static void initLogfileOutstream() {
 		try {
-			outstream = new BufferedOutputStream(new FileOutputStream(new File("/tmp/jscribble.log")));
+			outstream = new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + "jscribble.log")));
 		}
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			handleError("Cannot create logfile.");
 			e.printStackTrace();
 		}
 	}
