@@ -3,8 +3,11 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class
-	jar -cfm jscribble.jar manifest.txt $(shell find . -name "*.class")
+jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist
+	jar -cfm jscribble.jar manifest.txt @classlist
+
+classlist: $(shell find jscribble -name "*.class")
+	find jscribble -name "*.class" -print > classlist
 
 all: jscribble.jar javadoc/.javadoc html/.doxygen
 
