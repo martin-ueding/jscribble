@@ -47,12 +47,6 @@ public class NoteBook {
 
 
 	/**
-	 * The currently opened page -- actual object.
-	 */
-	private NoteSheet current;
-
-
-	/**
 	 * Size of the individual NoteSheet.
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
@@ -219,7 +213,6 @@ public class NoteBook {
 			}
 
 			currentSheet--;
-			updateCurrrentItem();
 			fireDoneDrawing();
 		}
 	}
@@ -248,7 +241,6 @@ public class NoteBook {
 			sheets.get(currentSheet - cacheWidth).saveToFile();
 		}
 
-		updateCurrrentItem();
 		fireDoneDrawing();
 	}
 
@@ -258,7 +250,6 @@ public class NoteBook {
 	 */
 	public void gotoFirst() {
 		currentSheet = 0;
-		updateCurrrentItem();
 		fireDoneDrawing();
 	}
 
@@ -268,7 +259,6 @@ public class NoteBook {
 	 */
 	public void gotoLast() {
 		currentSheet = Math.max(0, sheets.size() - 1);
-		updateCurrrentItem();
 		fireDoneDrawing();
 	}
 
@@ -301,9 +291,6 @@ public class NoteBook {
 			}
 			pagecount++;
 		}
-
-
-		updateCurrrentItem();
 	}
 
 
@@ -344,18 +331,5 @@ public class NoteBook {
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
-	}
-
-
-	/**
-	 * If the index of the current item was changed, the object reference needs
-	 * to be updated as well. This method does just that.
-	 */
-	private void updateCurrrentItem() {
-		addPageIfEmpty();
-		if (currentSheet < 0 || currentSheet >= sheets.size()) {
-			throw new IndexOutOfBoundsException(String.format("Index error with NoteBook \"%s\", Index %d of %s", name, currentSheet, sheets.size()));
-		}
-		current = sheets.get(currentSheet);
 	}
 }
