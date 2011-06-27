@@ -187,12 +187,18 @@ public class NoteSheet {
 	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
-		if (!filename.exists()) {
+		if (!filename.exists() || filename.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), "Image file does not exist.");
+
+			// if the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
+			stopWriteoutThread();
 		}
 
-		// if the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
-		stopWriteoutThread();
+
+		if (!filename.exists() || filename.length() == 0L) {
+			NoteBookProgram.log(getClass().getName(), "Image file does not exist after stopping WriteoutThread.");
+		}
+
 
 		try {
 			NoteBookProgram.log(getClass().getName(), String.format("loading %s", filename.getAbsolutePath()));
