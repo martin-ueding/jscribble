@@ -3,6 +3,7 @@
 package tests.jscribble.notebook;
 
 import java.io.File;
+import java.util.UUID;
 
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
@@ -36,7 +37,7 @@ public class NoteBookTest extends TestCase {
 	 * have one page less than before.
 	 */
 	public void testDeletionOfPictureFile() {
-		NoteBook nb = new NoteBook(null);
+		NoteBook nb = new NoteBook(UUID.randomUUID().toString());
 
 		File[] filenames = new File[20];
 
@@ -67,6 +68,8 @@ public class NoteBookTest extends TestCase {
 		for (File file : filenames) {
 			file.delete();
 		}
+
+		nb.deleteSure();
 	}
 
 	/**
@@ -116,7 +119,7 @@ public class NoteBookTest extends TestCase {
 	 * Tests whether a reloaded NoteBook is the same as the saved one.
 	 */
 	public void testLoadFromConfig() {
-		NoteBook nb = createTempNoteBook();
+		NoteBook nb = new NoteBook(UUID.randomUUID().toString());
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
 
@@ -129,6 +132,8 @@ public class NoteBookTest extends TestCase {
 
 		assertEquals(nb.getCurrentSheet().getFilename().getAbsolutePath(), reloaded.getCurrentSheet().getFilename().getAbsolutePath());
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
+
+		nb.deleteSure();
 	}
 
 	/**
@@ -169,7 +174,8 @@ public class NoteBookTest extends TestCase {
 		assertTrue(current.getFilename().exists());
 		assertNotSame(0, current.getFilename().length());
 		current = nb.getCurrentSheet();
-		assertFalse(current.getFilename().exists());
+		assertTrue(current.getFilename().exists());
+		assertNotSame(0, current.getFilename().length());
 	}
 
 	/**
@@ -179,8 +185,8 @@ public class NoteBookTest extends TestCase {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
 		nb.saveToFiles();
-		assertFalse(current.getFilename().exists());
-		//assertSame(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
+		assertTrue(current.getFilename().exists());
+		assertEquals(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
 	}
 
 	/**

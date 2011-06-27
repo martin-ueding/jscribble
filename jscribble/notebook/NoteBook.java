@@ -125,7 +125,16 @@ public class NoteBook {
 	 * Delete the NoteBook from the file system.
 	 */
 	public void deleteSure() {
+		File[] subfiles = folder.listFiles();
+		for (File file : subfiles) {
+			file.delete();
+		}
+
 		folder.delete();
+
+		if (folder.exists()) {
+			NoteBookProgram.log(getClass().getName(), "Could not delete folder.");
+		}
 	}
 
 
