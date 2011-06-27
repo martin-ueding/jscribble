@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -245,18 +247,29 @@ public class NotebookSelectionWindow {
 	 * @return the new NoteBook
 	 */
 	private NoteBook createNewNotebook() {
-		String nickname = JOptionPane.showInputDialog("Nickname of your Notebook:");
+		String nickname = null;
+		Pattern p = Pattern.compile("[A-Za-z0-9-_]+");
 
-		if (nickname == null) {
-			return null;
+		do {
+			nickname = JOptionPane.showInputDialog("Nickname of your Notebook: (please only use characters, numbers, _ and -)");
+
+			Matcher m = p.matcher(nickname);
+			if (m != null && m.matches()) {
+				break;
+			}
+
 		}
+		while (nickname != null);
 
-		// TODO clean up name for use as file name
+
 
 		NoteBook nb = new NoteBook(nickname);
 
 		return nb;
 	}
+
+
+
 
 
 	/**
