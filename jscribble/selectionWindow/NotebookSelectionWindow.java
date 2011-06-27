@@ -7,12 +7,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -139,17 +134,7 @@ public class NotebookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent winEvt) {
-				for (NoteBook notebook : openedNotebooks) {
-
-
-					notebook.saveToFiles();
-					NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
-				}
-				frame.setVisible(false);
-			}
-		});
+		frame.addWindowListener(new CloseEverythingAdapter(openedNotebooks, frame));
 
 
 		updateOpenButton();
@@ -206,14 +191,7 @@ public class NotebookSelectionWindow {
 		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
 
 		if (NoteBookProgram.getDotDir().exists()) {
-			File[] folders = NoteBookProgram.getDotDir().listFiles(new FilenameFilter() {
-
-				@Override
-				public boolean accept(File arg0, String arg1) {
-					return arg0.isDirectory();
-				}
-
-			});
+			File[] folders = NoteBookProgram.getDotDir().listFiles(new FolderFilter());
 
 			for (File folder : folders) {
 				NoteBook justfound = new NoteBook(folder.getName());
@@ -267,51 +245,14 @@ public class NotebookSelectionWindow {
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 
-		f.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent winEvt) {
-				notebook.saveToFiles();
-				NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
-				f.setVisible(false);
-			}
-		});
+		f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
 
 
 		panel = new DrawPanel(notebook);
 		f.add(panel);
 
 
-		f.addKeyListener(new KeyListener() {
-			public void keyPressed(KeyEvent arg0) {}
-
-			public void keyReleased(KeyEvent ev) {
-				if (ev.getKeyChar() == 'j' ||
-				        ev.getKeyCode() == KeyEvent.VK_DOWN ||
-				        ev.getKeyCode() == KeyEvent.VK_RIGHT ||
-				        ev.getKeyCode() == KeyEvent.VK_SPACE ||
-				ev.getKeyCode() == KeyEvent.VK_ENTER) {
-					notebook.goForward();
-				}
-
-				if (ev.getKeyChar() == 'k' ||
-				        ev.getKeyCode() == KeyEvent.VK_UP ||
-				        ev.getKeyCode() == KeyEvent.VK_LEFT ||
-				ev.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					notebook.goBackwards();
-				}
-
-				if (ev.getKeyChar() == 'f' ||
-				ev.getKeyCode() == KeyEvent.VK_HOME) {
-					notebook.gotoFirst();
-				}
-
-				if (ev.getKeyChar() == 'l' ||
-				ev.getKeyCode() == KeyEvent.VK_END) {
-					notebook.gotoLast();
-				}
-			}
-
-			public void keyTyped(KeyEvent arg0) {}
-		});
+		f.addKeyListener(new MovementListener(notebook));
 
 		notebook.gotoLast();
 
