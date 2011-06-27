@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
 
-public final class CloseEverythingAdapter extends WindowAdapter {
+class CloseEverythingAdapter extends WindowAdapter {
 	private LinkedList<NoteBook> openedNotebooks;
 	private JFrame frame;
 

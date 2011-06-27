@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
 
-public final class NoteBookClosingAdapter extends WindowAdapter {
+class NoteBookClosingAdapter extends WindowAdapter {
 	private final NoteBook notebook;
 	private final JFrame f;
 

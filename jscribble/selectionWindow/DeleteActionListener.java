@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class DeleteActionListener implements ActionListener {
+class DeleteActionListener implements ActionListener {
 	private NotebookSelectionWindow window;
 
 	public DeleteActionListener(NotebookSelectionWindow window) {

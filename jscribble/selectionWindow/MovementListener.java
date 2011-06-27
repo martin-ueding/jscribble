@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 import jscribble.notebook.NoteBook;
 
-public final class MovementListener implements KeyListener {
+class MovementListener implements KeyListener {
 	private final NoteBook notebook;
 
 	public MovementListener(NoteBook notebook) {

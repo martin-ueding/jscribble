@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class NewActionListener implements ActionListener {
+class NewActionListener implements ActionListener {
 	private NotebookSelectionWindow window;
 
 	public NewActionListener(NotebookSelectionWindow window) {

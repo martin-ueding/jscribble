@@ -5,7 +5,7 @@ package jscribble.selectionWindow;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListListener extends MouseAdapter {
+class ListListener extends MouseAdapter {
 	private NotebookSelectionWindow window;
 
 	public ListListener(NotebookSelectionWindow window) {

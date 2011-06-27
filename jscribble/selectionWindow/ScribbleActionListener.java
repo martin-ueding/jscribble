@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class ScribbleActionListener implements ActionListener {
+class ScribbleActionListener implements ActionListener {
 	private NotebookSelectionWindow window;
 
 	public ScribbleActionListener(NotebookSelectionWindow window) {
