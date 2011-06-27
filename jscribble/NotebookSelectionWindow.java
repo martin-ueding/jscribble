@@ -257,19 +257,12 @@ public class NotebookSelectionWindow {
 			if (m != null && m.matches()) {
 				break;
 			}
-
 		}
 		while (nickname != null);
 
-
-
 		NoteBook nb = new NoteBook(nickname);
-
 		return nb;
 	}
-
-
-
 
 
 	/**
