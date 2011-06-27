@@ -1,14 +1,12 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-package jscribble;
+package jscribble.selectionWindow;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -26,6 +24,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import jscribble.ColonListener;
+import jscribble.DrawPanel;
+import jscribble.NoteBookProgram;
+import jscribble.Redrawer;
 import jscribble.notebook.NoteBook;
 
 /**
@@ -37,121 +39,6 @@ import jscribble.notebook.NoteBook;
  */
 public class NotebookSelectionWindow {
 	/**
-	 * Button to delete a NoteBook.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonDelete extends JButton implements ActionListener {
-		ButtonDelete() {
-			setText("Delete");
-
-			addActionListener(this);
-		}
-
-
-		/**
-		 * Triggers the deletion of a NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			int selection = myList.getSelectedIndex();
-
-			if (selection >= 0) {
-				notebooks.get(selection).delete();
-
-				listModel.remove(selection);
-				updateOpenButton();
-			}
-		}
-	}
-
-
-	/**
-	 * Button to create a new NoteBook.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonNew extends JButton implements ActionListener {
-		ButtonNew() {
-			setText("New");
-
-			addActionListener(this);
-		}
-
-
-		/**
-		 * Triggers the creation of a new NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			NoteBook newNoteBook = createNewNotebook();
-			if (newNoteBook != null) {
-				notebooks.add(newNoteBook);
-				listModel.addElement(newNoteBook);
-				updateOpenButton();
-				openNotebook(newNoteBook);
-			}
-		}
-	}
-
-
-	/**
-	 * Button to open a NoteBook.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonOpen extends JButton implements ActionListener {
-		ButtonOpen() {
-			setText("Open");
-			setEnabled(false);
-
-			addActionListener(this);
-		}
-
-
-		/**
-		 * Triggers the opening of a NoteBook, if one was selected.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			int selection = myList.getSelectedIndex();
-
-			if (selection >= 0) {
-				openNotebook(notebooks.get(selection));
-			}
-		}
-	}
-
-
-	/**
-	 * Button to enter the Scribble mode.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	@SuppressWarnings("serial")
-	private class ButtonScribble extends JButton implements ActionListener {
-		public ButtonScribble() {
-			setText("Scribble");
-
-			addActionListener(this);
-		}
-
-
-		/**
-		 * Triggers the entering into scribble mode with a blank new temporary
-		 * NoteBook.
-		 */
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			openNotebook(new NoteBook(null));
-		}
-	}
-
-
-	/**
 	 * The size of newly created NoteBook instances.
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
@@ -160,25 +47,25 @@ public class NotebookSelectionWindow {
 	/**
 	 * Button to handle creation of a new NoteBook.
 	 */
-	private ButtonNew buttonNew = new ButtonNew();
+	private JButton buttonNew;
 
 
 	/**
 	 * Button to handle opening of a NoteBook.
 	 */
-	private ButtonOpen buttonOpen = new ButtonOpen();
+	private JButton buttonOpen;
 
 
 	/**
 	 * Button to handle deletion of a NoteBook.
 	 */
-	private ButtonDelete buttonDelete = new ButtonDelete();
+	private JButton buttonDelete;
 
 
 	/**
 	 * Button to enter the scribble mode.
 	 */
-	private ButtonScribble buttonScribble = new ButtonScribble();
+	private JButton buttonScribble;
 
 
 	/**
@@ -220,6 +107,16 @@ public class NotebookSelectionWindow {
 		// TODO open NoteBook when double clicking on the list
 
 		myList = new JList(listModel);
+
+		buttonNew = new JButton("New");
+		buttonNew.addActionListener(new NewActionListener(this));
+		buttonOpen = new JButton("Open");
+		buttonOpen.addActionListener(new OpenActionListener(this));
+		buttonDelete = new JButton("Delete");
+		buttonDelete.addActionListener(new DeleteActionListener(this));
+		buttonScribble = new JButton("Scribble");
+		buttonScribble.addActionListener(new ScribbleActionListener(this));
+
 
 		GridLayout gl = new GridLayout(1, 4);
 		JPanel buttonPanel = new JPanel(gl);
@@ -409,5 +306,42 @@ public class NotebookSelectionWindow {
 
 
 	private DefaultListModel listModel = new DefaultListModel();
+
+
+	protected void deleteEvent() {
+		int selection = myList.getSelectedIndex();
+
+		if (selection >= 0) {
+			notebooks.get(selection).delete();
+
+			listModel.remove(selection);
+			updateOpenButton();
+		}
+	}
+
+
+	protected void openEvent() {
+		int selection = myList.getSelectedIndex();
+
+		if (selection >= 0) {
+			openNotebook(notebooks.get(selection));
+		}
+	}
+
+
+	protected void newEvent() {
+		NoteBook newNoteBook = createNewNotebook();
+		if (newNoteBook != null) {
+			notebooks.add(newNoteBook);
+			listModel.addElement(newNoteBook);
+			updateOpenButton();
+			openNotebook(newNoteBook);
+		}
+	}
+
+
+	protected void scribbleEvent() {
+		openNotebook(new NoteBook(null));
+	}
 }
 

@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import jscribble.selectionWindow.NotebookSelectionWindow;
+
 /**
  * The main program.
  *
