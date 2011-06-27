@@ -409,6 +409,7 @@ public class NotebookSelectionWindow {
 		f.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent winEvt) {
 				notebook.saveToFiles();
+				NoteBookProgram.log(getClass().getName(), "Shutting down.");
 				System.exit(0);
 			}
 		});
