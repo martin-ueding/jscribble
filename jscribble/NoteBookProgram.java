@@ -43,10 +43,10 @@ public class NoteBookProgram {
 	/**
 	 * Handles some error message centrally, right now it just displays a dialog box with the error message.
 	 *
-	 * @param string error message
+	 * @param errorMessage error message
 	 */
-	public static void handleError(String string) {
-		JOptionPane.showMessageDialog(null, string);
+	public static void handleError(String errorMessage) {
+		JOptionPane.showMessageDialog(null, errorMessage);
 	}
 
 	private static void initLogfileOutstream() {
@@ -63,11 +63,11 @@ public class NoteBookProgram {
 	/**
 	 * Writes a message to a log file.
 	 *
-	 * @param string name of the reporting class
-	 * @param format message
+	 * @param reportingClass name of the reporting class
+	 * @param message message
 	 */
-	public static void log(String string, String format) {
-		String output = string + ":\t" + format;
+	public static void log(String reportingClass, String message) {
+		String output = reportingClass + ":\t" + message;
 		System.out.println(output);
 
 		if (outstream != null) {
