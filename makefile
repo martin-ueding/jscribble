@@ -4,18 +4,18 @@ javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class
-	jar -cfm jscribble.jar manifest.txt */*.class */*/*.class
+	jar -cfm jscribble.jar manifest.txt $(shell find . -name "*.class")
 
 all: jscribble.jar javadoc/.javadoc html/.doxygen
 
 jscribble/NoteBookProgram.class: $(javafiles)
 	javac jscribble/NoteBookProgram.java
 
-javadoc/.javadoc: *.java
+javadoc/.javadoc: $(javafiles)
 	javadoc -d javadoc $(javafiles)
 	touch javadoc/.javadoc
 
-html/.doxygen: *.java
+html/.doxygen: $(javafiles)
 	doxygen
 	touch html/.doxygen
 
