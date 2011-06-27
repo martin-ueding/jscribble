@@ -128,7 +128,15 @@ public class NoteBook {
 	 * Delete the NoteBook from the file system.
 	 */
 	public void deleteSure() {
+		if (folder == null) {
+			return;
+		}
+
 		File[] subfiles = folder.listFiles();
+		if (subfiles == null) {
+			return;
+		}
+
 		for (File file : subfiles) {
 			file.delete();
 		}

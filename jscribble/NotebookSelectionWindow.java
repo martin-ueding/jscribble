@@ -14,11 +14,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -59,7 +59,8 @@ public class NotebookSelectionWindow {
 
 			if (selection >= 0) {
 				notebooks.get(selection).delete();
-				updateList();
+
+				listModel.remove(selection);
 			}
 		}
 	}
@@ -87,7 +88,7 @@ public class NotebookSelectionWindow {
 			NoteBook newNoteBook = createNewNotebook();
 			if (newNoteBook != null) {
 				notebooks.add(newNoteBook);
-				updateList();
+				listModel.addElement(newNoteBook);
 				openNotebook(newNoteBook);
 			}
 		}
@@ -192,12 +193,6 @@ public class NotebookSelectionWindow {
 
 
 	/**
-	 * String representations of the NoteBook items in the LinkedList.
-	 */
-	private String[] listData;
-
-
-	/**
 	 * List GUI Element to display the NoteBook items in.
 	 */
 	private JList myList;
@@ -217,7 +212,8 @@ public class NotebookSelectionWindow {
 		notebooks = findNotebooks();
 
 		// TODO open NoteBook when double clicking on the list
-		updateList();
+
+		myList = new JList(listModel);
 
 		GridLayout gl = new GridLayout(1, 4);
 		JPanel buttonPanel = new JPanel(gl);
@@ -236,6 +232,9 @@ public class NotebookSelectionWindow {
 		frame.setLocationRelativeTo(null);
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 
 
@@ -284,7 +283,9 @@ public class NotebookSelectionWindow {
 			});
 
 			for (File folder : folders) {
-				notebooks.add(new NoteBook(folder.getName()));
+				NoteBook justfound = new NoteBook(folder.getName());
+				notebooks.add(justfound);
+				listModel.addElement(justfound);
 			}
 		}
 		else {
@@ -382,25 +383,6 @@ public class NotebookSelectionWindow {
 	}
 
 
-	/**
-	 * Updates the list with NoteBook.
-	 */
-	private void updateList() {
-		// FIXME really update the list if it is changed
-		listData = new String[notebooks.size()];
-		int j = 0;
-		for (Iterator<NoteBook> iterator = notebooks.iterator(); iterator.hasNext(); j++) {
-			NoteBook noteBook = (NoteBook) iterator.next();
-			listData[j] = noteBook.toString();
-		}
-
-
-		myList = new JList(listData);
-		if (myList != null && myList.isShowing()) {
-			myList.repaint();
-		}
-
-		buttonOpen.setEnabled(notebooks.size() > 0);
-	}
+	private DefaultListModel listModel = new DefaultListModel();
 }
 
