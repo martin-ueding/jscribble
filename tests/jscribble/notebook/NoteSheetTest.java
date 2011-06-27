@@ -50,7 +50,8 @@ public class NoteSheetTest extends TestCase {
 	}
 
 	/**
-	 * Creates a single NoteSheet with an existing temporary file and tests whether it is untouched and does not need any saving.
+	 * Creates a single NoteSheet with an existing temporary file and tests
+	 * whether it is untouched and does not need any saving.
 	 */
 	public void testTouchedWithEmptyTempfile() {
 		try {

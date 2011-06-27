@@ -16,6 +16,9 @@ public class WriteoutThreadTest extends TestCase {
 		super();
 	}
 
+	/**
+	 * Schedules a single task and tests whether it is written to disk.
+	 */
 	public void testSingleWriteout() {
 		WriteoutThread wt = new WriteoutThread();
 
@@ -53,5 +56,5 @@ public class WriteoutThreadTest extends TestCase {
 		outfile.delete();
 		assertFalse(outfile.exists());
 	}
-
 }
+

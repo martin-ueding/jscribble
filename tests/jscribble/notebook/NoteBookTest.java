@@ -17,15 +17,26 @@ public class NoteBookTest extends TestCase {
 		super();
 	}
 
+	/**
+	 * Creates a NoteBook stored in a temporary folder with a unique name.
+	 */
 	private NoteBook createTempNoteBook() {
 		return new NoteBook(new Dimension(100, 100), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
 	}
 
+	/**
+	 * Tests whether the current sheet of a new NoteBook is not null.
+	 */
 	public void testCurrentSheet() {
 		NoteBook nb = createTempNoteBook();
 		assertNotNull(nb.getCurrentSheet());
 	}
 
+	/**
+	 * Creates a NoteBook with many pages and deletes one of them. The NoteBook
+	 * is then reloaded from the configuration file. The NoteBook should now
+	 * have one page less than before.
+	 */
 	public void testDeletionOfPictureFile() {
 		NoteBook nb = new NoteBook(new Dimension(10, 10), new File(System.getProperty("java.io.tmpdir")), UUID.randomUUID().toString());
 		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
@@ -63,11 +74,17 @@ public class NoteBookTest extends TestCase {
 		nb.getConfigFile().delete();
 	}
 
+	/**
+	 * Tests whether an newly created NoteBook has zero sheets in it.
+	 */
 	public void testEmptySheetCount() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals(0, nb.getSheetCount());
 	}
 
+	/**
+	 * Tests the forward and backward functions in the NoteBook.
+	 */
 	public void testGoBackwards() {
 		NoteBook nb = createTempNoteBook();
 
@@ -100,6 +117,9 @@ public class NoteBookTest extends TestCase {
 		}
 	}
 
+	/**
+	 * Tests whether a reloaded NoteBook is the same as the saved one.
+	 */
 	public void testLoadFromConfig() {
 		NoteBook nb = createTempNoteBook();
 		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
@@ -134,6 +154,10 @@ public class NoteBookTest extends TestCase {
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
 	}
 
+	/**
+	 * Tests whether saving the NoteBook actually creates image files. This
+	 * test draws a line onto the first page.
+	 */
 	public void testSavingAfterDrawing() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
@@ -143,6 +167,10 @@ public class NoteBookTest extends TestCase {
 		assertNotSame(0, current.getFilename().length());
 	}
 
+	/**
+	 * Tests whether saving the NoteBook actually creates image files. This
+	 * test draws a line and advances one page. It should only save one file.
+	 */
 	public void testSavingAfterDrawingAndAdvance() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
@@ -155,6 +183,9 @@ public class NoteBookTest extends TestCase {
 		assertFalse(current.getFilename().exists());
 	}
 
+	/**
+	 * Tests whether saving a new NoteBook without any lines creates no files.
+	 */
 	public void testSavingAfterNew() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
@@ -163,6 +194,11 @@ public class NoteBookTest extends TestCase {
 		//assertSame(String.format("File %s should be empty.", current.getFilename().getAbsolutePath()), 0, current.getFilename().length());
 	}
 
+	/**
+	 * Tests whether saving the NoteBook actually creates image files. This
+	 * test draws a line on page one and two and checks whether two pages are
+	 * created.
+	 */
 	public void testSavingAfterTwoDrawingAndAdvance() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
@@ -177,17 +213,27 @@ public class NoteBookTest extends TestCase {
 		assertNotSame(0, current.getFilename().length());
 	}
 
+	/**
+	 * Checks whether a new NoteBook with a line on the first page has one
+	 * page.
+	 */
 	public void testSheetCountAfterFirstLine() {
 		NoteBook nb = createTempNoteBook();
 		nb.drawLine(1, 1, 2, 2);
 		assertEquals(1, nb.getSheetCount());
 	}
 
+	/**
+	 * Tests whether a new NoteBook has an untouched first page.
+	 */
 	public void testUntouchedFirstPage() {
 		NoteBook nb = createTempNoteBook();
 		assertFalse(nb.getCurrentSheet().touched());
 	}
 
+	/**
+	 * Tests the writing to a configuration file and deleting it.
+	 */
 	public void testWritingToConfigFile() {
 		NoteBook nb = createTempNoteBook();
 		nb.saveToConfig(new File(System.getProperty("java.io.tmpdir")));
