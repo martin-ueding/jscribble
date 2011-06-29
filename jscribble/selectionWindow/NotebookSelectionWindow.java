@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 
 import jscribble.ColonListener;
 import jscribble.DrawPanel;
+import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 import jscribble.Redrawer;
 import jscribble.notebook.NoteBook;
@@ -106,13 +107,13 @@ public class NotebookSelectionWindow {
 		myList = new JList(listModel);
 		myList.addMouseListener(new ListListener(this));
 
-		buttonNew = new JButton("New");
+		buttonNew = new JButton(Localizer.get("New"));
 		buttonNew.addActionListener(new NewActionListener(this));
-		buttonOpen = new JButton("Open");
+		buttonOpen = new JButton(Localizer.get("Open"));
 		buttonOpen.addActionListener(new OpenActionListener(this));
-		buttonDelete = new JButton("Delete");
+		buttonDelete = new JButton(Localizer.get("Delete"));
 		buttonDelete.addActionListener(new DeleteActionListener(this));
-		buttonScribble = new JButton("Scribble");
+		buttonScribble = new JButton(Localizer.get("Scribble"));
 		buttonScribble.addActionListener(new ScribbleActionListener(this));
 
 
@@ -153,7 +154,7 @@ public class NotebookSelectionWindow {
 		Pattern p = Pattern.compile("[A-Za-z0-9-_]+");
 
 		do {
-			nickname = JOptionPane.showInputDialog("Nickname of your Notebook: (please only use characters, numbers, _ and -)");
+			nickname = JOptionPane.showInputDialog(Localizer.get("Nickname of your Notebook: (please only use characters, numbers, _ and -)"));
 
 			Matcher m = p.matcher(nickname);
 			if (m != null && m.matches()) {
@@ -241,7 +242,7 @@ public class NotebookSelectionWindow {
 	private void openNotebook(final NoteBook notebook) {
 		openedNotebooks.add(notebook);
 
-		final JFrame f = new JFrame(String.format("Notebook \"%s\"", notebook.getName()));
+		final JFrame f = new JFrame(String.format(Localizer.get("Notebook \"%s\""), notebook.getName()));
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 

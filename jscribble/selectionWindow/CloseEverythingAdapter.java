@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
+import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 import jscribble.notebook.NoteBook;
 
@@ -25,7 +26,7 @@ class CloseEverythingAdapter extends WindowAdapter {
 	public void windowClosing(WindowEvent winEvt) {
 		for (NoteBook notebook : openedNotebooks) {
 			notebook.saveToFiles();
-			NoteBookProgram.log(getClass().getName(), String.format("Closing NoteBook \"%s\".", notebook.getName()));
+			NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Closing NoteBook \"%s\"."), notebook.getName()));
 		}
 		frame.setVisible(false);
 	}

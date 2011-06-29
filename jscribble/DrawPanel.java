@@ -89,12 +89,12 @@ public class DrawPanel extends JPanel {
 	 * A list with all the HelpItem to display.
 	 */
 	private HelpItem[] helpItems = {
-		new HelpItem("h", "show help"),
-		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", "go forward"),
-		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", "go backward"),
-		new HelpItem("f, <Pos1>", "goto first"),
-		new HelpItem("l, <End", "goto last"),
-		new HelpItem("<Alt-F4> / <CMD-Q>", "save & exit")
+		new HelpItem("h", Localizer.get("show help")),
+		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", Localizer.get("go forward")),
+		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", Localizer.get("go backward")),
+		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
+		new HelpItem("l, <End", Localizer.get("goto last")),
+		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit"))
 
 	};
 
@@ -141,7 +141,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		g2.setColor(Color.BLUE);
-		g2.drawString(String.format("Page %d/%d", notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
+		g2.drawString(String.format(Localizer.get("Page %d/%d"), notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
 
 		if (showHelp) {
 			g2.setColor(new Color(0, 0, 0, 200));
@@ -159,7 +159,7 @@ public class DrawPanel extends JPanel {
 			}
 
 			g2.setColor(Color.GRAY);
-			g.drawString(String.format("Version %s", VersionName.version), padding, getHeight() - padding);
+			g.drawString(String.format(Localizer.get("Version %s"), VersionName.version), padding, getHeight() - padding);
 		}
 	}
 

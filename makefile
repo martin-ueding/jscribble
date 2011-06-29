@@ -9,7 +9,10 @@ jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classl
 classlist: $(shell find jscribble -name "*.class")
 	find jscribble -name "*.class" -print > classlist
 
-all: jscribble.jar javadoc/.javadoc html/.doxygen
+all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
+
+jscribble.pot: $(javafiles)
+	xgettext -o jscribble.pot -k"Localizer.get" $(javafiles)
 
 jscribble/NoteBookProgram.class: $(javafiles)
 	javac jscribble/NoteBookProgram.java

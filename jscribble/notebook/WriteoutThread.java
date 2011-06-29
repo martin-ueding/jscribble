@@ -9,6 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.imageio.ImageIO;
 
+import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 
 /**
@@ -58,25 +59,25 @@ public class WriteoutThread extends Thread {
 				}
 
 				if (task.getImg() != null) {
-					NoteBookProgram.log(getClass().getName(), String.format("Writing %s.", task.getOutfile().getAbsolutePath()));
+					NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Writing %s."), task.getOutfile().getAbsolutePath()));
 					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
 				}
 			}
 			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError("Could not find the file to write.");
+				NoteBookProgram.handleError(Localizer.get("Could not find the file to write."));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError("IO error while saving the note image.");
+				NoteBookProgram.handleError(Localizer.get("IO error while saving the note image."));
 				e.printStackTrace();
 			}
 			catch (InterruptedException e1) {
-				NoteBookProgram.handleError("Writing thread was interupted.");
+				NoteBookProgram.handleError(Localizer.get("Writing thread was interupted."));
 				e1.printStackTrace();
 			}
 		}
 
-		NoteBookProgram.log(getClass().getName(), "thread dies");
+		NoteBookProgram.log(getClass().getName(), Localizer.get("Thread dies."));
 	}
 
 
@@ -90,7 +91,7 @@ public class WriteoutThread extends Thread {
 			tasks.put(t);
 		}
 		catch (InterruptedException e) {
-			NoteBookProgram.handleError("Interrupted while scheduling a disk write task.");
+			NoteBookProgram.handleError(Localizer.get("Interrupted while scheduling a disk write task."));
 			e.printStackTrace();
 		}
 	}

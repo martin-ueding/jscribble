@@ -74,7 +74,7 @@ public class NoteBookProgram {
 			logfileStream = new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("java.io.tmpdir") + File.separator + NoteBookProgram.getProgramname() + ".log")));
 		}
 		catch (FileNotFoundException e) {
-			handleError("Cannot create logfile.");
+			handleError(Localizer.get("Cannot create logfile."));
 			e.printStackTrace();
 		}
 	}
@@ -112,11 +112,11 @@ public class NoteBookProgram {
 
 		initLogfileOutstream();
 
-		log(getProgramname(), "Starting up.");
+		log(getProgramname(), Localizer.get("Starting up."));
 
 		showSelectionWindow();
 
-		log(NoteBookProgram.class.getClass().getName(), "Entering interactive mode.");
+		log(NoteBookProgram.class.getClass().getName(), Localizer.get("Entering interactive mode."));
 	}
 
 
@@ -127,7 +127,7 @@ public class NoteBookProgram {
 	 */
 	private static void printVersionIfNeeded(String[] args) {
 		if (args.length > 0 && args[0].equals("--version")) {
-			System.out.println("Version: " + VersionName.version);
+			System.out.println(String.format(Localizer.get("Version: %s"), VersionName.version));
 			System.exit(0);
 		}
 	}
