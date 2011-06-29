@@ -217,39 +217,45 @@ public class NoteSheet {
 			stopWriteoutThread();
 		}
 
-		// If the file still does not exist, log it as an error.
+		// If the file still does not exist, it has not been written out.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), Localizer.get(
 			            "Image file does not exist after stopping WriteoutThread."
 			        ));
+
+			initNewImage();
 		}
 
+		// If the file exists, load it up.
+		else {
 
-		try {
-			NoteBookProgram.log(getClass().getName(),
-			        String.format(Localizer.get("Loading %s."),
-			                imagefile.getAbsolutePath()));
 
-			img = ImageIO.read(imagefile);
-		}
-		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError(Localizer.get(
-			            "Could not find the note sheet image."));
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			NoteBookProgram.handleError(Localizer.get(
-			            "Could not read the note sheet image."));
-			e.printStackTrace();
-		}
+			try {
+				NoteBookProgram.log(getClass().getName(),
+				        String.format(Localizer.get("Loading %s."),
+				                imagefile.getAbsolutePath()));
 
-		// The image *should* be loaded by now.
-		if (img == null) {
-			throw new NullPointerException("Could not load image from disk.");
-		}
+				img = ImageIO.read(imagefile);
+			}
+			catch (FileNotFoundException e) {
+				NoteBookProgram.handleError(Localizer.get(
+				            "Could not find the note sheet image."));
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				NoteBookProgram.handleError(Localizer.get(
+				            "Could not read the note sheet image."));
+				e.printStackTrace();
+			}
 
-		// Since it was saved, it has to have some lines on it.
-		touched = true;
+			// The image *should* be loaded by now.
+			if (img == null) {
+				throw new NullPointerException("Could not load image from disk.");
+			}
+
+			// Since it was saved, it has to have some lines on it.
+			touched = true;
+		}
 	}
 
 
