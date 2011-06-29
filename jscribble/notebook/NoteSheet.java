@@ -16,7 +16,9 @@ import javax.imageio.ImageIO;
 import jscribble.NoteBookProgram;
 
 /**
- * Represents a single note sheet.
+ * Represents a single note sheet. A NoteSheet consist a grayscale image. The
+ * image is displayed, allowing the user to paint on it. Each image has its
+ * individual file name that is used automatically.
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
