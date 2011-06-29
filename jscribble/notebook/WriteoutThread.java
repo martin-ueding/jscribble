@@ -43,9 +43,9 @@ public class WriteoutThread extends Thread {
 
 
 	/**
-	 * Works on the queue with tasks. The thread waits for the next task. If you
-	 * want to terminate the thread when the queue is empty, you have to push an
-	 * empty Task Object into the queue.
+	 * Works on the queue with tasks. The thread waits for the next task. If
+	 * you want to terminate the thread when the queue is empty, you have to
+	 * push an empty Task Object into the queue.
 	 */
 	public void run() {
 		ImageSwapTask task;
@@ -59,25 +59,32 @@ public class WriteoutThread extends Thread {
 				}
 
 				if (task.getImg() != null) {
-					NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Writing %s."), task.getOutfile().getAbsolutePath()));
-					ImageIO.write(task.getImg(), "png", new FileOutputStream(task.getOutfile()));
+					NoteBookProgram.log(getClass().getName(),
+					        String.format(Localizer.get("Writing %s."),
+					                task.getOutfile().getAbsolutePath()));
+					ImageIO.write(task.getImg(), "png", new
+					        FileOutputStream(task.getOutfile()));
 				}
 			}
 			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError(Localizer.get("Could not find the file to write."));
+				NoteBookProgram.handleError(Localizer.get(
+				            "Could not find the file to write."));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get("IO error while saving the note image."));
+				NoteBookProgram.handleError(Localizer.get(
+				            "IO error while saving the note image."));
 				e.printStackTrace();
 			}
 			catch (InterruptedException e1) {
-				NoteBookProgram.handleError(Localizer.get("Writing thread was interupted."));
+				NoteBookProgram.handleError(Localizer.get(
+				            "Writing thread was interupted."));
 				e1.printStackTrace();
 			}
 		}
 
-		NoteBookProgram.log(getClass().getName(), Localizer.get("Thread dies."));
+		NoteBookProgram.log(getClass().getName(),
+		        Localizer.get("Thread dies."));
 	}
 
 
@@ -91,7 +98,8 @@ public class WriteoutThread extends Thread {
 			tasks.put(t);
 		}
 		catch (InterruptedException e) {
-			NoteBookProgram.handleError(Localizer.get("Interrupted while scheduling a disk write task."));
+			NoteBookProgram.handleError(Localizer.get(
+			            "Interrupted while scheduling a disk write task."));
 			e.printStackTrace();
 		}
 	}

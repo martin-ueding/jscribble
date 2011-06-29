@@ -36,7 +36,8 @@ public class WriteoutThreadTest extends TestCase {
 		assertEquals(0L, outfile.length());
 
 
-		wt.schedule(new ImageSwapTask(new BufferedImage(10, 10, BufferedImage.TYPE_BYTE_GRAY), outfile));
+		wt.schedule(new ImageSwapTask(new BufferedImage(10, 10,
+		            BufferedImage.TYPE_BYTE_GRAY), outfile));
 
 		assertTrue(wt.isAlive());
 
@@ -57,3 +58,4 @@ public class WriteoutThreadTest extends TestCase {
 		assertFalse(outfile.exists());
 	}
 }
+

@@ -17,7 +17,7 @@ class CloseEverythingAdapter extends WindowAdapter {
 	private JFrame frame;
 
 	public CloseEverythingAdapter(LinkedList<NoteBook> openedNotebooks,
-	                              JFrame frame) {
+	        JFrame frame) {
 		super();
 		this.openedNotebooks = openedNotebooks;
 		this.frame = frame;
@@ -26,7 +26,9 @@ class CloseEverythingAdapter extends WindowAdapter {
 	public void windowClosing(WindowEvent winEvt) {
 		for (NoteBook notebook : openedNotebooks) {
 			notebook.saveToFiles();
-			NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Closing NoteBook \"%s\"."), notebook.getName()));
+			NoteBookProgram.log(getClass().getName(),
+			        String.format(Localizer.get("Closing NoteBook \"%s\"."),
+			                notebook.getName()));
 		}
 		frame.setVisible(false);
 	}

@@ -135,7 +135,8 @@ public class NotebookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.addWindowListener(new CloseEverythingAdapter(openedNotebooks, frame));
+		frame.addWindowListener(new CloseEverythingAdapter(openedNotebooks,
+		        frame));
 
 
 		updateOpenButton();
@@ -154,7 +155,9 @@ public class NotebookSelectionWindow {
 		Pattern p = Pattern.compile("[A-Za-z0-9-_]+");
 
 		do {
-			nickname = JOptionPane.showInputDialog(Localizer.get("Nickname of your Notebook: (please only use characters, numbers, _ and -)"));
+			nickname = JOptionPane.showInputDialog(Localizer.get(
+			        "Nickname of your Notebook:" + " " +
+			        "(please only use characters, numbers, _ and -)"));
 
 			Matcher m = p.matcher(nickname);
 			if (m != null && m.matches()) {
@@ -192,7 +195,8 @@ public class NotebookSelectionWindow {
 		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
 
 		if (NoteBookProgram.getDotDir().exists()) {
-			File[] folders = NoteBookProgram.getDotDir().listFiles(new FolderFilter());
+			File[] folders = NoteBookProgram.getDotDir().listFiles(new
+			        FolderFilter());
 
 			for (File folder : folders) {
 				NoteBook justfound = new NoteBook(folder.getName());
@@ -242,7 +246,8 @@ public class NotebookSelectionWindow {
 	private void openNotebook(final NoteBook notebook) {
 		openedNotebooks.add(notebook);
 
-		final JFrame f = new JFrame(String.format(Localizer.get("Notebook \"%s\""), notebook.getName()));
+		final JFrame f = new JFrame(String.format(Localizer.get(
+		            "Notebook \"%s\""), notebook.getName()));
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 
@@ -264,7 +269,8 @@ public class NotebookSelectionWindow {
 
 
 		if (Toolkit.getDefaultToolkit().getScreenSize().equals(noteSize)) {
-			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.
+			        getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
 			if (myDevice.isFullScreenSupported()) {
 				f.setUndecorated(true);

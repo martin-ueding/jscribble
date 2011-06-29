@@ -90,8 +90,10 @@ public class DrawPanel extends JPanel {
 	 */
 	private HelpItem[] helpItems = {
 		new HelpItem("h", Localizer.get("show help")),
-		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>", Localizer.get("go forward")),
-		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>", Localizer.get("go backward")),
+		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>",
+		Localizer.get("go forward")),
+		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",
+		Localizer.get("go backward")),
 		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
 		new HelpItem("l, <End", Localizer.get("goto last")),
 		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit"))
@@ -123,7 +125,9 @@ public class DrawPanel extends JPanel {
 	 */
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
-		g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		g2.setRenderingHints(new
+		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+		                RenderingHints.VALUE_ANTIALIAS_ON));
 
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 
@@ -141,11 +145,14 @@ public class DrawPanel extends JPanel {
 		}
 
 		g2.setColor(Color.BLUE);
-		g2.drawString(String.format(Localizer.get("Page %d/%d"), notebook.getCurrentSheet().getPagenumber(), notebook.getSheetCount()), getWidth() / 2, 15);
+		g2.drawString(String.format(Localizer.get("Page %d/%d"),
+		        notebook.getCurrentSheet().getPagenumber(),
+		        notebook.getSheetCount()), getWidth() / 2, 15);
 
 		if (showHelp) {
 			g2.setColor(new Color(0, 0, 0, 200));
-			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20, 20);
+			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
+			        20);
 			g2.setColor(Color.WHITE);
 
 			int i = 0;
@@ -154,12 +161,14 @@ public class DrawPanel extends JPanel {
 			int padding = 70;
 			for (HelpItem h : helpItems) {
 				g2.drawString(h.helptext, padding, i * vspacing + padding);
-				g2.drawString(h.key, spacing + padding, i * vspacing + padding);
+				g2.drawString(h.key, spacing + padding, i * vspacing +
+				        padding);
 				i++;
 			}
 
 			g2.setColor(Color.GRAY);
-			g.drawString(String.format(Localizer.get("Version %s"), VersionName.version), padding, getHeight() - padding);
+			g.drawString(String.format(Localizer.get("Version %s"),
+			        VersionName.version), padding, getHeight() - padding);
 		}
 	}
 

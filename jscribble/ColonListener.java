@@ -74,7 +74,8 @@ public class ColonListener implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		if (arg0.getKeyChar() == ':') {
-			String command = JOptionPane.showInputDialog(Localizer.get("Command:"));
+			String command =
+			    JOptionPane.showInputDialog(Localizer.get("Command:"));
 
 			if (command.equals("lines")) {
 				panel.setLines(true);

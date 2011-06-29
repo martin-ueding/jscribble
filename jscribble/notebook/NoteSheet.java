@@ -86,13 +86,16 @@ public class NoteSheet {
 		this.pagenumber = pagenumber;
 		this.imagefile = infile;
 
-		// If no filename or a filename that does not exist yet is given or the file is empty (like a newly created temporary file), a new
-		// image needs to be created.
-		if (imagefile == null || !imagefile.exists() || imagefile.length() == 0) {
+		// If no filename or a filename that does not exist yet is given or the
+		// file is empty (like a newly created temporary file), a new image
+		// needs to be created.
+		if (imagefile == null || !imagefile.exists() || imagefile.length() ==
+		        0) {
 			initNewImage();
 		}
 
-		// If this branch is reached, then a image file does exist and it is not empty. This sheet has something drawn on it then.
+		// If this branch is reached, then a image file does exist and it is
+		// not empty. This sheet has something drawn on it then.
 		else {
 			touched = true;
 		}
@@ -126,10 +129,13 @@ public class NoteSheet {
 		if (graphics == null) {
 			BufferedImage im = getImg();
 			if (im == null) {
-				NoteBookProgram.log(getClass().getName(), Localizer.get("BufferedImage is null."));
+				NoteBookProgram.log(getClass().getName(),
+				        Localizer.get("BufferedImage is null."));
 			}
 			graphics = (Graphics2D)(im.getGraphics());
-			graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+			graphics.setRenderingHints(new
+			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+			                RenderingHints.VALUE_ANTIALIAS_ON));
 		}
 
 		return graphics;
@@ -144,7 +150,8 @@ public class NoteSheet {
 			loadFromFile();
 		}
 		if (img == null) {
-			throw new NullPointerException(Localizer.get("Could not load image from disk."));
+			throw new NullPointerException(Localizer.get(
+			            "Could not load image from disk."));
 		}
 		return img;
 	}
@@ -164,15 +171,19 @@ public class NoteSheet {
 	private void initNewImage() {
 		if (imagefile == null) {
 			try {
-				imagefile = File.createTempFile(NoteBookProgram.getProgramname() + "-", ".png");
+				imagefile =
+				    File.createTempFile(NoteBookProgram.getProgramname() + "-",
+				            ".png");
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get("Could not create a temp file."));
+				NoteBookProgram.handleError(Localizer.get(
+				            "Could not create a temp file."));
 				e.printStackTrace();
 			}
 		}
 
-		img = new BufferedImage(noteSize.width, noteSize.height, BufferedImage.TYPE_BYTE_GRAY);
+		img = new BufferedImage(noteSize.width, noteSize.height,
+		        BufferedImage.TYPE_BYTE_GRAY);
 
 		graphics = getGraphics();
 		graphics.setColor(new Color(255, 255, 255));
@@ -196,29 +207,39 @@ public class NoteSheet {
 	 * Loads the image from file. Everything else is left intact.
 	 */
 	public void loadFromFile() {
-		// If the image was scheduled for writing but not written now, force the thread to write it. If the file is empty, then the WriteoutThread did not get a change to write the file yet. Join with the thread.
+		// If the image was scheduled for writing but not written now, force
+		// the thread to write it. If the file is empty, then the
+		// WriteoutThread did not get a change to write the file yet. Join with
+		// the thread.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
-			NoteBookProgram.log(getClass().getName(), Localizer.get("Image file does not exist."));
+			NoteBookProgram.log(getClass().getName(),
+			        Localizer.get("Image file does not exist."));
 			stopWriteoutThread();
 		}
 
 		// If the file still does not exist, log it as an error.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
-			NoteBookProgram.log(getClass().getName(), Localizer.get("Image file does not exist after stopping WriteoutThread."));
+			NoteBookProgram.log(getClass().getName(), Localizer.get(
+			            "Image file does not exist after stopping WriteoutThread."
+			        ));
 		}
 
 
 		try {
-			NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Loading %s."), imagefile.getAbsolutePath()));
+			NoteBookProgram.log(getClass().getName(),
+			        String.format(Localizer.get("Loading %s."),
+			                imagefile.getAbsolutePath()));
 
 			img = ImageIO.read(imagefile);
 		}
 		catch (FileNotFoundException e) {
-			NoteBookProgram.handleError(Localizer.get("Could not find the note sheet image."));
+			NoteBookProgram.handleError(Localizer.get(
+			            "Could not find the note sheet image."));
 			e.printStackTrace();
 		}
 		catch (IOException e) {
-			NoteBookProgram.handleError(Localizer.get("Could not read the note sheet image."));
+			NoteBookProgram.handleError(Localizer.get(
+			            "Could not read the note sheet image."));
 			e.printStackTrace();
 		}
 
@@ -233,13 +254,18 @@ public class NoteSheet {
 
 
 	/**
-	 * Saves the picture to a PNG file. The image is then removed from the heap.
+	 * Saves the picture to a PNG file. The image is then removed from the
+	 * heap.
 	 */
 	public void saveToFile() {
 		// TODO i18n
-		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber + " is " + (touched ? "touched" : "untouched") + " and " + (unsaved ? "unsaved" : "saved") + ".");
+		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber +
+		        " is " + (touched ? "touched" : "untouched") + " and " +
+		        (unsaved ? "unsaved" : "saved") + ".");
 		if (touched && unsaved) {
-			NoteBookProgram.log(getClass().getName(), String.format(Localizer.get("Scheduling %s for writing."), imagefile.getAbsolutePath()));
+			NoteBookProgram.log(getClass().getName(), String.format(
+			            Localizer.get("Scheduling %s for writing."),
+			            imagefile.getAbsolutePath()));
 
 
 			if (writethread == null || !writethread.isAlive()) {
@@ -268,7 +294,8 @@ public class NoteSheet {
 			}
 		}
 		catch (InterruptedException e) {
-			NoteBookProgram.handleError(Localizer.get("WriteThread was interrupted."));
+			NoteBookProgram.handleError(Localizer.get(
+			            "WriteThread was interrupted."));
 			e.printStackTrace();
 		}
 	}

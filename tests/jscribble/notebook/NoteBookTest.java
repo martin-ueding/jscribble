@@ -57,7 +57,8 @@ public class NoteBookTest extends TestCase {
 
 		// delete a file from the notebook
 		for (File file : filenames) {
-			assertTrue(String.format("File %s should exist.", file.getAbsolutePath()), file.exists());
+			assertTrue(String.format("File %s should exist.",
+			           file.getAbsolutePath()), file.exists());
 		}
 		filenames[3].delete();
 		assertFalse(filenames[3].exists());
@@ -66,7 +67,8 @@ public class NoteBookTest extends TestCase {
 
 		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
 
-		NoteBookProgram.log(getClass().getName(), "Trying to delete test files.");
+		NoteBookProgram.log(getClass().getName(),
+		        "Trying to delete test files.");
 		for (File file : filenames) {
 			file.delete();
 		}
@@ -76,7 +78,8 @@ public class NoteBookTest extends TestCase {
 
 
 	/**
-	 * Tests whether an newly created NoteBook has zero sheets in it, even if you get the first (untouched) page.
+	 * Tests whether an newly created NoteBook has zero sheets in it, even if
+	 * you get the first (untouched) page.
 	 */
 	public void testEmptySheetCount() {
 		NoteBook nb = createTempNoteBook();
@@ -164,7 +167,8 @@ public class NoteBookTest extends TestCase {
 		nb.gotoFirst();
 		reloaded.gotoFirst();
 
-		assertEquals(nb.getCurrentSheet().getFile().getAbsolutePath(), reloaded.getCurrentSheet().getFile().getAbsolutePath());
+		assertEquals(nb.getCurrentSheet().getFile().getAbsolutePath(),
+		        reloaded.getCurrentSheet().getFile().getAbsolutePath());
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
 
 		nb.deleteSure();
@@ -224,7 +228,9 @@ public class NoteBookTest extends TestCase {
 		NoteSheet current = nb.getCurrentSheet();
 		nb.saveToFiles();
 		assertTrue(current.getFile().exists());
-		assertEquals(String.format("File %s should be empty.", current.getFile().getAbsolutePath()), 0, current.getFile().length());
+		assertEquals(String.format("File %s should be empty.",
+		        current.getFile().getAbsolutePath()), 0,
+		        current.getFile().length());
 	}
 
 

@@ -91,12 +91,14 @@ public class NoteBook {
 
 		// if a NoteBook should be used
 		if (name != null) {
-			folder = new File(NoteBookProgram.getDotDir().getAbsolutePath() + File.separator + name);
+			folder = new File(NoteBookProgram.getDotDir().getAbsolutePath() +
+			        File.separator + name);
 			loadImagesFromFolder();
 		}
 		else {
 			name = UUID.randomUUID().toString();
-			folder = new File(System.getProperty("java.io.tmpdir") + File.separator + name);
+			folder = new File(System.getProperty("java.io.tmpdir") +
+			        File.separator + name);
 		}
 	}
 
@@ -106,7 +108,8 @@ public class NoteBook {
 	 */
 	private void addPageIfEmpty() {
 		if (sheets.size() == 0) {
-			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
+			sheets.add(new NoteSheet(noteSize, pagecount,
+			           generateNextFilename(pagecount)));
 			pagecount++;
 			currentSheet = 0;
 		}
@@ -117,7 +120,10 @@ public class NoteBook {
 	 * Asks the user to delete the NoteBook.
 	 */
 	public void delete() {
-		int answer = JOptionPane.showConfirmDialog(null, String.format(Localizer.get("Do you really want to delete \"%s\"?"), name), Localizer.get("Really delete?"), JOptionPane.YES_NO_OPTION);
+		int answer = JOptionPane.showConfirmDialog(null, String.format(
+		            Localizer.get("Do you really want to delete \"%s\"?"),
+		            name), Localizer.get("Really delete?"),
+		        JOptionPane.YES_NO_OPTION);
 
 		if (answer == 0) {
 			deleteSure();
@@ -145,7 +151,8 @@ public class NoteBook {
 		folder.delete();
 
 		if (folder.exists()) {
-			NoteBookProgram.log(getClass().getName(), Localizer.get("Could not delete folder."));
+			NoteBookProgram.log(getClass().getName(),
+			        Localizer.get("Could not delete folder."));
 		}
 	}
 
@@ -180,10 +187,12 @@ public class NoteBook {
 	private File generateNextFilename(int pagenumber) {
 		if (folder != null && name != null) {
 			try {
-				return new File(folder.getCanonicalPath() + File.separator + String.format("%06d", pagenumber) + ".png");
+				return new File(folder.getCanonicalPath() + File.separator +
+				        String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get("Could not determine path of NoteBook folder."));
+				NoteBookProgram.handleError(Localizer.get(
+				            "Could not determine path of NoteBook folder."));
 				e.printStackTrace();
 			}
 		}
@@ -251,7 +260,8 @@ public class NoteBook {
 			currentSheet++;
 		}
 		else if (getCurrentSheet().touched()) {
-			sheets.add(new NoteSheet(noteSize, pagecount, generateNextFilename(pagecount)));
+			sheets.add(new NoteSheet(noteSize, pagecount,
+			           generateNextFilename(pagecount)));
 			currentSheet++;
 
 			pagecount++;
@@ -305,12 +315,15 @@ public class NoteBook {
 			Pattern p = Pattern.compile("(\\d+)\\.png");
 
 			for (File file : allImages) {
-				String[] nameparts = file.getName().split(Pattern.quote(File.separator));
+				String[] nameparts =
+				    file.getName().split(Pattern.quote(File.separator));
 				String basename = nameparts[nameparts.length-1];
 				Matcher m = p.matcher(basename);
 				if (m.matches()) {
-					pagecount = Math.max(pagecount, Integer.parseInt(m.group(1)));
-					sheets.add(new NoteSheet(noteSize, Integer.parseInt(m.group(1)), file));
+					pagecount = Math.max(pagecount,
+					            Integer.parseInt(m.group(1)));
+					sheets.add(new NoteSheet(noteSize,
+					           Integer.parseInt(m.group(1)), file));
 				}
 			}
 			pagecount++;
@@ -331,7 +344,8 @@ public class NoteBook {
 	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {
-		NoteBookProgram.log(getClass().getName(), Localizer.get("Starting to write out image files."));
+		NoteBookProgram.log(getClass().getName(), Localizer.get(
+		            "Starting to write out image files."));
 		for (NoteSheet s : sheets) {
 			s.saveToFile();
 		}
