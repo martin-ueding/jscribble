@@ -25,6 +25,41 @@ public class NoteBookTest extends TestCase {
 
 
 	/**
+	 * There was an error in a previous version that a newly created sheet
+	 * which is still empty will be saved if you go back. When you go forward
+	 * again, the program tries to load the image which does not exist. This
+	 * test should cover this case.
+	 */
+	public void testBackWithEmptyLastSheet() {
+		NoteBook nb = createTempNoteBook();
+
+		int numAdvance = 15;
+
+		// Advance several pages.
+		for (int i = 0; i < numAdvance; i++) {
+			nb.drawLine(0, 0, 0, 0);
+			nb.goForward();
+		}
+
+		// Go back.
+		for (int i = numAdvance; i > 0; i--) {
+			nb.goBackwards();
+			nb.getCurrentSheet().getImg();
+		}
+
+		numAdvance += 5;
+
+		// Advance several pages.
+		for (int i = 0; i < numAdvance; i++) {
+			nb.drawLine(0, 0, 0, 0);
+			nb.goForward();
+		}
+
+		// There just should not be any error, that is it.
+	}
+
+
+	/**
 	 * Tests whether the current sheet of a new NoteBook is not null.
 	 */
 	public void testCurrentSheet() {
@@ -89,27 +124,6 @@ public class NoteBookTest extends TestCase {
 	}
 
 
-	public void testGotoLast() {
-		NoteBook nb = createTempNoteBook();
-
-		nb.drawLine(0, 0, 0, 0);
-
-		int numAdvance = 30;
-
-		// Advance several pages.
-		for (int i = 0; i < numAdvance; i++) {
-			nb.goForward();
-			nb.drawLine(0, 0, 0, 0);
-			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
-		}
-
-		nb.gotoFirst();
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.gotoLast();
-		assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
-	}
-
-
 	/**
 	 * Tests the forward and backward functions in the NoteBook.
 	 */
@@ -149,6 +163,27 @@ public class NoteBookTest extends TestCase {
 			nb.drawLine(0, 0, 0, 0);
 			assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());
 		}
+	}
+
+
+	public void testGotoLast() {
+		NoteBook nb = createTempNoteBook();
+
+		nb.drawLine(0, 0, 0, 0);
+
+		int numAdvance = 30;
+
+		// Advance several pages.
+		for (int i = 0; i < numAdvance; i++) {
+			nb.goForward();
+			nb.drawLine(0, 0, 0, 0);
+			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
+		}
+
+		nb.gotoFirst();
+		assertEquals(1, nb.getCurrentSheet().getPagenumber());
+		nb.gotoLast();
+		assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
 	}
 
 
