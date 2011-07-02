@@ -313,6 +313,10 @@ public class NoteBook {
 	private void loadImagesFromFolder() {
 		if (!folder.exists()) {
 			folder.mkdirs();
+
+			// Since the folder was just created, there are not going to be any
+			// pictures in it.
+			return;
 		}
 
 		// try to load all images that match the name
