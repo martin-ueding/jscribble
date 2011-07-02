@@ -139,6 +139,7 @@ public class NoteBook {
 			return;
 		}
 
+		// Delete all the files in the folder.
 		File[] subfiles = folder.listFiles();
 		if (subfiles == null) {
 			return;
@@ -148,6 +149,7 @@ public class NoteBook {
 			file.delete();
 		}
 
+		// Delete the folder itself.
 		folder.delete();
 
 		if (folder.exists()) {
