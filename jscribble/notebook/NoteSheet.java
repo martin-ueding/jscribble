@@ -227,8 +227,6 @@ public class NoteSheet {
 
 		// If the file exists, load it up.
 		else {
-
-
 			try {
 				NoteBookProgram.log(getClass().getName(),
 				        String.format(Localizer.get("Loading %s."),
