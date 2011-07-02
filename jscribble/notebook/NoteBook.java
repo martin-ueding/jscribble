@@ -262,9 +262,12 @@ public class NoteBook {
 	 * page is a blank page, no new blank page will be added.
 	 */
 	public void goForward() {
+		// If we are within the NoteBook, we just need to advance a step.
 		if (sheets.size() > currentSheet + 1) {
 			currentSheet++;
 		}
+		// If we are the last sheet and it has been touched, the user needs a
+		// new blank sheet. Add it.
 		else if (getCurrentSheet().touched()) {
 			sheets.add(new NoteSheet(noteSize, pagecount,
 			           generateNextFilename(pagecount)));
@@ -272,11 +275,12 @@ public class NoteBook {
 
 			pagecount++;
 		}
+		// The NoteBook is at a blank sheet at its end. There is nothing to do.
 		else {
 			return;
 		}
 
-
+		// Page sheets that are far away to RAM.
 		if (currentSheet >= cacheWidth) {
 			sheets.get(currentSheet - cacheWidth).saveToFile();
 		}
