@@ -81,7 +81,6 @@ public class NoteSheet {
 	 * @param infile File to save image in
 	 */
 	public NoteSheet(Dimension noteSize, int pagenumber, File infile) {
-
 		this.noteSize = noteSize;
 		this.pagenumber = pagenumber;
 		this.imagefile = infile;
@@ -89,8 +88,8 @@ public class NoteSheet {
 		// If no filename or a filename that does not exist yet is given or the
 		// file is empty (like a newly created temporary file), a new image
 		// needs to be created.
-		if (imagefile == null || !imagefile.exists() || imagefile.length() ==
-		        0) {
+		if (imagefile == null || !imagefile.exists() ||
+		        imagefile.length() == 0) {
 			initNewImage();
 		}
 
