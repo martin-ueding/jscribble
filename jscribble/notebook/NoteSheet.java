@@ -261,10 +261,15 @@ public class NoteSheet {
 	 * heap.
 	 */
 	public void saveToFile() {
-		// TODO i18n
-		NoteBookProgram.log(getClass().getName(), "Picture " + pagenumber +
-		        " is " + (touched ? "touched" : "untouched") + " and " +
-		        (unsaved ? "unsaved" : "saved") + ".");
+		NoteBookProgram.log(getClass().getName(),
+		        String.format(Localizer.get("Picture %d is %s and %s."),
+		                pagenumber,
+		                (touched ? Localizer.get("touched") :
+		                        Localizer.get("untouched")),
+		                (unsaved ? Localizer.get("unsaved") :
+		                        Localizer.get("saved"))
+		                     )
+		                   );
 		if (touched && unsaved) {
 			NoteBookProgram.log(getClass().getName(), String.format(
 			            Localizer.get("Scheduling %s for writing."),
