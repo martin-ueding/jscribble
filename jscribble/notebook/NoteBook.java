@@ -226,10 +226,14 @@ public class NoteBook {
 	 * Number of sheets in the NoteBook
 	 */
 	public int getSheetCount() {
+		// If there is no sheets list (should be impossible to achieve this),
+		// then there are no sheets in the NoteBook.
 		if (sheets == null) {
 			return 0;
 		}
 
+		// If there is a sheet in the NoteBook, but is has not been touched yet,
+		// count it as zero sheets.
 		if (sheets.size() == 1 && !sheets.get(0).touched()) {
 			return 0;
 		}
