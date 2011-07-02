@@ -118,37 +118,11 @@ public class DrawPanel extends JPanel {
 
 
 	/**
-	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
-	 * top of the image as well.
+	 * Draws the help screen if needed.
 	 *
-	 * @param g graphics context (usually given by Java itself).
+	 * @param g2 Graphics2D to draw in
 	 */
-	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setRenderingHints(new
-		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-		                RenderingHints.VALUE_ANTIALIAS_ON));
-
-		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
-
-		if (lines) {
-			// TODO draw the lines below the drawing
-			g2.setColor(lineColor);
-			for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
-				g2.drawLine(i, 0, i, getHeight());
-			}
-
-
-			for (int i = lineSpacing; i < getHeight(); i += lineSpacing) {
-				g2.drawLine(0, i, getWidth(), i);
-			}
-		}
-
-		g2.setColor(Color.BLUE);
-		g2.drawString(String.format(Localizer.get("Page %d/%d"),
-		        notebook.getCurrentSheet().getPagenumber(),
-		        notebook.getSheetCount()), getWidth() / 2, 15);
-
+	private void drawHelp(Graphics2D g2) {
 		if (showHelp) {
 			g2.setColor(new Color(0, 0, 0, 200));
 			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
@@ -167,9 +141,63 @@ public class DrawPanel extends JPanel {
 			}
 
 			g2.setColor(Color.GRAY);
-			g.drawString(String.format(Localizer.get("Version %s"),
+			g2.drawString(String.format(Localizer.get("Version %s"),
 			        VersionName.version), padding, getHeight() - padding);
 		}
+	}
+
+
+	/**
+	 * Draws the helping lines if needed.
+	 *
+	 * @param g2 Graphics2D to draw on
+	 */
+	private void drawLines(Graphics2D g2) {
+		if (lines) {
+			// TODO draw the lines below the drawing
+			g2.setColor(lineColor);
+			for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
+				g2.drawLine(i, 0, i, getHeight());
+			}
+
+
+			for (int i = lineSpacing; i < getHeight(); i += lineSpacing) {
+				g2.drawLine(0, i, getWidth(), i);
+			}
+		}
+	}
+
+
+	/**
+	 * Draws the page number on top.
+	 *
+	 * @param g2 Graphics2D to draw on
+	 */
+	private void drawPageNumber(Graphics2D g2) {
+		g2.setColor(Color.BLUE);
+		g2.drawString(String.format(Localizer.get("Page %d/%d"),
+		        notebook.getCurrentSheet().getPagenumber(),
+		        notebook.getSheetCount()), getWidth() / 2, 15);
+	}
+
+
+	/**
+	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
+	 * top of the image as well.
+	 *
+	 * @param g graphics context (usually given by Java itself).
+	 */
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHints(new
+		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+		                RenderingHints.VALUE_ANTIALIAS_ON));
+
+		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+
+		drawLines(g2);
+		drawPageNumber(g2);
+		drawHelp(g2);
 	}
 
 
