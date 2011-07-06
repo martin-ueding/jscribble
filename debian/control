@@ -1,10 +1,10 @@
 Source: jscribble
-Section: graphics
+Section: utils
 Priority: extra
 Maintainer: Martin Ueding <dev@martin-ueding.de>
 Build-Depends: debhelper (>= 7.0.50~), jdk-default (>= 1.6)
 Standards-Version: 3.9.1
-Homepage: <insert the upstream URL, if relevant>
+Homepage: http://martin-ueding.de
 
 Package: jscribble
 Architecture: all
