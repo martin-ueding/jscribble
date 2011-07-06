@@ -1,5 +1,5 @@
 jscribble.jar	/usr/share/java/
-jscribble	/usr/games/
-jscribble.desktop	/usr/share/applications/
-jscribble.png	/usr/share/pixmaps/
-jscribble.xpm	/usr/share/pixmaps/
+install_files/jscribble	/usr/games/
+install_files/jscribble.desktop	/usr/share/applications/
+install_files/jscribble.png	/usr/share/pixmaps/
+install_files/jscribble.xpm	/usr/share/pixmaps/
