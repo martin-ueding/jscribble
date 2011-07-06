@@ -34,3 +34,5 @@ clean:
 	find . -name "*.orig" -delete
 	find . -name "*.class" -delete
 	find . -name "*.jar" -delete
+	$(RM) classlist
+	$(RM) jscribble.pot
