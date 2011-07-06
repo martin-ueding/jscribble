@@ -1,0 +1,5 @@
+#!/bin/bash
+# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+java -jar /usr/share/java/jscribble.jar
+
