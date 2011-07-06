@@ -210,6 +210,8 @@ public class NoteSheet {
 		// the thread to write it. If the file is empty, then the
 		// WriteoutThread did not get a change to write the file yet. Join with
 		// the thread.
+
+		// TODO test whether the image is actually in the queue first
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(),
 			        Localizer.get("Image file does not exist."));
