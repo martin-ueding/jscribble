@@ -119,7 +119,7 @@ public class NoteBook {
 	/**
 	 * Asks the user to delete the NoteBook.
 	 */
-	public void delete() {
+	public boolean delete() {
 		int answer = JOptionPane.showConfirmDialog(null, String.format(
 		            Localizer.get("Do you really want to delete \"%s\"?"),
 		            name), Localizer.get("Really delete?"),
@@ -127,7 +127,9 @@ public class NoteBook {
 
 		if (answer == 0) {
 			deleteSure();
+			return true;
 		};
+		return false;
 	}
 
 

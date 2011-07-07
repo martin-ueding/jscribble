@@ -178,10 +178,12 @@ public class NotebookSelectionWindow {
 		int selection = myList.getSelectedIndex();
 
 		if (selection >= 0) {
-			notebooks.get(selection).delete();
+			boolean wasdeleted = notebooks.get(selection).delete();
 
-			listModel.remove(selection);
-			updateOpenButton();
+			if (wasdeleted) {
+				listModel.remove(selection);
+				updateOpenButton();
+			}
 		}
 	}
 
