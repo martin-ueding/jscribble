@@ -2,13 +2,13 @@ Source: jscribble
 Section: utils
 Priority: extra
 Maintainer: Martin Ueding <dev@martin-ueding.de>
-Build-Depends: debhelper (>= 7.0.50~), jdk-default (>= 1.6)
+Build-Depends: debhelper (>= 7.0.50~), default-jdk (>= 1.6)
 Standards-Version: 3.9.1
 Homepage: http://martin-ueding.de
 
 Package: jscribble
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, jre-default (>= 1.6)
+Depends: ${shlibs:Depends}, ${misc:Depends}, default-jre (>= 1.6)
 Description: Infinite Notepad
  jscribble is a digital notepad with as many pages as you want. You can
  organize your notes within notepads. Best used with a graphics tablet or
