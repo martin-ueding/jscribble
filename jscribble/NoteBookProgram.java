@@ -110,6 +110,7 @@ public class NoteBookProgram {
 		String output =  date + " " + reportingClass + ":\t" + message;
 		System.out.println(output);
 
+		// FIXME nothing is written to the logfile
 		if (logfileStream != null) {
 			try {
 				logfileStream.write((output + "\n").getBytes());
