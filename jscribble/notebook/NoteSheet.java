@@ -183,6 +183,10 @@ public class NoteSheet {
 
 				imagefile.setReadable(true, false);
 				imagefile.setWritable(true, false);
+
+				// Since this is only a temporary file, delete if after using
+				// it.
+				imagefile.deleteOnExit();
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError(Localizer.get(

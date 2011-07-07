@@ -76,8 +76,10 @@ public class NoteBookProgram {
 	 */
 	private static void initLogfileOutstream() {
 		try {
+			File tempfile = File.createTempFile("jscribble-", ".log");
 			logfileStream = new BufferedOutputStream(new FileOutputStream(
-			            File.createTempFile("jscribble-", ".log")));
+			            tempfile));
+			tempfile.deleteOnExit();
 		}
 		catch (FileNotFoundException e) {
 			handleError(Localizer.get("Cannot create logfile."));
