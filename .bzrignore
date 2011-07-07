@@ -8,3 +8,6 @@ html
 test
 classlist
 jscribble.pot
+debian/jscribble
+debian/jscribble*
+debian/files
