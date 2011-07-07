@@ -170,9 +170,19 @@ public class NoteSheet {
 	private void initNewImage() {
 		if (imagefile == null) {
 			try {
-				imagefile =
-				    File.createTempFile(NoteBookProgram.getProgramname() + "-",
-				            ".png");
+				// generate a temporary file
+				imagefile = File.createTempFile(
+				        NoteBookProgram.getProgramname() + "-", ".png");
+
+				// TODO set the permissions of the file to 600
+				imagefile.setReadable(false, true);
+				imagefile.setWritable(false, true);
+
+				assert(!imagefile.canRead());
+				assert(!imagefile.canWrite());
+
+				imagefile.setReadable(true, false);
+				imagefile.setWritable(true, false);
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError(Localizer.get(

@@ -6,5 +6,4 @@ TODO
 - add manpage
 - just put "unstable" into the debian changelog
 - delete scribble tempfiles after the notepad is closed
-- prevent the world from reading the scribble tempfiles
 
