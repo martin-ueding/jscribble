@@ -8,7 +8,7 @@ Homepage: http://martin-ueding.de
 
 Package: jscribble
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, default-jre (>= 1.6)
+Depends: ${misc:Depends}, default-jre (>= 1.6)
 Description: Infinite Notepad
  jscribble is a digital notepad with as many pages as you want. You can
  organize your notes within notepads. Best used with a graphics tablet or
