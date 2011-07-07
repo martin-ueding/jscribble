@@ -3,8 +3,14 @@
 
 outfile=jscribble/VersionName.java
 
-version=$(bzr tags | tail -n1 | sed "s/\s.*//")
-revno=$(bzr revno)
+if [[ -f .bzr/branch/last-revision ]]
+then
+	version=$(bzr tags | tail -n1 | sed "s/\s.*//")
+	revno=$(bzr revno)
+else
+	version=NA
+	revno=NA
+fi
 
 echo "package jscribble;" > "$outfile"
 echo "/**" >> "$outfile"

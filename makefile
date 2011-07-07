@@ -25,7 +25,7 @@ html/.doxygen: $(javafiles)
 	doxygen
 	touch html/.doxygen
 
-jscribble/VersionName.java: .bzr/branch/last-revision
+jscribble/VersionName.java:
 	./generate_version_class
 
 clean:
