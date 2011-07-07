@@ -8,6 +8,7 @@ then
 	version=$(bzr tags | tail -n1 | sed "s/\s.*//")
 	revno=$(bzr revno)
 else
+	# TODO add better defaults here
 	version=NA
 	revno=NA
 fi
