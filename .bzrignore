@@ -11,3 +11,4 @@ jscribble.pot
 debian/jscribble
 debian/jscribble*
 debian/files
+jscribble.jar.asc
