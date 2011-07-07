@@ -76,13 +76,14 @@ public class NoteBookProgram {
 	 */
 	private static void initLogfileOutstream() {
 		try {
-			logfileStream = new BufferedOutputStream(new FileOutputStream(new
-			        File(System.getProperty("java.io.tmpdir") +
-			                File.separator + NoteBookProgram.getProgramname() +
-			                ".log")));
+			logfileStream = new BufferedOutputStream(new FileOutputStream(
+					File.createTempFile("jscribble-", ".log")));
 		}
 		catch (FileNotFoundException e) {
 			handleError(Localizer.get("Cannot create logfile."));
+			e.printStackTrace();
+		} catch (IOException e) {
+			handleError(Localizer.get("Cannot create temporary file."));
 			e.printStackTrace();
 		}
 	}
