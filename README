@@ -5,4 +5,5 @@ TODO
 - save everything no matter how the application is exited
 - add manpage
 - just put "unstable" into the debian changelog
+- delete scribble tempfiles after the notepad is closed
 
