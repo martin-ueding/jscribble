@@ -251,8 +251,8 @@ public class NotebookSelectionWindow {
 		f.setSize(noteSize);
 		f.setLocationRelativeTo(null);
 
-		// TODO disallow for window resize
 		f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
+		f.setResizable(false);
 
 
 		panel = new DrawPanel(notebook);
