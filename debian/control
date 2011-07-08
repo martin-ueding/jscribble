@@ -3,7 +3,7 @@ Section: utils
 Priority: extra
 Maintainer: Martin Ueding <dev@martin-ueding.de>
 Build-Depends: debhelper (>= 7.0.50~), default-jdk (>= 1.6)
-Standards-Version: 3.9.2
+Standards-Version: 3.9.1
 Homepage: http://martin-ueding.de
 
 Package: jscribble
