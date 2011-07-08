@@ -3,6 +3,8 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
+# TODO use automatic variables here
+
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble.1.gz
 	jar -cfm jscribble.jar manifest.txt @classlist
 
