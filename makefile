@@ -34,11 +34,13 @@ jscribble.1.gz: jscribble.manpage
 	gzip jscribble.1
 
 clean:
-	$(RM) -r javadoc
 	$(RM) -r html
-	find . -name "*.orig" -delete
+	$(RM) -r javadoc
+	$(RM) classlist
+	$(RM) jscribble.1.gz
+	$(RM) jscribble.jar.asc
+	$(RM) jscribble.pot
 	find . -name "*.class" -delete
 	find . -name "*.jar" -delete
-	$(RM) classlist
-	$(RM) jscribble.pot
+	find . -name "*.orig" -delete
 
