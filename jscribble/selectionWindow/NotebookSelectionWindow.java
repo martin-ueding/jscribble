@@ -8,10 +8,12 @@ import java.awt.GraphicsDevice;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -139,6 +141,14 @@ public class NotebookSelectionWindow {
 		        frame));
 
 
+		try {
+			frame.setIconImage(ImageIO.read(ClassLoader.getSystemResourceAsStream("install_files/jscribble.png")));
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 		updateOpenButton();
 	}
 
@@ -259,6 +269,7 @@ public class NotebookSelectionWindow {
 
 		panel = new DrawPanel(notebook);
 		f.add(panel);
+
 
 
 		f.addKeyListener(new MovementListener(notebook));
