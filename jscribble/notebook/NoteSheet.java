@@ -175,6 +175,7 @@ public class NoteSheet {
 				        NoteBookProgram.getProgramname() + "-", ".png");
 
 				// TODO set the permissions of the file to 600
+				/*
 				imagefile.setReadable(false, true);
 				imagefile.setWritable(false, true);
 
@@ -183,6 +184,7 @@ public class NoteSheet {
 
 				imagefile.setReadable(true, false);
 				imagefile.setWritable(true, false);
+				*/
 
 				// Since this is only a temporary file, delete if after using
 				// it.
