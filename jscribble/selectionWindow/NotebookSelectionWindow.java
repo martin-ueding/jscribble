@@ -36,6 +36,7 @@ import jscribble.notebook.NoteBook;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
+// TODO rename to NoteBook...
 public class NotebookSelectionWindow {
 	/**
 	 * The size of newly created NoteBook instances.
@@ -215,6 +216,7 @@ public class NotebookSelectionWindow {
 				notebooks.add(justfound);
 				listModel.addElement(justfound);
 			}
+			// TODO sort the list of notebooks by name
 		}
 		else {
 			NoteBookProgram.getDotDir().mkdirs();
