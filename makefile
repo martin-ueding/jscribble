@@ -3,10 +3,8 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
-# TODO use automatic variables here
-
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble.1.gz
-	jar -cfm jscribble.jar manifest.txt @classlist install_files/jscribble.png
+	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png
 
 classlist: $(shell find jscribble -name "*.class")
 	find jscribble -name "*.class" -print > classlist
@@ -14,25 +12,25 @@ classlist: $(shell find jscribble -name "*.class")
 all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
 
 jscribble.pot: $(javafiles)
-	xgettext -o jscribble.pot -k"Localizer.get" $(javafiles)
+	xgettext -o $@ -k"Localizer.get" $^
 
 jscribble/NoteBookProgram.class: $(javafiles)
 	javac jscribble/NoteBookProgram.java
 
 javadoc/.javadoc: $(javafiles)
-	javadoc -d javadoc $(javafiles)
-	touch javadoc/.javadoc
+	javadoc -d javadoc $^
+	touch $@
 
 html/.doxygen: $(javafiles)
 	doxygen
-	touch html/.doxygen
+	touch $@
 
 jscribble/VersionName.java:
 	./generate_version_class
 
 jscribble.1.gz: jscribble.manpage
-	$(RM) jscribble.1.gz
-	cp jscribble.manpage jscribble.1
+	$(RM) $@
+	cp $^ jscribble.1
 	gzip jscribble.1
 
 clean:
