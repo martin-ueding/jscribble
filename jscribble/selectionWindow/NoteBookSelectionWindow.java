@@ -36,7 +36,6 @@ import jscribble.notebook.NoteBook;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-// TODO rename to NoteBook...
 public class NoteBookSelectionWindow {
 	/**
 	 * The size of newly created NoteBook instances.
