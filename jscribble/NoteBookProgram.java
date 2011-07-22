@@ -2,11 +2,7 @@
 
 package jscribble;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
 
 import javax.swing.JOptionPane;
@@ -19,12 +15,6 @@ import jscribble.selectionWindow.NotebookSelectionWindow;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookProgram {
-	/**
-	 * Stream for the logfile.
-	 */
-	private static BufferedOutputStream logfileStream;
-
-
 	/**
 	 * The folder where everything is stored.
 	 */
@@ -72,27 +62,6 @@ public class NoteBookProgram {
 
 
 	/**
-	 * Creates the logfile and initializes the stream.
-	 */
-	private static void initLogfileOutstream() {
-		try {
-			File tempfile = File.createTempFile("jscribble-", ".log");
-			logfileStream = new BufferedOutputStream(new FileOutputStream(
-			            tempfile));
-			tempfile.deleteOnExit();
-		}
-		catch (FileNotFoundException e) {
-			handleError(Localizer.get("Cannot create logfile."));
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			handleError(Localizer.get("Cannot create temporary file."));
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
 	 * Writes a message to a log file.
 	 *
 	 * @param reportingClass name of the reporting class
@@ -111,17 +80,6 @@ public class NoteBookProgram {
 		                           );
 		String output =  date + " " + reportingClass + ":\t" + message;
 		System.out.println(output);
-
-		// FIXME nothing is written to the logfile
-		if (logfileStream != null) {
-			try {
-				logfileStream.write((output + "\n").getBytes());
-			}
-			catch (IOException e) {
-				System.out.println(output);
-				e.printStackTrace();
-			}
-		}
 	}
 
 
@@ -132,8 +90,6 @@ public class NoteBookProgram {
 	 */
 	public static void main(String[] args) {
 		printVersionIfNeeded(args);
-
-		initLogfileOutstream();
 
 		log(getProgramname(), Localizer.get("Starting up."));
 
