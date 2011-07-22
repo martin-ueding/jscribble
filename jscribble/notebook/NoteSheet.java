@@ -173,18 +173,16 @@ public class NoteSheet {
 				// generate a temporary file
 				imagefile = File.createTempFile(
 				        NoteBookProgram.getProgramname() + "-", ".png");
-
-				// TODO set the permissions of the file to 600
-				/*
-				imagefile.setReadable(false, true);
-				imagefile.setWritable(false, true);
+				
+				imagefile.setReadable(false, false);
+				imagefile.setWritable(false, false);
 
 				assert(!imagefile.canRead());
 				assert(!imagefile.canWrite());
 
-				imagefile.setReadable(true, false);
-				imagefile.setWritable(true, false);
-				*/
+				imagefile.setReadable(true, true);
+				imagefile.setWritable(true, true);
+				
 
 				// Since this is only a temporary file, delete if after using
 				// it.
