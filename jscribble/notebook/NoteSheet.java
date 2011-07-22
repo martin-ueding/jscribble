@@ -235,7 +235,8 @@ public class NoteSheet {
 		// If the file still does not exist, it has not been written out.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(), Localizer.get(
-			            "Image file does not exist after stopping WriteoutThread."
+			            "Image file does" +
+			            " not exist after stopping WriteoutThread."
 			        ));
 
 			initNewImage();
@@ -263,7 +264,8 @@ public class NoteSheet {
 
 			// The image *should* be loaded by now.
 			if (img == null) {
-				throw new NullPointerException("Could not load image from disk.");
+				throw new NullPointerException("Could not load im" +
+				        "age from disk.");
 			}
 
 			// Since it was saved, it has to have some lines on it.
