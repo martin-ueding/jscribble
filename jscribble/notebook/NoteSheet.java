@@ -173,7 +173,7 @@ public class NoteSheet {
 				// generate a temporary file
 				imagefile = File.createTempFile(
 				        NoteBookProgram.getProgramname() + "-", ".png");
-				
+
 				imagefile.setReadable(false, false);
 				imagefile.setWritable(false, false);
 
@@ -182,7 +182,7 @@ public class NoteSheet {
 
 				imagefile.setReadable(true, true);
 				imagefile.setWritable(true, true);
-				
+
 
 				// Since this is only a temporary file, delete if after using
 				// it.
