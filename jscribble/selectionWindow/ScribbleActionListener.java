@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class ScribbleActionListener implements ActionListener {
-	private NotebookSelectionWindow window;
+	private NoteBookSelectionWindow window;
 
-	public ScribbleActionListener(NotebookSelectionWindow window) {
+	public ScribbleActionListener(NoteBookSelectionWindow window) {
 		super();
 		this.window = window;
 	}

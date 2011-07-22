@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class OpenActionListener implements ActionListener {
-	private NotebookSelectionWindow window;
+	private NoteBookSelectionWindow window;
 
-	public OpenActionListener(NotebookSelectionWindow window) {
+	public OpenActionListener(NoteBookSelectionWindow window) {
 		super();
 		this.window = window;
 	}

@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-import jscribble.selectionWindow.NotebookSelectionWindow;
+import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**
  * The main program.
@@ -118,7 +118,7 @@ public class NoteBookProgram {
 	 * Shows the NotebookSelectionWindow.
 	 */
 	private static void showSelectionWindow() {
-		NotebookSelectionWindow nsw = new NotebookSelectionWindow();
+		NoteBookSelectionWindow nsw = new NoteBookSelectionWindow();
 		nsw.showDialog();
 	}
 }

@@ -6,9 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 class ListListener extends MouseAdapter {
-	private NotebookSelectionWindow window;
+	private NoteBookSelectionWindow window;
 
-	public ListListener(NotebookSelectionWindow window) {
+	public ListListener(NoteBookSelectionWindow window) {
 		this.window = window;
 	}
 

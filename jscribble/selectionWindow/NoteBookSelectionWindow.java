@@ -37,7 +37,7 @@ import jscribble.notebook.NoteBook;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 // TODO rename to NoteBook...
-public class NotebookSelectionWindow {
+public class NoteBookSelectionWindow {
 	/**
 	 * The size of newly created NoteBook instances.
 	 */
@@ -103,7 +103,7 @@ public class NotebookSelectionWindow {
 	 * Creates a new window to select NoteBook from. It automatically searches
 	 * the user's configuration directory for NoteBook configuration files.
 	 */
-	public NotebookSelectionWindow() {
+	public NoteBookSelectionWindow() {
 		notebooks = findNotebooks();
 		openedNotebooks = new LinkedList<NoteBook>();
 

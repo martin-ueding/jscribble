@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class DeleteActionListener implements ActionListener {
-	private NotebookSelectionWindow window;
+	private NoteBookSelectionWindow window;
 
-	public DeleteActionListener(NotebookSelectionWindow window) {
+	public DeleteActionListener(NoteBookSelectionWindow window) {
 		super();
 		this.window = window;
 	}
