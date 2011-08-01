@@ -11,9 +11,9 @@ Some prefer to draw these by hand but do not like carrying lots of paper with
 me.
 
 `jscribble` offers screen based note taking with as many pages as you want.
-`Xournal` offers more features but is paper size oriented which does not make
-sense on a 10" netbook screen where one wants to use the whole screen for
-taking notes.
+[`Xournal`](http://xournal.sourceforge.net/) offers more features but is paper
+size oriented which does not make sense on a 10" netbook screen where one wants
+to use the whole screen for taking notes.
 
 Another focus was set to avoid any mouse navigation. All you can do with your
 mouse (or pen) is draw, therefore you cannot click anything accidentially.
