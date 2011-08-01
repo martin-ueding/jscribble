@@ -33,9 +33,17 @@ jscribble.1.gz: jscribble.manpage
 	cp $^ jscribble.1
 	gzip jscribble.1
 
+test: .testrun
+
+.testrun:
+	javac -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
+	bash run_tests.sh
+	touch .testrun
+
 clean:
 	$(RM) -r html
 	$(RM) -r javadoc
+	$(RM) .testrun
 	$(RM) classlist
 	$(RM) jscribble.1.gz
 	$(RM) jscribble.jar.asc
