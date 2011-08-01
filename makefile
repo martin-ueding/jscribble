@@ -40,7 +40,6 @@ clean:
 	$(RM) -r javadoc
 	$(RM) .testrun
 	$(RM) classlist
-	$(RM) jscribble.1.gz
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
 	find . -name "*.class" -delete
