@@ -7,12 +7,12 @@ touchscreen.
 
 Taking notes on paper allow you to draw and write whatever you want. Some
 people are fast enough in LaTeX to set complicated formulas while in a lecture.
-I prefer to draw these by hand but I do not like carrying lots of paper with
+Some prefer to draw these by hand but do not like carrying lots of paper with
 me.
 
 `jscribble` offers screen based note taking with as many pages as you want.
 `Xournal` offers more features but is paper size oriented which does not make
-sense to me on a 10" netbook screen where I want to use the whole screen for
+sense on a 10" netbook screen where one wants to use the whole screen for
 taking notes.
 
 Another focus was set to avoid any mouse navigation. All you can do with your
