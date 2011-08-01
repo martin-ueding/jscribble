@@ -3,7 +3,7 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble.1.gz
+jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png
 
 classlist: $(shell find jscribble -name "*.class")
@@ -27,11 +27,6 @@ html/.doxygen: $(javafiles)
 
 jscribble/VersionName.java:
 	./generate_version_class
-
-jscribble.1.gz: jscribble.manpage
-	$(RM) $@
-	cp $^ jscribble.1
-	gzip jscribble.1
 
 test: .testrun
 
