@@ -2,7 +2,7 @@ Source: jscribble
 Section: utils
 Priority: extra
 Maintainer: Martin Ueding <dev@martin-ueding.de>
-Build-Depends: debhelper (>= 7.0.50~), default-jdk (>= 1.6)
+Build-Depends: debhelper (>= 7.0.50~), default-jdk (>= 1.6), junit (>= 3)
 Standards-Version: 3.9.1
 Homepage: https://launchpad.net/jscribble
 
