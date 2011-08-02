@@ -3,6 +3,8 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
+version=1.0.1
+
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png
 
@@ -34,6 +36,12 @@ test: .testrun
 	javac -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
 	bash run_tests.sh
 	touch .testrun
+
+fullname=jscribble_$(version).orig.tar.gz
+tarball: ../$(fullname)
+
+../$(fullname): clean
+	tar -czf $@ generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests
 
 clean:
 	$(RM) -r html
