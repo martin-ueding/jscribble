@@ -38,14 +38,19 @@ test: .testrun
 	touch .testrun
 
 fullname=jscribble_$(version).orig.tar.gz
+fullnamedash=jscribble-$(version)
 tarball: ../$(fullname)
 
 ../$(fullname): clean
-	tar -czf $@ generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests
+	mkdir $(fullnamedash)
+	cp -r generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests $(fullnamedash)
+	tar -czf $@ $(fullnamedash) 
+	$(RM) -r jscribble-*.*
 
 clean:
 	$(RM) -r html
 	$(RM) -r javadoc
+	$(RM) -r jscribble-*.*
 	$(RM) .testrun
 	$(RM) classlist
 	$(RM) jscribble.jar.asc

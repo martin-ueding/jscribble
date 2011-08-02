@@ -14,3 +14,4 @@ debian/files
 jscribble.jar.asc
 jscribble.1.gz
 .testrun
+jscribble-*.*
