@@ -50,7 +50,6 @@ tarball: ../$(fullname)
 clean:
 	$(RM) -r html
 	$(RM) -r javadoc
-	$(RM) -r jscribble-*.*
 	$(RM) .testrun
 	$(RM) classlist
 	$(RM) jscribble.jar.asc
