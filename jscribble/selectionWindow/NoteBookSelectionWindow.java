@@ -336,4 +336,3 @@ public class NoteBookSelectionWindow {
 		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
 }
-

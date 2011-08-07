@@ -75,4 +75,3 @@ public class WriteoutThreadTest extends TestCase {
 		assertFalse(outfile.exists());
 	}
 }
-

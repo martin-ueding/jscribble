@@ -110,4 +110,3 @@ public class ColonListener implements KeyListener {
 		}
 	}
 }
-
