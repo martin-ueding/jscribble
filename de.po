@@ -116,98 +116,98 @@ msgstr ""
 
 #: jscribble/notebook/WriteoutThread.java:104
 msgid "Thread dies."
-msgstr ""
+msgstr "Thread läuft aus."
 
 #: jscribble/notebook/WriteoutThread.java:119
 msgid "Interrupted while scheduling a disk write task."
-msgstr ""
+msgstr "Beim speichern unterbrochen."
 
 #: jscribble/selectionWindow/CloseEverythingAdapter.java:47
 #: jscribble/selectionWindow/NoteBookClosingAdapter.java:43
 msgid "Closing NoteBook \"%s\"."
-msgstr ""
+msgstr "Schließe Notizbuch \"%s\""
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:129
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:131
 msgid "Open"
-msgstr ""
+msgstr "Öffnen"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:133
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:135
 msgid "Scribble"
-msgstr ""
+msgstr "Kritzeln"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:186
 msgid ""
 "Nickname of your Notebook: (please only use characters, numbers, _ and -)"
-msgstr ""
+msgstr "Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:285
 msgid "Notebook \"%s\""
-msgstr ""
+msgstr "Notizbuch \"%s\""
 
 #: jscribble/ColonListener.java:95
 msgid "Command:"
-msgstr ""
+msgstr "Kommando:"
 
 #: jscribble/DrawPanel.java:109
 msgid "show help"
-msgstr ""
+msgstr "zeige Hilfe"
 
 #: jscribble/DrawPanel.java:111
 msgid "go forward"
-msgstr ""
+msgstr "gehe forwärts"
 
 #: jscribble/DrawPanel.java:113
 msgid "go backward"
-msgstr ""
+msgstr "gehe zurück"
 
 #: jscribble/DrawPanel.java:114
 msgid "goto first"
-msgstr ""
+msgstr "gehe zum Anfang"
 
 #: jscribble/DrawPanel.java:115
 msgid "goto last"
-msgstr ""
+msgstr "gehe zum Ende"
 
 #: jscribble/DrawPanel.java:116
 msgid "save & exit"
-msgstr ""
+msgstr "speichern & beenden"
 
 #: jscribble/DrawPanel.java:161
 msgid "Version %s"
-msgstr ""
+msgstr "Version %s"
 
 #: jscribble/DrawPanel.java:195
 msgid "Page %d/%d"
-msgstr ""
+msgstr "Seite %d/%d"
 
 #: jscribble/NoteBookProgram.java:130
 msgid "Starting up."
-msgstr ""
+msgstr "Starte."
 
 #: jscribble/NoteBookProgram.java:135
 msgid "Entering interactive mode."
-msgstr ""
+msgstr "Starte interaktiven Modus."
 
 #: jscribble/NoteBookProgram.java:150
 msgid "Could not find config file. Writing a default one."
-msgstr ""
+msgstr "Konnte keine Konfigurationsdatei finden. Erstelle eine Standardversion"
 
 #: jscribble/NoteBookProgram.java:164
 msgid "Could not find the config file. (This should *not* happen!)"
-msgstr ""
+msgstr "Konnte keine Konfigurationsdatei finden. (Dies sollte *nicht* passieren!)"
 
 #: jscribble/NoteBookProgram.java:168
 msgid "IO error while reading config file."
-msgstr ""
+msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
 #: jscribble/NoteBookProgram.java:184
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
