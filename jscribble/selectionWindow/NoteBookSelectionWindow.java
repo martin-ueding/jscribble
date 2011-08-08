@@ -148,7 +148,7 @@ public class NoteBookSelectionWindow {
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 
-		frame = new JFrame("Select your Notebook");
+		frame = new JFrame(Localizer.get("Select your Notebook"));
 		frame.setSize(new Dimension(400, 300));
 		frame.setLocationRelativeTo(null);
 		frame.add(mainPanel);
