@@ -207,7 +207,7 @@ msgstr "Kritzeln"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:151
 msgid "Select your Notebook"
-msgstr ""
+msgstr "Wählen Sie Ihr Notizbuch"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:186
 msgid ""
