@@ -19,10 +19,13 @@
 
 package jscribble;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.Properties;
 
@@ -144,9 +147,17 @@ public class NoteBookProgram {
 					mainConfig.load(new FileInputStream(configfile));
 				}
 				else {
-					// TODO write sample config
-					log(NoteBookProgram.class.getClass().getName(), Localizer.get("Could not find config file."));
-					return "";
+					log(NoteBookProgram.class.getClass().getName(), Localizer.get("Could not find config file. Writing a default one."));
+					InputStreamReader isr = new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream("jscribble/config.txt"));
+					BufferedReader br = new BufferedReader(isr);
+					FileWriter fw = new FileWriter(configfile);
+					String line;
+					while ((line = br.readLine()) != null) {
+						fw.write(line + "\n");
+					}
+					br.close();
+					isr.close();
+					fw.close();
 				}
 			}
 			catch (FileNotFoundException e) {
