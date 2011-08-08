@@ -19,6 +19,9 @@
 
 package jscribble;
 
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 /**
  * Localizes strings.
  *
@@ -26,9 +29,25 @@ package jscribble;
  */
 public class Localizer {
 
-	public static String get(String string) {
-		// TODO perform actual translation here
-		return string;
+	static ResourceBundle bundle;
+
+	public static String get(String ident) {
+		if (bundle == null) {
+			try {
+				bundle = ResourceBundle.getBundle("jscribble");
+			}
+			catch (ExceptionInInitializerError ignored) {
+			}
+			catch (MissingResourceException ignored) {}
+		}
+
+		if (bundle == null) {
+			return ident;
+		}
+		else {
+			return bundle.getString(ident);
+		}
 	}
+
 
 }
