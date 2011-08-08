@@ -5,13 +5,17 @@ classfiles=$(javafiles:.java=.class)
 
 version=1.0.1
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist
-	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png jscribble/config.txt
+jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
+	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png jscribble/config.txt *.properties
 
 classlist: $(shell find jscribble -name "*.class")
 	find jscribble -name "*.class" -print > classlist
 
 all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
+
+jscribble_de.properties: de.po
+	msgcat --properties-output -o $@ $^
+
 
 jscribble.pot: $(javafiles)
 	xgettext -o $@ -k"Localizer.get" $^
