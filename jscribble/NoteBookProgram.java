@@ -82,6 +82,7 @@ public class NoteBookProgram {
 	public static void handleError(String errorMessage) {
 		log("ERROR", errorMessage);
 		JOptionPane.showMessageDialog(null, errorMessage);
+		System.exit(1);
 	}
 
 

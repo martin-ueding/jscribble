@@ -221,11 +221,16 @@ public class DrawPanel extends JPanel {
 
 	private void drawScrollPanels(Graphics2D g) {
 		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
-			int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
-			int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
-			g.setColor(new Color(0, 0, 0, 100));
-			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
-			g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
+			try {
+				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
+				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+				g.setColor(new Color(0, 0, 0, 100));
+				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
+				g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
+			}
+			catch (NumberFormatException e) {
+				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
+			}
 		}
 
 	}
