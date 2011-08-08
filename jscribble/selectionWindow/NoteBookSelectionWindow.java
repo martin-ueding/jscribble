@@ -228,13 +228,14 @@ public class NoteBookSelectionWindow {
 		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
 
 		if (NoteBookProgram.getDotDir().exists()) {
-			File[] folders = NoteBookProgram.getDotDir().listFiles(new
-			        FolderFilter());
+			File[] folders = NoteBookProgram.getDotDir().listFiles();
 
 			for (File folder : folders) {
-				NoteBook justfound = new NoteBook(folder.getName());
-				notebooks.add(justfound);
-				listModel.addElement(justfound);
+				if (folder.isDirectory()) {
+					NoteBook justfound = new NoteBook(folder.getName());
+					notebooks.add(justfound);
+					listModel.addElement(justfound);
+				}
 			}
 			// TODO sort the list of notebooks by name
 		}
