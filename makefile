@@ -46,7 +46,7 @@ tarball: ../$(fullname)
 
 ../$(fullname): clean
 	mkdir $(fullnamedash)
-	cp -r generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests $(fullnamedash)
+	cp -r generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests *.po $(fullnamedash)
 	tar -czf $@ $(fullnamedash) 
 	$(RM) -r jscribble-*.*
 
