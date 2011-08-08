@@ -16,7 +16,6 @@ all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
 jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
 
-
 jscribble.pot: $(javafiles)
 	xgettext -o $@ -k"Localizer.get" $^
 
