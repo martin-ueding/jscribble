@@ -47,12 +47,16 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	private Point lastPosition = new Point(-1, -1);
 
 
+	private DrawPanel drawPanel;
+
+
 	/**
 	 * Generates a new Listener that relays its commands to a given NoteBook.
 	 * @param notebook
 	 */
-	public PaintListener(NoteBook notebook) {
+	public PaintListener(NoteBook notebook, DrawPanel drawPanel) {
 		this.notebook = notebook;
+		this.drawPanel = drawPanel;
 	}
 
 
@@ -61,6 +65,19 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		int x = e.getX();
+
+		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+			if (x <= Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
+				notebook.goBackwards();
+				return;
+			}
+			if (x >= drawPanel.getWidth() - Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
+				notebook.goForward();
+				return;
+			}
+		}
+
 		if (e.getModifiers() == MouseEvent.BUTTON1_MASK) {
 			notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
 		}

@@ -128,13 +128,9 @@ public class DrawPanel extends JPanel {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
 
-		PaintListener pl = new PaintListener(notebook);
+		PaintListener pl = new PaintListener(notebook, this);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
-
-		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
-		addMouseListener(new ScrollListener(this, notebook));
-		}
 	}
 
 
