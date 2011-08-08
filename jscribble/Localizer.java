@@ -48,6 +48,4 @@ public class Localizer {
 			return bundle.getString(ident);
 		}
 	}
-
-
 }
