@@ -10,3 +10,4 @@ debian/files
 jscribble.jar.asc
 .testrun
 jscribble-*.*
+*.properties

@@ -42,6 +42,9 @@ public class Localizer {
 			catch (MissingResourceException ignored) {
 				System.out.println(ignored.getMessage());
 			}
+			finally {
+				bundle = null;
+			}
 		}
 
 		if (bundle == null) {
