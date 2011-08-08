@@ -12,3 +12,5 @@ jscribble.jar.asc
 jscribble-*.*
 *.properties
 de.mo
+*.class
+*.jar

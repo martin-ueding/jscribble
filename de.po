@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 19:19+0200\n"
-"PO-Revision-Date: 2011-08-08 19:19+0200\n"
-"Last-Translator: Maximilian Kirchner <translations@schakalno1.de>\n"
+"PO-Revision-Date: 2011-08-08 20:37+0100\n"
+"Last-Translator: Maximilian Kirchner <translate@schakalno1.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -36,83 +36,83 @@ msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
 
 #: jscribble/notebook/NoteBook.java:381
 msgid "Starting to write out image files."
-msgstr ""
+msgstr "Beginne Bild-Datei zu speichern"
 
 #: jscribble/notebook/NoteSheet.java:149
 msgid "BufferedImage is null."
-msgstr ""
+msgstr "BufferedImage ist null"
 
 #: jscribble/notebook/NoteSheet.java:170
 msgid "Could not load image from disk."
-msgstr ""
+msgstr "Konnte Bilddatei nicht laden"
 
 #: jscribble/notebook/NoteSheet.java:210
 msgid "Could not create a temp file."
-msgstr ""
+msgstr "Konnte keine temp-Datei erstellen"
 
 #: jscribble/notebook/NoteSheet.java:248
 msgid "Image file does not exist."
-msgstr ""
+msgstr "Bilddatei existiert nicht."
 
 #: jscribble/notebook/NoteSheet.java:255
 msgid "Image file does not exist after stopping WriteoutThread."
-msgstr ""
+msgstr "Bilddatei existiert nicht nach Beendigung von WriteoutThread"
 
 #: jscribble/notebook/NoteSheet.java:266
 msgid "Loading %s."
-msgstr ""
+msgstr "Lade %s."
 
 #: jscribble/notebook/NoteSheet.java:273
 msgid "Could not find the note sheet image."
-msgstr ""
+msgstr "Konnte das Notizblattbild nicht finden."
 
 #: jscribble/notebook/NoteSheet.java:278
 msgid "Could not read the note sheet image."
-msgstr ""
+msgstr "Konnte das Notizblattbild nicht laden."
 
 #: jscribble/notebook/NoteSheet.java:300
 msgid "Picture %d is %s and %s."
-msgstr ""
+msgstr "Bilddatei %d ist %s und %s."
 
 #: jscribble/notebook/NoteSheet.java:302
 msgid "touched"
-msgstr ""
+msgstr "berührt"
 
 #: jscribble/notebook/NoteSheet.java:303
 msgid "untouched"
-msgstr ""
+msgstr "unberührt"
 
 #: jscribble/notebook/NoteSheet.java:304
 msgid "unsaved"
-msgstr ""
+msgstr "ungespeichert"
 
 #: jscribble/notebook/NoteSheet.java:305
 msgid "saved"
-msgstr ""
+msgstr "gespeichert"
 
 #: jscribble/notebook/NoteSheet.java:310
 msgid "Scheduling %s for writing."
-msgstr ""
+msgstr "Plane %s zum Speichern ein."
 
 #: jscribble/notebook/NoteSheet.java:341
 msgid "WriteThread was interrupted."
-msgstr ""
+msgstr "WriteThread wurde unterbrochen."
 
 #: jscribble/notebook/WriteoutThread.java:80
 msgid "Writing %s."
-msgstr ""
+msgstr "Schreibe %s."
 
 #: jscribble/notebook/WriteoutThread.java:88
 msgid "Could not find the file to write."
-msgstr ""
+msgstr "Konnte die Datei zum Speichern nicht finden."
 
 #: jscribble/notebook/WriteoutThread.java:93
 msgid "IO error while saving the note image."
-msgstr ""
+msgstr "IO error während des Speichern des Notizblattbildes."
 
 #: jscribble/notebook/WriteoutThread.java:98
 msgid "Writing thread was interupted."
-msgstr ""
+msgstr "Schreibprozess wurde unterbrochen."
 
 #: jscribble/notebook/WriteoutThread.java:104
 msgid "Thread dies."
@@ -144,8 +144,7 @@ msgid "Scribble"
 msgstr "Kritzeln"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:186
-msgid ""
-"Nickname of your Notebook: (please only use characters, numbers, _ and -)"
+msgid "Nickname of your Notebook: (please only use characters, numbers, _ and -)"
 msgstr "Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
 #: jscribble/selectionWindow/NoteBookSelectionWindow.java:285
