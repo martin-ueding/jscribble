@@ -144,8 +144,9 @@ public class NoteBookProgram {
 					mainConfig.load(new FileInputStream(configfile));
 				}
 				else {
+					// TODO write sample config
 					log(NoteBookProgram.class.getClass().getName(), Localizer.get("Could not find config file."));
-					return null;
+					return "";
 				}
 			}
 			catch (FileNotFoundException e) {
@@ -158,7 +159,7 @@ public class NoteBookProgram {
 			}
 		}
 
-		return mainConfig.getProperty(key, null);
+		return mainConfig.getProperty(key, "");
 	}
 
 

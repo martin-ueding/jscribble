@@ -214,7 +214,20 @@ public class DrawPanel extends JPanel {
 
 		drawLines(g2);
 		drawPageNumber(g2);
+		drawScrollPanels(g2);
 		drawHelp(g2);
+	}
+
+
+	private void drawScrollPanels(Graphics2D g) {
+		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+			// TODO externalize this value
+			int scrollPanelRadius = 10;
+			g.setColor(new Color(200, 200, 200));
+			g.fillRoundRect(-scrollPanelRadius, scrollPanelRadius, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelRadius, scrollPanelRadius, scrollPanelRadius);
+			g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelRadius, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelRadius, scrollPanelRadius, scrollPanelRadius);
+		}
+
 	}
 
 
