@@ -131,6 +131,10 @@ public class DrawPanel extends JPanel {
 		PaintListener pl = new PaintListener(notebook);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
+
+		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+		addMouseListener(new ScrollListener(this, notebook));
+		}
 	}
 
 
@@ -221,11 +225,11 @@ public class DrawPanel extends JPanel {
 
 	private void drawScrollPanels(Graphics2D g) {
 		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
-			// TODO externalize this value
-			int scrollPanelRadius = 10;
-			g.setColor(new Color(200, 200, 200));
-			g.fillRoundRect(-scrollPanelRadius, scrollPanelRadius, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelRadius, scrollPanelRadius, scrollPanelRadius);
-			g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelRadius, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelRadius, scrollPanelRadius, scrollPanelRadius);
+			int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
+			int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+			g.setColor(new Color(0, 0, 0, 100));
+			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
+			g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
 		}
 
 	}
