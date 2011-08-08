@@ -36,13 +36,12 @@ public class Localizer {
 			try {
 				bundle = ResourceBundle.getBundle("jscribble");
 			}
-			catch (ExceptionInInitializerError ignored) {
-				System.out.println(ignored.getMessage());
+			catch (ExceptionInInitializerError e) {
+				System.out.println("Error: "+e.getMessage());
+				bundle = null;
 			}
-			catch (MissingResourceException ignored) {
-				System.out.println(ignored.getMessage());
-			}
-			finally {
+			catch (MissingResourceException e) {
+				System.out.println("Error: "+e.getMessage());
 				bundle = null;
 			}
 		}
@@ -51,7 +50,13 @@ public class Localizer {
 			return ident;
 		}
 		else {
+			try {
 			return bundle.getString(ident);
+			}
+			catch (MissingResourceException e) {
+				System.out.println(e.getMessage());
+				return ident;
+			}
 		}
 	}
 }
