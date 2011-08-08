@@ -51,12 +51,14 @@ tarball: ../$(fullname)
 	$(RM) -r jscribble-*.*
 
 clean:
+	$(RM) *.mo
 	$(RM) -r html
 	$(RM) -r javadoc
 	$(RM) .testrun
 	$(RM) classlist
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
+	$(RM) jscribble_*.properties
 	find . -name "*.class" -delete
 	find . -name "*.jar" -delete
 	find . -name "*.orig" -delete
