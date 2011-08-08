@@ -11,3 +11,5 @@ jscribble.jar.asc
 .testrun
 jscribble-*.*
 *.properties
+*.class
+*.jar
