@@ -50,6 +50,12 @@ tarball: ../$(fullname)
 	tar -czf $@ $(fullnamedash) 
 	$(RM) -r jscribble-*.*
 
+install: jscribble.jar
+	mkdir -p "$(DESTDIR)/usr/share/jscribble"
+	cp jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
+	mkdir -p "$(DESTDIR)/usr/bin"
+	cp install_files/jscribble "$(DESTDIR)/usr/bin/"
+
 clean:
 	$(RM) *.mo
 	$(RM) -r html
