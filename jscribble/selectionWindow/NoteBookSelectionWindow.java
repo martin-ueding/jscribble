@@ -186,6 +186,10 @@ public class NoteBookSelectionWindow {
 			        "Nickname of your Notebook:" + " " +
 			        "(please only use characters, numbers, _ and -)"));
 
+			if (nickname == null) {
+				return null;
+			}
+
 			Matcher m = p.matcher(nickname);
 			if (m != null && m.matches()) {
 				break;
