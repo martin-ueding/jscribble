@@ -20,7 +20,11 @@
 package jscribble;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -126,6 +130,35 @@ public class NoteBookProgram {
 
 		log(NoteBookProgram.class.getClass().getName(),
 		    Localizer.get("Entering interactive mode."));
+	}
+
+	private static Properties mainConfig;
+
+
+	public static String getConfigValue(String key) {
+		if (mainConfig == null) {
+			mainConfig = new Properties();
+			try {
+				File configfile = new File(getDotDir() + File.separator + "config.txt");
+				if (configfile.exists()) {
+					mainConfig.load(new FileInputStream(configfile));
+				}
+				else {
+					log(NoteBookProgram.class.getClass().getName(), Localizer.get("Could not find config file."));
+					return null;
+				}
+			}
+			catch (FileNotFoundException e) {
+				handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				handleError(Localizer.get("IO error while reading config file."));
+				e.printStackTrace();
+			}
+		}
+
+		return mainConfig.getProperty(key, null);
 	}
 
 
