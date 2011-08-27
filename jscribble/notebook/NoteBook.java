@@ -46,6 +46,9 @@ import jscribble.NoteBookProgram;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBook {
+	// TODO This list cannot cope with running out of memory.
+	// The lists need to be able to shrink if you advance way into the
+	// notebook.
 	/**
 	 * A List with all the NoteSheet this NoteBook contains,
 	 */
