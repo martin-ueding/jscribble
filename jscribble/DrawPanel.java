@@ -125,8 +125,9 @@ public class DrawPanel extends JPanel {
 
 
 	public void toggleOnion() {
-		if (onionMode)
+		if (onionMode) {
 			resetCachedImage();
+		}
 		onionMode = !onionMode;
 		repaint();
 	}
@@ -236,12 +237,17 @@ public class DrawPanel extends JPanel {
 		drawHelp(g2);
 	}
 
+	/**
+	 * A cached image that is used instead of the original images in the onion
+	 * mode to conserve performance.
+	 */
 	private BufferedImage cachedImage;
 
 	private BufferedImage getCachedImage() {
 		if (onionMode) {
 			if (cachedImage == null) {
-				cachedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+				cachedImage = new BufferedImage(getWidth(), getHeight(),
+				        BufferedImage.TYPE_BYTE_GRAY);
 				Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
 
 				// Draw the previous sheet in the NoteBook.
@@ -271,8 +277,13 @@ public class DrawPanel extends JPanel {
 				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
 				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
 				g.setColor(new Color(0, 0, 0, 100));
-				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
-				g.fillRoundRect(getWidth() - scrollPanelRadius, scrollPanelPadding, 2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding, scrollPanelRadius, scrollPanelRadius);
+				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
+				        2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding,
+				        scrollPanelRadius, scrollPanelRadius);
+				g.fillRoundRect(getWidth() - scrollPanelRadius,
+				        scrollPanelPadding, 2 * scrollPanelRadius,
+				        getHeight() - 2 * scrollPanelPadding,
+				        scrollPanelRadius, scrollPanelRadius);
 			}
 			catch (NumberFormatException e) {
 				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
@@ -323,7 +334,7 @@ public class DrawPanel extends JPanel {
 
 	public void goBackwards() {
 		resetCachedImage();
-		notebook.goBackwards();		
+		notebook.goBackwards();
 	}
 
 
