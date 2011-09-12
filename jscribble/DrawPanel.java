@@ -124,13 +124,11 @@ public class DrawPanel extends JPanel {
 	private boolean onionMode;
 
 
-	public void toggleOnion() {
-		if (onionMode) {
-			resetCachedImage();
-		}
-		onionMode = !onionMode;
-		repaint();
-	}
+	/**
+	 * A cached image that is used instead of the original images in the onion
+	 * mode to conserve performance.
+	 */
+	private BufferedImage cachedImage;
 
 
 	/**
@@ -179,6 +177,19 @@ public class DrawPanel extends JPanel {
 	}
 
 
+	public void drawLine(int x, int y, int x2, int y2) {
+		if (onionMode) {
+			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
+			g2.setRenderingHints(new
+			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+			                RenderingHints.VALUE_ANTIALIAS_ON));
+			g2.setColor(Color.BLACK);
+			g2.drawLine(x, y, x2, y2);
+		}
+		notebook.drawLine(x, y, x2, y2);
+	}
+
+
 	/**
 	 * Draws the helping lines if needed.
 	 *
@@ -212,36 +223,26 @@ public class DrawPanel extends JPanel {
 		        notebook.getSheetCount()), getWidth() / 2, 15);
 	}
 
+	private void drawScrollPanels(Graphics2D g) {
+		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+			try {
+				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
+				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+				g.setColor(new Color(0, 0, 0, 100));
+				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
+				        2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding,
+				        scrollPanelRadius, scrollPanelRadius);
+				g.fillRoundRect(getWidth() - scrollPanelRadius,
+				        scrollPanelPadding, 2 * scrollPanelRadius,
+				        getHeight() - 2 * scrollPanelPadding,
+				        scrollPanelRadius, scrollPanelRadius);
+			}
+			catch (NumberFormatException e) {
+				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
+			}
+		}
 
-	/**
-	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
-	 * top of the image as well.
-	 *
-	 * @param g graphics context (usually given by Java itself).
-	 */
-	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setRenderingHints(new
-		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-		                RenderingHints.VALUE_ANTIALIAS_ON));
-
-
-		// Draw the current image.
-		g2.drawImage(getCachedImage(), 0, 0, io);
-
-		g2.setComposite(AlphaComposite.Src);
-
-		drawLines(g2);
-		drawPageNumber(g2);
-		drawScrollPanels(g2);
-		drawHelp(g2);
 	}
-
-	/**
-	 * A cached image that is used instead of the original images in the onion
-	 * mode to conserve performance.
-	 */
-	private BufferedImage cachedImage;
 
 	private BufferedImage getCachedImage() {
 		if (onionMode) {
@@ -271,25 +272,57 @@ public class DrawPanel extends JPanel {
 	}
 
 
-	private void drawScrollPanels(Graphics2D g) {
-		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
-			try {
-				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
-				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
-				g.setColor(new Color(0, 0, 0, 100));
-				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
-				        2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding,
-				        scrollPanelRadius, scrollPanelRadius);
-				g.fillRoundRect(getWidth() - scrollPanelRadius,
-				        scrollPanelPadding, 2 * scrollPanelRadius,
-				        getHeight() - 2 * scrollPanelPadding,
-				        scrollPanelRadius, scrollPanelRadius);
-			}
-			catch (NumberFormatException e) {
-				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
-			}
-		}
+	public void goBackwards() {
+		resetCachedImage();
+		notebook.goBackwards();
+	}
 
+
+	public void goForward() {
+		resetCachedImage();
+		notebook.goForward();
+	}
+
+
+	public void gotoFirst() {
+		resetCachedImage();
+		notebook.gotoFirst();
+	}
+
+
+	public void gotoLast() {
+		resetCachedImage();
+		notebook.gotoLast();
+	}
+
+
+	/**
+	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
+	 * top of the image as well.
+	 *
+	 * @param g graphics context (usually given by Java itself).
+	 */
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHints(new
+		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+		                RenderingHints.VALUE_ANTIALIAS_ON));
+
+
+		// Draw the current image.
+		g2.drawImage(getCachedImage(), 0, 0, io);
+
+		g2.setComposite(AlphaComposite.Src);
+
+		drawLines(g2);
+		drawPageNumber(g2);
+		drawScrollPanels(g2);
+		drawHelp(g2);
+	}
+
+
+	private void resetCachedImage() {
+		cachedImage = null;
 	}
 
 
@@ -319,44 +352,11 @@ public class DrawPanel extends JPanel {
 	}
 
 
-	public void drawLine(int x, int y, int x2, int y2) {
+	public void toggleOnion() {
 		if (onionMode) {
-			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
-			g2.setRenderingHints(new
-			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-			                RenderingHints.VALUE_ANTIALIAS_ON));
-			g2.setColor(Color.BLACK);
-			g2.drawLine(x, y, x2, y2);
+			resetCachedImage();
 		}
-		notebook.drawLine(x, y, x2, y2);
-	}
-
-
-	public void goBackwards() {
-		resetCachedImage();
-		notebook.goBackwards();
-	}
-
-
-	private void resetCachedImage() {
-		cachedImage = null;
-	}
-
-
-	public void goForward() {
-		resetCachedImage();
-		notebook.goForward();
-	}
-
-
-	public void gotoLast() {
-		resetCachedImage();
-		notebook.gotoLast();
-	}
-
-
-	public void gotoFirst() {
-		resetCachedImage();
-		notebook.gotoFirst();
+		onionMode = !onionMode;
+		repaint();
 	}
 }
