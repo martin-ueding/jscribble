@@ -222,15 +222,21 @@ public class DrawPanel extends JPanel {
 		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 
+		// Draw the previous sheet in the NoteBook if the onion mode is enabled.
 		if (onionMode) {
 			NoteSheet prevSheet = notebook.getPreviousSheet();
+			
+			// If we are not on the first NoteSheet ...
 			if (prevSheet != null) {
 				BufferedImage prev = prevSheet.getImg();
-				g2.setComposite(AlphaComposite.getInstance(
-				            AlphaComposite.SRC_ATOP, (float) 0.5));
+				g2.setComposite(AlphaComposite.Src);
 				g2.drawImage(prev, 0, 0, io);
+				g2.setComposite(AlphaComposite.getInstance(
+						AlphaComposite.SRC_ATOP, (float) 0.8));
 			}
 		}
+		
+		// Draw the current image.
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 
 		g2.setComposite(AlphaComposite.Src);
