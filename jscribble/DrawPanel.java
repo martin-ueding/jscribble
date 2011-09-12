@@ -52,12 +52,10 @@ public class DrawPanel extends JPanel {
 		 */
 		public String key;
 
-
 		/**
 		 * The action the buttons cause.
 		 */
 		public String helptext;
-
 
 		/**
 		 * Generates a new HelpItem.
@@ -68,42 +66,35 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
-
 	/**
 	 * Color of the help lines.
 	 */
 	private static final Color lineColor = new Color(200, 200, 200);
-
 
 	/**
 	 * The spacing between the help lines.
 	 */
 	private static final int lineSpacing = 40;
 
-
 	/**
 	 * The NoteBook that is displayed.
 	 */
 	private NoteBook notebook;
-
 
 	/**
 	 * Handles the image output.
 	 */
 	private ImageObserver io = this;
 
-
 	/**
 	 * Whether helping lines are enabled.
 	 */
 	private boolean lines = false;
 
-
 	/**
 	 * Whether to display the help panel.
 	 */
 	private boolean showHelp = false;
-
 
 	/**
 	 * A list with all the HelpItem to display.
@@ -120,16 +111,16 @@ public class DrawPanel extends JPanel {
 
 	};
 
-
+	/**
+	 * Whether to display the last image in a see through way.
+	 */
 	private boolean onionMode;
-
 
 	/**
 	 * A cached image that is used instead of the original images in the onion
 	 * mode to conserve performance.
 	 */
 	private BufferedImage cachedImage;
-
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
@@ -145,7 +136,6 @@ public class DrawPanel extends JPanel {
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
 	}
-
 
 	/**
 	 * Draws the help screen if needed.
@@ -176,7 +166,15 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
-
+	/**
+	 * Draws a line onto the current sheet. If onion mode is used, it will be
+	 * cached in another image. To the user, there will be no difference.
+	 *
+	 * @param x
+	 * @param y
+	 * @param x2
+	 * @param y2
+	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		if (onionMode) {
 			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
@@ -188,7 +186,6 @@ public class DrawPanel extends JPanel {
 		}
 		notebook.drawLine(x, y, x2, y2);
 	}
-
 
 	/**
 	 * Draws the helping lines if needed.
@@ -210,7 +207,6 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
-
 	/**
 	 * Draws the page number on top.
 	 *
@@ -223,6 +219,12 @@ public class DrawPanel extends JPanel {
 		        notebook.getSheetCount()), getWidth() / 2, 15);
 	}
 
+	/**
+	 * Draws the scroll panels at the side of the screen if enabled in the
+	 * config.
+	 *
+	 * @param g Context of the current DrawPanel
+	 */
 	private void drawScrollPanels(Graphics2D g) {
 		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
 			try {
@@ -230,7 +232,8 @@ public class DrawPanel extends JPanel {
 				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
 				g.setColor(new Color(0, 0, 0, 100));
 				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
-				        2 * scrollPanelRadius, getHeight() - 2 * scrollPanelPadding,
+				        2 * scrollPanelRadius,
+				        getHeight() - 2 * scrollPanelPadding,
 				        scrollPanelRadius, scrollPanelRadius);
 				g.fillRoundRect(getWidth() - scrollPanelRadius,
 				        scrollPanelPadding, 2 * scrollPanelRadius,
@@ -244,6 +247,13 @@ public class DrawPanel extends JPanel {
 
 	}
 
+	/**
+	 * Returns the cached image. This can be the original image if there is no
+	 * onion mode used, or the layered image if used. If there is no image yet,
+	 * it will be created and composed.
+	 *
+	 * @return Image which contains all the drawing information
+	 */
 	private BufferedImage getCachedImage() {
 		if (onionMode) {
 			if (cachedImage == null) {
@@ -271,30 +281,37 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
-
+	/**
+	 * Goes one page back.
+	 */
 	public void goBackwards() {
 		resetCachedImage();
 		notebook.goBackwards();
 	}
 
-
+	/**
+	 * Goes one page forward.
+	 */
 	public void goForward() {
 		resetCachedImage();
 		notebook.goForward();
 	}
 
-
+	/**
+	 * Goes to the first page.
+	 */
 	public void gotoFirst() {
 		resetCachedImage();
 		notebook.gotoFirst();
 	}
 
-
+	/**
+	 * Goes to the last page.
+	 */
 	public void gotoLast() {
 		resetCachedImage();
 		notebook.gotoLast();
 	}
-
 
 	/**
 	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
@@ -320,11 +337,12 @@ public class DrawPanel extends JPanel {
 		drawHelp(g2);
 	}
 
-
+	/**
+	 * Resets the cached image after changing pages for instance.
+	 */
 	private void resetCachedImage() {
 		cachedImage = null;
 	}
-
 
 	/**
 	 * Set whether help lines are to be drawn.
@@ -335,14 +353,12 @@ public class DrawPanel extends JPanel {
 		this.lines  = b;
 	}
 
-
 	/**
 	 * Sets whether the help dialog is displayed.
 	 */
 	public void setShowHelp(boolean showHelp) {
 		this.showHelp = showHelp;
 	}
-
 
 	/**
 	 * Whether to display the help panel.
@@ -351,7 +367,9 @@ public class DrawPanel extends JPanel {
 		showHelp = !showHelp;
 	}
 
-
+	/**
+	 * Toggles the onion mode and does additional housekeeping.
+	 */
 	public void toggleOnion() {
 		if (onionMode) {
 			resetCachedImage();
