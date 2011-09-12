@@ -3,10 +3,9 @@
 
 outfile=jscribble/VersionName.java
 
-if [[ -f .bzr/branch/last-revision ]]
+if [[ -d .git ]]
 then
-	version=$(bzr tags | tail -n1 | sed "s/\s.*//")
-	revno=$(bzr revno)
+	version=$(git describe --always --tags)
 else
 	# TODO add better defaults here
 	version=NA
@@ -21,7 +20,7 @@ echo "public class VersionName {" >> $outfile
 echo "	/**" >> "$outfile"
 echo "	 * Current version number of the VCS." >> "$outfile"
 echo "	 */" >> "$outfile"
-echo "	public static final String version = \"$version~$revno\";" >> $outfile
+echo "	public static final String version = \"$version\";" >> $outfile
 echo "}" >> $outfile
 echo >> $outfile
 
