@@ -3,7 +3,7 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
-version=1.1.1
+version=1.2
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png jscribble/config.txt *.properties
