@@ -225,12 +225,12 @@ public class DrawPanel extends JPanel {
 		if (onionMode) {
 			BufferedImage prev = notebook.getPreviousSheet().getImg();
 			if (prev != null) {
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, (float) 0.5));
-			g2.drawImage(prev, 0, 0, io);
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, (float) 0.5));
+				g2.drawImage(prev, 0, 0, io);
 			}
 		}
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
-		
+
 		g2.setComposite(AlphaComposite.Src);
 
 		drawLines(g2);

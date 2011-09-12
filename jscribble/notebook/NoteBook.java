@@ -409,9 +409,9 @@ public class NoteBook {
 
 
 	public NoteSheet getPreviousSheet() {
-	if (currentSheet > 0 && currentSheet < sheets.size()) {
-		return sheets.get(currentSheet);
-	}
-	return null;
+		if (currentSheet > 0 && currentSheet < sheets.size()) {
+			return sheets.get(currentSheet);
+		}
+		return null;
 	}
 }
