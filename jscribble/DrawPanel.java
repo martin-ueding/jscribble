@@ -19,10 +19,12 @@
 
 package jscribble;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
@@ -118,6 +120,15 @@ public class DrawPanel extends JPanel {
 	};
 
 
+	private boolean onionMode;
+
+
+	public void toggleOnion() {
+		onionMode = !onionMode;
+		repaint();
+	}
+
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -210,7 +221,17 @@ public class DrawPanel extends JPanel {
 		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 
+		// TODO Add option for this.
+		if (onionMode) {
+			BufferedImage prev = notebook.getPreviousSheet().getImg();
+			if (prev != null) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, (float) 0.5));
+			g2.drawImage(prev, 0, 0, io);
+			}
+		}
 		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+		
+		g2.setComposite(AlphaComposite.Src);
 
 		drawLines(g2);
 		drawPageNumber(g2);

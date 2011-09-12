@@ -406,4 +406,12 @@ public class NoteBook {
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
+
+
+	public NoteSheet getPreviousSheet() {
+	if (currentSheet > 0 && currentSheet < sheets.size()) {
+		return sheets.get(currentSheet);
+	}
+	return null;
+	}
 }

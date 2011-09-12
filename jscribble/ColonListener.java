@@ -108,5 +108,9 @@ public class ColonListener implements KeyListener {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
+		
+		if (arg0.getKeyChar() == 'o') {
+			panel.toggleOnion();
+		}
 	}
 }
