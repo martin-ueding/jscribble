@@ -30,6 +30,7 @@ import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 import jscribble.notebook.NoteBook;
+import jscribble.notebook.NoteSheet;
 
 /**
  * Displays the current page of a NoteBook. It also listens to the mouse and
@@ -223,8 +224,9 @@ public class DrawPanel extends JPanel {
 
 		// TODO Add option for this.
 		if (onionMode) {
-			BufferedImage prev = notebook.getPreviousSheet().getImg();
-			if (prev != null) {
+			NoteSheet prevSheet = notebook.getPreviousSheet();
+			if (prevSheet != null) {
+				BufferedImage prev = prevSheet.getImg();
 				g2.setComposite(AlphaComposite.getInstance(
 				            AlphaComposite.SRC_ATOP, (float) 0.5));
 				g2.drawImage(prev, 0, 0, io);
