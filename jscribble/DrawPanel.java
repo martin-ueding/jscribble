@@ -125,6 +125,8 @@ public class DrawPanel extends JPanel {
 
 
 	public void toggleOnion() {
+		if (onionMode)
+			resetCachedImage();
 		onionMode = !onionMode;
 		repaint();
 	}
@@ -140,7 +142,7 @@ public class DrawPanel extends JPanel {
 		this.notebook = notebook;
 		notebook.setDoneDrawing(new Redrawer(this));
 
-		PaintListener pl = new PaintListener(notebook, this);
+		PaintListener pl = new PaintListener(this);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
 	}
@@ -222,22 +224,9 @@ public class DrawPanel extends JPanel {
 		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 
-		// Draw the previous sheet in the NoteBook if the onion mode is enabled.
-		if (onionMode) {
-			NoteSheet prevSheet = notebook.getPreviousSheet();
-			
-			// If we are not on the first NoteSheet ...
-			if (prevSheet != null) {
-				BufferedImage prev = prevSheet.getImg();
-				g2.setComposite(AlphaComposite.Src);
-				g2.drawImage(prev, 0, 0, io);
-				g2.setComposite(AlphaComposite.getInstance(
-						AlphaComposite.SRC_ATOP, (float) 0.8));
-			}
-		}
-		
+
 		// Draw the current image.
-		g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+		g2.drawImage(getCachedImage(), 0, 0, io);
 
 		g2.setComposite(AlphaComposite.Src);
 
@@ -245,6 +234,34 @@ public class DrawPanel extends JPanel {
 		drawPageNumber(g2);
 		drawScrollPanels(g2);
 		drawHelp(g2);
+	}
+
+	private BufferedImage cachedImage;
+
+	private BufferedImage getCachedImage() {
+		if (onionMode) {
+			if (cachedImage == null) {
+				cachedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+				Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
+
+				// Draw the previous sheet in the NoteBook.
+				NoteSheet prevSheet = notebook.getPreviousSheet();
+
+				// If we are not on the first NoteSheet ...
+				if (prevSheet != null) {
+					BufferedImage prev = prevSheet.getImg();
+					g2.setComposite(AlphaComposite.Src);
+					g2.drawImage(prev, 0, 0, io);
+					g2.setComposite(AlphaComposite.getInstance(
+					            AlphaComposite.SRC_ATOP, (float) 0.8));
+				}
+				g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+			}
+			return cachedImage;
+		}
+		else {
+			return notebook.getCurrentSheet().getImg();
+		}
 	}
 
 
@@ -288,5 +305,47 @@ public class DrawPanel extends JPanel {
 	 */
 	public void toggleHelp() {
 		showHelp = !showHelp;
+	}
+
+
+	public void drawLine(int x, int y, int x2, int y2) {
+		if (onionMode) {
+			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
+			g2.setRenderingHints(new
+			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
+			                RenderingHints.VALUE_ANTIALIAS_ON));
+			g2.setColor(Color.BLACK);
+			g2.drawLine(x, y, x2, y2);
+		}
+		notebook.drawLine(x, y, x2, y2);
+	}
+
+
+	public void goBackwards() {
+		resetCachedImage();
+		notebook.goBackwards();		
+	}
+
+
+	private void resetCachedImage() {
+		cachedImage = null;
+	}
+
+
+	public void goForward() {
+		resetCachedImage();
+		notebook.goForward();
+	}
+
+
+	public void gotoLast() {
+		resetCachedImage();
+		notebook.gotoLast();
+	}
+
+
+	public void gotoFirst() {
+		resetCachedImage();
+		notebook.gotoFirst();
 	}
 }

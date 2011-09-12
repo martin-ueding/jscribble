@@ -24,8 +24,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import jscribble.notebook.NoteBook;
-
 
 /**
  * Listens to mouse movements on the displaying panel and updates the NoteBook.
@@ -33,12 +31,6 @@ import jscribble.notebook.NoteBook;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class PaintListener implements MouseMotionListener, MouseListener {
-	/**
-	 * The NoteBook which receives the painting.
-	 */
-	private NoteBook notebook;
-
-
 	/**
 	 * The last position of the pointer. Since the line commands needs two
 	 * points, but the mouseDragged() only gives the current location, the
@@ -54,8 +46,7 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * Generates a new Listener that relays its commands to a given NoteBook.
 	 * @param notebook
 	 */
-	public PaintListener(NoteBook notebook, DrawPanel drawPanel) {
-		this.notebook = notebook;
+	public PaintListener(DrawPanel drawPanel) {
 		this.drawPanel = drawPanel;
 	}
 
@@ -69,17 +60,17 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 
 		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
 			if (x <= Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
-				notebook.goBackwards();
+				drawPanel.goBackwards();
 				return;
 			}
 			if (x >= drawPanel.getWidth() - Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
-				notebook.goForward();
+				drawPanel.goForward();
 				return;
 			}
 		}
 
 		if (e.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			notebook.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
+			drawPanel.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
 		}
 	}
 
@@ -89,7 +80,7 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	public void mouseDragged(MouseEvent arg0) {
 		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			notebook.drawLine(lastPosition.x, lastPosition.y,
+			drawPanel.drawLine(lastPosition.x, lastPosition.y,
 			        arg0.getX(), arg0.getY());
 			lastPosition = arg0.getPoint();
 		}

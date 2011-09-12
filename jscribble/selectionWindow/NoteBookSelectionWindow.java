@@ -295,7 +295,7 @@ public class NoteBookSelectionWindow {
 
 
 
-		f.addKeyListener(new MovementListener(notebook));
+		f.addKeyListener(new MovementListener(panel));
 
 		notebook.gotoLast();
 

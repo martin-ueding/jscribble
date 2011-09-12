@@ -410,7 +410,7 @@ public class NoteBook {
 
 	public NoteSheet getPreviousSheet() {
 		if (currentSheet > 0 && currentSheet < sheets.size()) {
-			return sheets.get(currentSheet-1);
+			return sheets.get(currentSheet - 1);
 		}
 		return null;
 	}

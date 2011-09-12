@@ -22,13 +22,13 @@ package jscribble.selectionWindow;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import jscribble.notebook.NoteBook;
+import jscribble.DrawPanel;
 
 class MovementListener implements KeyListener {
-	private final NoteBook notebook;
+	private final DrawPanel drawPanel;
 
-	public MovementListener(NoteBook notebook) {
-		this.notebook = notebook;
+	public MovementListener(DrawPanel drawPanel) {
+		this.drawPanel = drawPanel;
 	}
 
 	public void keyPressed(KeyEvent arg0) {}
@@ -39,24 +39,24 @@ class MovementListener implements KeyListener {
 		        ev.getKeyCode() == KeyEvent.VK_RIGHT ||
 		        ev.getKeyCode() == KeyEvent.VK_SPACE ||
 		        ev.getKeyCode() == KeyEvent.VK_ENTER) {
-			notebook.goForward();
+			drawPanel.goForward();
 		}
 
 		if (ev.getKeyChar() == 'k' ||
 		        ev.getKeyCode() == KeyEvent.VK_UP ||
 		        ev.getKeyCode() == KeyEvent.VK_LEFT ||
 		        ev.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-			notebook.goBackwards();
+			drawPanel.goBackwards();
 		}
 
 		if (ev.getKeyChar() == 'f' ||
 		        ev.getKeyCode() == KeyEvent.VK_HOME) {
-			notebook.gotoFirst();
+			drawPanel.gotoFirst();
 		}
 
 		if (ev.getKeyChar() == 'l' ||
 		        ev.getKeyCode() == KeyEvent.VK_END) {
-			notebook.gotoLast();
+			drawPanel.gotoLast();
 		}
 	}
 
