@@ -222,7 +222,6 @@ public class DrawPanel extends JPanel {
 		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 
-		// TODO Add option for this.
 		if (onionMode) {
 			NoteSheet prevSheet = notebook.getPreviousSheet();
 			if (prevSheet != null) {
