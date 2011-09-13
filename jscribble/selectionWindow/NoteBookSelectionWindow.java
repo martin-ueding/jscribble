@@ -289,6 +289,13 @@ public class NoteBookSelectionWindow {
 		f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
 		f.setResizable(false);
 
+		try {
+			f.setIconImage(ImageIO.read(ClassLoader.getSystemResourceAsStream("install_files/jscribble.png")));
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 		panel = new DrawPanel(notebook);
 		f.add(panel);
