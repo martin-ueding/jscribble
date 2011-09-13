@@ -109,8 +109,12 @@ public class ColonListener implements KeyListener {
 			redrawer.actionPerformed(null);
 		}
 
-		if (arg0.getKeyChar() == 'o') {
-			panel.toggleOnion();
+		if (arg0.getKeyChar() == '+') {
+			panel.onionLayersIncrease();
+		}
+
+		if (arg0.getKeyChar() == '-') {
+			panel.onionLayersDecrease();
 		}
 	}
 }

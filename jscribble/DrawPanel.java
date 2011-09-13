@@ -112,9 +112,9 @@ public class DrawPanel extends JPanel {
 	};
 
 	/**
-	 * Whether to display the last image in a see through way.
+	 * How many images should be composed in a see through way.
 	 */
-	private boolean onionMode;
+	private int onionMode;
 
 	/**
 	 * A cached image that is used instead of the original images in the onion
@@ -176,7 +176,7 @@ public class DrawPanel extends JPanel {
 	 * @param y2
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
-		if (onionMode) {
+		if (isOnionMode()) {
 			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
 			g2.setRenderingHints(new
 			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
@@ -205,6 +205,14 @@ public class DrawPanel extends JPanel {
 				g2.drawLine(0, i, getWidth(), i);
 			}
 		}
+	}
+
+	private void drawOnionInfo(Graphics2D g2) {
+		if (!isOnionMode()) {
+			return;
+		}
+		g2.drawString(String.format(Localizer.get("Onion Layers: %d"), onionMode), 10, 15);
+
 	}
 
 	/**
@@ -255,7 +263,7 @@ public class DrawPanel extends JPanel {
 	 * @return Image which contains all the drawing information
 	 */
 	private BufferedImage getCachedImage() {
-		if (onionMode) {
+		if (isOnionMode()) {
 			if (cachedImage == null) {
 				cachedImage = new BufferedImage(getWidth(), getHeight(),
 				        BufferedImage.TYPE_BYTE_GRAY);
@@ -313,6 +321,35 @@ public class DrawPanel extends JPanel {
 		notebook.gotoLast();
 	}
 
+	private boolean isOnionMode() {
+		return onionMode > 0;
+	}
+
+	/**
+	 * Decreases the onion layers and does additional housekeeping.
+	 */
+	public void onionLayersDecrease() {
+		// Do nothing if there are no layers displayed currently.
+		if (!isOnionMode()) {
+			return;
+		}
+
+		resetCachedImage();
+		onionMode--;
+		repaint();
+	}
+
+	/**
+	 * Increases the onion layers and does additional housekeeping.
+	 */
+	public void onionLayersIncrease() {
+		if (isOnionMode()) {
+			resetCachedImage();
+		}
+		onionMode++;
+		repaint();
+	}
+
 	/**
 	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
 	 * top of the image as well.
@@ -333,6 +370,7 @@ public class DrawPanel extends JPanel {
 
 		drawLines(g2);
 		drawPageNumber(g2);
+		drawOnionInfo(g2);
 		drawScrollPanels(g2);
 		drawHelp(g2);
 	}
@@ -365,16 +403,5 @@ public class DrawPanel extends JPanel {
 	 */
 	public void toggleHelp() {
 		showHelp = !showHelp;
-	}
-
-	/**
-	 * Toggles the onion mode and does additional housekeeping.
-	 */
-	public void toggleOnion() {
-		if (onionMode) {
-			resetCachedImage();
-		}
-		onionMode = !onionMode;
-		repaint();
 	}
 }
