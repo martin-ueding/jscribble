@@ -30,7 +30,6 @@ import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 import jscribble.notebook.NoteBook;
-import jscribble.notebook.NoteSheet;
 
 /**
  * Displays the current page of a NoteBook. It also listens to the mouse and
@@ -265,20 +264,33 @@ public class DrawPanel extends JPanel {
 	private BufferedImage getCachedImage() {
 		if (isOnionMode()) {
 			if (cachedImage == null) {
+				// Create a new blank image.
 				cachedImage = new BufferedImage(getWidth(), getHeight(),
 				        BufferedImage.TYPE_BYTE_GRAY);
 				Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
+				g2.setColor(Color.WHITE);
+				g2.fillRect(0, 0, getWidth(), getHeight());
 
-				// Draw the previous sheet in the NoteBook.
-				NoteSheet prevSheet = notebook.getPreviousSheet();
+				// Go back as many pages as there should be onion layers.
+				int wentBack = 0;
+				for (; wentBack < onionMode; wentBack++) {
+					int prevPageNumber = notebook.getCurrentSheet().getPagenumber();
+					notebook.goBackwards();
+					if (prevPageNumber == notebook.getCurrentSheet().getPagenumber()) {
+						break;
+					}
+				}
 
-				// If we are not on the first NoteSheet ...
-				if (prevSheet != null) {
-					BufferedImage prev = prevSheet.getImg();
-					g2.setComposite(AlphaComposite.Src);
-					g2.drawImage(prev, 0, 0, io);
-					g2.setComposite(AlphaComposite.getInstance(
-					            AlphaComposite.SRC_ATOP, (float) 0.8));
+
+				g2.setComposite(AlphaComposite.getInstance(
+				            AlphaComposite.SRC_ATOP, (float)(0.8 / onionMode)));
+
+				while (wentBack > 0) {
+					g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+
+
+					wentBack--;
+					notebook.goForward();
 				}
 				g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 			}
