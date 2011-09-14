@@ -106,8 +106,9 @@ public class DrawPanel extends JPanel {
 		Localizer.get("go backward")),
 		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
 		new HelpItem("l, <End>", Localizer.get("goto last")),
-		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit"))
-
+		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit")),
+		new HelpItem("+", Localizer.get("increase onion layers")),
+		new HelpItem("-", Localizer.get("decrease onion layers"))
 	};
 
 	/**
