@@ -76,7 +76,7 @@ public class DrawPanel extends JPanel {
 	private static final int lineSpacing = 40;
 
 	/**
-	 * The NoteBook that is displayed.
+	 * The NoteBook that is currently displayed.
 	 */
 	private NoteBook notebook;
 
@@ -101,9 +101,9 @@ public class DrawPanel extends JPanel {
 	private HelpItem[] helpItems = {
 		new HelpItem("h", Localizer.get("show help")),
 		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>",
-		Localizer.get("go forward")),
+				Localizer.get("go forward")),
 		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",
-		Localizer.get("go backward")),
+				Localizer.get("go backward")),
 		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
 		new HelpItem("l, <End>", Localizer.get("goto last")),
 		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit")),
@@ -130,8 +130,12 @@ public class DrawPanel extends JPanel {
 	 */
 	public DrawPanel(NoteBook notebook) {
 		this.notebook = notebook;
+
+		// Notify this instance when the notebook was is done drawing.
 		notebook.setDoneDrawing(new Redrawer(this));
 
+		// This handles the painting onto the NoteBook that this DrawPanel
+		// displays.
 		PaintListener pl = new PaintListener(this);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
@@ -143,12 +147,17 @@ public class DrawPanel extends JPanel {
 	 * @param g2 Graphics2D to draw in
 	 */
 	private void drawHelp(Graphics2D g2) {
-		if (showHelp) {
+		if (!showHelp) {
+			return;
+		}
+
+		// Draw a dark rectangle to write the help text on.
 			g2.setColor(new Color(0, 0, 0, 200));
 			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
 			        20);
 			g2.setColor(Color.WHITE);
 
+			// Iterate through the help items and display them.
 			int i = 0;
 			int vspacing = 30;
 			int spacing = 250;
@@ -160,10 +169,10 @@ public class DrawPanel extends JPanel {
 				i++;
 			}
 
+			// Print the version identifier.
 			g2.setColor(Color.GRAY);
 			g2.drawString(String.format(Localizer.get("Version %s"),
 			        VersionName.version), padding, getHeight() - padding);
-		}
 	}
 
 	/**
@@ -207,12 +216,17 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Draws the number of onion layers as a string.
+	 *
+	 * @param g2 Graphics2D to draw on
+	 */
 	private void drawOnionInfo(Graphics2D g2) {
 		if (!isOnionMode()) {
 			return;
 		}
-		g2.drawString(String.format(Localizer.get("Onion Layers: %d"), onionMode), 10, 15);
 
+		g2.drawString(String.format(Localizer.get("Onion Layers: %d"), onionMode), 10, 15);
 	}
 
 	/**
@@ -234,10 +248,17 @@ public class DrawPanel extends JPanel {
 	 * @param g Context of the current DrawPanel
 	 */
 	private void drawScrollPanels(Graphics2D g) {
-		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+		// Do nothing if the option is not set.
+		if (!NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+			return;
+		}
+
 			try {
+				// Read the dimension of the panel from the config file.
 				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
 				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+
+				// Draw the panels on the sides.
 				g.setColor(new Color(0, 0, 0, 100));
 				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
 				        2 * scrollPanelRadius,
@@ -251,8 +272,6 @@ public class DrawPanel extends JPanel {
 			catch (NumberFormatException e) {
 				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
 			}
-		}
-
 	}
 
 	/**
@@ -263,7 +282,11 @@ public class DrawPanel extends JPanel {
 	 * @return Image which contains all the drawing information
 	 */
 	private BufferedImage getCachedImage() {
-		if (isOnionMode()) {
+		// If the onion mode is not enables, the original image can be used.
+		if (!isOnionMode()) {
+			return notebook.getCurrentSheet().getImg();
+		}
+
 			if (cachedImage == null) {
 				// Create a new blank image.
 				cachedImage = new BufferedImage(getWidth(), getHeight(),
@@ -282,24 +305,23 @@ public class DrawPanel extends JPanel {
 					}
 				}
 
-
+				// Set the layers to a given opacity.
 				g2.setComposite(AlphaComposite.getInstance(
 				            AlphaComposite.SRC_ATOP, (float)(0.8 / onionMode)));
 
+				// Iterate through from the bottom to the top layer and compose
+				// the images onto the cache image.
 				while (wentBack > 0) {
 					g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 
-
+					// Move on to the next NoteSheet.
 					wentBack--;
 					notebook.goForward();
 				}
 				g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 			}
+
 			return cachedImage;
-		}
-		else {
-			return notebook.getCurrentSheet().getImg();
-		}
 	}
 
 	/**
@@ -334,6 +356,11 @@ public class DrawPanel extends JPanel {
 		notebook.gotoLast();
 	}
 
+	/**
+	 * Whether there are any onion layers displayed.
+	 *
+	 * @return Whether there are onion layers.
+	 */
 	private boolean isOnionMode() {
 		return onionMode > 0;
 	}
@@ -356,9 +383,12 @@ public class DrawPanel extends JPanel {
 	 * Increases the onion layers and does additional housekeeping.
 	 */
 	public void onionLayersIncrease() {
+		// If onion mode was enabled, the current cache image is obsolete and
+		// needs to be redone.
 		if (isOnionMode()) {
 			resetCachedImage();
 		}
+
 		onionMode++;
 		repaint();
 	}
@@ -378,8 +408,6 @@ public class DrawPanel extends JPanel {
 
 		// Draw the current image.
 		g2.drawImage(getCachedImage(), 0, 0, io);
-
-		g2.setComposite(AlphaComposite.Src);
 
 		drawLines(g2);
 		drawPageNumber(g2);

@@ -32,6 +32,7 @@ public class Localizer {
 	static ResourceBundle bundle;
 
 	public static String get(String ident) {
+		// Try to load the ResourceBundle.
 		if (bundle == null) {
 			try {
 				bundle = ResourceBundle.getBundle("jscribble");
@@ -46,6 +47,7 @@ public class Localizer {
 			}
 		}
 
+		// Do not translate if there is no translation around.
 		if (bundle == null) {
 			return ident;
 		}

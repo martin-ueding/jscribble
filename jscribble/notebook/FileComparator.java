@@ -24,7 +24,7 @@ import java.text.Collator;
 import java.util.Comparator;
 
 /**
- * Compares two files.
+ * Compares two files by their file names.
  */
 public class FileComparator implements Comparator<File> {
 	private Collator c = Collator.getInstance();

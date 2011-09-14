@@ -61,7 +61,6 @@ public class ColonListener implements KeyListener {
 	 */
 	public void addChangeListener(Redrawer redrawer) {
 		this.redrawer = redrawer;
-
 	}
 
 
@@ -78,6 +77,7 @@ public class ColonListener implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+		// Close the help when the <ESC> key is pressed.
 		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			panel.setShowHelp(false);
 			redrawer.actionPerformed(null);

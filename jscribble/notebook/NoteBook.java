@@ -34,8 +34,6 @@ import javax.swing.JOptionPane;
 import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 
-
-
 /**
  * A container for several NoteSheet.
  *
@@ -46,7 +44,7 @@ import jscribble.NoteBookProgram;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBook {
-	// TODO This list cannot cope with running out of memory.
+	// XXX This list cannot cope with running out of memory.
 	// The lists need to be able to shrink if you advance way into the
 	// notebook.
 	/**
@@ -54,48 +52,40 @@ public class NoteBook {
 	 */
 	private LinkedList<NoteSheet> sheets;
 
-
 	/**
 	 * The currently opened page.
 	 */
 	private int currentSheet = 0;
-
 
 	/**
 	 * The folder which contains the NoteSheet.
 	 */
 	private File folder;
 
-
 	/**
 	 * Size of the individual NoteSheet.
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
-
 
 	/**
 	 * Listener that needs to be notified after the current sheet is changed.
 	 */
 	private ActionListener doneDrawing;
 
-
 	/**
 	 * Count of pages. Latest page number is page count.
 	 */
 	private int pagecount = 1;
-
 
 	/**
 	 * How many images to cache back and front.
 	 */
 	private int cacheWidth = 10;
 
-
 	/**
 	 * The name of this NoteBook. It is also the folder name.
 	 */
 	private String name;
-
 
 	/**
 	 * Creates an empty note book with a single note sheet.
@@ -122,7 +112,6 @@ public class NoteBook {
 		}
 	}
 
-
 	/**
 	 * Add an empty sheet if the NoteBook would be empty otherwise.
 	 */
@@ -134,7 +123,6 @@ public class NoteBook {
 			currentSheet = 0;
 		}
 	}
-
 
 	/**
 	 * Asks the user to delete the NoteBook.
@@ -151,7 +139,6 @@ public class NoteBook {
 		};
 		return false;
 	}
-
 
 	/**
 	 * Delete the NoteBook from the file system.
@@ -180,7 +167,6 @@ public class NoteBook {
 		}
 	}
 
-
 	/**
 	 * Draws a line onto the current sheet.
 	 */
@@ -189,7 +175,6 @@ public class NoteBook {
 
 		fireDoneDrawing();
 	}
-
 
 	/**
 	 * Tell the listener (the DrawPanel) that the NoteBook has changed and
@@ -200,7 +185,6 @@ public class NoteBook {
 			doneDrawing.actionPerformed(null);
 		}
 	}
-
 
 	/**
 	 * Generates the File for the next NoteSheet.
@@ -223,7 +207,6 @@ public class NoteBook {
 		return null;
 	}
 
-
 	/**
 	 * Gets the NoteSheet object which the currently open page of the NoteBook.
 	 */
@@ -235,14 +218,12 @@ public class NoteBook {
 		return sheets.get(currentSheet);
 	}
 
-
 	/**
 	 * Returns the name of the NoteBook.
 	 */
 	public String getName() {
 		return name;
 	}
-
 
 	/**
 	 * Number of sheets in the NoteBook
@@ -263,7 +244,6 @@ public class NoteBook {
 		return sheets.size();
 	}
 
-
 	/**
 	 * Goes back one sheet.
 	 */
@@ -277,7 +257,6 @@ public class NoteBook {
 			fireDoneDrawing();
 		}
 	}
-
 
 	/**
 	 * Flip the pages forward. It creates a new page if needed. If the current
@@ -310,7 +289,6 @@ public class NoteBook {
 		fireDoneDrawing();
 	}
 
-
 	/**
 	 * Goes to the first page in the NoteBook.
 	 */
@@ -319,7 +297,6 @@ public class NoteBook {
 		fireDoneDrawing();
 	}
 
-
 	/**
 	 * Goes to the last page in the NoteBook.
 	 */
@@ -327,7 +304,6 @@ public class NoteBook {
 		currentSheet = Math.max(0, sheets.size() - 1);
 		fireDoneDrawing();
 	}
-
 
 	/**
 	 * Loads the images from the previously set folder.
@@ -366,7 +342,6 @@ public class NoteBook {
 		}
 	}
 
-
 	/**
 	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
 	 */
@@ -374,7 +349,6 @@ public class NoteBook {
 		sheets.getFirst().stopWriteoutThread();
 
 	}
-
 
 	/**
 	 * Persists the whole NoteBook into individual files.
@@ -388,7 +362,6 @@ public class NoteBook {
 		quitWithWriteoutThread();
 	}
 
-
 	/**
 	 * Sets an action listener to be called when something new was drawn.
 	 *
@@ -398,20 +371,11 @@ public class NoteBook {
 		this.doneDrawing = doneDrawing;
 	}
 
-
 	/**
 	 * Returns a string representation of the NoteBook, consisting of the name
 	 * and page count.
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
-	}
-
-
-	public NoteSheet getPreviousSheet() {
-		if (currentSheet > 0 && currentSheet < sheets.size()) {
-			return sheets.get(currentSheet - 1);
-		}
-		return null;
 	}
 }

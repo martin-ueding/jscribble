@@ -36,7 +36,6 @@ public class Redrawer implements ActionListener {
 	 */
 	private JPanel panel;
 
-
 	/**
 	 * Creates a new Redrawer that tells the given Panel to redraw.
 	 *
@@ -45,7 +44,6 @@ public class Redrawer implements ActionListener {
 	public Redrawer(JPanel panel) {
 		this.panel = panel;
 	}
-
 
 	/**
 	 * Redraws the previously set panel.
