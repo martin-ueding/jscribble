@@ -105,7 +105,7 @@ public class DrawPanel extends JPanel {
 		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",
 		Localizer.get("go backward")),
 		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
-		new HelpItem("l, <End", Localizer.get("goto last")),
+		new HelpItem("l, <End>", Localizer.get("goto last")),
 		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit"))
 
 	};
