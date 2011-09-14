@@ -151,7 +151,7 @@ public class DrawPanel extends JPanel {
 
 			int i = 0;
 			int vspacing = 30;
-			int spacing = 150;
+			int spacing = 250;
 			int padding = 70;
 			for (HelpItem h : helpItems) {
 				g2.drawString(h.helptext, padding, i * vspacing + padding);
