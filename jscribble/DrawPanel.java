@@ -445,4 +445,9 @@ public class DrawPanel extends JPanel {
 	public void toggleHelp() {
 		showHelp = !showHelp;
 	}
+
+	public void eraseLine(int x, int y, int x2, int y2) {
+		notebook.eraseLine(x, y, x2, y2);
+	
+	}
 }

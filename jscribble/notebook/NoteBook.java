@@ -378,4 +378,10 @@ public class NoteBook {
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
+
+	public void eraseLine(int x, int y, int x2, int y2) {
+		getCurrentSheet().eraseLine(x, y, x2, y2);
+
+		fireDoneDrawing();
+	}
 }

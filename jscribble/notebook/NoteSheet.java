@@ -19,6 +19,7 @@
 
 package jscribble.notebook;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -357,5 +358,15 @@ public class NoteSheet {
 	 */
 	public boolean unsaved() {
 		return unsaved;
+	}
+
+
+	public void eraseLine(int x, int y, int x2, int y2) {
+		touched = true;
+		unsaved = true;
+
+		getGraphics().setColor(Color.RED);
+		getGraphics().setStroke(new BasicStroke(5));
+		getGraphics().drawLine(x, y, x2, y2);
 	}
 }
