@@ -48,17 +48,18 @@ public class BufferedImageWrapper {
 	private Stroke drawStroke = new BasicStroke(1);
 	private Stroke eraseStroke = new BasicStroke(5);
 
+	private Color background = Color.WHITE;
+	private Color foreground = Color.BLACK;
+
 	public void drawLine(int x, int y, int x2, int y2) {
-		// TODO Make color more abstract.
-		graphics.setColor(Color.BLACK);
+		graphics.setColor(foreground);
 		graphics.setStroke(drawStroke);
 		graphics.drawLine(x, y, x2, y2);
 	}
 
 
 	public void eraseLine(int x, int y, int x2, int y2) {
-		// TODO Make color more abstract.
-		graphics.setColor(Color.WHITE);
+		graphics.setColor(background);
 		graphics.setStroke(eraseStroke);
 		graphics.drawLine(x, y, x2, y2);
 	}
