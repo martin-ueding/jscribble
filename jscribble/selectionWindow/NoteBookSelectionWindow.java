@@ -26,6 +26,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,6 +45,7 @@ import jscribble.DrawPanel;
 import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 import jscribble.Redrawer;
+import jscribble.notebook.FileComparator;
 import jscribble.notebook.NoteBook;
 
 /**
@@ -237,7 +239,7 @@ public class NoteBookSelectionWindow {
 					listModel.addElement(justfound);
 				}
 			}
-			// TODO sort the list of notebooks by name
+			Arrays.sort(folders, new FileComparator());
 		}
 		else {
 			NoteBookProgram.getDotDir().mkdirs();
