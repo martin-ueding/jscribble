@@ -82,8 +82,9 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
 			drawPanel.drawLine(lastPosition.x, lastPosition.y,
 			        arg0.getX(), arg0.getY());
-			lastPosition = arg0.getPoint();
 		}
+
+		lastPosition = arg0.getPoint();
 	}
 
 	/**
