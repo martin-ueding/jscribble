@@ -126,7 +126,10 @@ public class NoteSheet {
 		touched = true;
 		unsaved = true;
 
-		getGraphics().setColor(new Color(0, 0, 0));
+		// TODO Make color more abstract.
+		getGraphics().setColor(Color.BLACK);
+		// TODO Put width into config.
+		getGraphics().setStroke(new BasicStroke(1));
 		getGraphics().drawLine(x, y, x2, y2);
 	}
 
@@ -365,7 +368,9 @@ public class NoteSheet {
 		touched = true;
 		unsaved = true;
 
-		getGraphics().setColor(Color.RED);
+		// TODO Make color more abstract.
+		getGraphics().setColor(Color.WHITE);
+		// TODO Put width into config.
 		getGraphics().setStroke(new BasicStroke(5));
 		getGraphics().drawLine(x, y, x2, y2);
 	}
