@@ -34,7 +34,7 @@ public class BufferedImageWrapper {
 	// TODO Put width into config.
 	private Stroke drawStroke = new BasicStroke(1);
 
-	private Stroke eraseStroke = new BasicStroke(5);
+	private Stroke eraseStroke = new BasicStroke(8);
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
