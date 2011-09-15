@@ -133,6 +133,14 @@ public class NoteSheet {
 	}
 
 
+	public void eraseLine(int x, int y, int x2, int y2) {
+		touched = true;
+		unsaved = true;
+
+		getImageWrapper().eraseLine(x, y, x2, y2);
+	}
+
+
 	/**
 	 * Getter for the file of the image.
 	 */
@@ -158,6 +166,15 @@ public class NoteSheet {
 		}
 
 		return graphics;
+	}
+
+
+	private BufferedImageWrapper getImageWrapper() {
+		if (imageWrapper == null) {
+			imageWrapper = new BufferedImageWrapper(getImg());
+		}
+
+		return imageWrapper;
 	}
 
 
@@ -369,22 +386,5 @@ public class NoteSheet {
 	 */
 	public boolean unsaved() {
 		return unsaved;
-	}
-
-
-	public void eraseLine(int x, int y, int x2, int y2) {
-		touched = true;
-		unsaved = true;
-
-		getImageWrapper().eraseLine(x, y, x2, y2);
-	}
-
-
-	private BufferedImageWrapper getImageWrapper() {
-		if (imageWrapper == null) {
-			imageWrapper = new BufferedImageWrapper(getImg());
-		}
-
-		return imageWrapper;
 	}
 }
