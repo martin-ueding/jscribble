@@ -3,7 +3,7 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
-version=1.2.2
+version=1.3
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png jscribble/config.txt *.properties
@@ -42,11 +42,11 @@ test: .testrun
 
 fullname=jscribble_$(version).tar.gz
 fullnamedash=jscribble-$(version)
-tarball: ../$(fullname)
+tarball: $(fullname)
 
-../$(fullname): clean
+$(fullname): clean
 	mkdir $(fullnamedash)
-	cp -r generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests *.po $(fullnamedash)
+	cp -r NEWS generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests *.po $(fullnamedash)
 	tar -czf $@ $(fullnamedash) 
 	$(RM) -r jscribble-*.*
 
