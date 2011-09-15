@@ -29,9 +29,15 @@ import java.awt.image.BufferedImage;
 public class BufferedImageWrapper {
 	private BufferedImage img;
 
-	public BufferedImage getImg() {
-		return img;
-	}
+	private Graphics2D graphics;
+
+	// TODO Put width into config.
+	private Stroke drawStroke = new BasicStroke(1);
+
+	private Stroke eraseStroke = new BasicStroke(5);
+
+	private Color background = Color.WHITE;
+	private Color foreground = Color.BLACK;
 
 	public BufferedImageWrapper(BufferedImage image) {
 		img = image;
@@ -42,21 +48,11 @@ public class BufferedImageWrapper {
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 	}
 
-	private Graphics2D graphics;
-
-	// TODO Put width into config.
-	private Stroke drawStroke = new BasicStroke(1);
-	private Stroke eraseStroke = new BasicStroke(5);
-
-	private Color background = Color.WHITE;
-	private Color foreground = Color.BLACK;
-
 	public void drawLine(int x, int y, int x2, int y2) {
 		graphics.setColor(foreground);
 		graphics.setStroke(drawStroke);
 		graphics.drawLine(x, y, x2, y2);
 	}
-
 
 	public void eraseLine(int x, int y, int x2, int y2) {
 		graphics.setColor(background);
@@ -64,4 +60,7 @@ public class BufferedImageWrapper {
 		graphics.drawLine(x, y, x2, y2);
 	}
 
+	public BufferedImage getImg() {
+		return img;
+	}
 }
