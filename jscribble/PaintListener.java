@@ -83,6 +83,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			drawPanel.drawLine(lastPosition.x, lastPosition.y,
 			        arg0.getX(), arg0.getY());
 		}
+		
+		// TODO Implement eraser.
 
 		lastPosition = arg0.getPoint();
 	}
