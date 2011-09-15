@@ -290,7 +290,15 @@ public class NoteSheet {
 
 			// Since it was saved, it has to have some lines on it.
 			touched = true;
+
+			// Reset the BufferedImageWrapper that has an invalid image
+			resetImageWrapper();
 		}
+	}
+
+
+	private void resetImageWrapper() {
+		imageWrapper = null;
 	}
 
 
@@ -323,6 +331,7 @@ public class NoteSheet {
 		// remove the image from the memory
 		img = null;
 		graphics = null;
+		resetImageWrapper();
 
 		unsaved = false;
 	}
@@ -373,7 +382,7 @@ public class NoteSheet {
 
 	private BufferedImageWrapper getImageWrapper() {
 		if (imageWrapper == null) {
-			imageWrapper = new BufferedImageWrapper(img);
+			imageWrapper = new BufferedImageWrapper(getImg());
 		}
 
 		return imageWrapper;
