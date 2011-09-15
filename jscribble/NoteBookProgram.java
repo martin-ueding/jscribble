@@ -156,9 +156,9 @@ public class NoteBookProgram {
 				// defaults from the distribution.
 				else {
 					log(NoteBookProgram.class.getClass().getName(),
-							Localizer.get("Could not find config file. Writing a default one."));
+					    Localizer.get("Could not find config file. Writing a default one."));
 					InputStreamReader isr = new InputStreamReader(
-							ClassLoader.getSystemClassLoader().getResourceAsStream("jscribble/config.txt"));
+					    ClassLoader.getSystemClassLoader().getResourceAsStream("jscribble/config.txt"));
 					BufferedReader br = new BufferedReader(isr);
 					FileWriter fw = new FileWriter(configfile);
 					String line;

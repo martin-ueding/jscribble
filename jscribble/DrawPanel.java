@@ -101,9 +101,9 @@ public class DrawPanel extends JPanel {
 	private HelpItem[] helpItems = {
 		new HelpItem("h", Localizer.get("show help")),
 		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>",
-				Localizer.get("go forward")),
+		Localizer.get("go forward")),
 		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",
-				Localizer.get("go backward")),
+		Localizer.get("go backward")),
 		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
 		new HelpItem("l, <End>", Localizer.get("goto last")),
 		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit")),
@@ -152,27 +152,27 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
-			g2.setColor(new Color(0, 0, 0, 200));
-			g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
-			        20);
-			g2.setColor(Color.WHITE);
+		g2.setColor(new Color(0, 0, 0, 200));
+		g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
+		        20);
+		g2.setColor(Color.WHITE);
 
-			// Iterate through the help items and display them.
-			int i = 0;
-			int vspacing = 30;
-			int spacing = 250;
-			int padding = 70;
-			for (HelpItem h : helpItems) {
-				g2.drawString(h.helptext, padding, i * vspacing + padding);
-				g2.drawString(h.key, spacing + padding, i * vspacing +
-				        padding);
-				i++;
-			}
+		// Iterate through the help items and display them.
+		int i = 0;
+		int vspacing = 30;
+		int spacing = 250;
+		int padding = 70;
+		for (HelpItem h : helpItems) {
+			g2.drawString(h.helptext, padding, i * vspacing + padding);
+			g2.drawString(h.key, spacing + padding, i * vspacing +
+			        padding);
+			i++;
+		}
 
-			// Print the version identifier.
-			g2.setColor(Color.GRAY);
-			g2.drawString(String.format(Localizer.get("Version %s"),
-			        VersionName.version), padding, getHeight() - padding);
+		// Print the version identifier.
+		g2.setColor(Color.GRAY);
+		g2.drawString(String.format(Localizer.get("Version %s"),
+		        VersionName.version), padding, getHeight() - padding);
 	}
 
 	/**
@@ -253,25 +253,25 @@ public class DrawPanel extends JPanel {
 			return;
 		}
 
-			try {
-				// Read the dimension of the panel from the config file.
-				int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
-				int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+		try {
+			// Read the dimension of the panel from the config file.
+			int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
+			int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
 
-				// Draw the panels on the sides.
-				g.setColor(new Color(0, 0, 0, 100));
-				g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
-				        2 * scrollPanelRadius,
-				        getHeight() - 2 * scrollPanelPadding,
-				        scrollPanelRadius, scrollPanelRadius);
-				g.fillRoundRect(getWidth() - scrollPanelRadius,
-				        scrollPanelPadding, 2 * scrollPanelRadius,
-				        getHeight() - 2 * scrollPanelPadding,
-				        scrollPanelRadius, scrollPanelRadius);
-			}
-			catch (NumberFormatException e) {
-				NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
-			}
+			// Draw the panels on the sides.
+			g.setColor(new Color(0, 0, 0, 100));
+			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
+			        2 * scrollPanelRadius,
+			        getHeight() - 2 * scrollPanelPadding,
+			        scrollPanelRadius, scrollPanelRadius);
+			g.fillRoundRect(getWidth() - scrollPanelRadius,
+			        scrollPanelPadding, 2 * scrollPanelRadius,
+			        getHeight() - 2 * scrollPanelPadding,
+			        scrollPanelRadius, scrollPanelRadius);
+		}
+		catch (NumberFormatException e) {
+			NoteBookProgram.handleError(Localizer.get("Malformed entry in config file."));
+		}
 	}
 
 	/**
@@ -287,41 +287,41 @@ public class DrawPanel extends JPanel {
 			return notebook.getCurrentSheet().getImg();
 		}
 
-			if (cachedImage == null) {
-				// Create a new blank image.
-				cachedImage = new BufferedImage(getWidth(), getHeight(),
-				        BufferedImage.TYPE_BYTE_GRAY);
-				Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
-				g2.setColor(Color.WHITE);
-				g2.fillRect(0, 0, getWidth(), getHeight());
+		if (cachedImage == null) {
+			// Create a new blank image.
+			cachedImage = new BufferedImage(getWidth(), getHeight(),
+			        BufferedImage.TYPE_BYTE_GRAY);
+			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0, 0, getWidth(), getHeight());
 
-				// Go back as many pages as there should be onion layers.
-				int wentBack = 0;
-				for (; wentBack < onionMode; wentBack++) {
-					int prevPageNumber = notebook.getCurrentSheet().getPagenumber();
-					notebook.goBackwards();
-					if (prevPageNumber == notebook.getCurrentSheet().getPagenumber()) {
-						break;
-					}
+			// Go back as many pages as there should be onion layers.
+			int wentBack = 0;
+			for (; wentBack < onionMode; wentBack++) {
+				int prevPageNumber = notebook.getCurrentSheet().getPagenumber();
+				notebook.goBackwards();
+				if (prevPageNumber == notebook.getCurrentSheet().getPagenumber()) {
+					break;
 				}
-
-				// Set the layers to a given opacity.
-				g2.setComposite(AlphaComposite.getInstance(
-				            AlphaComposite.SRC_ATOP, (float)(0.8 / onionMode)));
-
-				// Iterate through from the bottom to the top layer and compose
-				// the images onto the cache image.
-				while (wentBack > 0) {
-					g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
-
-					// Move on to the next NoteSheet.
-					wentBack--;
-					notebook.goForward();
-				}
-				g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 			}
 
-			return cachedImage;
+			// Set the layers to a given opacity.
+			g2.setComposite(AlphaComposite.getInstance(
+			            AlphaComposite.SRC_ATOP, (float)(0.8 / onionMode)));
+
+			// Iterate through from the bottom to the top layer and compose
+			// the images onto the cache image.
+			while (wentBack > 0) {
+				g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+
+				// Move on to the next NoteSheet.
+				wentBack--;
+				notebook.goForward();
+			}
+			g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
+		}
+
+		return cachedImage;
 	}
 
 	/**
