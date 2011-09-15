@@ -23,6 +23,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 
 public class BufferedImageWrapper {
@@ -43,11 +44,14 @@ public class BufferedImageWrapper {
 
 	private Graphics2D graphics;
 
+	// TODO Put width into config.
+	private Stroke drawStroke = new BasicStroke(1);
+	private Stroke eraseStroke = new BasicStroke(5);
+
 	public void drawLine(int x, int y, int x2, int y2) {
 		// TODO Make color more abstract.
 		graphics.setColor(Color.BLACK);
-		// TODO Put width into config.
-		graphics.setStroke(new BasicStroke(1));
+		graphics.setStroke(drawStroke);
 		graphics.drawLine(x, y, x2, y2);
 	}
 
@@ -55,8 +59,7 @@ public class BufferedImageWrapper {
 	public void eraseLine(int x, int y, int x2, int y2) {
 		// TODO Make color more abstract.
 		graphics.setColor(Color.WHITE);
-		// TODO Put width into config.
-		graphics.setStroke(new BasicStroke(5));
+		graphics.setStroke(eraseStroke);
 		graphics.drawLine(x, y, x2, y2);
 	}
 
