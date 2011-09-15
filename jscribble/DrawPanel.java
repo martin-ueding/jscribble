@@ -20,7 +20,6 @@
 package jscribble;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -123,6 +122,8 @@ public class DrawPanel extends JPanel {
 	 */
 	private BufferedImage cachedImage;
 
+	private BufferedImageWrapper imageWrapper;
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -187,12 +188,7 @@ public class DrawPanel extends JPanel {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		if (isOnionMode()) {
-			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
-			g2.setRenderingHints(new
-			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-			                RenderingHints.VALUE_ANTIALIAS_ON));
-			g2.setColor(Color.BLACK);
-			g2.drawLine(x, y, x2, y2);
+			getImageWrapper().drawLine(x, y, x2, y2);
 		}
 		notebook.drawLine(x, y, x2, y2);
 	}
@@ -422,6 +418,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private void resetCachedImage() {
 		cachedImage = null;
+		imageWrapper = null;
 	}
 
 	/**
@@ -449,21 +446,20 @@ public class DrawPanel extends JPanel {
 
 	public void eraseLine(int x, int y, int x2, int y2) {
 		if (isOnionMode()) {
-			Graphics2D g2 = (Graphics2D) getCachedImage().getGraphics();
-			g2.setRenderingHints(new
-			        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-			                RenderingHints.VALUE_ANTIALIAS_ON));
-
-			// TODO Make color more abstract.
-			g2.setColor(Color.WHITE);
-			// TODO Put width into config.
-			g2.setStroke(new BasicStroke(5));
-			g2.drawLine(x, y, x2, y2);
+			getImageWrapper().eraseLine(x, y, x2, y2);
 
 			// FIXME Prevent erasing of the underlying onion layers, maybe by
 			// redoing the background image.
 		}
 
 		notebook.eraseLine(x, y, x2, y2);
+	}
+
+	private BufferedImageWrapper getImageWrapper() {
+		if (imageWrapper == null) {
+			imageWrapper = new BufferedImageWrapper(cachedImage);
+		}
+
+		return imageWrapper;
 	}
 }
