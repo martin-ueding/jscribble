@@ -19,7 +19,6 @@
 
 package jscribble.notebook;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -31,6 +30,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import jscribble.BufferedImageWrapper;
 import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 
@@ -85,6 +85,9 @@ public class NoteSheet {
 	private File imagefile;
 
 
+	private BufferedImageWrapper imageWrapper;
+
+
 	/**
 	 * A singleton thread that handles all the writing to disk.
 	 */
@@ -126,11 +129,7 @@ public class NoteSheet {
 		touched = true;
 		unsaved = true;
 
-		// TODO Make color more abstract.
-		getGraphics().setColor(Color.BLACK);
-		// TODO Put width into config.
-		getGraphics().setStroke(new BasicStroke(1));
-		getGraphics().drawLine(x, y, x2, y2);
+		getImageWrapper().drawLine(x, y, x2, y2);
 	}
 
 
@@ -368,10 +367,15 @@ public class NoteSheet {
 		touched = true;
 		unsaved = true;
 
-		// TODO Make color more abstract.
-		getGraphics().setColor(Color.WHITE);
-		// TODO Put width into config.
-		getGraphics().setStroke(new BasicStroke(5));
-		getGraphics().drawLine(x, y, x2, y2);
+		getImageWrapper().eraseLine(x, y, x2, y2);
+	}
+
+
+	private BufferedImageWrapper getImageWrapper() {
+		if (imageWrapper == null) {
+			imageWrapper = new BufferedImageWrapper(img);
+		}
+
+		return imageWrapper;
 	}
 }
