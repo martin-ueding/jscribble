@@ -55,6 +55,22 @@ public class NoteSheetTest extends TestCase {
 		assertFalse(rgbarray[0] == previousColor);
 	}
 
+	public void testErasing() {
+		NoteSheet n = getTempNoteSheet();
+		assertNotNull(n);
+		assertNotNull(n.getImg());
+		int previousColor = n.getImg().getRGB(100, 100);
+		n.drawLine(100, 100, 100, 200);
+		int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
+		assertTrue(rgbarray.length > 0);
+		assertFalse(rgbarray[0] == previousColor);
+
+		// Erase and make sure it was is the background color.
+		n.eraseLine(100, 100, 100, 200);
+		int newrgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
+		assertTrue(newrgbarray[0] == previousColor);
+	}
+
 
 	/**
 	 * Tests whether a new NoteSheet is untouched and does not need any saving.
