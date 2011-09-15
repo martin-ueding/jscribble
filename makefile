@@ -40,7 +40,7 @@ test: .testrun
 	bash run_tests.sh
 	touch .testrun
 
-fullname=jscribble_$(version).orig.tar.gz
+fullname=jscribble_$(version).tar.gz
 fullnamedash=jscribble-$(version)
 tarball: ../$(fullname)
 
