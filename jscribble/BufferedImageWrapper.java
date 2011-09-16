@@ -37,7 +37,7 @@ public class BufferedImageWrapper {
 
 	private Stroke eraseStroke = new BasicStroke(
 	    Integer.parseInt(NoteBookProgram.getConfig()
-	            .getProperty("erase_stroke_width", "8")));
+	            .getProperty("erase_stroke_width", "5")));
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
