@@ -40,7 +40,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import jscribble.ColonListener;
+import jscribble.CommandListener;
 import jscribble.DrawPanel;
 import jscribble.Localizer;
 import jscribble.NoteBookProgram;
@@ -289,7 +289,7 @@ public class NoteBookSelectionWindow {
 
 		notebook.gotoLast();
 
-		ColonListener cl = new ColonListener(panel);
+		CommandListener cl = new CommandListener(panel);
 		f.addKeyListener(cl);
 		cl.addChangeListener(new Redrawer(panel));
 

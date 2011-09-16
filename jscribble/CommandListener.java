@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class ColonListener implements KeyListener {
+public class CommandListener implements KeyListener {
 	/**
 	 * The DrawPanel that is displaying the NoteBook.
 	 */
@@ -48,7 +48,7 @@ public class ColonListener implements KeyListener {
 	 *
 	 * @param malPanel panel to listen to
 	 */
-	public ColonListener(DrawPanel malPanel) {
+	public CommandListener(DrawPanel malPanel) {
 		panel = malPanel;
 	}
 
