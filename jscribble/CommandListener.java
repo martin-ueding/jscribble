@@ -22,8 +22,6 @@ package jscribble;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
-
 /**
  * Listens to the keyboard for the command key and then polls the user for a
  * command. The command is then executed.
@@ -90,17 +88,13 @@ public class CommandListener implements KeyListener {
 	 */
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		if (arg0.getKeyChar() == ':') {
-			String command =
-			    JOptionPane.showInputDialog(Localizer.get("Command:"));
+		if (arg0.getKeyChar() == 'r') {
+			panel.toggleRuling();
+			redrawer.actionPerformed(null);
+		}
 
-			if (command.equals("lines")) {
-				panel.setLines(true);
-			}
-			if (command.equals("nolines")) {
-				panel.setLines(false);
-			}
-
+		if (arg0.getKeyChar() == 'g') {
+			panel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
 

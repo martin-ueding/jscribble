@@ -113,7 +113,10 @@ public class DrawPanel extends JPanel {
 		Localizer.get("save & exit")),
 		new HelpItem(Localizer.get("+"),
 		Localizer.get("increase onion layers")),
-		new HelpItem(Localizer.get("-"), Localizer.get("decrease onion layers"))
+		new HelpItem(Localizer.get("-"),
+		Localizer.get("decrease onion layers")),
+		new HelpItem(Localizer.get("r"), Localizer.get("toggle ruling")),
+		new HelpItem(Localizer.get("g"), Localizer.get("toggle graph paper")),
 	};
 
 	/**
@@ -130,6 +133,8 @@ public class DrawPanel extends JPanel {
 	private BufferedImageWrapper imageWrapper;
 
 	private boolean showHelpSplash = true;
+
+	private boolean graphRuling;
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
@@ -231,11 +236,14 @@ public class DrawPanel extends JPanel {
 	 * @param g2 Graphics2D to draw on
 	 */
 	private void drawLines(Graphics2D g2) {
-		if (lines) {
+		if (lines || graphRuling) {
 			// TODO draw the lines below the drawing
 			g2.setColor(lineColor);
-			for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
-				g2.drawLine(i, 0, i, getHeight());
+
+			if (graphRuling) {
+				for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
+					g2.drawLine(i, 0, i, getHeight());
+				}
 			}
 
 
@@ -464,15 +472,6 @@ public class DrawPanel extends JPanel {
 	}
 
 	/**
-	 * Set whether help lines are to be drawn.
-	 *
-	 * @param b status of the lines
-	 */
-	public void setLines(boolean b) {
-		this.lines  = b;
-	}
-
-	/**
 	 * Sets whether the help dialog is displayed.
 	 */
 	public void setShowHelp(boolean showHelp) {
@@ -507,5 +506,15 @@ public class DrawPanel extends JPanel {
 		}
 
 		return imageWrapper;
+	}
+
+	public void toggleRuling() {
+		lines = !lines;
+		graphRuling = false;
+	}
+
+	public void toggleGraphRuling() {
+		graphRuling = !graphRuling;
+		lines = false;
 	}
 }
