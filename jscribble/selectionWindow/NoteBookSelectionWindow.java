@@ -240,7 +240,7 @@ public class NoteBookSelectionWindow {
 			Collections.sort(notebooks);
 			for (NoteBook notebook : notebooks) {
 				listModel.addElement(notebook);
-				
+
 			}
 		}
 		else {

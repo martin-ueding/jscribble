@@ -103,16 +103,16 @@ public class DrawPanel extends JPanel {
 		new HelpItem(Localizer.get("h, F1"), Localizer.get("show help")),
 		new HelpItem(Localizer.get("h, F1, <Esc>"), Localizer.get("hide help")),
 		new HelpItem(
-				Localizer.get("j, <Space>, <Enter>, <DownArrow>, <RightArrow>"),
-				Localizer.get("go forward")),
+		    Localizer.get("j, <Space>, <Enter>, <DownArrow>, <RightArrow>"),
+		    Localizer.get("go forward")),
 		new HelpItem(Localizer.get("k, <Backspace>, <UpArrow>, <LeftArrow>"),
 		Localizer.get("go backward")),
 		new HelpItem(Localizer.get("f, <Pos1>"), Localizer.get("goto first")),
 		new HelpItem(Localizer.get("l, <End>"), Localizer.get("goto last")),
 		new HelpItem(Localizer.get("<Alt-F4> / <CMD-Q>"),
-				Localizer.get("save & exit")),
+		Localizer.get("save & exit")),
 		new HelpItem(Localizer.get("+"),
-				Localizer.get("increase onion layers")),
+		Localizer.get("increase onion layers")),
 		new HelpItem(Localizer.get("-"), Localizer.get("decrease onion layers"))
 	};
 
@@ -183,28 +183,28 @@ public class DrawPanel extends JPanel {
 		g2.drawString(String.format(Localizer.get("Version %s"),
 		        VersionName.version), padding, getHeight() - padding);
 	}
-	
+
 	/**
 	 * Draws a help splash screen at the beginning.
 	 *
 	 * @param g2 Graphics2D to draw in
 	 */
 	private void drawHelpSplash(Graphics2D g2) {
-		if (!showHelpSplash ) {
+		if (!showHelpSplash) {
 			return;
 		}
 
 		// Draw a dark rectangle to write the help text on.
 		g2.setColor(new Color(0, 0, 0, 200));
-		Dimension splashSize = new Dimension(getWidth()-30, 50);
-		g2.fillRoundRect((getWidth() - splashSize.width)/2,
-				(getHeight() - splashSize.height)/2,
-				splashSize.width, splashSize.height,
-				20,20);
+		Dimension splashSize = new Dimension(getWidth() - 30, 50);
+		g2.fillRoundRect((getWidth() - splashSize.width) / 2,
+		        (getHeight() - splashSize.height) / 2,
+		        splashSize.width, splashSize.height,
+		        20, 20);
 		g2.setColor(Color.WHITE);
 
 		g2.drawString(Localizer.get("Press h or F1 to get help."),
-				(getWidth() - splashSize.width)/2+50, getHeight()/2+5);
+		        (getWidth() - splashSize.width) / 2 + 50, getHeight() / 2 + 5);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class DrawPanel extends JPanel {
 			getImageWrapper().drawLine(x, y, x2, y2);
 		}
 		notebook.drawLine(x, y, x2, y2);
-		
+
 		showHelpSplash = false;
 	}
 
@@ -484,7 +484,7 @@ public class DrawPanel extends JPanel {
 	 */
 	public void toggleHelp() {
 		showHelp = !showHelp;
-		
+
 		showHelpSplash = false;
 	}
 
@@ -497,7 +497,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		notebook.eraseLine(x, y, x2, y2);
-		
+
 		showHelpSplash = false;
 	}
 
