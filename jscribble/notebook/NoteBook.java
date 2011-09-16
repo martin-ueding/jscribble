@@ -43,7 +43,7 @@ import jscribble.NoteBookProgram;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class NoteBook {
+public class NoteBook implements Comparable<NoteBook> {
 	// XXX This list cannot cope with running out of memory.
 	// The lists need to be able to shrink if you advance way into the
 	// notebook.
@@ -383,5 +383,10 @@ public class NoteBook {
 		getCurrentSheet().eraseLine(x, y, x2, y2);
 
 		fireDoneDrawing();
+	}
+
+	@Override
+	public int compareTo(NoteBook other) {
+		return getName().compareTo(other.getName());
 	}
 }

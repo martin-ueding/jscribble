@@ -27,6 +27,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -236,10 +237,13 @@ public class NoteBookSelectionWindow {
 				if (folder.isDirectory()) {
 					NoteBook justfound = new NoteBook(folder.getName());
 					notebooks.add(justfound);
-					listModel.addElement(justfound);
 				}
 			}
-			Arrays.sort(folders, new FileComparator());
+			Collections.sort(notebooks);
+			for (NoteBook notebook : notebooks) {
+				listModel.addElement(notebook);
+				
+			}
 		}
 		else {
 			NoteBookProgram.getDotDir().mkdirs();
