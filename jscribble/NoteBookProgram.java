@@ -3,10 +3,10 @@
 /*
  * This file is part of jscribble.
  *
- * jscribble is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 2 of the License, or (at your option) any later
- * version.
+ * jscribble is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 2 of the License, or (at your option)
+ * any later version.
  *
  * jscribble is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -148,7 +148,8 @@ public class NoteBookProgram {
 		if (mainConfig == null) {
 			mainConfig = new Properties();
 			try {
-				File configfile = new File(getDotDir() + File.separator + "config.txt");
+				File configfile = new File(getDotDir() + File.separator +
+				        "config.txt");
 				if (configfile.exists()) {
 					mainConfig.load(new FileInputStream(configfile));
 				}
@@ -156,9 +157,11 @@ public class NoteBookProgram {
 				// defaults from the distribution.
 				else {
 					log(NoteBookProgram.class.getClass().getName(),
-					    Localizer.get("Could not find config file. Writing a default one."));
+					    Localizer.get("Could not find config file."
+					            " Writing a default one."));
 					InputStreamReader isr = new InputStreamReader(
-					    ClassLoader.getSystemClassLoader().getResourceAsStream("jscribble/config.txt"));
+					    ClassLoader.getSystemClassLoader()
+					    .getResourceAsStream("jscribble/config.txt"));
 					BufferedReader br = new BufferedReader(isr);
 					FileWriter fw = new FileWriter(configfile);
 					String line;
@@ -171,11 +174,13 @@ public class NoteBookProgram {
 				}
 			}
 			catch (FileNotFoundException e) {
-				handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+				handleError(Localizer.get("Could not find the config file. "
+				            "(This should *not* happen!)"));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				handleError(Localizer.get("IO error while reading config file."));
+				handleError(Localizer.get(
+				        "IO error while reading config file."));
 				e.printStackTrace();
 			}
 		}

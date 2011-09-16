@@ -3,10 +3,10 @@
 /*
  * This file is part of jscribble.
  *
- * jscribble is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 2 of the License, or (at your option) any later
- * version.
+ * jscribble is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 2 of the License, or (at your option)
+ * any later version.
  *
  * jscribble is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -59,12 +59,16 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 
-		if (NoteBookProgram.getConfig().getProperty("show_scroll_panels").equalsIgnoreCase("true")) {
-			if (x <= Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_width"))) {
+		if (NoteBookProgram.getConfig().getProperty("show_scroll_panels")
+		        .equalsIgnoreCase("true")) {
+			if (x <= Integer.parseInt(NoteBookProgram.getConfig()
+			        .getProperty("scroll_panel_width"))) {
 				drawPanel.goBackwards();
 				return;
 			}
-			if (x >= drawPanel.getWidth() - Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_width"))) {
+			if (x >= drawPanel.getWidth() -
+			        Integer.parseInt(NoteBookProgram.getConfig()
+			                .getProperty("scroll_panel_width"))) {
 				drawPanel.goForward();
 				return;
 			}
