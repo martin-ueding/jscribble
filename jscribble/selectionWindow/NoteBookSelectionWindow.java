@@ -60,36 +60,30 @@ public class NoteBookSelectionWindow {
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
 
-
 	/**
 	 * Button to handle creation of a new NoteBook.
 	 */
 	private JButton buttonNew;
-
 
 	/**
 	 * Button to handle opening of a NoteBook.
 	 */
 	private JButton buttonOpen;
 
-
 	/**
 	 * Button to handle deletion of a NoteBook.
 	 */
 	private JButton buttonDelete;
-
 
 	/**
 	 * Button to enter the scribble mode.
 	 */
 	private JButton buttonScribble;
 
-
 	/**
 	 * Frame to display everything in.
 	 */
 	private JFrame frame;
-
 
 	/**
 	 * List that holds all the found NoteBook from the user's configuration
@@ -97,24 +91,19 @@ public class NoteBookSelectionWindow {
 	 */
 	private LinkedList<NoteBook> notebooks;
 
-
 	/**
 	 * List GUI Element to display the NoteBook items in.
 	 */
 	private JList myList;
-
 
 	/**
 	 * Panel to display the selected NoteBook.
 	 */
 	private DrawPanel panel;
 
-
 	private LinkedList<NoteBook> openedNotebooks;
 
-
 	private DefaultListModel listModel = new DefaultListModel();
-
 
 	/**
 	 * Creates a new window to select NoteBook from. It automatically searches
@@ -158,7 +147,6 @@ public class NoteBookSelectionWindow {
 		frame.addWindowListener(new CloseEverythingAdapter(openedNotebooks,
 		        frame));
 
-
 		try {
 			frame.setIconImage(ImageIO.read(ClassLoader.getSystemResourceAsStream("install_files/jscribble.png")));
 		}
@@ -169,7 +157,6 @@ public class NoteBookSelectionWindow {
 
 		updateOpenButton();
 	}
-
 
 	/**
 	 * Creates a new NoteBook and prompts the user for a name and folder to
@@ -202,7 +189,6 @@ public class NoteBookSelectionWindow {
 		return nb;
 	}
 
-
 	/**
 	 * Deletes the currently selected NoteBook in the list.
 	 */
@@ -218,7 +204,6 @@ public class NoteBookSelectionWindow {
 			}
 		}
 	}
-
 
 	/**
 	 * Tries to find a configuration directory for this program.
@@ -250,7 +235,6 @@ public class NoteBookSelectionWindow {
 		return notebooks;
 	}
 
-
 	/**
 	 * Creates a new NoteBook.
 	 */
@@ -264,7 +248,6 @@ public class NoteBookSelectionWindow {
 		}
 	}
 
-
 	/**
 	 * Opens the currently selected NoteBook in the list.
 	 */
@@ -275,7 +258,6 @@ public class NoteBookSelectionWindow {
 			openNotebook(notebooks.get(selection));
 		}
 	}
-
 
 	/**
 	 * Opens the given NoteBook in a DrawPanel.
@@ -300,16 +282,12 @@ public class NoteBookSelectionWindow {
 			e.printStackTrace();
 		}
 
-
 		panel = new DrawPanel(notebook);
 		f.add(panel);
-
-
 
 		f.addKeyListener(new MovementListener(panel));
 
 		notebook.gotoLast();
-
 
 		ColonListener cl = new ColonListener(panel);
 		f.addKeyListener(cl);
@@ -331,14 +309,12 @@ public class NoteBookSelectionWindow {
 		f.setVisible(true);
 	}
 
-
 	/**
 	 * Starts a scribble mode NoteBook.
 	 */
 	protected void scribbleEvent() {
 		openNotebook(new NoteBook(null));
 	}
-
 
 	/**
 	 * Displays the dialogue.
@@ -347,7 +323,10 @@ public class NoteBookSelectionWindow {
 		frame.setVisible(true);
 	}
 
-
+	/**
+	 * Updates the state of the "open" button. This is needed when the last
+	 * NoteBook is deleted or the first one created.
+	 */
 	private void updateOpenButton() {
 		buttonOpen.setEnabled(notebooks.size() > 0);
 	}
