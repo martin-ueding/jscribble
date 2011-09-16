@@ -3,10 +3,10 @@
 /*
  * This file is part of jscribble.
  *
- * jscribble is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 2 of the License, or (at your option) any later
- * version.
+ * jscribble is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 2 of the License, or (at your option)
+ * any later version.
  *
  * jscribble is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -31,9 +31,13 @@ public class BufferedImageWrapper {
 
 	private Graphics2D graphics;
 
-	private Stroke drawStroke = new BasicStroke(Integer.parseInt(NoteBookProgram.getConfig().getProperty("draw_stroke_width", "1")));
+	private Stroke drawStroke = new BasicStroke(
+	    Integer.parseInt(NoteBookProgram.getConfig()
+	            .getProperty("draw_stroke_width", "1")));
 
-	private Stroke eraseStroke = new BasicStroke(Integer.parseInt(NoteBookProgram.getConfig().getProperty("erase_stroke_width", "8")));
+	private Stroke eraseStroke = new BasicStroke(
+	    Integer.parseInt(NoteBookProgram.getConfig()
+	            .getProperty("erase_stroke_width", "8")));
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
