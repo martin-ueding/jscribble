@@ -21,6 +21,7 @@ package jscribble;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -128,6 +129,8 @@ public class DrawPanel extends JPanel {
 
 	private BufferedImageWrapper imageWrapper;
 
+	private boolean showHelpSplash = true;
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -180,6 +183,29 @@ public class DrawPanel extends JPanel {
 		g2.drawString(String.format(Localizer.get("Version %s"),
 		        VersionName.version), padding, getHeight() - padding);
 	}
+	
+	/**
+	 * Draws a help splash screen at the beginning.
+	 *
+	 * @param g2 Graphics2D to draw in
+	 */
+	private void drawHelpSplash(Graphics2D g2) {
+		if (!showHelpSplash ) {
+			return;
+		}
+
+		// Draw a dark rectangle to write the help text on.
+		g2.setColor(new Color(0, 0, 0, 200));
+		Dimension splashSize = new Dimension(getWidth()-30, 50);
+		g2.fillRoundRect((getWidth() - splashSize.width)/2,
+				(getHeight() - splashSize.height)/2,
+				splashSize.width, splashSize.height,
+				20,20);
+		g2.setColor(Color.WHITE);
+
+		g2.drawString(Localizer.get("Press h or F1 to get help."),
+				(getWidth() - splashSize.width)/2+50, getHeight()/2+5);
+	}
 
 	/**
 	 * Draws a line onto the current sheet. If onion mode is used, it will be
@@ -195,6 +221,8 @@ public class DrawPanel extends JPanel {
 			getImageWrapper().drawLine(x, y, x2, y2);
 		}
 		notebook.drawLine(x, y, x2, y2);
+		
+		showHelpSplash = false;
 	}
 
 	/**
@@ -424,6 +452,7 @@ public class DrawPanel extends JPanel {
 		drawOnionInfo(g2);
 		drawScrollPanels(g2);
 		drawHelp(g2);
+		drawHelpSplash(g2);
 	}
 
 	/**
@@ -455,6 +484,8 @@ public class DrawPanel extends JPanel {
 	 */
 	public void toggleHelp() {
 		showHelp = !showHelp;
+		
+		showHelpSplash = false;
 	}
 
 	public void eraseLine(int x, int y, int x2, int y2) {
@@ -466,6 +497,8 @@ public class DrawPanel extends JPanel {
 		}
 
 		notebook.eraseLine(x, y, x2, y2);
+		
+		showHelpSplash = false;
 	}
 
 	private BufferedImageWrapper getImageWrapper() {

@@ -26,7 +26,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
@@ -46,7 +45,6 @@ import jscribble.DrawPanel;
 import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 import jscribble.Redrawer;
-import jscribble.notebook.FileComparator;
 import jscribble.notebook.NoteBook;
 
 /**

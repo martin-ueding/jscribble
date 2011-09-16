@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-16 19:59+0200\n"
+"POT-Creation-Date: 2011-09-16 20:13+0200\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -19,92 +19,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: jscribble/DrawPanel.java:102
+#: jscribble/DrawPanel.java:104
 msgid "h, F1"
 msgstr "h, F1"
 
-#: jscribble/DrawPanel.java:102
+#: jscribble/DrawPanel.java:104
 msgid "show help"
 msgstr "zeige Hilfe"
 
-#: jscribble/DrawPanel.java:103
+#: jscribble/DrawPanel.java:105
 msgid "h, F1, <Esc>"
 msgstr "h, F1, <Esc>"
 
-#: jscribble/DrawPanel.java:103
+#: jscribble/DrawPanel.java:105
 #, fuzzy
 msgid "hide help"
-msgstr "zeige Hilfe"
+msgstr "verstecke Hilfe"
 
-#: jscribble/DrawPanel.java:105
+#: jscribble/DrawPanel.java:107
 msgid "j, <Space>, <Enter>, <DownArrow>, <RightArrow>"
 msgstr "j, <Leertaste>, <Enter>, <PfeilUnten>, <PfeilRechts>"
 
-#: jscribble/DrawPanel.java:106
+#: jscribble/DrawPanel.java:108
 msgid "go forward"
 msgstr "gehe vorwärts"
 
-#: jscribble/DrawPanel.java:107
+#: jscribble/DrawPanel.java:109
 msgid "k, <Backspace>, <UpArrow>, <LeftArrow>"
 msgstr "k, <Backspace>, <PfeilOben>, <PfeilLinks>"
 
-#: jscribble/DrawPanel.java:108
+#: jscribble/DrawPanel.java:110
 msgid "go backward"
 msgstr "gehe zurück"
 
-#: jscribble/DrawPanel.java:109
+#: jscribble/DrawPanel.java:111
 msgid "f, <Pos1>"
 msgstr "f, <Pos1>"
 
-#: jscribble/DrawPanel.java:109
+#: jscribble/DrawPanel.java:111
 msgid "goto first"
 msgstr "gehe zum Anfang"
 
-#: jscribble/DrawPanel.java:110
+#: jscribble/DrawPanel.java:112
 msgid "l, <End>"
 msgstr "l, <Ende>"
 
-#: jscribble/DrawPanel.java:110
+#: jscribble/DrawPanel.java:112
 msgid "goto last"
 msgstr "gehe zum Ende"
 
-#: jscribble/DrawPanel.java:111
+#: jscribble/DrawPanel.java:113
 msgid "<Alt-F4> / <CMD-Q>"
 msgstr "<Alt-F4> / <CMD-Q>"
 
-#: jscribble/DrawPanel.java:112
+#: jscribble/DrawPanel.java:114
 msgid "save & exit"
 msgstr "speichern & beenden"
 
-#: jscribble/DrawPanel.java:113
+#: jscribble/DrawPanel.java:115
 msgid "+"
 msgstr "+"
 
-#: jscribble/DrawPanel.java:114
+#: jscribble/DrawPanel.java:116
 msgid "increase onion layers"
 msgstr "erhöhe Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:115
+#: jscribble/DrawPanel.java:117
 msgid "-"
 msgstr "-"
 
-#: jscribble/DrawPanel.java:115
+#: jscribble/DrawPanel.java:117
 msgid "decrease onion layers"
 msgstr "verringere Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:180
+#: jscribble/DrawPanel.java:186
 msgid "Version %s"
 msgstr "Version %s"
 
-#: jscribble/DrawPanel.java:230
+#: jscribble/DrawPanel.java:209
+msgid "Press h or F1 to get help."
+msgstr "Drücken Sie h oder F1 für Hilfe."
+
+#: jscribble/DrawPanel.java:261
 msgid "Onion Layers: %d"
 msgstr "Zwiebelschichten: %d"
 
-#: jscribble/DrawPanel.java:241
+#: jscribble/DrawPanel.java:272
 msgid "Page %d/%d"
 msgstr "Seite %d/%d"
 
-#: jscribble/DrawPanel.java:281
+#: jscribble/DrawPanel.java:312
 #, fuzzy
 msgid "Malformed entry in config file."
 msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
