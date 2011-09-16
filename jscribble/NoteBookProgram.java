@@ -157,8 +157,7 @@ public class NoteBookProgram {
 				// defaults from the distribution.
 				else {
 					log(NoteBookProgram.class.getClass().getName(),
-					    Localizer.get("Could not find config file."
-					            " Writing a default one."));
+					    Localizer.get("Could not find config file. Writing a default one."));
 					InputStreamReader isr = new InputStreamReader(
 					    ClassLoader.getSystemClassLoader()
 					    .getResourceAsStream("jscribble/config.txt"));
@@ -174,8 +173,7 @@ public class NoteBookProgram {
 				}
 			}
 			catch (FileNotFoundException e) {
-				handleError(Localizer.get("Could not find the config file. "
-				            "(This should *not* happen!)"));
+				handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
