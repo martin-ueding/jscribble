@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-14 10:26+0200\n"
+"POT-Creation-Date: 2011-09-16 19:59+0200\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -19,198 +19,200 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: jscribble/NoteBookProgram.java:131
-msgid "Starting up."
-msgstr "Starte."
-
-#: jscribble/NoteBookProgram.java:136
-msgid "Entering interactive mode."
-msgstr "Starte interaktiven Modus."
-
-#: jscribble/NoteBookProgram.java:151
-msgid "Could not find config file. Writing a default one."
-msgstr "Konnte keine Konfigurationsdatei finden. Erstelle eine Standardversion"
-
-#: jscribble/NoteBookProgram.java:165
-msgid "Could not find the config file. (This should *not* happen!)"
-msgstr ""
-"Konnte keine Konfigurationsdatei finden. (Dies sollte *nicht* passieren!)"
-
-#: jscribble/NoteBookProgram.java:169
-msgid "IO error while reading config file."
-msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
-
-#: jscribble/NoteBookProgram.java:185
-msgid "Version: %s"
-msgstr "Version: %s"
+#: jscribble/DrawPanel.java:102
+msgid "h, F1"
+msgstr "h, F1"
 
 #: jscribble/DrawPanel.java:102
 msgid "show help"
 msgstr "zeige Hilfe"
 
-#: jscribble/DrawPanel.java:104
+#: jscribble/DrawPanel.java:103
+msgid "h, F1, <Esc>"
+msgstr "h, F1, <Esc>"
+
+#: jscribble/DrawPanel.java:103
+#, fuzzy
+msgid "hide help"
+msgstr "zeige Hilfe"
+
+#: jscribble/DrawPanel.java:105
+msgid "j, <Space>, <Enter>, <DownArrow>, <RightArrow>"
+msgstr "j, <Leertaste>, <Enter>, <PfeilUnten>, <PfeilRechts>"
+
+#: jscribble/DrawPanel.java:106
 msgid "go forward"
 msgstr "gehe vorwärts"
 
-#: jscribble/DrawPanel.java:106
+#: jscribble/DrawPanel.java:107
+msgid "k, <Backspace>, <UpArrow>, <LeftArrow>"
+msgstr "k, <Backspace>, <PfeilOben>, <PfeilLinks>"
+
+#: jscribble/DrawPanel.java:108
 msgid "go backward"
 msgstr "gehe zurück"
 
-#: jscribble/DrawPanel.java:107
+#: jscribble/DrawPanel.java:109
+msgid "f, <Pos1>"
+msgstr "f, <Pos1>"
+
+#: jscribble/DrawPanel.java:109
 msgid "goto first"
 msgstr "gehe zum Anfang"
 
-#: jscribble/DrawPanel.java:108
+#: jscribble/DrawPanel.java:110
+msgid "l, <End>"
+msgstr "l, <Ende>"
+
+#: jscribble/DrawPanel.java:110
 msgid "goto last"
 msgstr "gehe zum Ende"
 
-#: jscribble/DrawPanel.java:109
+#: jscribble/DrawPanel.java:111
+msgid "<Alt-F4> / <CMD-Q>"
+msgstr "<Alt-F4> / <CMD-Q>"
+
+#: jscribble/DrawPanel.java:112
 msgid "save & exit"
 msgstr "speichern & beenden"
 
-#: jscribble/DrawPanel.java:110
+#: jscribble/DrawPanel.java:113
+msgid "+"
+msgstr "+"
+
+#: jscribble/DrawPanel.java:114
 msgid "increase onion layers"
 msgstr "erhöhe Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:111
+#: jscribble/DrawPanel.java:115
+msgid "-"
+msgstr "-"
+
+#: jscribble/DrawPanel.java:115
 msgid "decrease onion layers"
 msgstr "verringere Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:164
+#: jscribble/DrawPanel.java:180
 msgid "Version %s"
 msgstr "Version %s"
 
-#: jscribble/DrawPanel.java:214
+#: jscribble/DrawPanel.java:230
 msgid "Onion Layers: %d"
 msgstr "Zwiebelschichten: %d"
 
-#: jscribble/DrawPanel.java:225
+#: jscribble/DrawPanel.java:241
 msgid "Page %d/%d"
 msgstr "Seite %d/%d"
 
-#: jscribble/DrawPanel.java:252
+#: jscribble/DrawPanel.java:281
 #, fuzzy
 msgid "Malformed entry in config file."
 msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
-#: jscribble/ColonListener.java:95
-msgid "Command:"
-msgstr "Kommando:"
+#: jscribble/NoteBookProgram.java:128
+msgid "Starting up."
+msgstr "Starte."
 
-#: jscribble/selectionWindow/CloseEverythingAdapter.java:47
-#: jscribble/selectionWindow/NoteBookClosingAdapter.java:43
-msgid "Closing NoteBook \"%s\"."
-msgstr "Schließe Notizbuch \"%s\""
+#: jscribble/NoteBookProgram.java:133
+msgid "Entering interactive mode."
+msgstr "Starte interaktiven Modus."
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:129
-msgid "New"
-msgstr "Neu"
+#: jscribble/NoteBookProgram.java:160
+msgid "Could not find config file. Writing a default one."
+msgstr "Konnte keine Konfigurationsdatei finden. Erstelle eine Standardversion"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:131
-msgid "Open"
-msgstr "Öffnen"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:133
-msgid "Delete"
-msgstr "Löschen"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:135
-msgid "Scribble"
-msgstr "Kritzeln"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:151
-msgid "Select your Notebook"
-msgstr "Wählen Sie Ihr Notizbuch"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:186
-msgid ""
-"Nickname of your Notebook: (please only use characters, numbers, _ and -)"
+#: jscribble/NoteBookProgram.java:176
+msgid "Could not find the config file. (This should *not* happen!)"
 msgstr ""
-"Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
+"Konnte keine Konfigurationsdatei finden. (Dies sollte *nicht* passieren!)"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:285
-msgid "Notebook \"%s\""
-msgstr "Notizbuch \"%s\""
+#: jscribble/NoteBookProgram.java:181
+msgid "IO error while reading config file."
+msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
-#: jscribble/notebook/NoteSheet.java:149
-msgid "BufferedImage is null."
-msgstr "BufferedImage ist null"
+#: jscribble/NoteBookProgram.java:196
+msgid "Version: %s"
+msgstr "Version: %s"
 
-#: jscribble/notebook/NoteSheet.java:170
-msgid "Could not load image from disk."
-msgstr "Konnte Bilddatei nicht laden"
-
-#: jscribble/notebook/NoteSheet.java:210
-msgid "Could not create a temp file."
-msgstr "Konnte keine temp-Datei erstellen"
-
-#: jscribble/notebook/NoteSheet.java:248
-msgid "Image file does not exist."
-msgstr "Bilddatei existiert nicht."
-
-#: jscribble/notebook/NoteSheet.java:255
-msgid "Image file does not exist after stopping WriteoutThread."
-msgstr "Bilddatei existiert nicht nach Beendigung von WriteoutThread"
-
-#: jscribble/notebook/NoteSheet.java:266
-msgid "Loading %s."
-msgstr "Lade %s."
-
-#: jscribble/notebook/NoteSheet.java:273
-msgid "Could not find the note sheet image."
-msgstr "Konnte das Notizblattbild nicht finden."
-
-#: jscribble/notebook/NoteSheet.java:278
-msgid "Could not read the note sheet image."
-msgstr "Konnte das Notizblattbild nicht laden."
-
-#: jscribble/notebook/NoteSheet.java:300
-msgid "Picture %d is %s and %s."
-msgstr "Bilddatei %d ist %s und %s."
-
-#: jscribble/notebook/NoteSheet.java:302
-msgid "touched"
-msgstr "berührt"
-
-#: jscribble/notebook/NoteSheet.java:303
-msgid "untouched"
-msgstr "unberührt"
-
-#: jscribble/notebook/NoteSheet.java:304
-msgid "unsaved"
-msgstr "ungespeichert"
-
-#: jscribble/notebook/NoteSheet.java:305
-msgid "saved"
-msgstr "gespeichert"
-
-#: jscribble/notebook/NoteSheet.java:310
-msgid "Scheduling %s for writing."
-msgstr "Plane %s zum Speichern ein."
-
-#: jscribble/notebook/NoteSheet.java:341
-msgid "WriteThread was interrupted."
-msgstr "WriteThread wurde unterbrochen."
-
-#: jscribble/notebook/NoteBook.java:144
+#: jscribble/notebook/NoteBook.java:132
 msgid "Do you really want to delete \"%s\"?"
 msgstr "Möchtest du wirklich \"%s\" löschen?"
 
-#: jscribble/notebook/NoteBook.java:145
+#: jscribble/notebook/NoteBook.java:133
 msgid "Really delete?"
 msgstr "Wirklich löschen?"
 
-#: jscribble/notebook/NoteBook.java:179
+#: jscribble/notebook/NoteBook.java:166
 msgid "Could not delete folder."
 msgstr "Konnte den Ordner nicht löschen"
 
-#: jscribble/notebook/NoteBook.java:219
+#: jscribble/notebook/NoteBook.java:203
 msgid "Could not determine path of NoteBook folder."
 msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
 
-#: jscribble/notebook/NoteBook.java:384
+#: jscribble/notebook/NoteBook.java:358
 msgid "Starting to write out image files."
 msgstr "Beginne Bild-Datei zu speichern"
+
+#: jscribble/notebook/NoteSheet.java:160
+msgid "BufferedImage is null."
+msgstr "BufferedImage ist null"
+
+#: jscribble/notebook/NoteSheet.java:190
+msgid "Could not load image from disk."
+msgstr "Konnte Bilddatei nicht laden"
+
+#: jscribble/notebook/NoteSheet.java:230
+msgid "Could not create a temp file."
+msgstr "Konnte keine temp-Datei erstellen"
+
+#: jscribble/notebook/NoteSheet.java:268
+msgid "Image file does not exist."
+msgstr "Bilddatei existiert nicht."
+
+#: jscribble/notebook/NoteSheet.java:275
+msgid "Image file does not exist after stopping WriteoutThread."
+msgstr "Bilddatei existiert nicht nach Beendigung von WriteoutThread"
+
+#: jscribble/notebook/NoteSheet.java:286
+msgid "Loading %s."
+msgstr "Lade %s."
+
+#: jscribble/notebook/NoteSheet.java:293
+msgid "Could not find the note sheet image."
+msgstr "Konnte das Notizblattbild nicht finden."
+
+#: jscribble/notebook/NoteSheet.java:298
+msgid "Could not read the note sheet image."
+msgstr "Konnte das Notizblattbild nicht laden."
+
+#: jscribble/notebook/NoteSheet.java:328
+msgid "Picture %d is %s and %s."
+msgstr "Bilddatei %d ist %s und %s."
+
+#: jscribble/notebook/NoteSheet.java:330
+msgid "touched"
+msgstr "berührt"
+
+#: jscribble/notebook/NoteSheet.java:331
+msgid "untouched"
+msgstr "unberührt"
+
+#: jscribble/notebook/NoteSheet.java:332
+msgid "unsaved"
+msgstr "ungespeichert"
+
+#: jscribble/notebook/NoteSheet.java:333
+msgid "saved"
+msgstr "gespeichert"
+
+#: jscribble/notebook/NoteSheet.java:338
+msgid "Scheduling %s for writing."
+msgstr "Plane %s zum Speichern ein."
+
+#: jscribble/notebook/NoteSheet.java:370
+msgid "WriteThread was interrupted."
+msgstr "WriteThread wurde unterbrochen."
 
 #: jscribble/notebook/WriteoutThread.java:80
 msgid "Writing %s."
@@ -235,3 +237,42 @@ msgstr "Thread läuft aus."
 #: jscribble/notebook/WriteoutThread.java:119
 msgid "Interrupted while scheduling a disk write task."
 msgstr "Beim speichern unterbrochen."
+
+#: jscribble/selectionWindow/CloseEverythingAdapter.java:47
+#: jscribble/selectionWindow/NoteBookClosingAdapter.java:43
+msgid "Closing NoteBook \"%s\"."
+msgstr "Schließe Notizbuch \"%s\""
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:132
+msgid "New"
+msgstr "Neu"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:134
+msgid "Open"
+msgstr "Öffnen"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:136
+msgid "Delete"
+msgstr "Löschen"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:138
+msgid "Scribble"
+msgstr "Kritzeln"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:154
+msgid "Select your Notebook"
+msgstr "Wählen Sie Ihr Notizbuch"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:189
+msgid ""
+"Nickname of your Notebook: (please only use characters, numbers, _ and -)"
+msgstr ""
+"Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:291
+msgid "Notebook \"%s\""
+msgstr "Notizbuch \"%s\""
+
+#: jscribble/ColonListener.java:95
+msgid "Command:"
+msgstr "Kommando:"

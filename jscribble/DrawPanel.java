@@ -99,16 +99,20 @@ public class DrawPanel extends JPanel {
 	 * A list with all the HelpItem to display.
 	 */
 	private HelpItem[] helpItems = {
-		new HelpItem("h, F1", Localizer.get("show help")),
-		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>",
-		Localizer.get("go forward")),
-		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",
+		new HelpItem(Localizer.get("h, F1"), Localizer.get("show help")),
+		new HelpItem(Localizer.get("h, F1, <Esc>"), Localizer.get("hide help")),
+		new HelpItem(
+				Localizer.get("j, <Space>, <Enter>, <DownArrow>, <RightArrow>"),
+				Localizer.get("go forward")),
+		new HelpItem(Localizer.get("k, <Backspace>, <UpArrow>, <LeftArrow>"),
 		Localizer.get("go backward")),
-		new HelpItem("f, <Pos1>", Localizer.get("goto first")),
-		new HelpItem("l, <End>", Localizer.get("goto last")),
-		new HelpItem("<Alt-F4> / <CMD-Q>", Localizer.get("save & exit")),
-		new HelpItem("+", Localizer.get("increase onion layers")),
-		new HelpItem("-", Localizer.get("decrease onion layers"))
+		new HelpItem(Localizer.get("f, <Pos1>"), Localizer.get("goto first")),
+		new HelpItem(Localizer.get("l, <End>"), Localizer.get("goto last")),
+		new HelpItem(Localizer.get("<Alt-F4> / <CMD-Q>"),
+				Localizer.get("save & exit")),
+		new HelpItem(Localizer.get("+"),
+				Localizer.get("increase onion layers")),
+		new HelpItem(Localizer.get("-"), Localizer.get("decrease onion layers"))
 	};
 
 	/**
