@@ -144,7 +144,7 @@ public class NoteBookProgram {
 	 * @param key Name of the option to look up.
 	 * @return Value of the option.
 	 */
-	public static String getConfigValue(String key) {
+	public static Properties getConfig() {
 		if (mainConfig == null) {
 			mainConfig = new Properties();
 			try {
@@ -180,7 +180,7 @@ public class NoteBookProgram {
 			}
 		}
 
-		return mainConfig.getProperty(key, "");
+		return mainConfig;
 	}
 
 	/**

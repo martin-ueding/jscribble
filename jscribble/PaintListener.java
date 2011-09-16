@@ -59,12 +59,12 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 
-		if (NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
-			if (x <= Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
+		if (NoteBookProgram.getConfig().getProperty("show_scroll_panels").equalsIgnoreCase("true")) {
+			if (x <= Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_width"))) {
 				drawPanel.goBackwards();
 				return;
 			}
-			if (x >= drawPanel.getWidth() - Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"))) {
+			if (x >= drawPanel.getWidth() - Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_width"))) {
 				drawPanel.goForward();
 				return;
 			}

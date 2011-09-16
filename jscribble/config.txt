@@ -9,3 +9,5 @@ scroll_panel_width=20
 
 # The padding at the top and bottom.
 scroll_panel_padding=5
+
+erase_stroke_width=8

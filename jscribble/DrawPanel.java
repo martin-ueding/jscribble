@@ -246,14 +246,14 @@ public class DrawPanel extends JPanel {
 	 */
 	private void drawScrollPanels(Graphics2D g) {
 		// Do nothing if the option is not set.
-		if (!NoteBookProgram.getConfigValue("show_scroll_panels").equalsIgnoreCase("true")) {
+		if (!NoteBookProgram.getConfig().getProperty("show_scroll_panels").equalsIgnoreCase("true")) {
 			return;
 		}
 
 		try {
 			// Read the dimension of the panel from the config file.
-			int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_width"));
-			int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfigValue("scroll_panel_padding"));
+			int scrollPanelRadius = Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_width"));
+			int scrollPanelPadding = Integer.parseInt(NoteBookProgram.getConfig().getProperty("scroll_panel_padding"));
 
 			// Draw the panels on the sides.
 			g.setColor(new Color(0, 0, 0, 100));

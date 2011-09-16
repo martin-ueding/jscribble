@@ -31,10 +31,9 @@ public class BufferedImageWrapper {
 
 	private Graphics2D graphics;
 
-	// TODO Put width into config.
 	private Stroke drawStroke = new BasicStroke(1);
 
-	private Stroke eraseStroke = new BasicStroke(8);
+	private Stroke eraseStroke = new BasicStroke(Integer.parseInt(NoteBookProgram.getConfig().getProperty("erase_stroke_width", "8")));
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
