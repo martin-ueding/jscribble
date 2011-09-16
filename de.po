@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-16 20:13+0200\n"
+"POT-Creation-Date: 2011-09-16 20:58+0200\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -19,72 +19,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: jscribble/DrawPanel.java:104
+#: jscribble/DrawPanel.java:103
 msgid "h, F1"
 msgstr "h, F1"
 
-#: jscribble/DrawPanel.java:104
+#: jscribble/DrawPanel.java:103
 msgid "show help"
 msgstr "zeige Hilfe"
 
-#: jscribble/DrawPanel.java:105
+#: jscribble/DrawPanel.java:104
 msgid "h, F1, <Esc>"
 msgstr "h, F1, <Esc>"
 
-#: jscribble/DrawPanel.java:105
+#: jscribble/DrawPanel.java:104
 #, fuzzy
 msgid "hide help"
 msgstr "verstecke Hilfe"
 
-#: jscribble/DrawPanel.java:107
+#: jscribble/DrawPanel.java:106
 msgid "j, <Space>, <Enter>, <DownArrow>, <RightArrow>"
 msgstr "j, <Leertaste>, <Enter>, <PfeilUnten>, <PfeilRechts>"
 
-#: jscribble/DrawPanel.java:108
+#: jscribble/DrawPanel.java:107
 msgid "go forward"
 msgstr "gehe vorwärts"
 
-#: jscribble/DrawPanel.java:109
+#: jscribble/DrawPanel.java:108
 msgid "k, <Backspace>, <UpArrow>, <LeftArrow>"
 msgstr "k, <Backspace>, <PfeilOben>, <PfeilLinks>"
 
-#: jscribble/DrawPanel.java:110
+#: jscribble/DrawPanel.java:109
 msgid "go backward"
 msgstr "gehe zurück"
 
-#: jscribble/DrawPanel.java:111
+#: jscribble/DrawPanel.java:110
 msgid "f, <Pos1>"
 msgstr "f, <Pos1>"
 
-#: jscribble/DrawPanel.java:111
+#: jscribble/DrawPanel.java:110
 msgid "goto first"
 msgstr "gehe zum Anfang"
 
-#: jscribble/DrawPanel.java:112
+#: jscribble/DrawPanel.java:111
 msgid "l, <End>"
 msgstr "l, <Ende>"
 
-#: jscribble/DrawPanel.java:112
+#: jscribble/DrawPanel.java:111
 msgid "goto last"
 msgstr "gehe zum Ende"
 
-#: jscribble/DrawPanel.java:113
+#: jscribble/DrawPanel.java:112
 msgid "<Alt-F4> / <CMD-Q>"
 msgstr "<Alt-F4> / <CMD-Q>"
 
-#: jscribble/DrawPanel.java:114
+#: jscribble/DrawPanel.java:113
 msgid "save & exit"
 msgstr "speichern & beenden"
 
-#: jscribble/DrawPanel.java:115
+#: jscribble/DrawPanel.java:114
 msgid "+"
 msgstr "+"
 
-#: jscribble/DrawPanel.java:116
+#: jscribble/DrawPanel.java:115
 msgid "increase onion layers"
 msgstr "erhöhe Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:117
+#: jscribble/DrawPanel.java:116
 msgid "-"
 msgstr "-"
 
@@ -92,23 +92,39 @@ msgstr "-"
 msgid "decrease onion layers"
 msgstr "verringere Zwiebelschichten"
 
-#: jscribble/DrawPanel.java:186
+#: jscribble/DrawPanel.java:118
+msgid "r"
+msgstr ""
+
+#: jscribble/DrawPanel.java:118
+msgid "toggle ruling"
+msgstr "schalte Linierung an/aus"
+
+#: jscribble/DrawPanel.java:119
+msgid "g"
+msgstr ""
+
+#: jscribble/DrawPanel.java:119
+msgid "toggle graph paper"
+msgstr "schalte Karierung an/aus"
+
+#: jscribble/DrawPanel.java:188
 msgid "Version %s"
 msgstr "Version %s"
 
-#: jscribble/DrawPanel.java:209
+#: jscribble/DrawPanel.java:211
 msgid "Press h or F1 to get help."
 msgstr "Drücken Sie h oder F1 für Hilfe."
 
-#: jscribble/DrawPanel.java:261
+#: jscribble/DrawPanel.java:270
 msgid "Onion Layers: %d"
 msgstr "Zwiebelschichten: %d"
 
-#: jscribble/DrawPanel.java:272
+#: jscribble/DrawPanel.java:281
 msgid "Page %d/%d"
 msgstr "Seite %d/%d"
 
-#: jscribble/DrawPanel.java:312
+#: jscribble/DrawPanel.java:321
 #, fuzzy
 msgid "Malformed entry in config file."
 msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
@@ -247,36 +263,32 @@ msgstr "Beim speichern unterbrochen."
 msgid "Closing NoteBook \"%s\"."
 msgstr "Schließe Notizbuch \"%s\""
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:132
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:119
 msgid "New"
 msgstr "Neu"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:134
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:121
 msgid "Open"
 msgstr "Öffnen"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:136
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:123
 msgid "Delete"
 msgstr "Löschen"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:138
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:125
 msgid "Scribble"
 msgstr "Kritzeln"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:154
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:141
 msgid "Select your Notebook"
 msgstr "Wählen Sie Ihr Notizbuch"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:189
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:174
 msgid ""
 "Nickname of your Notebook: (please only use characters, numbers, _ and -)"
 msgstr ""
 "Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:291
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:271
 msgid "Notebook \"%s\""
 msgstr "Notizbuch \"%s\""
-
-#: jscribble/ColonListener.java:95
-msgid "Command:"
-msgstr "Kommando:"

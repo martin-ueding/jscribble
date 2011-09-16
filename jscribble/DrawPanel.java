@@ -69,7 +69,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Color of the help lines.
 	 */
-	private static final Color lineColor = new Color(200, 200, 200);
+	private static final Color lineColor = new Color(100, 100, 100);
 
 	/**
 	 * The spacing between the help lines.
@@ -222,12 +222,16 @@ public class DrawPanel extends JPanel {
 	 * @param y2
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
-		if (isOnionMode()) {
+		if (hasCachedImage()) {
 			getImageWrapper().drawLine(x, y, x2, y2);
 		}
 		notebook.drawLine(x, y, x2, y2);
 
 		showHelpSplash = false;
+	}
+
+	private boolean hasCachedImage() {
+		return cachedImage != null;
 	}
 
 	/**
@@ -237,16 +241,16 @@ public class DrawPanel extends JPanel {
 	 */
 	private void drawLines(Graphics2D g2) {
 		if (lines || graphRuling) {
-			// TODO draw the lines below the drawing
 			g2.setColor(lineColor);
 
+			// Vertical lines.
 			if (graphRuling) {
 				for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
 					g2.drawLine(i, 0, i, getHeight());
 				}
 			}
 
-
+			// Horizontal lines.
 			for (int i = lineSpacing; i < getHeight(); i += lineSpacing) {
 				g2.drawLine(0, i, getWidth(), i);
 			}
@@ -327,7 +331,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private BufferedImage getCachedImage() {
 		// If the onion mode is not enables, the original image can be used.
-		if (!isOnionMode()) {
+		if (!isOnionMode() && !lines && !graphRuling) {
 			return notebook.getCurrentSheet().getImg();
 		}
 
@@ -353,7 +357,7 @@ public class DrawPanel extends JPanel {
 
 			// Set the layers to a given opacity.
 			g2.setComposite(AlphaComposite.getInstance(
-			            AlphaComposite.SRC_ATOP, (float)(0.8 / onionMode)));
+			            AlphaComposite.SRC_ATOP, (float)(0.8 / Math.max(onionMode, 1))));
 
 			// Iterate through from the bottom to the top layer and compose
 			// the images onto the cache image.
@@ -364,6 +368,9 @@ public class DrawPanel extends JPanel {
 				wentBack--;
 				notebook.goForward();
 			}
+
+			drawLines(g2);
+
 			g2.drawImage(notebook.getCurrentSheet().getImg(), 0, 0, io);
 		}
 
@@ -429,11 +436,7 @@ public class DrawPanel extends JPanel {
 	 * Increases the onion layers and does additional housekeeping.
 	 */
 	public void onionLayersIncrease() {
-		// If onion mode was enabled, the current cache image is obsolete and
-		// needs to be redone.
-		if (isOnionMode()) {
-			resetCachedImage();
-		}
+		resetCachedImage();
 
 		onionMode++;
 		repaint();
@@ -455,7 +458,6 @@ public class DrawPanel extends JPanel {
 		// Draw the current image.
 		g2.drawImage(getCachedImage(), 0, 0, io);
 
-		drawLines(g2);
 		drawPageNumber(g2);
 		drawOnionInfo(g2);
 		drawScrollPanels(g2);
@@ -511,10 +513,12 @@ public class DrawPanel extends JPanel {
 	public void toggleRuling() {
 		lines = !lines;
 		graphRuling = false;
+		resetCachedImage();
 	}
 
 	public void toggleGraphRuling() {
 		graphRuling = !graphRuling;
 		lines = false;
+		resetCachedImage();
 	}
 }
