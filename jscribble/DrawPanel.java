@@ -99,7 +99,7 @@ public class DrawPanel extends JPanel {
 	 * A list with all the HelpItem to display.
 	 */
 	private HelpItem[] helpItems = {
-		new HelpItem("h", Localizer.get("show help")),
+		new HelpItem("h, F1", Localizer.get("show help")),
 		new HelpItem("j, <Space>, <Enter>, <DownArrow>, <RightArrow>",
 		Localizer.get("go forward")),
 		new HelpItem("k, <Backspace>, <UpArrow>, <LeftArrow>",

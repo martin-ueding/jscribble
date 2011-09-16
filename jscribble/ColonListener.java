@@ -104,7 +104,7 @@ public class ColonListener implements KeyListener {
 			redrawer.actionPerformed(null);
 		}
 
-		if (arg0.getKeyChar() == 'h') {
+		if (arg0.getKeyChar() == 'h' || arg0.getKeyCode() == KeyEvent.VK_F1) {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
