@@ -262,11 +262,11 @@ public class NoteSheet {
 		// WriteoutThread did not get a change to write the file yet. Join with
 		// the thread.
 
-		// TODO test whether the image is actually in the queue first
 		if (!imagefile.exists() || imagefile.length() == 0L) {
 			NoteBookProgram.log(getClass().getName(),
 			        Localizer.get("Image file does not exist."));
-			stopWriteoutThread();
+			if (writethread.isFileInQueue(imagefile))
+				stopWriteoutThread();
 		}
 
 		// If the file still does not exist, it has not been written out.

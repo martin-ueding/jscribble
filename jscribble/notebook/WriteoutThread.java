@@ -19,6 +19,7 @@
 
 package jscribble.notebook;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -128,5 +129,14 @@ public class WriteoutThread extends Thread {
 	public void stopAfterLast() {
 		stopAfterLastItem = true;
 		schedule(new ImageSwapTask(null, null));
+	}
+
+
+	public boolean isFileInQueue(File imagefile) {
+		for (ImageSwapTask task : tasks) {
+			if (task.getOutfile().equals(imagefile))
+				return true;
+		}
+		return false;
 	}
 }
