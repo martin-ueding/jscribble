@@ -31,7 +31,7 @@ public class BufferedImageWrapper {
 
 	private Graphics2D graphics;
 
-	private Stroke drawStroke = new BasicStroke(1);
+	private Stroke drawStroke = new BasicStroke(Integer.parseInt(NoteBookProgram.getConfig().getProperty("draw_stroke_width", "1")));
 
 	private Stroke eraseStroke = new BasicStroke(Integer.parseInt(NoteBookProgram.getConfig().getProperty("erase_stroke_width", "8")));
 
