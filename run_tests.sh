@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
 # exist if any of the tests fail
 set -e

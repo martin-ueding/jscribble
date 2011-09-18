@@ -1,4 +1,4 @@
-# Copyright (c) Martin Ueding <dev@martin-ueding.de>
+# Copyright © Martin Ueding <dev@martin-ueding.de>
 
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
