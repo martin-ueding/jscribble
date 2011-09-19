@@ -101,7 +101,8 @@ public class DrawPanel extends JPanel {
 	 */
 	private HelpItem[] helpItems = {
 		new HelpItem(Localizer.get("h, F1"), Localizer.get("show help")),
-		new HelpItem(Localizer.get("h, F1, <Esc>"), Localizer.get("hide help")),
+		new HelpItem(Localizer.get("h, F1, <Esc>"),
+		Localizer.get("hide help")),
 		new HelpItem(
 		    Localizer.get("j, <Space>, <Enter>, <DownArrow>, <RightArrow>"),
 		    Localizer.get("go forward")),
@@ -357,7 +358,8 @@ public class DrawPanel extends JPanel {
 
 			// Set the layers to a given opacity.
 			g2.setComposite(AlphaComposite.getInstance(
-			            AlphaComposite.SRC_ATOP, (float)(0.8 / Math.max(onionMode, 1))));
+			            AlphaComposite.SRC_ATOP,
+			            (float)(0.8 / Math.max(onionMode, 1))));
 
 			// Iterate through from the bottom to the top layer and compose
 			// the images onto the cache image.

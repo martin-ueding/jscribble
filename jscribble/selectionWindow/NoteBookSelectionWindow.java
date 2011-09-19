@@ -3,10 +3,10 @@
 /*
  * This file is part of jscribble.
  *
- * jscribble is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 2 of the License, or (at your option) any later
- * version.
+ * jscribble is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 2 of the License, or (at your option)
+ * any later version.
  *
  * jscribble is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -148,7 +148,9 @@ public class NoteBookSelectionWindow {
 		        frame));
 
 		try {
-			frame.setIconImage(ImageIO.read(ClassLoader.getSystemResourceAsStream("install_files/jscribble.png")));
+			frame.setIconImage(ImageIO.read(
+			            ClassLoader.getSystemResourceAsStream(
+			                    "install_files/jscribble.png")));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -276,7 +278,9 @@ public class NoteBookSelectionWindow {
 		f.setResizable(false);
 
 		try {
-			f.setIconImage(ImageIO.read(ClassLoader.getSystemResourceAsStream("install_files/jscribble.png")));
+			f.setIconImage(ImageIO.read(
+			            ClassLoader.getSystemResourceAsStream(
+			                    "install_files/jscribble.png")));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
