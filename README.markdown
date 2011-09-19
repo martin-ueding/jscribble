@@ -34,3 +34,4 @@ TODO
 - add extra exit button, maybe "q"
 - save everything no matter how the application is exited
 - better build system
+- support Wacom eraser
