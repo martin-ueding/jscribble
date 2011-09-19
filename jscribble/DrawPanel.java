@@ -473,6 +473,7 @@ public class DrawPanel extends JPanel {
 	private void resetCachedImage() {
 		cachedImage = null;
 		imageWrapper = null;
+		showHelpSplash = false;
 	}
 
 	/**
