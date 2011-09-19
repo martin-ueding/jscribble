@@ -201,7 +201,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		g2.setColor(new Color(0, 0, 0, 200));
+		g2.setColor(new Color(0, 0, 0, 100));
 		Dimension splashSize = new Dimension(getWidth() - 30, 50);
 		g2.fillRoundRect((getWidth() - splashSize.width) / 2,
 		        (getHeight() - splashSize.height) / 2,
