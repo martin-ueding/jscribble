@@ -492,7 +492,7 @@ public class DrawPanel extends JPanel {
 	}
 
 	public void eraseLine(int x, int y, int x2, int y2) {
-		if (isOnionMode()) {
+		if (hasCachedImage()) {
 			getImageWrapper().eraseLine(x, y, x2, y2);
 
 			// FIXME Prevent erasing of the underlying onion layers, maybe by
