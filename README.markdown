@@ -36,3 +36,4 @@ TODO
 - add option to delete a page from the notebook
 - make lines option more obvious
 - add debian/watch file
+- better build system
