@@ -17,14 +17,13 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble.selectionWindow;
+package jscribble.drawPanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import jscribble.DrawPanel;
 
-class MovementListener implements KeyListener {
+public class MovementListener implements KeyListener {
 	private final DrawPanel drawPanel;
 
 	public MovementListener(DrawPanel drawPanel) {

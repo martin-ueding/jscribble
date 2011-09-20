@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble;
+package jscribble.drawPanel;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -30,6 +30,7 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
 
+import jscribble.VersionName;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.helpers.SettingsWrapper;

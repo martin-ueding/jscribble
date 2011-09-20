@@ -17,10 +17,11 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble;
+package jscribble.drawPanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 
 /**
  * Listens to the keyboard for the command key and then polls the user for a

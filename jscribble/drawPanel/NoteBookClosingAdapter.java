@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble.selectionWindow;
+package jscribble.drawPanel;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -28,7 +28,7 @@ import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
-class NoteBookClosingAdapter extends WindowAdapter {
+public class NoteBookClosingAdapter extends WindowAdapter {
 	private final NoteBook notebook;
 	private final JFrame f;
 

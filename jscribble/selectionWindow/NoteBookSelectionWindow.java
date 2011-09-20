@@ -40,10 +40,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import jscribble.CommandListener;
-import jscribble.DrawPanel;
 import jscribble.NoteBookProgram;
-import jscribble.Redrawer;
+import jscribble.drawPanel.CommandListener;
+import jscribble.drawPanel.DrawPanel;
+import jscribble.drawPanel.MovementListener;
+import jscribble.drawPanel.NoteBookClosingAdapter;
+import jscribble.drawPanel.Redrawer;
 import jscribble.helpers.Localizer;
 import jscribble.notebook.NoteBook;
 

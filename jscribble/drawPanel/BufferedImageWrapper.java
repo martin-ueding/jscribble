@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble;
+package jscribble.drawPanel;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
