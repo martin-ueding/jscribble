@@ -59,6 +59,7 @@ clean:
 	$(RM) -r javadoc
 	$(RM) .testrun
 	$(RM) classlist
+	$(RM) de.po~
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
 	$(RM) jscribble_*.properties
