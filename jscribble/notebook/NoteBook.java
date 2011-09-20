@@ -285,6 +285,13 @@ public class NoteBook implements Comparable<NoteBook> {
 		return sheets.size();
 	}
 
+	public Dimension getSize() {
+		if (noteSize == null) {
+			askForResolution();
+		}
+		return noteSize;
+	}
+
 	/**
 	 * Goes back one sheet.
 	 */
@@ -429,12 +436,5 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
-	}
-
-	public Dimension getSize() {
-		if (noteSize == null) {
-			askForResolution();
-		}
-		return noteSize;
 	}
 }
