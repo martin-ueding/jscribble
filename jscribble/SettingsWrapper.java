@@ -12,6 +12,10 @@ public class SettingsWrapper {
 	 */
 	private static Properties mainConfig;
 
+	public static boolean getBoolean(String key, boolean defaultValue) {
+		return Boolean.parseBoolean(getConfig().getProperty(key, String.valueOf(defaultValue)));
+	}
+
 	/**
 	 * Retrieves a config value from the file.
 	 *
@@ -20,37 +24,37 @@ public class SettingsWrapper {
 	 */
 	private static Properties getConfig() {
 		if (mainConfig == null) {
-			mainConfig = new Properties();
-			try {
-				File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
-				        "config.txt");
-				if (configfile.exists()) {
-					mainConfig.load(new FileInputStream(configfile));
-			}
-			}
-			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get(
-				            "IO error while reading config file."));
-				e.printStackTrace();
-			}
+			initMainConfig();
 		}
 
 		return mainConfig;
-	}
-
-	public static String getString(String key, String defaultValue) {
-		return getConfig().getProperty(key, defaultValue);
 	}
 
 	public static int getInteger(String key, int defaultValue) {
 		return Integer.parseInt(getConfig().getProperty(key, String.valueOf(defaultValue)));
 	}
 
-	public static boolean getBoolean(String key, boolean defaultValue) {
-		return Boolean.parseBoolean(getConfig().getProperty(key, String.valueOf(defaultValue)));
+	public static String getString(String key, String defaultValue) {
+		return getConfig().getProperty(key, defaultValue);
+	}
+
+	private static void initMainConfig() {
+		mainConfig = new Properties();
+		try {
+			File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
+			        "config.txt");
+			if (configfile.exists()) {
+				mainConfig.load(new FileInputStream(configfile));
+		}
+		}
+		catch (FileNotFoundException e) {
+			NoteBookProgram.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			NoteBookProgram.handleError(Localizer.get(
+			            "IO error while reading config file."));
+			e.printStackTrace();
+		}
 	}
 }
