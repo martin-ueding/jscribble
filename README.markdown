@@ -35,3 +35,4 @@ TODO
 - save everything no matter how the application is exited
 - better build system
 - support Wacom eraser
+- support for different screen sizes
