@@ -45,7 +45,7 @@ fullname=jscribble-$(version)
 
 tarball: $(tarball)
 $(tarball):
-	git archive --prefix=$(fullname)/ --output $@ HEAD
+	git archive --prefix=$(fullname)/ HEAD | gzip > $@
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
