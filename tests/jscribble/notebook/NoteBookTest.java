@@ -22,7 +22,7 @@ package tests.jscribble.notebook;
 import java.io.File;
 import java.util.UUID;
 
-import jscribble.NoteBookProgram;
+import jscribble.Logger;
 import jscribble.notebook.NoteBook;
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
@@ -119,8 +119,8 @@ public class NoteBookTest extends TestCase {
 
 		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
 
-		NoteBookProgram.log(getClass().getName(),
-		        "Trying to delete test files.");
+		Logger.log(getClass().getName(),
+		           "Trying to delete test files.");
 		for (File file : filenames) {
 			file.delete();
 		}

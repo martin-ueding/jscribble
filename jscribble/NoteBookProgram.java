@@ -26,10 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Calendar;
 import java.util.Properties;
-
-import javax.swing.JOptionPane;
 
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
@@ -70,47 +67,6 @@ public class NoteBookProgram {
 	}
 
 	/**
-	 * Handles some error message centrally, right now it just displays a
-	 * dialog box with the error message.
-	 *
-	 * @param errorMessage error message
-	 */
-	public static void handleError(String errorMessage) {
-		log("ERROR", errorMessage);
-		JOptionPane.showMessageDialog(null, errorMessage);
-		System.exit(1);
-	}
-
-	/**
-	 * Writes a message to a log file.
-	 *
-	 * @param reportingClass name of the reporting class
-	 * @param message message
-	 */
-	public static void log(String reportingClass, String message) {
-		if (debug) {
-			Calendar c = Calendar.getInstance();
-			String date = String.format("%d-%02d-%02d %02d:%02d:%02d.%03d",
-			        c.get(Calendar.YEAR),
-			        c.get(Calendar.MONTH),
-			        c.get(Calendar.DAY_OF_MONTH),
-			        c.get(Calendar.HOUR_OF_DAY),
-			        c.get(Calendar.MINUTE),
-			        c.get(Calendar.SECOND),
-			        c.get(Calendar.MILLISECOND)
-			                           );
-			String output =  date + " " + reportingClass + ":\t" + message;
-			System.out.println(output);
-		}
-	}
-
-	/**
-	 * Whether to show debug information by default. This can be overridden by
-	 * the "-v" command line option.
-	 */
-	private static boolean debug = false;
-
-	/**
 	 * Displays the NotebookSelectionWindow.
 	 *
 	 * @param args CLI arguments
@@ -119,18 +75,18 @@ public class NoteBookProgram {
 		// Parse the command line options.
 		for (String string : args) {
 			if (string.equalsIgnoreCase("-v")) {
-				debug = true;
+				Logger.setDebug(true);
 			}
 		}
 
 		printVersionIfNeeded(args);
 
-		log(getProgramname(), Localizer.get("Starting up."));
+		Logger.log(getProgramname(), Localizer.get("Starting up."));
 
 		showSelectionWindow();
 
-		log(NoteBookProgram.class.getClass().getName(),
-		    Localizer.get("Entering interactive mode."));
+		Logger.log(NoteBookProgram.class.getClass().getName(),
+		           Localizer.get("Entering interactive mode."));
 	}
 
 	/**
@@ -156,8 +112,8 @@ public class NoteBookProgram {
 				// Create a new config file if there is none, fill it with the
 				// defaults from the distribution.
 				else {
-					log(NoteBookProgram.class.getClass().getName(),
-					    Localizer.get("Could not find config file. Writing a default one."));
+					Logger.log(NoteBookProgram.class.getClass().getName(),
+					           Localizer.get("Could not find config file. Writing a default one."));
 					InputStreamReader isr = new InputStreamReader(
 					    ClassLoader.getSystemClassLoader()
 					    .getResourceAsStream("jscribble/config.txt"));
@@ -173,12 +129,12 @@ public class NoteBookProgram {
 				}
 			}
 			catch (FileNotFoundException e) {
-				handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+				Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				handleError(Localizer.get(
-				        "IO error while reading config file."));
+				Logger.handleError(Localizer.get(
+				            "IO error while reading config file."));
 				e.printStackTrace();
 			}
 		}

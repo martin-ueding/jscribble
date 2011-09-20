@@ -25,7 +25,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import jscribble.Localizer;
-import jscribble.NoteBookProgram;
+import jscribble.Logger;
 import jscribble.notebook.NoteBook;
 
 class NoteBookClosingAdapter extends WindowAdapter {
@@ -39,9 +39,9 @@ class NoteBookClosingAdapter extends WindowAdapter {
 
 	public void windowClosing(WindowEvent winEvt) {
 		notebook.saveToFiles();
-		NoteBookProgram.log(getClass().getName(),
-		        String.format(Localizer.get("Closing NoteBook \"%s\"."),
-		                notebook.getName()));
+		Logger.log(getClass().getName(),
+		           String.format(Localizer.get("Closing NoteBook \"%s\"."),
+		                   notebook.getName()));
 		f.setVisible(false);
 	}
 }

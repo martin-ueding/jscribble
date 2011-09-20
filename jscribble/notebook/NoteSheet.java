@@ -32,6 +32,7 @@ import javax.imageio.ImageIO;
 
 import jscribble.BufferedImageWrapper;
 import jscribble.Localizer;
+import jscribble.Logger;
 import jscribble.NoteBookProgram;
 
 /**
@@ -156,8 +157,8 @@ public class NoteSheet {
 		if (graphics == null) {
 			BufferedImage im = getImg();
 			if (im == null) {
-				NoteBookProgram.log(getClass().getName(),
-				        Localizer.get("BufferedImage is null."));
+				Logger.log(getClass().getName(),
+				           Localizer.get("BufferedImage is null."));
 			}
 			graphics = (Graphics2D)(im.getGraphics());
 			graphics.setRenderingHints(new
@@ -226,7 +227,7 @@ public class NoteSheet {
 				imagefile.deleteOnExit();
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get(
+				Logger.handleError(Localizer.get(
 				            "Could not create a temp file."));
 				e.printStackTrace();
 			}
@@ -263,8 +264,8 @@ public class NoteSheet {
 		// the thread.
 
 		if (!imagefile.exists() || imagefile.length() == 0L) {
-			NoteBookProgram.log(getClass().getName(),
-			        Localizer.get("Image file does not exist."));
+			Logger.log(getClass().getName(),
+			           Localizer.get("Image file does not exist."));
 			if (writethread.isFileInQueue(imagefile)) {
 				stopWriteoutThread();
 			}
@@ -272,10 +273,10 @@ public class NoteSheet {
 
 		// If the file still does not exist, it has not been written out.
 		if (!imagefile.exists() || imagefile.length() == 0L) {
-			NoteBookProgram.log(getClass().getName(), Localizer.get(
-			            "Image file does" +
-			            " not exist after stopping WriteoutThread."
-			        ));
+			Logger.log(getClass().getName(), Localizer.get(
+			        "Image file does" +
+			        " not exist after stopping WriteoutThread."
+			           ));
 
 			initNewImage();
 		}
@@ -283,19 +284,19 @@ public class NoteSheet {
 		// If the file exists, load it up.
 		else {
 			try {
-				NoteBookProgram.log(getClass().getName(),
-				        String.format(Localizer.get("Loading %s."),
-				                imagefile.getAbsolutePath()));
+				Logger.log(getClass().getName(),
+				           String.format(Localizer.get("Loading %s."),
+				                   imagefile.getAbsolutePath()));
 
 				img = ImageIO.read(imagefile);
 			}
 			catch (FileNotFoundException e) {
-				NoteBookProgram.handleError(Localizer.get(
+				Logger.handleError(Localizer.get(
 				            "Could not find the note sheet image."));
 				e.printStackTrace();
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get(
+				Logger.handleError(Localizer.get(
 				            "Could not read the note sheet image."));
 				e.printStackTrace();
 			}
@@ -325,19 +326,19 @@ public class NoteSheet {
 	 * heap.
 	 */
 	public void saveToFile() {
-		NoteBookProgram.log(getClass().getName(),
-		        String.format(Localizer.get("Picture %d is %s and %s."),
-		                pagenumber,
-		                (touched ? Localizer.get("touched") :
-		                        Localizer.get("untouched")),
-		                (unsaved ? Localizer.get("unsaved") :
-		                        Localizer.get("saved"))
-		                     )
-		                   );
+		Logger.log(getClass().getName(),
+		           String.format(Localizer.get("Picture %d is %s and %s."),
+		                   pagenumber,
+		                   (touched ? Localizer.get("touched") :
+		                           Localizer.get("untouched")),
+		                   (unsaved ? Localizer.get("unsaved") :
+		                           Localizer.get("saved"))
+		                        )
+		          );
 		if (touched && unsaved) {
-			NoteBookProgram.log(getClass().getName(), String.format(
-			            Localizer.get("Scheduling %s for writing."),
-			            imagefile.getAbsolutePath()));
+			Logger.log(getClass().getName(), String.format(
+			        Localizer.get("Scheduling %s for writing."),
+			        imagefile.getAbsolutePath()));
 
 
 			if (writethread == null || !writethread.isAlive()) {
@@ -367,7 +368,7 @@ public class NoteSheet {
 			}
 		}
 		catch (InterruptedException e) {
-			NoteBookProgram.handleError(Localizer.get(
+			Logger.handleError(Localizer.get(
 			            "WriteThread was interrupted."));
 			e.printStackTrace();
 		}

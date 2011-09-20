@@ -318,7 +318,7 @@ public class DrawPanel extends JPanel {
 			        scrollPanelRadius, scrollPanelRadius);
 		}
 		catch (NumberFormatException e) {
-			NoteBookProgram.handleError(Localizer.get(
+			Logger.handleError(Localizer.get(
 			            "Malformed entry in config file."));
 		}
 	}

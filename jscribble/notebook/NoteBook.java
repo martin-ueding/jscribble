@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import jscribble.Localizer;
+import jscribble.Logger;
 import jscribble.NoteBookProgram;
 
 /**
@@ -162,8 +163,8 @@ public class NoteBook implements Comparable<NoteBook> {
 		folder.delete();
 
 		if (folder.exists()) {
-			NoteBookProgram.log(getClass().getName(),
-			        Localizer.get("Could not delete folder."));
+			Logger.log(getClass().getName(),
+			           Localizer.get("Could not delete folder."));
 		}
 	}
 
@@ -199,7 +200,7 @@ public class NoteBook implements Comparable<NoteBook> {
 				        String.format("%06d", pagenumber) + ".png");
 			}
 			catch (IOException e) {
-				NoteBookProgram.handleError(Localizer.get(
+				Logger.handleError(Localizer.get(
 				            "Could not determine path of NoteBook folder."));
 				e.printStackTrace();
 			}
@@ -213,7 +214,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	public NoteSheet getCurrentSheet() {
 		addPageIfEmpty();
 		if (currentSheet < 0 || currentSheet >= sheets.size()) {
-			NoteBookProgram.log(getClass().getName(), "IndexOutOfBounds");
+			Logger.log(getClass().getName(), "IndexOutOfBounds");
 		}
 		return sheets.get(currentSheet);
 	}
@@ -354,8 +355,8 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {
-		NoteBookProgram.log(getClass().getName(), Localizer.get(
-		            "Starting to write out image files."));
+		Logger.log(getClass().getName(), Localizer.get(
+		        "Starting to write out image files."));
 		for (NoteSheet s : sheets) {
 			s.saveToFile();
 		}
