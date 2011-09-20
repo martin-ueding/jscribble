@@ -231,10 +231,6 @@ public class DrawPanel extends JPanel {
 		showHelpSplash = false;
 	}
 
-	private boolean hasCachedImage() {
-		return cachedImage != null;
-	}
-
 	/**
 	 * Draws the helping lines if needed.
 	 *
@@ -323,6 +319,19 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	public void eraseLine(int x, int y, int x2, int y2) {
+		if (hasCachedImage()) {
+			getImageWrapper().eraseLine(x, y, x2, y2);
+
+			// FIXME Prevent erasing of the underlying onion layers, maybe by
+			// redoing the background image.
+		}
+
+		notebook.eraseLine(x, y, x2, y2);
+
+		showHelpSplash = false;
+	}
+
 	/**
 	 * Returns the cached image. This can be the original image if there is no
 	 * onion mode used, or the layered image if used. If there is no image yet,
@@ -379,6 +388,14 @@ public class DrawPanel extends JPanel {
 		return cachedImage;
 	}
 
+	private BufferedImageWrapper getImageWrapper() {
+		if (imageWrapper == null) {
+			imageWrapper = new BufferedImageWrapper(cachedImage);
+		}
+
+		return imageWrapper;
+	}
+
 	/**
 	 * Goes one page back.
 	 */
@@ -409,6 +426,10 @@ public class DrawPanel extends JPanel {
 	public void gotoLast() {
 		resetCachedImage();
 		notebook.gotoLast();
+	}
+
+	private boolean hasCachedImage() {
+		return cachedImage != null;
 	}
 
 	/**
@@ -483,6 +504,12 @@ public class DrawPanel extends JPanel {
 		this.showHelp = showHelp;
 	}
 
+	public void toggleGraphRuling() {
+		graphRuling = !graphRuling;
+		lines = false;
+		resetCachedImage();
+	}
+
 	/**
 	 * Whether to display the help panel.
 	 */
@@ -492,36 +519,9 @@ public class DrawPanel extends JPanel {
 		showHelpSplash = false;
 	}
 
-	public void eraseLine(int x, int y, int x2, int y2) {
-		if (hasCachedImage()) {
-			getImageWrapper().eraseLine(x, y, x2, y2);
-
-			// FIXME Prevent erasing of the underlying onion layers, maybe by
-			// redoing the background image.
-		}
-
-		notebook.eraseLine(x, y, x2, y2);
-
-		showHelpSplash = false;
-	}
-
-	private BufferedImageWrapper getImageWrapper() {
-		if (imageWrapper == null) {
-			imageWrapper = new BufferedImageWrapper(cachedImage);
-		}
-
-		return imageWrapper;
-	}
-
 	public void toggleRuling() {
 		lines = !lines;
 		graphRuling = false;
-		resetCachedImage();
-	}
-
-	public void toggleGraphRuling() {
-		graphRuling = !graphRuling;
-		lines = false;
 		resetCachedImage();
 	}
 }
