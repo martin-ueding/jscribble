@@ -6,7 +6,7 @@ classfiles=$(javafiles:.java=.class)
 version=1.4
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
-	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png jscribble/config.txt *.properties
+	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties
 
 classlist: $(shell find jscribble -name "*.class")
 	find jscribble -name "*.class" -print > classlist
