@@ -40,12 +40,12 @@ test: .testrun
 	bash run_tests.sh
 	touch .testrun
 
-fullname=jscribble_$(version).tar.gz
-fullnamedash=jscribble-$(version)
-tarball: $(fullname)
+tarball=jscribble_$(version).tar.gz
+fullname=jscribble-$(version)
 
-$(fullname):
-	git archive --prefix=$(fullnamedash)/ --output $(fullname) HEAD
+tarball: $(tarball)
+$(tarball):
+	git archive --prefix=$(fullname)/ --output $(tarball) HEAD
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
