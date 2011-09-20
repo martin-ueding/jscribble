@@ -45,7 +45,7 @@ fullname=jscribble-$(version)
 
 tarball: $(tarball)
 $(tarball):
-	git archive --prefix=$(fullname)/ --output $(tarball) HEAD
+	git archive --prefix=$(fullname)/ --output $@ HEAD
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
@@ -66,4 +66,3 @@ clean:
 	find . -name "*.class" -delete
 	find . -name "*.jar" -delete
 	find . -name "*.orig" -delete
-
