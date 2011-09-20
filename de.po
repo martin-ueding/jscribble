@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-16 20:58+0200\n"
+"POT-Creation-Date: 2011-09-20 14:02+0200\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -18,116 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: jscribble/DrawPanel.java:103
-msgid "h, F1"
-msgstr "h, F1"
-
-#: jscribble/DrawPanel.java:103
-msgid "show help"
-msgstr "zeige Hilfe"
-
-#: jscribble/DrawPanel.java:104
-msgid "h, F1, <Esc>"
-msgstr "h, F1, <Esc>"
-
-#: jscribble/DrawPanel.java:104
-#, fuzzy
-msgid "hide help"
-msgstr "verstecke Hilfe"
-
-#: jscribble/DrawPanel.java:106
-msgid "j, <Space>, <Enter>, <DownArrow>, <RightArrow>"
-msgstr "j, <Leertaste>, <Enter>, <PfeilUnten>, <PfeilRechts>"
-
-#: jscribble/DrawPanel.java:107
-msgid "go forward"
-msgstr "gehe vorwärts"
-
-#: jscribble/DrawPanel.java:108
-msgid "k, <Backspace>, <UpArrow>, <LeftArrow>"
-msgstr "k, <Backspace>, <PfeilOben>, <PfeilLinks>"
-
-#: jscribble/DrawPanel.java:109
-msgid "go backward"
-msgstr "gehe zurück"
-
-#: jscribble/DrawPanel.java:110
-msgid "f, <Pos1>"
-msgstr "f, <Pos1>"
-
-#: jscribble/DrawPanel.java:110
-msgid "goto first"
-msgstr "gehe zum Anfang"
-
-#: jscribble/DrawPanel.java:111
-msgid "l, <End>"
-msgstr "l, <Ende>"
-
-#: jscribble/DrawPanel.java:111
-msgid "goto last"
-msgstr "gehe zum Ende"
-
-#: jscribble/DrawPanel.java:112
-msgid "<Alt-F4> / <CMD-Q>"
-msgstr "<Alt-F4> / <CMD-Q>"
-
-#: jscribble/DrawPanel.java:113
-msgid "save & exit"
-msgstr "speichern & beenden"
-
-#: jscribble/DrawPanel.java:114
-msgid "+"
-msgstr "+"
-
-#: jscribble/DrawPanel.java:115
-msgid "increase onion layers"
-msgstr "erhöhe Zwiebelschichten"
-
-#: jscribble/DrawPanel.java:116
-msgid "-"
-msgstr "-"
-
-#: jscribble/DrawPanel.java:117
-msgid "decrease onion layers"
-msgstr "verringere Zwiebelschichten"
-
-#: jscribble/DrawPanel.java:118
-msgid "r"
-msgstr ""
-
-#: jscribble/DrawPanel.java:118
-msgid "toggle ruling"
-msgstr "schalte Linierung an/aus"
-
-#: jscribble/DrawPanel.java:119
-msgid "g"
-msgstr ""
-
-#: jscribble/DrawPanel.java:119
-msgid "toggle graph paper"
-msgstr "schalte Karierung an/aus"
-
-#: jscribble/DrawPanel.java:188
-msgid "Version %s"
-msgstr "Version %s"
-
-#: jscribble/DrawPanel.java:211
-msgid "Press h or F1 to get help."
-msgstr "Drücken Sie h oder F1 für Hilfe."
-
-#: jscribble/DrawPanel.java:270
-msgid "Onion Layers: %d"
-msgstr "Zwiebelschichten: %d"
-
-#: jscribble/DrawPanel.java:281
-msgid "Page %d/%d"
-msgstr "Seite %d/%d"
-
-#: jscribble/DrawPanel.java:321
-#, fuzzy
-msgid "Malformed entry in config file."
-msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
 #: jscribble/NoteBookProgram.java:128
 msgid "Starting up."
@@ -154,109 +44,115 @@ msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: jscribble/notebook/NoteBook.java:132
-msgid "Do you really want to delete \"%s\"?"
-msgstr "Möchtest du wirklich \"%s\" löschen?"
+#: jscribble/DrawPanel.java:103
+msgid "h, F1"
+msgstr "h, F1"
 
-#: jscribble/notebook/NoteBook.java:133
-msgid "Really delete?"
-msgstr "Wirklich löschen?"
+#: jscribble/DrawPanel.java:103
+msgid "show help"
+msgstr "zeige Hilfe"
 
-#: jscribble/notebook/NoteBook.java:166
-msgid "Could not delete folder."
-msgstr "Konnte den Ordner nicht löschen"
+#: jscribble/DrawPanel.java:104
+msgid "h, F1, <Esc>"
+msgstr "h, F1, <Esc>"
 
-#: jscribble/notebook/NoteBook.java:203
-msgid "Could not determine path of NoteBook folder."
-msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
+#: jscribble/DrawPanel.java:105
+#, fuzzy
+msgid "hide help"
+msgstr "verstecke Hilfe"
 
-#: jscribble/notebook/NoteBook.java:358
-msgid "Starting to write out image files."
-msgstr "Beginne Bild-Datei zu speichern"
+#: jscribble/DrawPanel.java:107
+msgid "j, <Space>, <Enter>, <DownArrow>, <RightArrow>"
+msgstr "j, <Leertaste>, <Enter>, <PfeilUnten>, <PfeilRechts>"
 
-#: jscribble/notebook/NoteSheet.java:160
-msgid "BufferedImage is null."
-msgstr "BufferedImage ist null"
+#: jscribble/DrawPanel.java:108
+msgid "go forward"
+msgstr "gehe vorwärts"
 
-#: jscribble/notebook/NoteSheet.java:190
-msgid "Could not load image from disk."
-msgstr "Konnte Bilddatei nicht laden"
+#: jscribble/DrawPanel.java:109
+msgid "k, <Backspace>, <UpArrow>, <LeftArrow>"
+msgstr "k, <Backspace>, <PfeilOben>, <PfeilLinks>"
 
-#: jscribble/notebook/NoteSheet.java:230
-msgid "Could not create a temp file."
-msgstr "Konnte keine temp-Datei erstellen"
+#: jscribble/DrawPanel.java:110
+msgid "go backward"
+msgstr "gehe zurück"
 
-#: jscribble/notebook/NoteSheet.java:268
-msgid "Image file does not exist."
-msgstr "Bilddatei existiert nicht."
+#: jscribble/DrawPanel.java:111
+msgid "f, <Pos1>"
+msgstr "f, <Pos1>"
 
-#: jscribble/notebook/NoteSheet.java:275
-msgid "Image file does not exist after stopping WriteoutThread."
-msgstr "Bilddatei existiert nicht nach Beendigung von WriteoutThread"
+#: jscribble/DrawPanel.java:111
+msgid "goto first"
+msgstr "gehe zum Anfang"
 
-#: jscribble/notebook/NoteSheet.java:286
-msgid "Loading %s."
-msgstr "Lade %s."
+#: jscribble/DrawPanel.java:112
+msgid "l, <End>"
+msgstr "l, <Ende>"
 
-#: jscribble/notebook/NoteSheet.java:293
-msgid "Could not find the note sheet image."
-msgstr "Konnte das Notizblattbild nicht finden."
+#: jscribble/DrawPanel.java:112
+msgid "goto last"
+msgstr "gehe zum Ende"
 
-#: jscribble/notebook/NoteSheet.java:298
-msgid "Could not read the note sheet image."
-msgstr "Konnte das Notizblattbild nicht laden."
+#: jscribble/DrawPanel.java:113
+msgid "<Alt-F4> / <CMD-Q>"
+msgstr "<Alt-F4> / <CMD-Q>"
 
-#: jscribble/notebook/NoteSheet.java:328
-msgid "Picture %d is %s and %s."
-msgstr "Bilddatei %d ist %s und %s."
+#: jscribble/DrawPanel.java:114
+msgid "save & exit"
+msgstr "speichern & beenden"
 
-#: jscribble/notebook/NoteSheet.java:330
-msgid "touched"
-msgstr "berührt"
+#: jscribble/DrawPanel.java:115
+msgid "+"
+msgstr "+"
 
-#: jscribble/notebook/NoteSheet.java:331
-msgid "untouched"
-msgstr "unberührt"
+#: jscribble/DrawPanel.java:116
+msgid "increase onion layers"
+msgstr "erhöhe Zwiebelschichten"
 
-#: jscribble/notebook/NoteSheet.java:332
-msgid "unsaved"
-msgstr "ungespeichert"
+#: jscribble/DrawPanel.java:117
+msgid "-"
+msgstr "-"
 
-#: jscribble/notebook/NoteSheet.java:333
-msgid "saved"
-msgstr "gespeichert"
+#: jscribble/DrawPanel.java:118
+msgid "decrease onion layers"
+msgstr "verringere Zwiebelschichten"
 
-#: jscribble/notebook/NoteSheet.java:338
-msgid "Scheduling %s for writing."
-msgstr "Plane %s zum Speichern ein."
+#: jscribble/DrawPanel.java:119
+msgid "r"
+msgstr ""
 
-#: jscribble/notebook/NoteSheet.java:370
-msgid "WriteThread was interrupted."
-msgstr "WriteThread wurde unterbrochen."
+#: jscribble/DrawPanel.java:119
+msgid "toggle ruling"
+msgstr "schalte Linierung an/aus"
 
-#: jscribble/notebook/WriteoutThread.java:80
-msgid "Writing %s."
-msgstr "Schreibe %s."
+#: jscribble/DrawPanel.java:120
+msgid "g"
+msgstr ""
 
-#: jscribble/notebook/WriteoutThread.java:88
-msgid "Could not find the file to write."
-msgstr "Konnte die Datei zum Speichern nicht finden."
+#: jscribble/DrawPanel.java:120
+msgid "toggle graph paper"
+msgstr "schalte Karierung an/aus"
 
-#: jscribble/notebook/WriteoutThread.java:93
-msgid "IO error while saving the note image."
-msgstr "IO error während des Speichern des Notizblattbildes."
+#: jscribble/DrawPanel.java:189
+msgid "Version %s"
+msgstr "Version %s"
 
-#: jscribble/notebook/WriteoutThread.java:98
-msgid "Writing thread was interupted."
-msgstr "Schreibprozess wurde unterbrochen."
+#: jscribble/DrawPanel.java:212
+msgid "Press h or F1 to get help."
+msgstr "Drücken Sie h oder F1 für Hilfe."
 
-#: jscribble/notebook/WriteoutThread.java:104
-msgid "Thread dies."
-msgstr "Thread läuft aus."
+#: jscribble/DrawPanel.java:271
+msgid "Onion Layers: %d"
+msgstr "Zwiebelschichten: %d"
 
-#: jscribble/notebook/WriteoutThread.java:119
-msgid "Interrupted while scheduling a disk write task."
-msgstr "Beim speichern unterbrochen."
+#: jscribble/DrawPanel.java:282
+msgid "Page %d/%d"
+msgstr "Seite %d/%d"
+
+#: jscribble/DrawPanel.java:322
+#, fuzzy
+msgid "Malformed entry in config file."
+msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
 #: jscribble/selectionWindow/CloseEverythingAdapter.java:47
 #: jscribble/selectionWindow/NoteBookClosingAdapter.java:43
@@ -283,12 +179,126 @@ msgstr "Kritzeln"
 msgid "Select your Notebook"
 msgstr "Wählen Sie Ihr Notizbuch"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:174
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:176
 msgid ""
 "Nickname of your Notebook: (please only use characters, numbers, _ and -)"
 msgstr ""
 "Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:271
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:273
 msgid "Notebook \"%s\""
 msgstr "Notizbuch \"%s\""
+
+#: jscribble/notebook/NoteSheet.java:160
+msgid "BufferedImage is null."
+msgstr "BufferedImage ist null"
+
+#: jscribble/notebook/NoteSheet.java:190
+msgid "Could not load image from disk."
+msgstr "Konnte Bilddatei nicht laden"
+
+#: jscribble/notebook/NoteSheet.java:230
+msgid "Could not create a temp file."
+msgstr "Konnte keine temp-Datei erstellen"
+
+#: jscribble/notebook/NoteSheet.java:267
+msgid "Image file does not exist."
+msgstr "Bilddatei existiert nicht."
+
+#: jscribble/notebook/NoteSheet.java:276
+msgid "Image file does not exist after stopping WriteoutThread."
+msgstr "Bilddatei existiert nicht nach Beendigung von WriteoutThread"
+
+#: jscribble/notebook/NoteSheet.java:287
+msgid "Loading %s."
+msgstr "Lade %s."
+
+#: jscribble/notebook/NoteSheet.java:294
+msgid "Could not find the note sheet image."
+msgstr "Konnte das Notizblattbild nicht finden."
+
+#: jscribble/notebook/NoteSheet.java:299
+msgid "Could not read the note sheet image."
+msgstr "Konnte das Notizblattbild nicht laden."
+
+#: jscribble/notebook/NoteSheet.java:329
+msgid "Picture %d is %s and %s."
+msgstr "Bilddatei %d ist %s und %s."
+
+#: jscribble/notebook/NoteSheet.java:331
+msgid "touched"
+msgstr "berührt"
+
+#: jscribble/notebook/NoteSheet.java:332
+msgid "untouched"
+msgstr "unberührt"
+
+#: jscribble/notebook/NoteSheet.java:333
+msgid "unsaved"
+msgstr "ungespeichert"
+
+#: jscribble/notebook/NoteSheet.java:334
+msgid "saved"
+msgstr "gespeichert"
+
+#: jscribble/notebook/NoteSheet.java:339
+msgid "Scheduling %s for writing."
+msgstr "Plane %s zum Speichern ein."
+
+#: jscribble/notebook/NoteSheet.java:371
+msgid "WriteThread was interrupted."
+msgstr "WriteThread wurde unterbrochen."
+
+#: jscribble/notebook/NoteBook.java:139
+msgid ""
+"Would you like to use your native resolution (%dx%d) instead of the default "
+"(%dx%d)?"
+msgstr "Wollen Sie Ihre Auflösung (%dx%d) anstelle der Standardauflösung (%dx%d) benutzen?"
+
+#: jscribble/notebook/NoteBook.java:145
+msgid "Default Resolution"
+msgstr ""
+
+#: jscribble/notebook/NoteBook.java:164
+msgid "Do you really want to delete \"%s\"?"
+msgstr "Möchtest du wirklich \"%s\" löschen?"
+
+#: jscribble/notebook/NoteBook.java:165
+msgid "Really delete?"
+msgstr "Wirklich löschen?"
+
+#: jscribble/notebook/NoteBook.java:198
+msgid "Could not delete folder."
+msgstr "Konnte den Ordner nicht löschen"
+
+#: jscribble/notebook/NoteBook.java:241
+msgid "Could not determine path of NoteBook folder."
+msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
+
+#: jscribble/notebook/NoteBook.java:413
+msgid "Starting to write out image files."
+msgstr "Beginne Bild-Datei zu speichern"
+
+#: jscribble/notebook/WriteoutThread.java:81
+msgid "Writing %s."
+msgstr "Schreibe %s."
+
+#: jscribble/notebook/WriteoutThread.java:89
+msgid "Could not find the file to write."
+msgstr "Konnte die Datei zum Speichern nicht finden."
+
+#: jscribble/notebook/WriteoutThread.java:94
+msgid "IO error while saving the note image."
+msgstr "IO error während des Speichern des Notizblattbildes."
+
+#: jscribble/notebook/WriteoutThread.java:99
+msgid "Writing thread was interupted."
+msgstr "Schreibprozess wurde unterbrochen."
+
+#: jscribble/notebook/WriteoutThread.java:105
+msgid "Thread dies."
+msgstr "Thread läuft aus."
+
+#: jscribble/notebook/WriteoutThread.java:120
+msgid "Interrupted while scheduling a disk write task."
+msgstr "Beim speichern unterbrochen."

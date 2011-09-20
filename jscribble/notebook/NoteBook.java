@@ -21,6 +21,7 @@ package jscribble.notebook;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import jscribble.Localizer;
@@ -66,7 +68,12 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * Size of the individual NoteSheet.
 	 */
-	private Dimension noteSize = new Dimension(1024, 600);
+	private Dimension noteSize;
+
+	private Dimension noteSizeDefault = new Dimension(
+	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_width", "1024")),
+	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_height", "600"))
+	);
 
 	/**
 	 * Listener that needs to be notified after the current sheet is changed.
@@ -125,6 +132,31 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	private void askForResolution() {
+		Dimension nativeSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		if (!nativeSize.equals(noteSizeDefault) && JOptionPane.showConfirmDialog(
+		            null,
+		            String.format(
+		                    Localizer.get("Would you like to use your native resolution (%dx%d) instead of the default (%dx%d)?"),
+		                    (int) nativeSize.getWidth(),
+		                    (int) nativeSize.getHeight(),
+		                    (int) noteSizeDefault.getWidth(),
+		                    (int) noteSizeDefault.getHeight()
+		            ),
+		            Localizer.get("Default Resolution"),
+		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			noteSize = nativeSize;
+		}
+		else {
+			noteSize = noteSizeDefault;
+		}
+	}
+
+	@Override
+	public int compareTo(NoteBook other) {
+		return getName().compareTo(other.getName());
+	}
+
 	/**
 	 * Asks the user to delete the NoteBook.
 	 */
@@ -173,6 +205,12 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		getCurrentSheet().drawLine(x, y, x2, y2);
+
+		fireDoneDrawing();
+	}
+
+	public void eraseLine(int x, int y, int x2, int y2) {
+		getCurrentSheet().eraseLine(x, y, x2, y2);
 
 		fireDoneDrawing();
 	}
@@ -337,6 +375,17 @@ public class NoteBook implements Comparable<NoteBook> {
 					            Integer.parseInt(m.group(1)));
 					sheets.add(new NoteSheet(noteSize,
 					           Integer.parseInt(m.group(1)), file));
+
+					if (pagecount == 0) {
+						try {
+							BufferedImage resolutionSampler = ImageIO.read(file);
+							noteSize = new Dimension(resolutionSampler.getWidth(), resolutionSampler.getHeight());
+						}
+						catch (IOException e) {
+							askForResolution();
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 			pagecount++;
@@ -380,14 +429,10 @@ public class NoteBook implements Comparable<NoteBook> {
 		return String.format("%s (%d)", name, getSheetCount());
 	}
 
-	public void eraseLine(int x, int y, int x2, int y2) {
-		getCurrentSheet().eraseLine(x, y, x2, y2);
-
-		fireDoneDrawing();
-	}
-
-	@Override
-	public int compareTo(NoteBook other) {
-		return getName().compareTo(other.getName());
+	public Dimension getSize() {
+		if (noteSize == null) {
+			askForResolution();
+		}
+		return noteSize;
 	}
 }

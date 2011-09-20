@@ -56,11 +56,6 @@ import jscribble.notebook.NoteBook;
  */
 public class NoteBookSelectionWindow {
 	/**
-	 * The size of newly created NoteBook instances.
-	 */
-	private Dimension noteSize = new Dimension(1024, 600);
-
-	/**
 	 * Button to handle creation of a new NoteBook.
 	 */
 	private JButton buttonNew;
@@ -271,7 +266,7 @@ public class NoteBookSelectionWindow {
 
 		final JFrame f = new JFrame(String.format(Localizer.get(
 		            "Notebook \"%s\""), notebook.getName()));
-		f.setSize(noteSize);
+		f.setSize(notebook.getSize());
 		f.setLocationRelativeTo(null);
 
 		f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
@@ -298,7 +293,7 @@ public class NoteBookSelectionWindow {
 		cl.addChangeListener(new Redrawer(panel));
 
 
-		if (Toolkit.getDefaultToolkit().getScreenSize().equals(noteSize)) {
+		if (Toolkit.getDefaultToolkit().getScreenSize().equals(notebook.getSize())) {
 			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.
 			        getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
