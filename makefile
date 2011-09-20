@@ -62,6 +62,7 @@ clean:
 	$(RM) de.po~
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
+	$(RM) jscribble_*.*.tar.gz
 	$(RM) jscribble_*.properties
 	find . -name "*.class" -delete
 	find . -name "*.jar" -delete
