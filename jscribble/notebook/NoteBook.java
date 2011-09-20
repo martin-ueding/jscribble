@@ -21,6 +21,7 @@ package jscribble.notebook;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import jscribble.Localizer;
@@ -317,6 +319,8 @@ public class NoteBook implements Comparable<NoteBook> {
 		if (!folder.exists()) {
 			folder.mkdirs();
 
+			askForResolution();
+
 			// Since the folder was just created, there are not going to be any
 			// pictures in it.
 			return;
@@ -341,9 +345,37 @@ public class NoteBook implements Comparable<NoteBook> {
 					            Integer.parseInt(m.group(1)));
 					sheets.add(new NoteSheet(noteSize,
 					           Integer.parseInt(m.group(1)), file));
+
+					if (pagecount == 0) {
+						try {
+							BufferedImage resolutionSampler = ImageIO.read(file);
+							noteSize = new Dimension(resolutionSampler.getWidth(), resolutionSampler.getHeight());
+						}
+						catch (IOException e) {
+							askForResolution();
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 			pagecount++;
+		}
+
+		if (pagecount == 0) {
+			askForResolution();
+		}
+	}
+
+	private void askForResolution() {
+		if (JOptionPane.showConfirmDialog(
+		            null,
+		            Localizer.get("Would you like to use your native resolution instead of the default?"),
+		            Localizer.get("Default Resolution"),
+		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			noteSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		}
+		else {
+			noteSize = noteSizeDefault;
 		}
 	}
 
