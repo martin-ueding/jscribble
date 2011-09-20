@@ -34,12 +34,10 @@ public class CommandListener implements KeyListener {
 	 */
 	private DrawPanel panel;
 
-
 	/**
 	 * The listener that is to be notified when something is changed.
 	 */
 	private Redrawer redrawer;
-
 
 	/**
 	 * Creates a new listener that listens to the given panel
@@ -49,7 +47,6 @@ public class CommandListener implements KeyListener {
 	public CommandListener(DrawPanel malPanel) {
 		panel = malPanel;
 	}
-
 
 	/**
 	 * A listener to be called when a setting causes the panel to need
@@ -61,7 +58,6 @@ public class CommandListener implements KeyListener {
 		this.redrawer = redrawer;
 	}
 
-
 	/**
 	 * Ignored.
 	 */
@@ -69,23 +65,13 @@ public class CommandListener implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 	}
 
-
 	/**
 	 * Ignored.
 	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// Close the help when the <ESC> key is pressed.
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			panel.setShowHelp(false);
-			redrawer.actionPerformed(null);
-		}
 	}
 
-
-	/**
-	 * Listens for the ':' character and polls the user for a command.
-	 */
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		if (arg0.getKeyChar() == 'r') {
@@ -109,6 +95,12 @@ public class CommandListener implements KeyListener {
 
 		if (arg0.getKeyChar() == '-') {
 			panel.onionLayersDecrease();
+		}
+
+		// Close the help when the <ESC> key is pressed.
+		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			panel.setShowHelp(false);
+			redrawer.actionPerformed(null);
 		}
 	}
 }
