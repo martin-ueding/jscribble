@@ -67,7 +67,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * Size of the individual NoteSheet.
 	 */
-	private Dimension noteSize = new Dimension(1024, 600);
+	private Dimension noteSize;
 
 	private Dimension noteSizeDefault = new Dimension(
 	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_width", "1024")),
@@ -350,8 +350,6 @@ public class NoteBook implements Comparable<NoteBook> {
 		if (!folder.exists()) {
 			folder.mkdirs();
 
-			askForResolution();
-
 			// Since the folder was just created, there are not going to be any
 			// pictures in it.
 			return;
@@ -391,10 +389,6 @@ public class NoteBook implements Comparable<NoteBook> {
 			}
 			pagecount++;
 		}
-
-		if (pagecount == 0) {
-			askForResolution();
-		}
 	}
 
 	/**
@@ -432,5 +426,12 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
+	}
+
+	public Dimension getSize() {
+		if (noteSize == null) {
+			askForResolution();
+		}
+		return noteSize;
 	}
 }
