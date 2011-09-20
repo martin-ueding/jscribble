@@ -36,6 +36,7 @@ import javax.swing.JOptionPane;
 import jscribble.Localizer;
 import jscribble.Logger;
 import jscribble.NoteBookProgram;
+import jscribble.SettingsWrapper;
 
 /**
  * A container for several NoteSheet.
@@ -71,8 +72,8 @@ public class NoteBook implements Comparable<NoteBook> {
 	private Dimension noteSize;
 
 	private Dimension noteSizeDefault = new Dimension(
-	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_width", "1024")),
-	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_height", "600"))
+	    SettingsWrapper.getInteger("default_width", 1024),
+	    SettingsWrapper.getInteger("default_height", 600)
 	);
 
 	/**
