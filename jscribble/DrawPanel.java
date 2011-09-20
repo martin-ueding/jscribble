@@ -30,6 +30,9 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
 
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
+import jscribble.helpers.SettingsWrapper;
 import jscribble.notebook.NoteBook;
 
 /**

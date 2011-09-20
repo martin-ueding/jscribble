@@ -33,10 +33,11 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import jscribble.Localizer;
-import jscribble.Logger;
 import jscribble.NoteBookProgram;
-import jscribble.SettingsWrapper;
+import jscribble.helpers.FileComparator;
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
+import jscribble.helpers.SettingsWrapper;
 
 /**
  * A container for several NoteSheet.

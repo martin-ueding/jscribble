@@ -22,7 +22,7 @@ package tests.jscribble.notebook;
 import java.io.File;
 import java.util.UUID;
 
-import jscribble.Logger;
+import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;

@@ -27,8 +27,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.imageio.ImageIO;
 
-import jscribble.Localizer;
-import jscribble.Logger;
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 
 /**
  * In order to make the user interface faster, the writing of unneeded images

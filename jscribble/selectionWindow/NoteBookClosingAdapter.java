@@ -24,8 +24,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import jscribble.Localizer;
-import jscribble.Logger;
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
 class NoteBookClosingAdapter extends WindowAdapter {

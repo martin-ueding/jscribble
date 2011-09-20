@@ -24,6 +24,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import jscribble.helpers.SettingsWrapper;
+
 
 /**
  * Listens to mouse movements on the displaying panel and updates the NoteBook.

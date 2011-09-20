@@ -21,6 +21,8 @@ package jscribble;
 
 import java.io.File;
 
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**

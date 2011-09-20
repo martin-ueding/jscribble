@@ -26,6 +26,8 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 
+import jscribble.helpers.SettingsWrapper;
+
 public class BufferedImageWrapper {
 	private BufferedImage img;
 

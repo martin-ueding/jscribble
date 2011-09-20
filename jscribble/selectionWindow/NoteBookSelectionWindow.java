@@ -42,9 +42,9 @@ import javax.swing.JScrollPane;
 
 import jscribble.CommandListener;
 import jscribble.DrawPanel;
-import jscribble.Localizer;
 import jscribble.NoteBookProgram;
 import jscribble.Redrawer;
+import jscribble.helpers.Localizer;
 import jscribble.notebook.NoteBook;
 
 /**

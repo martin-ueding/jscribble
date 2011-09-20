@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble;
+package jscribble.helpers;
 
 import java.util.Calendar;
 

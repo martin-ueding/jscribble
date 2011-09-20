@@ -31,9 +31,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import jscribble.BufferedImageWrapper;
-import jscribble.Localizer;
-import jscribble.Logger;
 import jscribble.NoteBookProgram;
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 
 /**
  * Represents a single note sheet. A NoteSheet consist a grayscale image. The

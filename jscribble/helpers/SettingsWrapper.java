@@ -17,13 +17,15 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble;
+package jscribble.helpers;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+
+import jscribble.NoteBookProgram;
 
 /**
  * Serves as an interface to the config file. Provides several convenience

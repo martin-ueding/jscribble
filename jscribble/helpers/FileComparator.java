@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble.notebook;
+package jscribble.helpers;
 
 import java.io.File;
 import java.text.Collator;
