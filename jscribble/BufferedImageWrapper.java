@@ -32,12 +32,10 @@ public class BufferedImageWrapper {
 	private Graphics2D graphics;
 
 	private Stroke drawStroke = new BasicStroke(
-	    Integer.parseInt(NoteBookProgram.getConfig()
-	            .getProperty("draw_stroke_width", "1")));
+	    SettingsWrapper.getInteger("draw_stroke_width", 1));
 
 	private Stroke eraseStroke = new BasicStroke(
-	    Integer.parseInt(NoteBookProgram.getConfig()
-	            .getProperty("erase_stroke_width", "8")));
+	    SettingsWrapper.getInteger("erase_stroke_width", 8));
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
