@@ -127,7 +127,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	private void addPageIfEmpty() {
 		if (sheets.size() == 0) {
-			sheets.add(new NoteSheet(noteSize, pagecount,
+			sheets.add(new NoteSheet(getSize(), pagecount,
 			           generateNextFilename(pagecount)));
 			pagecount++;
 			currentSheet = 0;
@@ -318,7 +318,7 @@ public class NoteBook implements Comparable<NoteBook> {
 		// If we are the last sheet and it has been touched, the user needs a
 		// new blank sheet. Add it.
 		else if (getCurrentSheet().touched()) {
-			sheets.add(new NoteSheet(noteSize, pagecount,
+			sheets.add(new NoteSheet(getSize(), pagecount,
 			           generateNextFilename(pagecount)));
 			currentSheet++;
 
@@ -385,7 +385,7 @@ public class NoteBook implements Comparable<NoteBook> {
 					sheets.add(new NoteSheet(noteSize,
 					           Integer.parseInt(m.group(1)), file));
 
-					if (pagecount == 0) {
+					if (noteSize == null) {
 						try {
 							BufferedImage resolutionSampler = ImageIO.read(file);
 							noteSize = new Dimension(resolutionSampler.getWidth(), resolutionSampler.getHeight());
