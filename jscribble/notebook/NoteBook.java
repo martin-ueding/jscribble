@@ -131,6 +131,24 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	private void askForResolution() {
+		if (JOptionPane.showConfirmDialog(
+		            null,
+		            Localizer.get("Would you like to use your native resolution instead of the default?"),
+		            Localizer.get("Default Resolution"),
+		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			noteSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		}
+		else {
+			noteSize = noteSizeDefault;
+		}
+	}
+
+	@Override
+	public int compareTo(NoteBook other) {
+		return getName().compareTo(other.getName());
+	}
+
 	/**
 	 * Asks the user to delete the NoteBook.
 	 */
@@ -179,6 +197,12 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public void drawLine(int x, int y, int x2, int y2) {
 		getCurrentSheet().drawLine(x, y, x2, y2);
+
+		fireDoneDrawing();
+	}
+
+	public void eraseLine(int x, int y, int x2, int y2) {
+		getCurrentSheet().eraseLine(x, y, x2, y2);
 
 		fireDoneDrawing();
 	}
@@ -366,19 +390,6 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
-	private void askForResolution() {
-		if (JOptionPane.showConfirmDialog(
-		            null,
-		            Localizer.get("Would you like to use your native resolution instead of the default?"),
-		            Localizer.get("Default Resolution"),
-		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			noteSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		}
-		else {
-			noteSize = noteSizeDefault;
-		}
-	}
-
 	/**
 	 * Tells the WriteoutThread that this NoteBook has no more sheets to save.
 	 */
@@ -414,16 +425,5 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public String toString() {
 		return String.format("%s (%d)", name, getSheetCount());
-	}
-
-	public void eraseLine(int x, int y, int x2, int y2) {
-		getCurrentSheet().eraseLine(x, y, x2, y2);
-
-		fireDoneDrawing();
-	}
-
-	@Override
-	public int compareTo(NoteBook other) {
-		return getName().compareTo(other.getName());
 	}
 }
