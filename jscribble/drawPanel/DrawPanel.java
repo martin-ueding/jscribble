@@ -34,6 +34,7 @@ import jscribble.VersionName;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.helpers.SettingsWrapper;
+import jscribble.notebook.BufferedImageWrapper;
 import jscribble.notebook.NoteBook;
 
 /**

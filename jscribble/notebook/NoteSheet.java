@@ -31,7 +31,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import jscribble.NoteBookProgram;
-import jscribble.drawPanel.BufferedImageWrapper;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.notebook.writeoutThread.ImageSwapTask;
