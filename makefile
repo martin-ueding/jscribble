@@ -44,11 +44,8 @@ fullname=jscribble_$(version).tar.gz
 fullnamedash=jscribble-$(version)
 tarball: $(fullname)
 
-$(fullname): clean
-	mkdir $(fullnamedash)
-	cp -r NEWS generate_version_class jscribble license.txt manifest.txt run_tests.sh install_files jscribble.1 makefile README.markdown tests *.po $(fullnamedash)
-	tar -czf $@ $(fullnamedash) 
-	$(RM) -r jscribble-*.*
+$(fullname):
+	git archive --prefix=$(fullnamedash)/ --output $(fullname) HEAD
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
