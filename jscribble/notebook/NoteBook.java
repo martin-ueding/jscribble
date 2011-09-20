@@ -132,12 +132,19 @@ public class NoteBook implements Comparable<NoteBook> {
 	}
 
 	private void askForResolution() {
-		if (JOptionPane.showConfirmDialog(
+		Dimension nativeSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		if (!nativeSize.equals(noteSizeDefault) && JOptionPane.showConfirmDialog(
 		            null,
-		            Localizer.get("Would you like to use your native resolution instead of the default?"),
+		            String.format(
+		                    Localizer.get("Would you like to use your native resolution (%dx%d) instead of the default (%dx%d)?"),
+		                    (int) nativeSize.getWidth(),
+		                    (int) nativeSize.getHeight(),
+		                    (int) noteSizeDefault.getWidth(),
+		                    (int) noteSizeDefault.getHeight()
+		            ),
 		            Localizer.get("Default Resolution"),
 		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			noteSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+			noteSize = nativeSize;
 		}
 		else {
 			noteSize = noteSizeDefault;
