@@ -391,6 +391,7 @@ public class NoteBook implements Comparable<NoteBook> {
 							noteSize = new Dimension(resolutionSampler.getWidth(), resolutionSampler.getHeight());
 						}
 						catch (IOException e) {
+							Logger.handleError(Localizer.get("Unable to determine resolution from first image in NoteBook."));
 							askForResolution();
 							e.printStackTrace();
 						}
