@@ -122,6 +122,11 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	public NoteBook(String name, Dimension noteSize) {
+		this(name);
+		this.noteSize = noteSize;
+	}
+
 	/**
 	 * Add an empty sheet if the NoteBook would be empty otherwise.
 	 */

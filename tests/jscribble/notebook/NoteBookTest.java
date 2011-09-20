@@ -19,6 +19,7 @@
 
 package tests.jscribble.notebook;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.util.UUID;
 
@@ -37,7 +38,11 @@ public class NoteBookTest extends TestCase {
 	 * Creates a NoteBook stored in a temporary folder with a unique name.
 	 */
 	private NoteBook createTempNoteBook() {
-		return new NoteBook(null);
+		return new NoteBook(null, new Dimension(300, 300));
+	}
+
+	private NoteBook createNamedTempNoteBook() {
+		return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
 	}
 
 
@@ -91,7 +96,7 @@ public class NoteBookTest extends TestCase {
 	 * have one page less than before.
 	 */
 	public void testDeletionOfPictureFile() {
-		NoteBook nb = new NoteBook(UUID.randomUUID().toString());
+		NoteBook nb = createNamedTempNoteBook();
 
 		File[] filenames = new File[20];
 
@@ -208,7 +213,7 @@ public class NoteBookTest extends TestCase {
 	 * Tests whether a reloaded NoteBook is the same as the saved one.
 	 */
 	public void testLoadFromConfig() {
-		NoteBook nb = new NoteBook(UUID.randomUUID().toString());
+		NoteBook nb = createNamedTempNoteBook();
 		nb.drawLine(0, 0, 0, 0);
 		nb.saveToFiles();
 
