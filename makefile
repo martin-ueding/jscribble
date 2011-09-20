@@ -30,8 +30,8 @@ html/.doxygen: $(javafiles)
 	doxygen
 	touch $@
 
-jscribble/VersionName.java:
-	./generate_version_class
+jscribble/VersionName.java: makefile
+	./generate_version_class $(version)
 
 test: .testrun
 

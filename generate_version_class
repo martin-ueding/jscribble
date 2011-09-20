@@ -3,14 +3,7 @@
 
 outfile=jscribble/VersionName.java
 
-if [[ -d .git ]]
-then
-	version=$(git describe --always --tags)
-else
-	# TODO add better defaults here
-	version=NA
-	revno=NA
-fi
+version=$1
 
 echo "package jscribble;" > "$outfile"
 echo "/**" >> "$outfile"
