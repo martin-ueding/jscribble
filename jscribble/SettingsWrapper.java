@@ -34,7 +34,7 @@ public class SettingsWrapper {
 				// defaults from the distribution.
 				else {
 					NoteBookProgram.log(NoteBookProgram.class.getClass().getName(),
-					    Localizer.get("Could not find config file. Writing a default one."));
+					        Localizer.get("Could not find config file. Writing a default one."));
 					InputStreamReader isr = new InputStreamReader(
 					    ClassLoader.getSystemClassLoader()
 					    .getResourceAsStream("jscribble/config.txt"));
@@ -55,18 +55,18 @@ public class SettingsWrapper {
 			}
 			catch (IOException e) {
 				NoteBookProgram.handleError(Localizer.get(
-				        "IO error while reading config file."));
+				            "IO error while reading config file."));
 				e.printStackTrace();
 			}
 		}
 
 		return mainConfig;
 	}
-	
+
 	public static String getString(String key, String defaultValue) {
 		return getConfig().getProperty(key, defaultValue);
 	}
-	
+
 	public static int getInteger(String key, int defaultValue) {
 		return Integer.parseInt(getConfig().getProperty(key, String.valueOf(defaultValue)));
 	}
