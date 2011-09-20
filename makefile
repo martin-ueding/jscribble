@@ -20,7 +20,7 @@ jscribble.pot: $(javafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
 jscribble/NoteBookProgram.class: $(javafiles)
-	ant
+	javac jscribble/NoteBookProgram.java
 
 javadoc/.javadoc: $(javafiles)
 	javadoc -d javadoc $^
