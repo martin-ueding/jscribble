@@ -23,8 +23,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import jscribble.notebook.ImageSwapTask;
-import jscribble.notebook.WriteoutThread;
+import jscribble.notebook.writeoutThread.ImageSwapTask;
+import jscribble.notebook.writeoutThread.WriteoutThread;
 import junit.framework.TestCase;
 
 public class WriteoutThreadTest extends TestCase {

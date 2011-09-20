@@ -17,7 +17,7 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble.notebook;
+package jscribble.notebook.writeoutThread;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -34,6 +34,8 @@ import jscribble.BufferedImageWrapper;
 import jscribble.NoteBookProgram;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
+import jscribble.notebook.writeoutThread.ImageSwapTask;
+import jscribble.notebook.writeoutThread.WriteoutThread;
 
 /**
  * Represents a single note sheet. A NoteSheet consist a grayscale image. The
