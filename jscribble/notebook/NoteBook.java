@@ -67,6 +67,11 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	private Dimension noteSize = new Dimension(1024, 600);
 
+	private Dimension noteSizeDefault = new Dimension(
+	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_width", "1024")),
+	    Integer.parseInt(NoteBookProgram.getConfig().getProperty("default_height", "600"))
+	);
+
 	/**
 	 * Listener that needs to be notified after the current sheet is changed.
 	 */
