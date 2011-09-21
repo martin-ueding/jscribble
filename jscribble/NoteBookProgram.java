@@ -48,6 +48,7 @@ public class NoteBookProgram {
 	 * Returns the name of the program.
 	 */
 	public static String getProgramname() {
+		// TODO --> defaultConfig
 		return "jscribble";
 	}
 

@@ -136,6 +136,7 @@ public class NoteBookSelectionWindow {
 
 
 		frame = new JFrame(Localizer.get("Select your Notebook"));
+		// TODO --> defaultConfig
 		frame.setSize(new Dimension(400, 300));
 		frame.setLocationRelativeTo(null);
 		frame.add(mainPanel);
@@ -166,6 +167,7 @@ public class NoteBookSelectionWindow {
 	 */
 	private NoteBook createNewNotebook() {
 		String nickname = null;
+		// TODO --> defaultConfig
 		Pattern p = Pattern.compile("[A-Za-z0-9-_]+");
 
 		do {

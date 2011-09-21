@@ -238,6 +238,7 @@ public class NoteSheet {
 		        BufferedImage.TYPE_BYTE_GRAY);
 
 		graphics = getGraphics();
+		// TODO --> defaultConfig
 		graphics.setColor(new Color(255, 255, 255));
 		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
 

@@ -152,6 +152,7 @@ public class DrawPanel extends JPanel {
 
 		// Draw a dark rectangle to write the help text on.
 		g2.setColor(SettingsWrapper.getColor("help_screen_background_color"));
+		// TODO --> defaultConfig
 		g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
 		        20);
 		g2.setColor(Color.WHITE);
@@ -186,7 +187,9 @@ public class DrawPanel extends JPanel {
 
 		// Draw a dark rectangle to write the help text on.
 		g2.setColor(SettingsWrapper.getColor("help_splash_background_color"));
+		// TODO --> defaultConfig
 		Dimension splashSize = new Dimension(getWidth() - 30, 50);
+		// TODO --> defaultConfig
 		g2.fillRoundRect((getWidth() - splashSize.width) / 2,
 		        (getHeight() - splashSize.height) / 2,
 		        splashSize.width, splashSize.height,
@@ -194,6 +197,7 @@ public class DrawPanel extends JPanel {
 		g2.setColor(Color.WHITE);
 
 		g2.drawString(Localizer.get("Press h or F1 to get help."),
+		        // TODO --> defaultConfig
 		        (getWidth() - splashSize.width) / 2 + 50, getHeight() / 2 + 5);
 	}
 
@@ -248,6 +252,7 @@ public class DrawPanel extends JPanel {
 			return;
 		}
 
+		// TODO --> defaultConfig
 		g2.drawString(String.format(Localizer.get("Onion Layers: %d"),
 		        onionMode), 10, 15);
 	}
@@ -261,6 +266,7 @@ public class DrawPanel extends JPanel {
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format(Localizer.get("Page %d/%d"),
 		        notebook.getCurrentSheet().getPagenumber(),
+		        // TODO --> defaultConfig
 		        notebook.getSheetCount()), getWidth() / 2, 15);
 	}
 
@@ -282,6 +288,7 @@ public class DrawPanel extends JPanel {
 			int scrollPanelPadding = SettingsWrapper.getInteger("scroll_panel_padding");
 
 			// Draw the panels on the sides.
+			// TODO --> defaultConfig
 			g.setColor(new Color(0, 0, 0, 100));
 			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
 			        2 * scrollPanelRadius,
@@ -338,6 +345,7 @@ public class DrawPanel extends JPanel {
 			cachedImage = new BufferedImage(getWidth(), getHeight(),
 			        BufferedImage.TYPE_BYTE_GRAY);
 			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
+			// TODO --> defaultConfig
 			g2.setColor(Color.WHITE);
 			g2.fillRect(0, 0, getWidth(), getHeight());
 
@@ -356,6 +364,7 @@ public class DrawPanel extends JPanel {
 			// Set the layers to a given opacity.
 			g2.setComposite(AlphaComposite.getInstance(
 			            AlphaComposite.SRC_ATOP,
+			            // TODO --> defaultConfig
 			            (float)(0.8 / Math.max(onionMode, 1))));
 
 			// Iterate through from the bottom to the top layer and compose

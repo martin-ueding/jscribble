@@ -90,6 +90,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * How many images to cache back and front.
 	 */
+	// TODO --> defaultConfig
 	private int cacheWidth = 10;
 
 	/**

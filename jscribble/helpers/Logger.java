@@ -56,6 +56,7 @@ public class Logger {
 	public static void log(String reportingClass, String message) {
 		if (debug) {
 			Calendar c = Calendar.getInstance();
+			// TODO Add support for various date formats.
 			String date = String.format("%d-%02d-%02d %02d:%02d:%02d.%03d",
 			        c.get(Calendar.YEAR),
 			        c.get(Calendar.MONTH),
