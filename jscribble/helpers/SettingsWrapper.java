@@ -35,9 +35,15 @@ import jscribble.NoteBookProgram;
  */
 public class SettingsWrapper {
 	/**
-	 * Main config used for every settings as of now.
+	 * Main config used for user specific settings.
 	 */
-	private static Properties mainConfig;
+	private static Properties userConfig;
+
+	/**
+	 * Default config that is used if the user did not specify this in his
+	 * config file.
+	 */
+	private static Properties defaultConfig;
 
 	/**
 	 * Looks up a boolean value in the config file.
@@ -47,7 +53,7 @@ public class SettingsWrapper {
 	 * @return Config value or default as boolean.
 	 */
 	public static boolean getBoolean(String key, boolean defaultValue) {
-		return Boolean.parseBoolean(getConfig().getProperty(key, String.valueOf(defaultValue)));
+		return Boolean.parseBoolean(getUserConfig().getProperty(key, String.valueOf(defaultValue)));
 	}
 
 	/**
@@ -55,12 +61,12 @@ public class SettingsWrapper {
 	 *
 	 * @return Initialized config.
 	 */
-	private static Properties getConfig() {
-		if (mainConfig == null) {
-			initMainConfig();
+	private static Properties getUserConfig() {
+		if (userConfig == null) {
+			initUserConfig();
 		}
 
-		return mainConfig;
+		return userConfig;
 	}
 
 	/**
@@ -71,7 +77,7 @@ public class SettingsWrapper {
 	 * @return Config value or default as integer.
 	 */
 	public static int getInteger(String key, int defaultValue) {
-		return Integer.parseInt(getConfig().getProperty(key, String.valueOf(defaultValue)));
+		return Integer.parseInt(getUserConfig().getProperty(key, String.valueOf(defaultValue)));
 	}
 
 	/**
@@ -82,19 +88,19 @@ public class SettingsWrapper {
 	 * @return Config value or default as string.
 	 */
 	public static String getString(String key, String defaultValue) {
-		return getConfig().getProperty(key, defaultValue);
+		return getUserConfig().getProperty(key, defaultValue);
 	}
 
 	/**
 	 * Creates a new config and loads a config file if there is one.
 	 */
-	private static void initMainConfig() {
-		mainConfig = new Properties();
+	private static void initUserConfig() {
+		userConfig = new Properties();
 		try {
 			File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
 			        "config.txt");
 			if (configfile.exists()) {
-				mainConfig.load(new FileInputStream(configfile));
+				userConfig.load(new FileInputStream(configfile));
 			}
 		}
 		catch (FileNotFoundException e) {
