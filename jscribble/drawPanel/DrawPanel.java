@@ -48,11 +48,13 @@ import jscribble.notebook.NoteBook;
 public class DrawPanel extends JPanel {
 	/**
 	 * Color of the help lines.
+	 * TODO Put this into the config.
 	 */
 	private static final Color lineColor = new Color(100, 100, 100);
 
 	/**
 	 * The spacing between the help lines.
+	 * TODO Put this into the config.
 	 */
 	private static final int lineSpacing = 40;
 
@@ -157,6 +159,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
+		// TODO Put this magic value into the config.
 		g2.setColor(new Color(0, 0, 0, 200));
 		g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
 		        20);
@@ -164,6 +167,7 @@ public class DrawPanel extends JPanel {
 
 		// Iterate through the help items and display them.
 		int i = 0;
+		// TODO Put these magic values into the config.
 		int vspacing = 30;
 		int spacing = 250;
 		int padding = 70;
@@ -191,6 +195,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
+		// TODO Put this magic value into the config.
 		g2.setColor(new Color(0, 0, 0, 100));
 		Dimension splashSize = new Dimension(getWidth() - 30, 50);
 		g2.fillRoundRect((getWidth() - splashSize.width) / 2,
@@ -385,6 +390,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Retrieves and initializes the BufferedImageWrapper for the current cached
 	 * image.
+	 *
 	 * @return BufferedImageWrapper of cachedImage
 	 */
 	private BufferedImageWrapper getImageWrapper() {
@@ -429,6 +435,7 @@ public class DrawPanel extends JPanel {
 
 	/**
 	 * Determines whether a cached image is currently used.
+	 *
 	 * @return Whether a cached image is used.
 	 */
 	private boolean hasCachedImage() {
