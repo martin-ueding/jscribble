@@ -13,8 +13,8 @@ v1.3 2011-09-15
 	- Sorting notebooks in the selection window.
 
 v1.2.2 2011-09-14
-	* Muliple layers in onion mode.
-	- Added window icon in NoteBook view too.
+	* Multiple layers in onion mode.
+	- Added window icon in notebook view too.
 
 v1.2.1 2011-09-12
 	* Using git describe version number.
@@ -26,16 +26,16 @@ v1.1.1 2011-08-25
 	* Added "make install" target.
 
 v1.1 2011-08-08
-	* Added German localisation.
+	* Added German localization.
 	* Added scroll panels for touch only devices.
 	* Using a config file.
 	- Added -v flag to activate log messages.
 	- Added logo to main window.
-	- Added simple manpage.
+	- Added simple man page.
 	- Deleting the temporary files after the programs exists.
 	- Disallowing to resize the window.
-	- Fixed nullpointer exception when clicking cancel on new dialog.
-	- Fixed tempfile permissions.
+	- Fixed null pointer exception when clicking cancel on new dialog.
+	- Fixed temp file permissions.
 
 v1.0.1 2011-07-07
 	* Added desktop entry.
@@ -48,17 +48,17 @@ v1.0 2011-07-06
 	* Opening notebook on double click.
 	* Saving all notebooks that are opened when closing the opening dialog.
 	- Added version flag to CLI.
-	- Bugfix blank page reloading error.
+	- Bug fix blank page reloading error.
 	- Fixed case where going back and forth faster than WriteoutThread could
 	  handle writing.
 
 v0.3 2011-06-26
-	* Added default dir option.
+	* Added default directory option.
 	* Added delete function.
 	* Added help message.
 	* Added more keys to control program.
 	* Only draw with primary mouse button.
-	- Ask user when the default dir is not valid any more.
+	- Ask user when the default directory is not valid any more.
 	- Display page count in overview.
 
 v0.2.1 2011-06-24
@@ -74,16 +74,16 @@ v0.2 2011-06-24
 	* Centering all new windows.
 	* Going to last page in notebook after opening it.
 	* Loading pictures in right order.
-	- Added meaningfull error messages.
+	- Added meaningful error messages.
 	- Added memory usage display.
 	- Added scroll pane around list.
 	- Added total page number to display.
 	- Added touched/unsaved differentiation.
 	- Do not save empty pictures.
 	- Fancy name in the window title.
-	- Only using fullscreen when the display is the same size.
+	- Only using full screen when the display is the same size.
 	- Open notebook after creation.
-	- Put the swapping into a seperate thread.
+	- Put the swapping into a separate thread.
 	- Swapping in backwards direction as well.
 	- Using zero padding in filename for the date.
 
