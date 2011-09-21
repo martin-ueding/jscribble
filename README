@@ -26,10 +26,3 @@ Controls
 You can flip the pages with the arrow keys, down and right advance a page, up
 and left go one page back. Go to the first and last page with `f` and `l` keys,
 respectively.
-
-
-TODO
-====
-
-- add extra exit button, maybe "q"
-- save everything no matter how the application is exited

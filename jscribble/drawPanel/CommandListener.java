@@ -102,5 +102,7 @@ public class CommandListener implements KeyListener {
 			panel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
+
+		// TODO add extra exit button, maybe "q"
 	}
 }
