@@ -53,9 +53,8 @@ public class DrawPanel extends JPanel {
 
 	/**
 	 * The spacing between the help lines.
-	 * TODO Put this into the config.
 	 */
-	private static final int lineSpacing = 40;
+	private static final int lineSpacing = SettingsWrapper.getInteger("ruling_line_spacing");
 
 	/**
 	 * The NoteBook that is currently displayed.
