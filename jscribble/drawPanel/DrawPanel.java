@@ -132,14 +132,24 @@ public class DrawPanel extends JPanel {
 
 	/**
 	 * A cached image that is used instead of the original images in the onion
-	 * mode to conserve performance.
+	 * mode to conserve performance. Use it via the getter.
 	 */
 	private BufferedImage cachedImage;
 
+	/**
+	 * The wrapper for the current image. Use it via the getter.
+	 */
 	private BufferedImageWrapper imageWrapper;
 
+	/**
+	 * Whether the help splash screen is (still) displayed.
+	 */
 	private boolean showHelpSplash = true;
 
+	/**
+	 * Whether graph ruling is used.
+	 * TODO Make ruling type an enumeration.
+	 */
 	private boolean graphRuling;
 
 	/**
@@ -319,6 +329,15 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Erases a line on the NoteBook. If a cachedImage is used, the line is
+	 * erased on that image as well.
+	 *
+	 * @param x
+	 * @param y
+	 * @param x2
+	 * @param y2
+	 */
 	public void eraseLine(int x, int y, int x2, int y2) {
 		if (hasCachedImage()) {
 			getImageWrapper().eraseLine(x, y, x2, y2);
@@ -388,6 +407,11 @@ public class DrawPanel extends JPanel {
 		return cachedImage;
 	}
 
+	/**
+	 * Retrieves and initializes the BufferedImageWrapper for the current cached
+	 * image.
+	 * @return BufferedImageWrapper of cachedImage
+	 */
 	private BufferedImageWrapper getImageWrapper() {
 		if (imageWrapper == null) {
 			imageWrapper = new BufferedImageWrapper(cachedImage);
@@ -428,6 +452,10 @@ public class DrawPanel extends JPanel {
 		notebook.gotoLast();
 	}
 
+	/**
+	 * Determines whether a cached image is currently used.
+	 * @return Whether a cached image is used.
+	 */
 	private boolean hasCachedImage() {
 		return cachedImage != null;
 	}
@@ -504,6 +532,9 @@ public class DrawPanel extends JPanel {
 		this.showHelp = showHelp;
 	}
 
+	/**
+	 * Toggles the display of graph ruling.
+	 */
 	public void toggleGraphRuling() {
 		graphRuling = !graphRuling;
 		lines = false;
@@ -518,6 +549,9 @@ public class DrawPanel extends JPanel {
 		showHelpSplash = false;
 	}
 
+	/**
+	 * Toggles the display of (line) ruling.
+	 */
 	public void toggleRuling() {
 		lines = !lines;
 		graphRuling = false;
