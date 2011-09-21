@@ -7,8 +7,8 @@ javac=javac -encoding UTF-8
 
 version=1.5
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
-	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties
+jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties jscribble/defaultConfig.txt
+	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/defaultConfig.txt
 
 classlist: $(shell find jscribble -name "*.class")
 	find jscribble -name "*.class" -print > classlist
