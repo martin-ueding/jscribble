@@ -1,0 +1,7 @@
+default_height=600
+default_width=1024
+draw_stroke_width=1
+erase_stroke_width=8
+scroll_panel_padding=5
+scroll_panel_width=20
+show_scroll_panels=false

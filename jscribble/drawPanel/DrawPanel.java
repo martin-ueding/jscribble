@@ -289,8 +289,8 @@ public class DrawPanel extends JPanel {
 
 		try {
 			// Read the dimension of the panel from the config file.
-			int scrollPanelRadius = SettingsWrapper.getInteger("scroll_panel_width", 20);
-			int scrollPanelPadding = SettingsWrapper.getInteger("scroll_panel_padding", 5);
+			int scrollPanelRadius = SettingsWrapper.getInteger("scroll_panel_width");
+			int scrollPanelPadding = SettingsWrapper.getInteger("scroll_panel_padding");
 
 			// Draw the panels on the sides.
 			g.setColor(new Color(0, 0, 0, 100));

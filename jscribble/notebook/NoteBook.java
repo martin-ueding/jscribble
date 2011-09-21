@@ -73,8 +73,8 @@ public class NoteBook implements Comparable<NoteBook> {
 	private Dimension noteSize;
 
 	private Dimension noteSizeDefault = new Dimension(
-	    SettingsWrapper.getInteger("default_width", 1024),
-	    SettingsWrapper.getInteger("default_height", 600)
+	    SettingsWrapper.getInteger("default_width"),
+	    SettingsWrapper.getInteger("default_height")
 	);
 
 	/**

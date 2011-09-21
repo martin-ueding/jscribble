@@ -34,10 +34,10 @@ public class BufferedImageWrapper {
 	private Graphics2D graphics;
 
 	private Stroke drawStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("draw_stroke_width", 1));
+	    SettingsWrapper.getInteger("draw_stroke_width"));
 
 	private Stroke eraseStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("erase_stroke_width", 8));
+	    SettingsWrapper.getInteger("erase_stroke_width"));
 
 	private Color background = Color.WHITE;
 	private Color foreground = Color.BLACK;
