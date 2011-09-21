@@ -3,6 +3,8 @@
 javafiles=$(shell find . -name "*.java")
 classfiles=$(javafiles:.java=.class)
 
+javac=javac -encoding UTF-8
+
 version=1.5
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties
@@ -20,7 +22,7 @@ jscribble.pot: $(javafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
 jscribble/NoteBookProgram.class: $(javafiles)
-	javac jscribble/NoteBookProgram.java
+	$(javac) jscribble/NoteBookProgram.java
 
 javadoc/.javadoc: $(javafiles)
 	javadoc -d javadoc $^
@@ -36,7 +38,7 @@ jscribble/VersionName.java: makefile
 test: .testrun
 
 .testrun:
-	javac -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
+	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
 	bash run_tests.sh
 	touch .testrun
 
