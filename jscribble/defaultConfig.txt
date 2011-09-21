@@ -5,3 +5,4 @@ erase_stroke_width=8
 scroll_panel_padding=5
 scroll_panel_width=20
 show_scroll_panels=false
+ruling_line_color=646464

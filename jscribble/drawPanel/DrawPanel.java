@@ -48,9 +48,8 @@ import jscribble.notebook.NoteBook;
 public class DrawPanel extends JPanel {
 	/**
 	 * Color of the help lines.
-	 * TODO Put this into the config.
 	 */
-	private static final Color lineColor = new Color(100, 100, 100);
+	private static final Color lineColor = SettingsWrapper.getColor("ruling_line_color");
 
 	/**
 	 * The spacing between the help lines.

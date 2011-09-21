@@ -19,6 +19,7 @@
 
 package jscribble.helpers;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -77,6 +78,17 @@ public class SettingsWrapper {
 	 */
 	public static int getInteger(String key) {
 		return Integer.parseInt(retrieve(key));
+	}
+
+	/**
+	 * Looks up a hexadecimal integer value from the config and converts it
+	 * into a Color.
+	 *
+	 * @param key Key to look up.
+	 * @return Config value as Color.
+	 */
+	public static Color getColor(String key) {
+		return new Color(Integer.parseInt(retrieve(key), 16));
 	}
 
 	/**
