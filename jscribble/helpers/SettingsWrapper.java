@@ -83,9 +83,9 @@ public class SettingsWrapper {
 	}
 
 	private static void initDefaultConfig() {
-		userConfig = new Properties();
+		defaultConfig = new Properties();
 		try {
-			userConfig.load(ClassLoader.getSystemResourceAsStream("jscribble/defaultConfig.txt"));
+			defaultConfig.load(ClassLoader.getSystemResourceAsStream("jscribble/defaultConfig.txt"));
 		}
 		catch (FileNotFoundException e) {
 			Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
@@ -117,7 +117,7 @@ public class SettingsWrapper {
 			return getDefaultConfig().getProperty(key);
 		}
 		else {
-			Logger.handleError(String.format(
+			System.out.println(String.format(
 			            Localizer.get("There is no default setting for %s."),
 			            key
 			        ));
