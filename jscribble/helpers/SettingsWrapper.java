@@ -53,7 +53,7 @@ public class SettingsWrapper {
 	 * @return Config value or default as boolean.
 	 */
 	public static boolean getBoolean(String key, boolean defaultValue) {
-		return Boolean.parseBoolean(retrieve(key, String.valueOf(defaultValue)));
+		return Boolean.parseBoolean(retrieve(key));
 	}
 
 	/**
@@ -73,22 +73,20 @@ public class SettingsWrapper {
 	 * Looks up a integer value in the config file.
 	 *
 	 * @param key Key to look up.
-	 * @param defaultValue Default value in case there is no such key.
 	 * @return Config value or default as integer.
 	 */
-	public static int getInteger(String key, int defaultValue) {
-		return Integer.parseInt(retrieve(key, String.valueOf(defaultValue)));
+	public static int getInteger(String key) {
+		return Integer.parseInt(retrieve(key));
 	}
 
 	/**
 	 * Looks up a string value in the config file.
 	 *
 	 * @param key Key to look up.
-	 * @param defaultValue Default value in case there is no such key.
 	 * @return Config value or default as string.
 	 */
-	public static String getString(String key, String defaultValue) {
-		return retrieve(key, defaultValue);
+	public static String getString(String key) {
+		return retrieve(key);
 	}
 
 	/**
@@ -143,7 +141,7 @@ public class SettingsWrapper {
 		}
 	}
 
-	private static String retrieve(String key, String defaultValue) {
+	private static String retrieve(String key) {
 		if (getUserConfig().containsKey(key)) {
 			return getUserConfig().getProperty(key);
 		}
@@ -151,11 +149,11 @@ public class SettingsWrapper {
 			return getDefaultConfig().getProperty(key);
 		}
 		else {
-			System.out.println(String.format(
+			Logger.handleError(String.format(
 			            Localizer.get("There is no default setting for %s."),
 			            key
 			        ));
-			return defaultValue;
+			return "";
 		}
 	}
 }
