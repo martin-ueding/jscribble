@@ -69,11 +69,6 @@ public class DrawPanel extends JPanel {
 	private ImageObserver io = this;
 
 	/**
-	 * Whether helping lines are enabled.
-	 */
-	private boolean lines = false;
-
-	/**
 	 * Whether to display the help panel.
 	 */
 	private boolean showHelp = false;
@@ -124,10 +119,9 @@ public class DrawPanel extends JPanel {
 	private boolean showHelpSplash = true;
 
 	/**
-	 * Whether graph ruling is used.
-	 * TODO Make ruling type an enumeration.
+	 * Which type of ruling is used.
 	 */
-	private boolean graphRuling;
+	private RulingType ruling = RulingType.NONE;
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
@@ -232,11 +226,11 @@ public class DrawPanel extends JPanel {
 	 * @param g2 Graphics2D to draw on
 	 */
 	private void drawLines(Graphics2D g2) {
-		if (lines || graphRuling) {
+		if (ruling != RulingType.NONE) {
 			g2.setColor(lineColor);
 
 			// Vertical lines.
-			if (graphRuling) {
+			if (ruling == RulingType.GRAPH) {
 				for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
 					g2.drawLine(i, 0, i, getHeight());
 				}
@@ -340,7 +334,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private BufferedImage getCachedImage() {
 		// If the onion mode is not enables, the original image can be used.
-		if (!isOnionMode() && !lines && !graphRuling) {
+		if (!isOnionMode() && ruling != RulingType.NONE) {
 			return notebook.getCurrentSheet().getImg();
 		}
 
@@ -518,8 +512,7 @@ public class DrawPanel extends JPanel {
 	 * Toggles the display of graph ruling.
 	 */
 	public void toggleGraphRuling() {
-		graphRuling = !graphRuling;
-		lines = false;
+		ruling = ruling == RulingType.GRAPH ? RulingType.NONE : RulingType.GRAPH;
 		resetCachedImage();
 	}
 
@@ -535,8 +528,7 @@ public class DrawPanel extends JPanel {
 	 * Toggles the display of (line) ruling.
 	 */
 	public void toggleRuling() {
-		lines = !lines;
-		graphRuling = false;
+		ruling = ruling == RulingType.LINE ? RulingType.NONE : RulingType.LINE;
 		resetCachedImage();
 	}
 }
