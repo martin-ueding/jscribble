@@ -35,7 +35,6 @@ class DeleteActionListener implements ActionListener {
 		this.window = window;
 	}
 
-
 	/**
 	 * Triggers the deletion of a NoteBook.
 	 */
@@ -43,5 +42,4 @@ class DeleteActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		window.deleteEvent();
 	}
-
 }

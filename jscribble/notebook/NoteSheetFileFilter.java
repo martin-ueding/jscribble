@@ -34,7 +34,6 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	 */
 	private Pattern p = Pattern.compile("(\\d+)\\.png");
 
-
 	/**
 	 * Determines whether a file is accepted or not. A file is accepted if it
 	 * starts with the correct prefix and matches the regular expression.

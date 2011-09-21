@@ -43,13 +43,11 @@ public class WriteoutThread extends Thread {
 	 */
 	private LinkedBlockingQueue<ImageSwapTask> tasks;
 
-
 	/**
 	 * This flag stops the thread after the last item in the queue. If not set,
 	 * the thread will wait for items in the queue to save.
 	 */
 	private boolean stopAfterLastItem = false;
-
 
 	/**
 	 * Creates and starts the thread.
@@ -58,7 +56,6 @@ public class WriteoutThread extends Thread {
 		tasks = new LinkedBlockingQueue<ImageSwapTask>();
 		this.start();
 	}
-
 
 	/**
 	 * Works on the queue with tasks. The thread waits for the next task. If
@@ -105,7 +102,6 @@ public class WriteoutThread extends Thread {
 		           Localizer.get("Thread dies."));
 	}
 
-
 	/**
 	 * Schedules a new task.
 	 *
@@ -122,7 +118,6 @@ public class WriteoutThread extends Thread {
 		}
 	}
 
-
 	/**
 	 * Stops the thread's daemon mode and lets it die when the queue is empty.
 	 */
@@ -130,7 +125,6 @@ public class WriteoutThread extends Thread {
 		stopAfterLastItem = true;
 		schedule(new ImageSwapTask(null, null));
 	}
-
 
 	public boolean isFileInQueue(File imagefile) {
 		for (ImageSwapTask task : tasks) {

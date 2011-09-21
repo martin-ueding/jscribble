@@ -32,7 +32,6 @@ public class WriteoutThreadTest extends TestCase {
 		super();
 	}
 
-
 	/**
 	 * Schedules a single task and tests whether it is written to disk.
 	 */

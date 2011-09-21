@@ -35,7 +35,6 @@ class OpenActionListener implements ActionListener {
 		this.window = window;
 	}
 
-
 	/**
 	 * Triggers the deletion of a NoteBook.
 	 */

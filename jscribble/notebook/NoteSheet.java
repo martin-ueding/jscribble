@@ -49,30 +49,25 @@ public class NoteSheet {
 	 */
 	private int pagenumber;
 
-
 	/**
 	 * The picture for storing the drawing on.
 	 */
 	private BufferedImage img;
-
 
 	/**
 	 * Graphics context of the image.
 	 */
 	private Graphics2D graphics;
 
-
 	/**
 	 * The size of this sheet in pixels.
 	 */
 	private Dimension noteSize;
 
-
 	/**
 	 * Whether a picture has any lines drawn on it.
 	 */
 	private boolean touched = false;
-
 
 	/**
 	 * Whether the picture was changed after the last save. A newly created
@@ -80,21 +75,17 @@ public class NoteSheet {
 	 */
 	private boolean unsaved = false;
 
-
 	/**
 	 * Storage point of the image of this sheet.
 	 */
 	private File imagefile;
 
-
 	private BufferedImageWrapper imageWrapper;
-
 
 	/**
 	 * A singleton thread that handles all the writing to disk.
 	 */
 	private static WriteoutThread writethread;
-
 
 	/**
 	 * Creates an empty note sheet.
@@ -123,7 +114,6 @@ public class NoteSheet {
 		}
 	}
 
-
 	/**
 	 * Draws a line onto the sheet. The sheet is then marked as "touched".
 	 */
@@ -134,7 +124,6 @@ public class NoteSheet {
 		getImageWrapper().drawLine(x, y, x2, y2);
 	}
 
-
 	public void eraseLine(int x, int y, int x2, int y2) {
 		touched = true;
 		unsaved = true;
@@ -142,14 +131,12 @@ public class NoteSheet {
 		getImageWrapper().eraseLine(x, y, x2, y2);
 	}
 
-
 	/**
 	 * Getter for the file of the image.
 	 */
 	public File getFile() {
 		return imagefile;
 	}
-
 
 	/**
 	 * Gets the graphics context of the image.
@@ -170,7 +157,6 @@ public class NoteSheet {
 		return graphics;
 	}
 
-
 	private BufferedImageWrapper getImageWrapper() {
 		if (imageWrapper == null) {
 			imageWrapper = new BufferedImageWrapper(getImg());
@@ -178,7 +164,6 @@ public class NoteSheet {
 
 		return imageWrapper;
 	}
-
 
 	/**
 	 * Gets the image, loads it from disk id needed.
@@ -194,14 +179,12 @@ public class NoteSheet {
 		return img;
 	}
 
-
 	/**
 	 * Get the sheet's page number.
 	 */
 	public int getPagenumber() {
 		return pagenumber;
 	}
-
 
 	/**
 	 * Generates a new image and allocates a temporary file if none was set.
@@ -245,7 +228,6 @@ public class NoteSheet {
 		unsaved = false;
 	}
 
-
 	/**
 	 * Whether the picture is swapped to disk. To save RAM, the pictures might
 	 * be swapped into a temporary file if the user is in another part of the
@@ -254,7 +236,6 @@ public class NoteSheet {
 	private boolean isSwapped() {
 		return img == null;
 	}
-
 
 	/**
 	 * Loads the image from file. Everything else is left intact.
@@ -317,11 +298,9 @@ public class NoteSheet {
 		}
 	}
 
-
 	private void resetImageWrapper() {
 		imageWrapper = null;
 	}
-
 
 	/**
 	 * Saves the picture to a PNG file. The image is then removed from the
@@ -357,7 +336,6 @@ public class NoteSheet {
 		unsaved = false;
 	}
 
-
 	/**
 	 * Stops the WriteoutThread and waits for it. This ensures that everything
 	 * is written to disk properly.
@@ -376,14 +354,12 @@ public class NoteSheet {
 		}
 	}
 
-
 	/**
 	 * Whether this sheet has any lines drawn onto it.
 	 */
 	public boolean touched() {
 		return touched;
 	}
-
 
 	/**
 	 * Whether this sheet has unsaved changes.
