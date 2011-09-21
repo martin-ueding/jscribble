@@ -1,14 +1,26 @@
+# Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+
+# Size of newly created notebooks.
 default_height=600
 default_width=1024
+
+# Properties of the pen and eraser.
 draw_stroke_width=1
 erase_stroke_width=8
+
+# Display settings for mouse only mode.
+ruling_line_color=646464
 scroll_panel_padding=5
 scroll_panel_width=20
-show_scroll_panels=false
-ruling_line_color=646464
+
+# Ruling.
 ruling_line_spacing=40
+
+# Help screen style.
 help_screen_vspacing=30
 help_screen_spacing=250
 help_screen_padding=70
 help_screen_background_color=C8000000
+
+# Help splash style.
 help_splash_background_color=64000000
