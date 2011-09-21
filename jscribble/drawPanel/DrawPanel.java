@@ -47,31 +47,6 @@ import jscribble.notebook.NoteBook;
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {
 	/**
-	 * A container for a key and help text.
-	 *
-	 * @author Martin Ueding <dev@martin-ueding.de>
-	 */
-	class HelpItem {
-		/**
-		 * The buttons(s) that cause some action.
-		 */
-		public String key;
-
-		/**
-		 * The action the buttons cause.
-		 */
-		public String helptext;
-
-		/**
-		 * Generates a new HelpItem.
-		 */
-		public HelpItem(String key, String helptext) {
-			this.key = key;
-			this.helptext = helptext;
-		}
-	}
-
-	/**
 	 * Color of the help lines.
 	 */
 	private static final Color lineColor = new Color(100, 100, 100);
