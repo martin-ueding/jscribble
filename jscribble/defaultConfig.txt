@@ -11,3 +11,4 @@ help_screen_vspacing=30
 help_screen_spacing=250
 help_screen_padding=70
 help_screen_background_color=C8000000
+help_splash_background_color=64000000
