@@ -22,7 +22,6 @@ package jscribble.drawPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 /**
  * Listens to the keyboard for the command key and then polls the user for a
  * command. The command is then executed.
@@ -74,32 +73,32 @@ public class CommandListener implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {
-		if (arg0.getKeyChar() == 'r') {
+	public void keyTyped(KeyEvent event) {
+		if (event.getKeyChar() == 'r') {
 			panel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (arg0.getKeyChar() == 'g') {
+		if (event.getKeyChar() == 'g') {
 			panel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (arg0.getKeyChar() == 'h' || arg0.getKeyCode() == KeyEvent.VK_F1) {
+		if (event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1) {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
-		if (arg0.getKeyChar() == '+') {
+		if (event.getKeyChar() == '+') {
 			panel.onionLayersIncrease();
 		}
 
-		if (arg0.getKeyChar() == '-') {
+		if (event.getKeyChar() == '-') {
 			panel.onionLayersDecrease();
 		}
 
 		// Close the help when the <ESC> key is pressed.
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			panel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}

@@ -515,7 +515,6 @@ public class DrawPanel extends JPanel {
 	 */
 	public void toggleHelp() {
 		showHelp = !showHelp;
-
 		showHelpSplash = false;
 	}
 
