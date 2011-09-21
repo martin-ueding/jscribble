@@ -151,8 +151,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		// TODO Put this magic value into the config.
-		g2.setColor(new Color(0, 0, 0, 200));
+		g2.setColor(SettingsWrapper.getColor("help_screen_background_color"));
 		g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
 		        20);
 		g2.setColor(Color.WHITE);

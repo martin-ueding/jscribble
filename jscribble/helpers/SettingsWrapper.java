@@ -88,7 +88,18 @@ public class SettingsWrapper {
 	 * @return Config value as Color.
 	 */
 	public static Color getColor(String key) {
-		return new Color(Integer.parseInt(retrieve(key), 16));
+		int color = (int) Long.parseLong(retrieve(key), 16);
+		return new Color(color, isColorWithAlpha(color));
+	}
+
+	/**
+	 * Determines whether a given color has an alpha part.
+	 *
+	 * @param color The color to check for alpha part.
+	 * @return Whether there is an alpha part.
+	 */
+	private static boolean isColorWithAlpha(int color) {
+		return color > 0xFFFFFF || color < 0;
 	}
 
 	/**
