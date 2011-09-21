@@ -57,19 +57,6 @@ public class SettingsWrapper {
 	}
 
 	/**
-	 * Gets the config, initializes if needed.
-	 *
-	 * @return Initialized config.
-	 */
-	private static Properties getUserConfig() {
-		if (userConfig == null) {
-			initUserConfig();
-		}
-
-		return userConfig;
-	}
-
-	/**
 	 * Gets the default config, initializes if needed.
 	 *
 	 * @return Initialized config.
@@ -80,6 +67,41 @@ public class SettingsWrapper {
 		}
 
 		return defaultConfig;
+	}
+
+	/**
+	 * Looks up a integer value in the config file.
+	 *
+	 * @param key Key to look up.
+	 * @param defaultValue Default value in case there is no such key.
+	 * @return Config value or default as integer.
+	 */
+	public static int getInteger(String key, int defaultValue) {
+		return Integer.parseInt(retrieve(key, String.valueOf(defaultValue)));
+	}
+
+	/**
+	 * Looks up a string value in the config file.
+	 *
+	 * @param key Key to look up.
+	 * @param defaultValue Default value in case there is no such key.
+	 * @return Config value or default as string.
+	 */
+	public static String getString(String key, String defaultValue) {
+		return retrieve(key, defaultValue);
+	}
+
+	/**
+	 * Gets the config, initializes if needed.
+	 *
+	 * @return Initialized config.
+	 */
+	private static Properties getUserConfig() {
+		if (userConfig == null) {
+			initUserConfig();
+		}
+
+		return userConfig;
 	}
 
 	private static void initDefaultConfig() {
@@ -96,44 +118,6 @@ public class SettingsWrapper {
 			            "IO error while reading config file."));
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Looks up a integer value in the config file.
-	 *
-	 * @param key Key to look up.
-	 * @param defaultValue Default value in case there is no such key.
-	 * @return Config value or default as integer.
-	 */
-	public static int getInteger(String key, int defaultValue) {
-		return Integer.parseInt(retrieve(key, String.valueOf(defaultValue)));
-	}
-
-	private static String retrieve(String key, String defaultValue) {
-		if (getUserConfig().containsKey(key)) {
-			return getUserConfig().getProperty(key);
-		}
-		else if (getDefaultConfig().containsKey(key)) {
-			return getDefaultConfig().getProperty(key);
-		}
-		else {
-			System.out.println(String.format(
-			            Localizer.get("There is no default setting for %s."),
-			            key
-			        ));
-			return defaultValue;
-		}
-	}
-
-	/**
-	 * Looks up a string value in the config file.
-	 *
-	 * @param key Key to look up.
-	 * @param defaultValue Default value in case there is no such key.
-	 * @return Config value or default as string.
-	 */
-	public static String getString(String key, String defaultValue) {
-		return retrieve(key, defaultValue);
 	}
 
 	/**
@@ -156,6 +140,22 @@ public class SettingsWrapper {
 			Logger.handleError(Localizer.get(
 			            "IO error while reading config file."));
 			e.printStackTrace();
+		}
+	}
+
+	private static String retrieve(String key, String defaultValue) {
+		if (getUserConfig().containsKey(key)) {
+			return getUserConfig().getProperty(key);
+		}
+		else if (getDefaultConfig().containsKey(key)) {
+			return getDefaultConfig().getProperty(key);
+		}
+		else {
+			System.out.println(String.format(
+			            Localizer.get("There is no default setting for %s."),
+			            key
+			        ));
+			return defaultValue;
 		}
 	}
 }
