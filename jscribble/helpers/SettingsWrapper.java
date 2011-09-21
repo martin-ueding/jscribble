@@ -53,7 +53,7 @@ public class SettingsWrapper {
 	 * @return Config value or default as boolean.
 	 */
 	public static boolean getBoolean(String key, boolean defaultValue) {
-		return Boolean.parseBoolean(getUserConfig().getProperty(key, String.valueOf(defaultValue)));
+		return Boolean.parseBoolean(retrieve(key, String.valueOf(defaultValue)));
 	}
 
 	/**
@@ -70,6 +70,35 @@ public class SettingsWrapper {
 	}
 
 	/**
+	 * Gets the default config, initializes if needed.
+	 *
+	 * @return Initialized config.
+	 */
+	private static Properties getDefaultConfig() {
+		if (defaultConfig == null) {
+			initDefaultConfig();
+		}
+
+		return defaultConfig;
+	}
+
+	private static void initDefaultConfig() {
+		userConfig = new Properties();
+		try {
+			userConfig.load(ClassLoader.getSystemResourceAsStream("jscribble/defaultConfig.txt"));
+		}
+		catch (FileNotFoundException e) {
+			Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			Logger.handleError(Localizer.get(
+			            "IO error while reading config file."));
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * Looks up a integer value in the config file.
 	 *
 	 * @param key Key to look up.
@@ -77,7 +106,23 @@ public class SettingsWrapper {
 	 * @return Config value or default as integer.
 	 */
 	public static int getInteger(String key, int defaultValue) {
-		return Integer.parseInt(getUserConfig().getProperty(key, String.valueOf(defaultValue)));
+		return Integer.parseInt(retrieve(key, String.valueOf(defaultValue)));
+	}
+
+	private static String retrieve(String key, String defaultValue) {
+		if (getUserConfig().containsKey(key)) {
+			return getUserConfig().getProperty(key);
+		}
+		else if (getDefaultConfig().containsKey(key)) {
+			return getDefaultConfig().getProperty(key);
+		}
+		else {
+			Logger.handleError(String.format(
+			            Localizer.get("There is no default setting for %s."),
+			            key
+			        ));
+			return defaultValue;
+		}
 	}
 
 	/**
@@ -88,7 +133,7 @@ public class SettingsWrapper {
 	 * @return Config value or default as string.
 	 */
 	public static String getString(String key, String defaultValue) {
-		return getUserConfig().getProperty(key, defaultValue);
+		return retrieve(key, defaultValue);
 	}
 
 	/**
