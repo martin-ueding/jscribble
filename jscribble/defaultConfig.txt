@@ -7,3 +7,6 @@ scroll_panel_width=20
 show_scroll_panels=false
 ruling_line_color=646464
 ruling_line_spacing=40
+help_screen_vspacing=30
+help_screen_spacing=250
+help_screen_padding=70

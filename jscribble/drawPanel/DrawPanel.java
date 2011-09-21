@@ -159,10 +159,9 @@ public class DrawPanel extends JPanel {
 
 		// Iterate through the help items and display them.
 		int i = 0;
-		// TODO Put these magic values into the config.
-		int vspacing = 30;
-		int spacing = 250;
-		int padding = 70;
+		int vspacing = SettingsWrapper.getInteger("help_screen_vspacing");
+		int spacing = SettingsWrapper.getInteger("help_screen_spacing");
+		int padding = SettingsWrapper.getInteger("help_screen_padding");
 		for (HelpItem h : helpItems) {
 			g2.drawString(h.helptext, padding, i * vspacing + padding);
 			g2.drawString(h.key, spacing + padding, i * vspacing +
