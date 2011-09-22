@@ -356,8 +356,7 @@ public class DrawPanel extends JPanel {
 			cachedImage = new BufferedImage(getWidth(), getHeight(),
 			        BufferedImage.TYPE_BYTE_GRAY);
 			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
-			// TODO --> defaultConfig
-			g2.setColor(Color.WHITE);
+			g2.setColor(SettingsWrapper.getColor("background_color"));
 			g2.fillRect(0, 0, getWidth(), getHeight());
 
 			// Go back as many pages as there should be onion layers.
