@@ -90,8 +90,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * How many images to cache back and front.
 	 */
-	// TODO --> defaultConfig
-	private int cacheWidth = 10;
+	private int cacheWidth = SettingsWrapper.getInteger("notebook_cache_width");
 
 	/**
 	 * The name of this NoteBook. It is also the folder name.
