@@ -36,3 +36,6 @@ help_splash_border_radius=20
 # Onion info.
 onion_info_position_top=15
 onion_info_position_left=10
+
+# Page number.
+page_number_position_top=15
