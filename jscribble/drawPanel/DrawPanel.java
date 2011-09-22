@@ -121,6 +121,8 @@ public class DrawPanel extends JPanel {
 	 */
 	private RulingType ruling = RulingType.NONE;
 
+	private Runtime r;
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -138,6 +140,8 @@ public class DrawPanel extends JPanel {
 		PaintListener pl = new PaintListener(this);
 		addMouseMotionListener(pl);
 		addMouseListener(pl);
+
+		r = Runtime.getRuntime();
 	}
 
 	/**
@@ -503,6 +507,19 @@ public class DrawPanel extends JPanel {
 		drawScrollPanels(g2);
 		drawHelp(g2);
 		drawHelpSplash(g2);
+
+		// TODO refactor in method
+		// TODO put values in config
+		// TODO add option whether to display this at all
+		g2.drawString(
+		    String.format(
+		        "%d MB used, %d MB free, %d MB total",
+		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
+		        r.freeMemory() / 1024 / 1024,
+		        r.totalMemory() / 1024 / 1024
+		    ),
+		    getWidth() * 2 / 3,
+		    15);
 	}
 
 	/**
