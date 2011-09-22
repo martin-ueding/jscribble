@@ -46,6 +46,7 @@ page_number_position_top=15
 
 # Notebook.
 notebook_cache_width=10
+notebook_name_validation_pattern=[A-Za-z0-9-_]+
 
 # Notebook selection window.
 notebook_selection_window_width=400

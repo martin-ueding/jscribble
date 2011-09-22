@@ -170,8 +170,7 @@ public class NoteBookSelectionWindow {
 	 */
 	private NoteBook createNewNotebook() {
 		String nickname = null;
-		// TODO --> defaultConfig
-		Pattern p = Pattern.compile("[A-Za-z0-9-_]+");
+		Pattern p = Pattern.compile(SettingsWrapper.getString("notebook_name_validation_pattern"));
 
 		do {
 			nickname = JOptionPane.showInputDialog(Localizer.get(
