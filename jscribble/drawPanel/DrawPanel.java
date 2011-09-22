@@ -193,13 +193,16 @@ public class DrawPanel extends JPanel {
 
 		// Draw a dark rectangle to write the help text on.
 		g2.setColor(SettingsWrapper.getColor("help_splash_background_color"));
-		// TODO --> defaultConfig
-		Dimension splashSize = new Dimension(getWidth() - 30, 50);
-		// TODO --> defaultConfig
-		g2.fillRoundRect((getWidth() - splashSize.width) / 2,
-		        (getHeight() - splashSize.height) / 2,
-		        splashSize.width, splashSize.height,
-		        20, 20);
+		Dimension splashSize = new Dimension(
+		    getWidth() - SettingsWrapper.getInteger("help_splash_margin") * 2,
+		    SettingsWrapper.getInteger("help_splash_height"));
+		int helpSplashBorderRadius = SettingsWrapper.getInteger("help_splash_border_radius");
+		g2.fillRoundRect(
+		    (getWidth() - splashSize.width) / 2,
+		    (getHeight() - splashSize.height) / 2,
+		    splashSize.width, splashSize.height,
+		    helpSplashBorderRadius,
+		    helpSplashBorderRadius);
 		g2.setColor(Color.WHITE);
 
 		g2.drawString(Localizer.get("Press h or F1 to get help."),
