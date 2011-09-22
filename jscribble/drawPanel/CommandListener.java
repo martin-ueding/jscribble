@@ -65,15 +65,19 @@ public class CommandListener implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 	}
 
-	/**
-	 * Ignored.
-	 */
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-	}
+	public void keyReleased(KeyEvent event) {
+		// Close the help when the <ESC> key is pressed.
+		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			panel.setShowHelp(false);
+			redrawer.actionPerformed(null);
+		}
 
-	@Override
-	public void keyTyped(KeyEvent event) {
+		if (event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1) {
+			panel.toggleHelp();
+			redrawer.actionPerformed(null);
+		}
+
 		if (event.getKeyChar() == 'r') {
 			panel.toggleRuling();
 			redrawer.actionPerformed(null);
@@ -81,11 +85,6 @@ public class CommandListener implements KeyListener {
 
 		if (event.getKeyChar() == 'g') {
 			panel.toggleGraphRuling();
-			redrawer.actionPerformed(null);
-		}
-
-		if (event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1) {
-			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
@@ -97,12 +96,10 @@ public class CommandListener implements KeyListener {
 			panel.onionLayersDecrease();
 		}
 
-		// Close the help when the <ESC> key is pressed.
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			panel.setShowHelp(false);
-			redrawer.actionPerformed(null);
-		}
-
 		// TODO add extra exit button, maybe "q"
+	}
+
+	@Override
+	public void keyTyped(KeyEvent event) {
 	}
 }
