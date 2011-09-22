@@ -47,6 +47,7 @@ import jscribble.drawPanel.MovementListener;
 import jscribble.drawPanel.NoteBookClosingAdapter;
 import jscribble.drawPanel.Redrawer;
 import jscribble.helpers.Localizer;
+import jscribble.helpers.SettingsWrapper;
 import jscribble.notebook.NoteBook;
 
 /**
@@ -136,8 +137,10 @@ public class NoteBookSelectionWindow {
 
 
 		frame = new JFrame(Localizer.get("Select your Notebook"));
-		// TODO --> defaultConfig
-		frame.setSize(new Dimension(400, 300));
+		frame.setSize(new Dimension(
+		            SettingsWrapper.getInteger("notebook_selection_window_width"),
+		            SettingsWrapper.getInteger("notebook_selection_window_height")
+		        ));
 		frame.setLocationRelativeTo(null);
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
