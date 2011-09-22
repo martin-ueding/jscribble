@@ -23,6 +23,7 @@ import java.io.File;
 
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
+import jscribble.helpers.SettingsWrapper;
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**
@@ -48,8 +49,7 @@ public class NoteBookProgram {
 	 * Returns the name of the program.
 	 */
 	public static String getProgramname() {
-		// TODO --> defaultConfig
-		return "jscribble";
+		return SettingsWrapper.getString("program_name");
 	}
 
 	/**

@@ -1,5 +1,7 @@
 # Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
+program_name=jscribble
+
 # Size of newly created notebooks.
 default_height=600
 default_width=1024
