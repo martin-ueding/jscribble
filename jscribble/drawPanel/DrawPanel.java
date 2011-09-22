@@ -206,8 +206,8 @@ public class DrawPanel extends JPanel {
 		g2.setColor(Color.WHITE);
 
 		g2.drawString(Localizer.get("Press h or F1 to get help."),
-		        // TODO --> defaultConfig
-		        (getWidth() - splashSize.width) / 2 + 50, getHeight() / 2 + 5);
+		        (getWidth() - splashSize.width) / 2 + SettingsWrapper.getInteger("help_splash_margin"),
+		        getHeight() / 2 + 5);
 	}
 
 	/**
