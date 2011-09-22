@@ -180,4 +180,8 @@ public class SettingsWrapper {
 			return "";
 		}
 	}
+
+	public static double getDouble(String key) {
+		return Double.parseDouble(retrieve(key));
+	}
 }

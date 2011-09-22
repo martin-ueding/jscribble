@@ -374,8 +374,7 @@ public class DrawPanel extends JPanel {
 			// Set the layers to a given opacity.
 			g2.setComposite(AlphaComposite.getInstance(
 			            AlphaComposite.SRC_ATOP,
-			            // TODO --> defaultConfig
-			            (float)(0.8 / Math.max(onionMode, 1))));
+			            (float)(SettingsWrapper.getDouble("onion_mode_opacity") / Math.max(onionMode, 1))));
 
 			// Iterate through from the bottom to the top layer and compose
 			// the images onto the cache image.
