@@ -24,6 +24,8 @@ help_screen_vspacing=30
 help_screen_spacing=250
 help_screen_padding=70
 help_screen_background_color=C8000000
+help_screen_margin=50
+help_screen_border_radius=20
 
 # Help splash style.
 help_splash_background_color=64000000

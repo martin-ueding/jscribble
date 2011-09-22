@@ -152,9 +152,15 @@ public class DrawPanel extends JPanel {
 
 		// Draw a dark rectangle to write the help text on.
 		g2.setColor(SettingsWrapper.getColor("help_screen_background_color"));
-		// TODO --> defaultConfig
-		g2.fillRoundRect(50, 50, getWidth() - 100, getHeight() - 100, 20,
-		        20);
+		int helpMargin = SettingsWrapper.getInteger("help_screen_margin");
+		int helpBorderRadius = SettingsWrapper.getInteger("help_screen_border_radius");
+		g2.fillRoundRect(
+		    helpMargin,
+		    helpMargin,
+		    getWidth() - helpMargin * 2,
+		    getHeight() - helpMargin * 2,
+		    helpBorderRadius,
+		    helpBorderRadius);
 		g2.setColor(Color.WHITE);
 
 		// Iterate through the help items and display them.
