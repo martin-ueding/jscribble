@@ -39,11 +39,9 @@ public class BufferedImageWrapper {
 	private Stroke eraseStroke = new BasicStroke(
 	    SettingsWrapper.getInteger("erase_stroke_width"));
 
-	// TODO --> defaultConfig
-	private Color background = Color.WHITE;
+	private Color background = SettingsWrapper.getColor("background_color");
 
-	// TODO --> defaultConfig
-	private Color foreground = Color.BLACK;
+	private Color foreground = SettingsWrapper.getColor("foreground_color");
 
 	public BufferedImageWrapper(BufferedImage image) {
 		img = image;

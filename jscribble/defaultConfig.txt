@@ -7,14 +7,17 @@ default_width=1024
 # Properties of the pen and eraser.
 draw_stroke_width=1
 erase_stroke_width=8
+background_color=FFFFFF
+foreground_color=000000
 
 # Display settings for mouse only mode.
-ruling_line_color=646464
+show_scroll_panels=false
 scroll_panel_padding=5
 scroll_panel_width=20
 
 # Ruling.
 ruling_line_spacing=40
+ruling_line_color=646464
 
 # Help screen style.
 help_screen_vspacing=30
