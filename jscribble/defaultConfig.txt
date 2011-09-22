@@ -14,6 +14,7 @@ foreground_color=000000
 show_scroll_panels=false
 scroll_panel_padding=5
 scroll_panel_width=20
+scroll_panel_color=64000000
 
 # Ruling.
 ruling_line_spacing=40

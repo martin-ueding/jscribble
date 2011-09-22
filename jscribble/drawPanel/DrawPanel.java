@@ -300,8 +300,7 @@ public class DrawPanel extends JPanel {
 			int scrollPanelPadding = SettingsWrapper.getInteger("scroll_panel_padding");
 
 			// Draw the panels on the sides.
-			// TODO --> defaultConfig
-			g.setColor(new Color(0, 0, 0, 100));
+			g.setColor(SettingsWrapper.getColor("scroll_panel_color"));
 			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
 			        2 * scrollPanelRadius,
 			        getHeight() - 2 * scrollPanelPadding,
