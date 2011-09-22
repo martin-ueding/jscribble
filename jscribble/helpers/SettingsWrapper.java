@@ -147,9 +147,8 @@ public class SettingsWrapper {
 	private static void initUserConfig() {
 		userConfig = new Properties();
 		try {
-			// TODO --> defaultConfig
 			File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
-			        "config.txt");
+			        getString("user_config_filename"));
 			if (configfile.exists()) {
 				userConfig.load(new FileInputStream(configfile));
 			}

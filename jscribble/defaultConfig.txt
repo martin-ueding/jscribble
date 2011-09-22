@@ -51,3 +51,5 @@ notebook_name_validation_pattern=[A-Za-z0-9-_]+
 # Notebook selection window.
 notebook_selection_window_width=400
 notebook_selection_window_height=300
+
+user_config_filename=config.txt
