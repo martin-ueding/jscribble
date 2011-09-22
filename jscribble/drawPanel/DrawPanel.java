@@ -277,7 +277,6 @@ public class DrawPanel extends JPanel {
 		g2.setColor(Color.BLUE);
 		g2.drawString(String.format(Localizer.get("Page %d/%d"),
 		        notebook.getCurrentSheet().getPagenumber(),
-		        // TODO --> defaultConfig
 		        notebook.getSheetCount()),
 		        getWidth() / 2,
 		        SettingsWrapper.getInteger("page_number_position_top"));
