@@ -263,8 +263,8 @@ public class DrawPanel extends JPanel {
 
 		g2.drawString(
 		    String.format(Localizer.get("Onion Layers: %d"), onionMode),
-		    SettingsWrapper.getInteger("onion_info_position_top"),
-		    SettingsWrapper.getInteger("onion_info_position_left")
+		    SettingsWrapper.getInteger("onion_info_position_left"),
+		    SettingsWrapper.getInteger("onion_info_position_top")
 		);
 	}
 

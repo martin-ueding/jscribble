@@ -34,5 +34,5 @@ help_splash_height=50
 help_splash_border_radius=20
 
 # Onion info.
-onion_info_position_top=10
-onion_info_position_left=15
+onion_info_position_top=15
+onion_info_position_left=10
