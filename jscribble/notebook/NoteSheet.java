@@ -19,7 +19,6 @@
 
 package jscribble.notebook;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -33,6 +32,7 @@ import javax.imageio.ImageIO;
 import jscribble.NoteBookProgram;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
+import jscribble.helpers.SettingsWrapper;
 import jscribble.notebook.writeoutThread.ImageSwapTask;
 import jscribble.notebook.writeoutThread.WriteoutThread;
 
@@ -221,8 +221,7 @@ public class NoteSheet {
 		        BufferedImage.TYPE_BYTE_GRAY);
 
 		graphics = getGraphics();
-		// TODO --> defaultConfig
-		graphics.setColor(new Color(255, 255, 255));
+		graphics.setColor(SettingsWrapper.getColor("background_color"));
 		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
 
 		unsaved = false;
