@@ -511,8 +511,11 @@ public class DrawPanel extends JPanel {
 	}
 
 	private void drawMemoryUsage(Graphics2D g2) {
+		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
+			return;
+		}
+
 		// TODO put values in config
-		// TODO add option whether to display this at all
 		g2.drawString(
 		    String.format(
 		        Localizer.get("%d MB used, %d MB free, %d MB total"),
