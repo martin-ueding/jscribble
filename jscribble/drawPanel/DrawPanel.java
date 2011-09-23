@@ -147,25 +147,25 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Draws the help screen if needed.
 	 *
-	 * @param g2 Graphics2D to draw in
+	 * @param g Graphics2D to draw in
 	 */
-	private void drawHelp(Graphics2D g2) {
+	private void drawHelp(Graphics2D g) {
 		if (!showHelp) {
 			return;
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		g2.setColor(SettingsWrapper.getColor("help_screen_background_color"));
+		g.setColor(SettingsWrapper.getColor("help_screen_background_color"));
 		int helpMargin = SettingsWrapper.getInteger("help_screen_margin");
 		int helpBorderRadius = SettingsWrapper.getInteger("help_screen_border_radius");
-		g2.fillRoundRect(
+		g.fillRoundRect(
 		    helpMargin,
 		    helpMargin,
 		    getWidth() - helpMargin * 2,
 		    getHeight() - helpMargin * 2,
 		    helpBorderRadius,
 		    helpBorderRadius);
-		g2.setColor(Color.WHITE);
+		g.setColor(Color.WHITE);
 
 		// Iterate through the help items and display them.
 		int i = 0;
@@ -173,43 +173,43 @@ public class DrawPanel extends JPanel {
 		int spacing = SettingsWrapper.getInteger("help_screen_spacing");
 		int padding = SettingsWrapper.getInteger("help_screen_padding");
 		for (HelpItem h : helpItems) {
-			g2.drawString(h.helptext, padding, i * vspacing + padding);
-			g2.drawString(h.key, spacing + padding, i * vspacing +
+			g.drawString(h.helptext, padding, i * vspacing + padding);
+			g.drawString(h.key, spacing + padding, i * vspacing +
 			        padding);
 			i++;
 		}
 
 		// Print the version identifier.
-		g2.setColor(Color.GRAY);
-		g2.drawString(String.format(Localizer.get("Version %s"),
+		g.setColor(Color.GRAY);
+		g.drawString(String.format(Localizer.get("Version %s"),
 		        VersionName.version), padding, getHeight() - padding);
 	}
 
 	/**
 	 * Draws a help splash screen at the beginning.
 	 *
-	 * @param g2 Graphics2D to draw in
+	 * @param g Graphics2D to draw in
 	 */
-	private void drawHelpSplash(Graphics2D g2) {
+	private void drawHelpSplash(Graphics2D g) {
 		if (!showHelpSplash) {
 			return;
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		g2.setColor(SettingsWrapper.getColor("help_splash_background_color"));
+		g.setColor(SettingsWrapper.getColor("help_splash_background_color"));
 		Dimension splashSize = new Dimension(
 		    getWidth() - SettingsWrapper.getInteger("help_splash_margin") * 2,
 		    SettingsWrapper.getInteger("help_splash_height"));
 		int helpSplashBorderRadius = SettingsWrapper.getInteger("help_splash_border_radius");
-		g2.fillRoundRect(
+		g.fillRoundRect(
 		    (getWidth() - splashSize.width) / 2,
 		    (getHeight() - splashSize.height) / 2,
 		    splashSize.width, splashSize.height,
 		    helpSplashBorderRadius,
 		    helpSplashBorderRadius);
-		g2.setColor(Color.WHITE);
+		g.setColor(Color.WHITE);
 
-		g2.drawString(Localizer.get("Press h or F1 to get help."),
+		g.drawString(Localizer.get("Press h or F1 to get help."),
 		        (getWidth() - splashSize.width) / 2 + SettingsWrapper.getInteger("help_splash_margin"),
 		        getHeight() / 2 + 5);
 	}
@@ -235,32 +235,32 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Draws the helping lines if needed.
 	 *
-	 * @param g2 Graphics2D to draw on
+	 * @param g Graphics2D to draw on
 	 */
-	private void drawLines(Graphics2D g2) {
+	private void drawLines(Graphics2D g) {
 		if (ruling != RulingType.NONE) {
-			g2.setColor(lineColor);
+			g.setColor(lineColor);
 
 			// Vertical lines.
 			if (ruling == RulingType.GRAPH) {
 				for (int i = lineSpacing; i < getWidth(); i += lineSpacing) {
-					g2.drawLine(i, 0, i, getHeight());
+					g.drawLine(i, 0, i, getHeight());
 				}
 			}
 
 			// Horizontal lines.
 			for (int i = lineSpacing; i < getHeight(); i += lineSpacing) {
-				g2.drawLine(0, i, getWidth(), i);
+				g.drawLine(0, i, getWidth(), i);
 			}
 		}
 	}
 
-	private void drawMemoryUsage(Graphics2D g2) {
+	private void drawMemoryUsage(Graphics2D g) {
 		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
 			return;
 		}
 
-		g2.drawString(
+		g.drawString(
 		    String.format(
 		        Localizer.get("%d MiB used, %d MiB free, %d MiB total"),
 		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
@@ -275,14 +275,14 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Draws the number of onion layers as a string.
 	 *
-	 * @param g2 Graphics2D to draw on
+	 * @param g Graphics2D to draw on
 	 */
-	private void drawOnionInfo(Graphics2D g2) {
+	private void drawOnionInfo(Graphics2D g) {
 		if (!isOnionMode()) {
 			return;
 		}
 
-		g2.drawString(
+		g.drawString(
 		    String.format(Localizer.get("Onion Layers: %d"), onionMode),
 		    SettingsWrapper.getInteger("onion_info_position_left"),
 		    SettingsWrapper.getInteger("onion_info_position_top")
@@ -292,11 +292,11 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Draws the page number on top.
 	 *
-	 * @param g2 Graphics2D to draw on
+	 * @param g Graphics2D to draw on
 	 */
-	private void drawPageNumber(Graphics2D g2) {
-		g2.setColor(Color.BLUE);
-		g2.drawString(String.format(Localizer.get("Page %d/%d"),
+	private void drawPageNumber(Graphics2D g) {
+		g.setColor(Color.BLUE);
+		g.drawString(String.format(Localizer.get("Page %d/%d"),
 		        notebook.getCurrentSheet().getPagenumber(),
 		        notebook.getSheetCount()),
 		        getWidth() / 2,
@@ -507,24 +507,24 @@ public class DrawPanel extends JPanel {
 	 * Draws the NoteSheet and page number. If lines are on, they are drawn on
 	 * top of the image as well.
 	 *
-	 * @param g graphics context (usually given by Java itself).
+	 * @param graphics graphics context (usually given by Java itself).
 	 */
-	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setRenderingHints(new
+	protected void paintComponent(Graphics graphics) {
+		Graphics2D g = (Graphics2D)graphics;
+		g.setRenderingHints(new
 		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 
 
 		// Draw the current image.
-		g2.drawImage(getCachedImage(), 0, 0, io);
+		g.drawImage(getCachedImage(), 0, 0, io);
 
-		drawPageNumber(g2);
-		drawOnionInfo(g2);
-		drawScrollPanels(g2);
-		drawHelp(g2);
-		drawHelpSplash(g2);
-		drawMemoryUsage(g2);
+		drawPageNumber(g);
+		drawOnionInfo(g);
+		drawScrollPanels(g);
+		drawHelp(g);
+		drawHelpSplash(g);
+		drawMemoryUsage(g);
 	}
 
 	/**
