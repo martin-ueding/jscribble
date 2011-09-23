@@ -28,6 +28,7 @@ javadoc/.javadoc: $(javafiles)
 	javadoc -d javadoc $^
 	touch $@
 
+doxygen: html/.doxygen
 html/.doxygen: $(javafiles)
 	doxygen
 	touch $@
