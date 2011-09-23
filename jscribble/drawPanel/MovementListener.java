@@ -30,33 +30,49 @@ public class MovementListener implements KeyListener {
 		this.drawPanel = drawPanel;
 	}
 
+	private boolean isKeyGoBack(KeyEvent event) {
+		return event.getKeyChar() == 'k' ||
+		       event.getKeyCode() == KeyEvent.VK_UP ||
+		       event.getKeyCode() == KeyEvent.VK_LEFT ||
+		       event.getKeyCode() == KeyEvent.VK_BACK_SPACE;
+	}
+
+	private boolean isKeyGoForward(KeyEvent event) {
+		return event.getKeyChar() == 'j' ||
+		       event.getKeyCode() == KeyEvent.VK_DOWN ||
+		       event.getKeyCode() == KeyEvent.VK_RIGHT ||
+		       event.getKeyCode() == KeyEvent.VK_SPACE ||
+		       event.getKeyCode() == KeyEvent.VK_ENTER;
+	}
+
+	private boolean isKeyGotoFirst(KeyEvent event) {
+		return event.getKeyChar() == 'f' ||
+		       event.getKeyCode() == KeyEvent.VK_HOME;
+	}
+
+	private boolean isKeyGotoLast(KeyEvent event) {
+		return event.getKeyChar() == 'l' ||
+		       event.getKeyCode() == KeyEvent.VK_END;
+	}
+
 	public void keyPressed(KeyEvent event) {}
 
 	public void keyReleased(KeyEvent event) {
 		// TODO externalize keys
 
-		if (event.getKeyChar() == 'j' ||
-		        event.getKeyCode() == KeyEvent.VK_DOWN ||
-		        event.getKeyCode() == KeyEvent.VK_RIGHT ||
-		        event.getKeyCode() == KeyEvent.VK_SPACE ||
-		        event.getKeyCode() == KeyEvent.VK_ENTER) {
+		if (isKeyGoForward(event)) {
 			drawPanel.goForward();
 		}
 
-		if (event.getKeyChar() == 'k' ||
-		        event.getKeyCode() == KeyEvent.VK_UP ||
-		        event.getKeyCode() == KeyEvent.VK_LEFT ||
-		        event.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+		if (isKeyGoBack(event)) {
 			drawPanel.goBackwards();
 		}
 
-		if (event.getKeyChar() == 'f' ||
-		        event.getKeyCode() == KeyEvent.VK_HOME) {
+		if (isKeyGotoFirst(event)) {
 			drawPanel.gotoFirst();
 		}
 
-		if (event.getKeyChar() == 'l' ||
-		        event.getKeyCode() == KeyEvent.VK_END) {
+		if (isKeyGotoLast(event)) {
 			drawPanel.gotoLast();
 		}
 	}
