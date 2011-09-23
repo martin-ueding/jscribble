@@ -1,31 +1,26 @@
-v1.5 2011-09-20
+v1.5.1
+	* Create config for most settings, overwriteable by user.
+	* Optional memory usage display.
+v1.5
 	* Support for any screen size.
-
-v1.4 2011-09-16
+v1.4
 	* Added ruling and graph paper.
 	* Added splash screen for help.
-
-v1.3.1 2011-09-16
+v1.3.1
 	* Fixed sorting of notebooks.
-
-v1.3 2011-09-15
+v1.3
 	* Added eraser on right click.
 	- Sorting notebooks in the selection window.
-
-v1.2.2 2011-09-14
+v1.2.2
 	* Multiple layers in onion mode.
 	- Added window icon in notebook view too.
-
-v1.2.1 2011-09-12
+v1.2.1
 	* Using git describe version number.
-
-v1.2 2011-09-12
+v1.2
 	* Added onion layer mode.
-
-v1.1.1 2011-08-25
+v1.1.1
 	* Added "make install" target.
-
-v1.1 2011-08-08
+v1.1
 	* Added German localization.
 	* Added scroll panels for touch only devices.
 	* Using a config file.
@@ -36,23 +31,19 @@ v1.1 2011-08-08
 	- Disallowing to resize the window.
 	- Fixed null pointer exception when clicking cancel on new dialog.
 	- Fixed temp file permissions.
-
-v1.0.1 2011-07-07
+v1.0.1
 	* Added desktop entry.
 	* Added launcher script
 	* Added logo for the program.
-
-v1.0 2011-07-06
+v1.0
 	* Do not close application after closing notebook.
 	* Drastically simplified file structure, tests are still buggy.
 	* Opening notebook on double click.
 	* Saving all notebooks that are opened when closing the opening dialog.
 	- Added version flag to CLI.
 	- Bug fix blank page reloading error.
-	- Fixed case where going back and forth faster than WriteoutThread could
-	  handle writing.
-
-v0.3 2011-06-26
+	- Fixed case where going back and forth faster than WriteoutThread could handle writing.
+v0.3
 	* Added default directory option.
 	* Added delete function.
 	* Added help message.
@@ -60,11 +51,9 @@ v0.3 2011-06-26
 	* Only draw with primary mouse button.
 	- Ask user when the default directory is not valid any more.
 	- Display page count in overview.
-
-v0.2.1 2011-06-24
+v0.2.1
 	* Added option to write out loading and writing.
-	
-v0.2 2011-06-24
+v0.2
 	* Added "scribble" mode.
 	* Added ability to paint a single dot.
 	* Added basic lines for the background.
@@ -86,6 +75,5 @@ v0.2 2011-06-24
 	- Put the swapping into a separate thread.
 	- Swapping in backwards direction as well.
 	- Using zero padding in filename for the date.
-
-v0.1 2011-01-10
+v0.1
 	* Initial release.
