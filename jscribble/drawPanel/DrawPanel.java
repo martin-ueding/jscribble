@@ -255,6 +255,22 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	private void drawMemoryUsage(Graphics2D g2) {
+		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
+			return;
+		}
+
+		g2.drawString(
+		    String.format(
+		        Localizer.get("%d MiB used, %d MiB free, %d MiB total"),
+		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
+		        r.freeMemory() / 1024 / 1024,
+		        r.totalMemory() / 1024 / 1024
+		    ),
+		    SettingsWrapper.getInteger("memory_usage_position_left"),
+		    getHeight()-SettingsWrapper.getInteger("memory_usage_position_bottom"));
+	}
+
 	/**
 	 * Draws the number of onion layers as a string.
 	 *
@@ -508,22 +524,6 @@ public class DrawPanel extends JPanel {
 		drawHelp(g2);
 		drawHelpSplash(g2);
 		drawMemoryUsage(g2);
-	}
-
-	private void drawMemoryUsage(Graphics2D g2) {
-		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
-			return;
-		}
-
-		g2.drawString(
-		    String.format(
-		        Localizer.get("%d MiB used, %d MiB free, %d MiB total"),
-		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
-		        r.freeMemory() / 1024 / 1024,
-		        r.totalMemory() / 1024 / 1024
-		    ),
-		    SettingsWrapper.getInteger("memory_usage_position_left"),
-		    getHeight()-SettingsWrapper.getInteger("memory_usage_position_bottom"));
 	}
 
 	/**
