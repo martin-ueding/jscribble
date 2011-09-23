@@ -513,7 +513,7 @@ public class DrawPanel extends JPanel {
 		// TODO add option whether to display this at all
 		g2.drawString(
 		    String.format(
-		        "%d MB used, %d MB free, %d MB total",
+		        Localizer.get("%d MB used, %d MB free, %d MB total"),
 		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
 		        r.freeMemory() / 1024 / 1024,
 		        r.totalMemory() / 1024 / 1024
