@@ -126,6 +126,12 @@ public class WriteoutThread extends Thread {
 		schedule(new ImageSwapTask(null, null));
 	}
 
+	/**
+	 * Checks for a file in the queue.
+	 *
+	 * @param imagefile File to check for.
+	 * @return Whether given file in in queue.
+	 */
 	public boolean isFileInQueue(File imagefile) {
 		for (ImageSwapTask task : tasks) {
 			if (task.getOutfile().equals(imagefile)) {

@@ -29,10 +29,28 @@ import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
+/**
+ * Closes every open NoteBook when the NoteBookSelectionWindow is closed.
+ *
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 class CloseEverythingAdapter extends WindowAdapter {
+	/**
+	 * All opened NoteBook.
+	 */
 	private LinkedList<NoteBook> openedNotebooks;
+
+	/**
+	 * Window of the NoteBookSelectionWindow.
+	 */
 	private JFrame frame;
 
+	/**
+	 * Hooks a new adapter to the closing.
+	 *
+	 * @param openedNotebooks List with opened NoteBook
+	 * @param frame Frame to close.
+	 */
 	public CloseEverythingAdapter(LinkedList<NoteBook> openedNotebooks,
 	        JFrame frame) {
 		super();
@@ -40,6 +58,9 @@ class CloseEverythingAdapter extends WindowAdapter {
 		this.frame = frame;
 	}
 
+	/**
+	 * Closes all open NoteBook and the NoteBookSelectionWindow.
+	 */
 	public void windowClosing(WindowEvent winEvt) {
 		for (NoteBook notebook : openedNotebooks) {
 			notebook.saveToFiles();

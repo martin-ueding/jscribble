@@ -99,8 +99,14 @@ public class NoteBookSelectionWindow {
 	 */
 	private DrawPanel panel;
 
+	/**
+	 * List with opened NoteBook.
+	 */
 	private LinkedList<NoteBook> openedNotebooks;
 
+	/**
+	 * Model for the NoteBook list.
+	 */
 	private DefaultListModel listModel = new DefaultListModel();
 
 	/**

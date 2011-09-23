@@ -54,6 +54,9 @@ public class NoteSheetTest extends TestCase {
 		assertFalse(rgbarray[0] == previousColor);
 	}
 
+	/**
+	 * Tests whether a line gets erased.
+	 */
 	public void testErasing() {
 		NoteSheet n = getTempNoteSheet();
 		assertNotNull(n);

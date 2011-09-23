@@ -81,6 +81,9 @@ public class NoteSheet {
 	 */
 	private File imagefile;
 
+	/**
+	 * Wrapper to handle drawing on the image.
+	 */
 	private BufferedImageWrapper imageWrapper;
 
 	/**
@@ -117,6 +120,8 @@ public class NoteSheet {
 
 	/**
 	 * Draws a line onto the sheet. The sheet is then marked as "touched".
+	 *
+	 * @param line Line to draw.
 	 */
 	public void drawLine(Line2D line) {
 		touched = true;
@@ -125,6 +130,11 @@ public class NoteSheet {
 		getImageWrapper().drawLine(line);
 	}
 
+	/**
+	 * Erases a line from the sheet.
+	 *
+	 * @param line Line to erase.
+	 */
 	public void eraseLine(Line2D line) {
 		touched = true;
 		unsaved = true;
@@ -158,6 +168,11 @@ public class NoteSheet {
 		return graphics;
 	}
 
+	/**
+	 * Retrieves and initializes the BufferedImageWrapper.
+	 *
+	 * @return Initialized BufferedImageWrapper.
+	 */
 	private BufferedImageWrapper getImageWrapper() {
 		if (imageWrapper == null) {
 			imageWrapper = new BufferedImageWrapper(getImg());
@@ -298,6 +313,9 @@ public class NoteSheet {
 		}
 	}
 
+	/**
+	 * Resets the BufferedImageWrapper.
+	 */
 	private void resetImageWrapper() {
 		imageWrapper = null;
 	}

@@ -71,6 +71,11 @@ public class Logger {
 		}
 	}
 
+	/**
+	 * Switched debug mode on or off.
+	 *
+	 * @param b New value for debug mode.
+	 */
 	public static void setDebug(boolean b) {
 		debug = b;
 	}

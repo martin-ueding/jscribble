@@ -50,7 +50,6 @@ public class SettingsWrapper {
 	 * Looks up a boolean value in the config file.
 	 *
 	 * @param key Key to look up.
-	 * @param defaultValue Default value in case there is no such key.
 	 * @return Config value or default as boolean.
 	 */
 	public static boolean getBoolean(String key) {
@@ -125,6 +124,9 @@ public class SettingsWrapper {
 		return userConfig;
 	}
 
+	/**
+	 * Loads the default config from the bundled file.
+	 */
 	private static void initDefaultConfig() {
 		defaultConfig = new Properties();
 		try {
@@ -142,7 +144,7 @@ public class SettingsWrapper {
 	}
 
 	/**
-	 * Creates a new config and loads a config file if there is one.
+	 * Loads the user config if there is one.
 	 */
 	private static void initUserConfig() {
 		userConfig = new Properties();
@@ -164,6 +166,12 @@ public class SettingsWrapper {
 		}
 	}
 
+	/**
+	 * Retrieves a string from either the user or default config.
+	 *
+	 * @param key Parameter name to look up.
+	 * @return Value.
+	 */
 	private static String retrieve(String key) {
 		if (getUserConfig().containsKey(key)) {
 			return getUserConfig().getProperty(key);
@@ -180,6 +188,12 @@ public class SettingsWrapper {
 		}
 	}
 
+	/**
+	 * Wrapper to retrieve a double.
+	 *
+	 * @param key Parameter name to look up.
+	 * @return Value.
+	 */
 	public static double getDouble(String key) {
 		return Double.parseDouble(retrieve(key));
 	}

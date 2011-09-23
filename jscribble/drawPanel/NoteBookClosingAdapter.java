@@ -32,11 +32,20 @@ public class NoteBookClosingAdapter extends WindowAdapter {
 	private final NoteBook notebook;
 	private final JFrame f;
 
+	/**
+	 * Creates a NoteBookClosingAdapter that closes a given NoteBook and its window.
+	 *
+	 * @param notebook NoteBook to close.
+	 * @param f Window of the NoteBook to close.
+	 */
 	public NoteBookClosingAdapter(NoteBook notebook, JFrame f) {
 		this.notebook = notebook;
 		this.f = f;
 	}
 
+	/**
+	 * Closes all the NoteBook instances.
+	 */
 	public void windowClosing(WindowEvent winEvt) {
 		notebook.saveToFiles();
 		Logger.log(getClass().getName(),

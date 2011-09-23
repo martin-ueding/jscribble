@@ -73,6 +73,9 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	private Dimension noteSize;
 
+	/**
+	 * Default size of the NoteSheet.
+	 */
 	private Dimension noteSizeDefault = new Dimension(
 	    SettingsWrapper.getInteger("default_width"),
 	    SettingsWrapper.getInteger("default_height")
@@ -99,10 +102,8 @@ public class NoteBook implements Comparable<NoteBook> {
 	private String name;
 
 	/**
-	 * Creates an empty note book with a single note sheet.
+	 * Creates an empty NoteBook with a single NoteSheet.
 	 *
-	 * @param noteSize size of the NoteSheet within the NoteBook
-	 * @param folder place to store images
 	 * @param name name of the NoteBook
 	 */
 	public NoteBook(String name) {
@@ -123,6 +124,12 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	/**
+	 * Creates a new NoteBook with the given size.
+	 *
+	 * @param name Name of the NoteBook.
+	 * @param noteSize Size of the NoteSheet.
+	 */
 	public NoteBook(String name, Dimension noteSize) {
 		this(name);
 		this.noteSize = noteSize;
@@ -140,6 +147,10 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	/**
+	 * Polls the user for the resolution. The user is asked whether he wants
+	 * to use his screen size or the default size.
+	 */
 	private void askForResolution() {
 		Dimension nativeSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		if (!nativeSize.equals(noteSizeDefault) && JOptionPane.showConfirmDialog(
@@ -160,6 +171,9 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 	}
 
+	/**
+	 * Compares to NoteBook with each other. Sorting is done by their names.
+	 */
 	@Override
 	public int compareTo(NoteBook other) {
 		return getName().compareTo(other.getName());
@@ -210,6 +224,8 @@ public class NoteBook implements Comparable<NoteBook> {
 
 	/**
 	 * Draws a line onto the current sheet.
+	 *
+	 * @param line Line to draw.
 	 */
 	public void drawLine(Line2D line) {
 		getCurrentSheet().drawLine(line);
@@ -217,6 +233,11 @@ public class NoteBook implements Comparable<NoteBook> {
 		fireDoneDrawing();
 	}
 
+	/**
+	 * Erases a line from the current sheet.
+	 *
+	 * @param line Line to erase.
+	 */
 	public void eraseLine(Line2D line) {
 		getCurrentSheet().eraseLine(line);
 
@@ -291,6 +312,11 @@ public class NoteBook implements Comparable<NoteBook> {
 		return sheets.size();
 	}
 
+	/**
+	 * Getter for the size.
+	 *
+	 * @return Size of the NoteSheet.
+	 */
 	public Dimension getSize() {
 		if (noteSize == null) {
 			askForResolution();

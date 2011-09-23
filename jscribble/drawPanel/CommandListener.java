@@ -85,6 +85,9 @@ public class CommandListener implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 	}
 
+	/**
+	 * Handles various keyboard commands.
+	 */
 	@Override
 	public void keyReleased(KeyEvent event) {
 		// TODO externalize keys
@@ -121,6 +124,9 @@ public class CommandListener implements KeyListener {
 		// TODO add extra exit button, maybe "q"
 	}
 
+	/**
+	 * Ignored.
+	 */
 	@Override
 	public void keyTyped(KeyEvent event) {
 	}

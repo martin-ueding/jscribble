@@ -22,14 +22,32 @@ package jscribble.drawPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
+/**
+ * Handles movement commands from the keyboard.
+ *
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class MovementListener implements KeyListener {
+	/**
+	 * The DrawPanel that displays the current NoteBook.
+	 */
 	private final DrawPanel drawPanel;
 
+	/**
+	 * Creates a MovementListener that relays to the given DrawPanel.
+	 *
+	 * @param drawPanel Notify this.
+	 */
 	public MovementListener(DrawPanel drawPanel) {
 		this.drawPanel = drawPanel;
 	}
 
+	/**
+	 * Determines whether a given KeyEvent should fire going back a page.
+	 *
+	 * @param event KeyEvent to process
+	 * @return Whether this should fire going back a page.
+	 */
 	private boolean isKeyGoBack(KeyEvent event) {
 		return event.getKeyChar() == 'k' ||
 		       event.getKeyCode() == KeyEvent.VK_UP ||
@@ -37,6 +55,12 @@ public class MovementListener implements KeyListener {
 		       event.getKeyCode() == KeyEvent.VK_BACK_SPACE;
 	}
 
+	/**
+	 * Determines whether a given KeyEvent should fire going forward a page.
+	 *
+	 * @param event KeyEvent to process
+	 * @return Whether this should fire going forward a page.
+	 */
 	private boolean isKeyGoForward(KeyEvent event) {
 		return event.getKeyChar() == 'j' ||
 		       event.getKeyCode() == KeyEvent.VK_DOWN ||
@@ -45,18 +69,36 @@ public class MovementListener implements KeyListener {
 		       event.getKeyCode() == KeyEvent.VK_ENTER;
 	}
 
+	/**
+	 * Determines whether a given KeyEvent should fire going to the first page.
+	 *
+	 * @param event KeyEvent to process
+	 * @return Whether this should fire going to the first page.
+	 */
 	private boolean isKeyGotoFirst(KeyEvent event) {
 		return event.getKeyChar() == 'f' ||
 		       event.getKeyCode() == KeyEvent.VK_HOME;
 	}
 
+	/**
+	 * Determines whether a given KeyEvent should fire going to the last page.
+	 *
+	 * @param event KeyEvent to process
+	 * @return Whether this should fire going to the last page.
+	 */
 	private boolean isKeyGotoLast(KeyEvent event) {
 		return event.getKeyChar() == 'l' ||
 		       event.getKeyCode() == KeyEvent.VK_END;
 	}
 
+	/**
+	 * Ignored.
+	 */
 	public void keyPressed(KeyEvent event) {}
 
+	/**
+	 * Handles various keys.
+	 */
 	public void keyReleased(KeyEvent event) {
 		// TODO externalize keys
 
@@ -77,5 +119,8 @@ public class MovementListener implements KeyListener {
 		}
 	}
 
+	/**
+	 * Ignored.
+	 */
 	public void keyTyped(KeyEvent event) {}
 }

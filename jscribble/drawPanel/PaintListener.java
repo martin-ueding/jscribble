@@ -47,9 +47,9 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	private DrawPanel drawPanel;
 
 	/**
-	 * Generates a new Listener that relays its commands to a given NoteBook.
+	 * Generates a new Listener that relays its commands to a given DrawPanel.
 	 *
-	 * @param notebook
+	 * @param drawPanel Relay to this.
 	 */
 	public PaintListener(DrawPanel drawPanel) {
 		this.drawPanel = drawPanel;

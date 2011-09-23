@@ -219,10 +219,7 @@ public class DrawPanel extends JPanel {
 	 * Draws a line onto the current sheet. If onion mode is used, it will be
 	 * cached in another image. To the user, there will be no difference.
 	 *
-	 * @param x
-	 * @param y
-	 * @param x2
-	 * @param y2
+	 * @param line Line to draw.
 	 */
 	public void drawLine(Line2D line) {
 		if (hasCachedImage()) {
@@ -342,10 +339,7 @@ public class DrawPanel extends JPanel {
 	 * Erases a line on the NoteBook. If a cachedImage is used, the line is
 	 * erased on that image as well.
 	 *
-	 * @param x
-	 * @param y
-	 * @param x2
-	 * @param y2
+	 * @param line Line to erase.
 	 */
 	public void eraseLine(Line2D line) {
 		if (hasCachedImage()) {

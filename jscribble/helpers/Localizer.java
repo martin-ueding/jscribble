@@ -29,9 +29,17 @@ import java.util.ResourceBundle;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Localizer {
-
+	/**
+	 * Bundle containing the l10n into.
+	 */
 	static ResourceBundle bundle;
 
+	/**
+	 * Translate a string.
+	 *
+	 * @param ident English language string.
+	 * @return Native language string.
+	 */
 	public static String get(String ident) {
 		// Try to load the ResourceBundle.
 		if (bundle == null) {

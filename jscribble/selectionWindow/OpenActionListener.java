@@ -28,8 +28,16 @@ import java.awt.event.ActionListener;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class OpenActionListener implements ActionListener {
+	/**
+	 * Window to notify.
+	 */
 	private NoteBookSelectionWindow window;
 
+	/**
+	 * Creates a new listener.
+	 *
+	 * @param window Window to relay actions to.
+	 */
 	public OpenActionListener(NoteBookSelectionWindow window) {
 		super();
 		this.window = window;

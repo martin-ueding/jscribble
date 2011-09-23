@@ -35,12 +35,19 @@ public class NoteBookTest extends TestCase {
 	}
 
 	/**
-	 * Creates a NoteBook stored in a temporary folder with a unique name.
+	 * Creates a NoteBook stored in a temporary folder np name.
+	 *
+	 * @return Unnamed temporary NoteBook.
 	 */
 	private NoteBook createTempNoteBook() {
 		return new NoteBook(null, new Dimension(300, 300));
 	}
 
+	/**
+	 * Generates a temporary NoteBook that has a name.
+	 *
+	 * @return Named temporary NoteBook.
+	 */
 	private NoteBook createNamedTempNoteBook() {
 		return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
 	}
@@ -182,6 +189,9 @@ public class NoteBookTest extends TestCase {
 		}
 	}
 
+	/**
+	 * Tests whether going to first and lasts works.
+	 */
 	public void testGotoLast() {
 		NoteBook nb = createTempNoteBook();
 
