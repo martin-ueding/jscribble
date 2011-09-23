@@ -58,6 +58,26 @@ public class CommandListener implements KeyListener {
 		this.redrawer = redrawer;
 	}
 
+	private boolean isKeyOnionLayersDecrease(KeyEvent event) {
+		return event.getKeyChar() == '-';
+	}
+
+	private boolean isKeyOnionLayersIncrease(KeyEvent event) {
+		return event.getKeyChar() == '+';
+	}
+
+	private boolean isKeyToggleGraphRuling(KeyEvent event) {
+		return event.getKeyChar() == 'g';
+	}
+
+	private boolean isKeyToggleHelp(KeyEvent event) {
+		return event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1;
+	}
+
+	private boolean isKeyToggleRuling(KeyEvent event) {
+		return event.getKeyChar() == 'r';
+	}
+
 	/**
 	 * Ignored.
 	 */
@@ -75,26 +95,26 @@ public class CommandListener implements KeyListener {
 			redrawer.actionPerformed(null);
 		}
 
-		if (event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1) {
+		if (isKeyToggleHelp(event)) {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
-		if (event.getKeyChar() == 'r') {
+		if (isKeyToggleRuling(event)) {
 			panel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (event.getKeyChar() == 'g') {
+		if (isKeyToggleGraphRuling(event)) {
 			panel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (event.getKeyChar() == '+') {
+		if (isKeyOnionLayersIncrease(event)) {
 			panel.onionLayersIncrease();
 		}
 
-		if (event.getKeyChar() == '-') {
+		if (isKeyOnionLayersDecrease(event)) {
 			panel.onionLayersDecrease();
 		}
 
