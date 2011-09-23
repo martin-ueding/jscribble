@@ -518,7 +518,7 @@ public class DrawPanel extends JPanel {
 		// TODO put values in config
 		g2.drawString(
 		    String.format(
-		        Localizer.get("%d MB used, %d MB free, %d MB total"),
+		        Localizer.get("%d MiB used, %d MiB free, %d MiB total"),
 		        (r.totalMemory() - r.freeMemory()) / 1024 / 1024,
 		        r.freeMemory() / 1024 / 1024,
 		        r.totalMemory() / 1024 / 1024
