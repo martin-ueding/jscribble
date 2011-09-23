@@ -25,6 +25,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
@@ -223,11 +224,11 @@ public class DrawPanel extends JPanel {
 	 * @param x2
 	 * @param y2
 	 */
-	public void drawLine(int x, int y, int x2, int y2) {
+	public void drawLine(Line2D line) {
 		if (hasCachedImage()) {
-			getImageWrapper().drawLine(x, y, x2, y2);
+			getImageWrapper().drawLine(line);
 		}
-		notebook.drawLine(x, y, x2, y2);
+		notebook.drawLine(line);
 
 		showHelpSplash = false;
 	}
@@ -346,15 +347,15 @@ public class DrawPanel extends JPanel {
 	 * @param x2
 	 * @param y2
 	 */
-	public void eraseLine(int x, int y, int x2, int y2) {
+	public void eraseLine(Line2D line) {
 		if (hasCachedImage()) {
-			getImageWrapper().eraseLine(x, y, x2, y2);
+			getImageWrapper().eraseLine(line);
 
 			// FIXME Prevent erasing of the underlying onion layers, maybe by
 			// redoing the background image.
 		}
 
-		notebook.eraseLine(x, y, x2, y2);
+		notebook.eraseLine(line);
 
 		showHelpSplash = false;
 	}

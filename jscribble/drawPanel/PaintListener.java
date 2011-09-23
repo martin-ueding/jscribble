@@ -23,6 +23,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 
 import jscribble.helpers.SettingsWrapper;
 
@@ -74,7 +75,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 		}
 
 		if (e.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			drawPanel.drawLine(e.getX(), e.getY(), e.getX(), e.getY());
+			Line2D line = new Line2D.Float(e.getPoint(), e.getPoint());
+			drawPanel.drawLine(line);
 		}
 	}
 
@@ -83,12 +85,12 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	public void mouseDragged(MouseEvent arg0) {
 		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			drawPanel.drawLine(lastPosition.x, lastPosition.y,
-			        arg0.getX(), arg0.getY());
+			Line2D line = new Line2D.Float(lastPosition, arg0.getPoint());
+			drawPanel.drawLine(line);
 		}
 		else if (arg0.getModifiers() == MouseEvent.BUTTON3_MASK) {
-			drawPanel.eraseLine(lastPosition.x, lastPosition.y,
-			        arg0.getX(), arg0.getY());
+			Line2D line = new Line2D.Float(lastPosition, arg0.getPoint());
+			drawPanel.eraseLine(line);
 		}
 
 		lastPosition = arg0.getPoint();

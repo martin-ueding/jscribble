@@ -20,6 +20,7 @@
 package tests.jscribble.notebook;
 
 import java.awt.Dimension;
+import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 
@@ -47,7 +48,7 @@ public class NoteSheetTest extends TestCase {
 		assertNotNull(n);
 		assertNotNull(n.getImg());
 		int previousColor = n.getImg().getRGB(100, 100);
-		n.drawLine(100, 100, 100, 200);
+		n.drawLine(new Line2D.Float(100, 100, 100, 200));
 		int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
 		assertTrue(rgbarray.length > 0);
 		assertFalse(rgbarray[0] == previousColor);
@@ -58,13 +59,13 @@ public class NoteSheetTest extends TestCase {
 		assertNotNull(n);
 		assertNotNull(n.getImg());
 		int previousColor = n.getImg().getRGB(100, 100);
-		n.drawLine(100, 100, 100, 200);
+		n.drawLine(new Line2D.Float(100, 100, 100, 200));
 		int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
 		assertTrue(rgbarray.length > 0);
 		assertFalse(rgbarray[0] == previousColor);
 
 		// Erase and make sure it was is the background color.
-		n.eraseLine(100, 100, 100, 200);
+		n.eraseLine(new Line2D.Float(100, 100, 100, 200));
 		int newrgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
 		assertTrue(newrgbarray[0] == previousColor);
 	}
@@ -76,7 +77,7 @@ public class NoteSheetTest extends TestCase {
 		NoteSheet n = getTempNoteSheet();
 		assertFalse(n.touched());
 		assertFalse(n.unsaved());
-		n.drawLine(0, 0, 0, 0);
+		n.drawLine(new Line2D.Float(0, 0, 0, 0));
 		assertTrue(n.touched());
 		assertTrue(n.unsaved());
 	}
@@ -93,7 +94,7 @@ public class NoteSheetTest extends TestCase {
 
 			assertFalse(n.unsaved());
 			assertFalse(n.touched());
-			n.drawLine(0, 0, 0, 0);
+			n.drawLine(new Line2D.Float(0, 0, 0, 0));
 			assertTrue(n.touched());
 			assertTrue(n.unsaved());
 

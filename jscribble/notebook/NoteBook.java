@@ -21,6 +21,7 @@ package jscribble.notebook;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -210,14 +211,14 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * Draws a line onto the current sheet.
 	 */
-	public void drawLine(int x, int y, int x2, int y2) {
-		getCurrentSheet().drawLine(x, y, x2, y2);
+	public void drawLine(Line2D line) {
+		getCurrentSheet().drawLine(line);
 
 		fireDoneDrawing();
 	}
 
-	public void eraseLine(int x, int y, int x2, int y2) {
-		getCurrentSheet().eraseLine(x, y, x2, y2);
+	public void eraseLine(Line2D line) {
+		getCurrentSheet().eraseLine(line);
 
 		fireDoneDrawing();
 	}

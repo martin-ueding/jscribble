@@ -20,6 +20,7 @@
 package tests.jscribble.notebook;
 
 import java.awt.Dimension;
+import java.awt.geom.Line2D;
 import java.io.File;
 import java.util.UUID;
 
@@ -57,7 +58,7 @@ public class NoteBookTest extends TestCase {
 
 		// Advance several pages.
 		for (int i = 0; i < numAdvance; i++) {
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			nb.goForward();
 		}
 
@@ -71,7 +72,7 @@ public class NoteBookTest extends TestCase {
 
 		// Advance several pages.
 		for (int i = 0; i < numAdvance; i++) {
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			nb.goForward();
 		}
 
@@ -96,11 +97,11 @@ public class NoteBookTest extends TestCase {
 
 		File[] filenames = new File[20];
 
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 
 		for (int i = 0; i < filenames.length; i++) {
 			nb.goForward();
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			filenames[i] = nb.getCurrentSheet().getFile();
 		}
 
@@ -152,7 +153,7 @@ public class NoteBookTest extends TestCase {
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 
 		// Go one page forward.
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.goForward();
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
 
@@ -169,14 +170,14 @@ public class NoteBookTest extends TestCase {
 		// Advance several pages.
 		for (int i = 0; i < numAdvance; i++) {
 			nb.goForward();
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
 		}
 
 		// Go back again
 		for (int i = numAdvance; i > 0; i--) {
 			nb.goBackwards();
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());
 		}
 	}
@@ -184,14 +185,14 @@ public class NoteBookTest extends TestCase {
 	public void testGotoLast() {
 		NoteBook nb = createTempNoteBook();
 
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 
 		int numAdvance = 30;
 
 		// Advance several pages.
 		for (int i = 0; i < numAdvance; i++) {
 			nb.goForward();
-			nb.drawLine(0, 0, 0, 0);
+			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
 		}
 
@@ -206,7 +207,7 @@ public class NoteBookTest extends TestCase {
 	 */
 	public void testLoadFromConfig() {
 		NoteBook nb = createNamedTempNoteBook();
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.saveToFiles();
 
 		NoteBook reloaded = new NoteBook(nb.getName());
@@ -229,7 +230,7 @@ public class NoteBookTest extends TestCase {
 	public void testPageNumber() {
 		NoteBook nb = createTempNoteBook();
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		assertEquals(1, nb.getCurrentSheet().getPagenumber());
 		nb.goForward();
 		assertEquals(2, nb.getCurrentSheet().getPagenumber());
@@ -242,7 +243,7 @@ public class NoteBookTest extends TestCase {
 	public void testSavingAfterDrawing() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.saveToFiles();
 		assertTrue(current.getFile().exists());
 		assertNotSame(0, current.getFile().length());
@@ -255,7 +256,7 @@ public class NoteBookTest extends TestCase {
 	public void testSavingAfterDrawingAndAdvance() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.goForward();
 		nb.saveToFiles();
 		assertTrue(current.getFile().exists());
@@ -286,9 +287,9 @@ public class NoteBookTest extends TestCase {
 	public void testSavingAfterTwoDrawingAndAdvance() {
 		NoteBook nb = createTempNoteBook();
 		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.goForward();
-		nb.drawLine(0, 0, 0, 0);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		nb.saveToFiles();
 		assertTrue(current.getFile().exists());
 		assertNotSame(0, current.getFile().length());
@@ -303,7 +304,7 @@ public class NoteBookTest extends TestCase {
 	 */
 	public void testSheetCountAfterFirstLine() {
 		NoteBook nb = createTempNoteBook();
-		nb.drawLine(1, 1, 2, 2);
+		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
 		assertEquals(1, nb.getSheetCount());
 	}
 

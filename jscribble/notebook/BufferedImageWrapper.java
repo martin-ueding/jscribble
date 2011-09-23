@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 
 import jscribble.helpers.SettingsWrapper;
@@ -52,16 +53,22 @@ public class BufferedImageWrapper {
 		                RenderingHints.VALUE_ANTIALIAS_ON));
 	}
 
-	public void drawLine(int x, int y, int x2, int y2) {
+	public void drawLine(Line2D line) {
 		graphics.setColor(foreground);
 		graphics.setStroke(drawStroke);
-		graphics.drawLine(x, y, x2, y2);
+		graphics.drawLine((int) line.getX1(),
+				(int) line.getY1(),
+				(int) line.getX2(),
+				(int) line.getY2());
 	}
 
-	public void eraseLine(int x, int y, int x2, int y2) {
+	public void eraseLine(Line2D line) {
 		graphics.setColor(background);
 		graphics.setStroke(eraseStroke);
-		graphics.drawLine(x, y, x2, y2);
+		graphics.drawLine((int) line.getX1(),
+				(int) line.getY1(),
+				(int) line.getX2(),
+				(int) line.getY2());
 	}
 
 	public BufferedImage getImg() {

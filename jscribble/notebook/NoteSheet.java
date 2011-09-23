@@ -22,6 +22,7 @@ package jscribble.notebook;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -117,18 +118,18 @@ public class NoteSheet {
 	/**
 	 * Draws a line onto the sheet. The sheet is then marked as "touched".
 	 */
-	public void drawLine(int x, int y, int x2, int y2) {
+	public void drawLine(Line2D line) {
 		touched = true;
 		unsaved = true;
 
-		getImageWrapper().drawLine(x, y, x2, y2);
+		getImageWrapper().drawLine(line);
 	}
 
-	public void eraseLine(int x, int y, int x2, int y2) {
+	public void eraseLine(Line2D line) {
 		touched = true;
 		unsaved = true;
 
-		getImageWrapper().eraseLine(x, y, x2, y2);
+		getImageWrapper().eraseLine(line);
 	}
 
 	/**
