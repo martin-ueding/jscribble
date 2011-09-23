@@ -35,13 +35,16 @@ public class NoteBookProgram {
 	/**
 	 * The folder where everything is stored.
 	 */
-	public static final File dotDir = new File(System.getProperty("user.home") +
-	        File.separator + "." + NoteBookProgram.getProgramname());
+	private static File dotDir;
 
 	/**
 	 * Getter for dotDir.
 	 */
 	public static File getDotDir() {
+		dotDir = new File(
+		    System.getProperty("user.home") +
+		    File.separator + "." + NoteBookProgram.getProgramname()
+		);
 		return dotDir;
 	}
 
