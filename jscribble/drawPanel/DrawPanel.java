@@ -507,8 +507,10 @@ public class DrawPanel extends JPanel {
 		drawScrollPanels(g2);
 		drawHelp(g2);
 		drawHelpSplash(g2);
+		drawMemoryUsage(g2);
+	}
 
-		// TODO refactor in method
+	private void drawMemoryUsage(Graphics2D g2) {
 		// TODO put values in config
 		// TODO add option whether to display this at all
 		g2.drawString(
