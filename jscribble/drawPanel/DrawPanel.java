@@ -290,7 +290,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private void drawScrollPanels(Graphics2D g) {
 		// Do nothing if the option is not set.
-		if (!SettingsWrapper.getBoolean("show_scroll_panels", false)) {
+		if (!SettingsWrapper.getBoolean("show_scroll_panels")) {
 			return;
 		}
 
