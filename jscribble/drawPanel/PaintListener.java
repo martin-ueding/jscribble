@@ -61,7 +61,7 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 
-		if (SettingsWrapper.getBoolean("show_scroll_panels", false)) {
+		if (SettingsWrapper.getBoolean("show_scroll_panels")) {
 			if (x <= SettingsWrapper.getInteger("scroll_panel_width")) {
 				drawPanel.goBackwards();
 				return;

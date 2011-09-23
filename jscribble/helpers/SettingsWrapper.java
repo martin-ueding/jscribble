@@ -53,7 +53,7 @@ public class SettingsWrapper {
 	 * @param defaultValue Default value in case there is no such key.
 	 * @return Config value or default as boolean.
 	 */
-	public static boolean getBoolean(String key, boolean defaultValue) {
+	public static boolean getBoolean(String key) {
 		return Boolean.parseBoolean(retrieve(key));
 	}
 
