@@ -57,18 +57,18 @@ public class BufferedImageWrapper {
 		graphics.setColor(foreground);
 		graphics.setStroke(drawStroke);
 		graphics.drawLine((int) line.getX1(),
-				(int) line.getY1(),
-				(int) line.getX2(),
-				(int) line.getY2());
+		        (int) line.getY1(),
+		        (int) line.getX2(),
+		        (int) line.getY2());
 	}
 
 	public void eraseLine(Line2D line) {
 		graphics.setColor(background);
 		graphics.setStroke(eraseStroke);
 		graphics.drawLine((int) line.getX1(),
-				(int) line.getY1(),
-				(int) line.getX2(),
-				(int) line.getY2());
+		        (int) line.getY1(),
+		        (int) line.getX2(),
+		        (int) line.getY2());
 	}
 
 	public BufferedImage getImg() {

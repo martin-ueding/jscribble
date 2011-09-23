@@ -270,7 +270,7 @@ public class DrawPanel extends JPanel {
 		    ),
 		    SettingsWrapper.getInteger("memory_usage_position_left"),
 		    getHeight() - SettingsWrapper.getInteger("memory_usage_position_bottom")
-		    );
+		);
 	}
 
 	/**
