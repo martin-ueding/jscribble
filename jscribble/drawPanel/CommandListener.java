@@ -67,6 +67,8 @@ public class CommandListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent event) {
+		// TODO externalize keys
+
 		// Close the help when the <ESC> key is pressed.
 		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			panel.setShowHelp(false);

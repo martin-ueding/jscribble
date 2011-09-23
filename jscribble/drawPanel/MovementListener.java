@@ -33,6 +33,8 @@ public class MovementListener implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {}
 
 	public void keyReleased(KeyEvent ev) {
+		// TODO externalize keys
+
 		if (ev.getKeyChar() == 'j' ||
 		        ev.getKeyCode() == KeyEvent.VK_DOWN ||
 		        ev.getKeyCode() == KeyEvent.VK_RIGHT ||
