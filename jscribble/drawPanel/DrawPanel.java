@@ -268,7 +268,8 @@ public class DrawPanel extends JPanel {
 		        r.totalMemory() / 1024 / 1024
 		    ),
 		    SettingsWrapper.getInteger("memory_usage_position_left"),
-		    getHeight()-SettingsWrapper.getInteger("memory_usage_position_bottom"));
+		    getHeight() - SettingsWrapper.getInteger("memory_usage_position_bottom")
+		    );
 	}
 
 	/**
