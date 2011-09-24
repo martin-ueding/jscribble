@@ -34,7 +34,7 @@ public class CommandListener implements KeyListener {
 	/**
 	 * The DrawPanel that is displaying the NoteBook.
 	 */
-	private DrawPanel panel;
+	private DrawPanel drawPanel;
 
 	/**
 	 * The listener that is to be notified when something is changed.
@@ -44,10 +44,10 @@ public class CommandListener implements KeyListener {
 	/**
 	 * Creates a new listener that listens to the given panel
 	 *
-	 * @param malPanel panel to listen to
+	 * @param drawPanel panel to listen to
 	 */
-	public CommandListener(DrawPanel malPanel) {
-		panel = malPanel;
+	public CommandListener(DrawPanel drawPanel) {
+		this.drawPanel = drawPanel;
 	}
 
 	/**
@@ -73,31 +73,31 @@ public class CommandListener implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent event) {
 		if (SettingsWrapper.isKeyForCommand(event, "key_help_close")) {
-			panel.setShowHelp(false);
+			drawPanel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
 
 		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_help")) {
-			panel.toggleHelp();
+			drawPanel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
 		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_ruling")) {
-			panel.toggleRuling();
+			drawPanel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
 
 		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_graph_ruling")) {
-			panel.toggleGraphRuling();
+			drawPanel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
 
 		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_increase")) {
-			panel.onionLayersIncrease();
+			drawPanel.onionLayersIncrease();
 		}
 
 		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_decrease")) {
-			panel.onionLayersDecrease();
+			drawPanel.onionLayersDecrease();
 		}
 
 		// TODO add extra exit button, maybe "q"
