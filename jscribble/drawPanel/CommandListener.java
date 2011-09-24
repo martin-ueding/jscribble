@@ -60,26 +60,6 @@ public class CommandListener implements KeyListener {
 		this.redrawer = redrawer;
 	}
 
-	private boolean isKeyOnionLayersDecrease(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_onion_layer_decrease");
-	}
-
-	private boolean isKeyOnionLayersIncrease(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_onion_layer_increase");
-	}
-
-	private boolean isKeyToggleGraphRuling(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_toggle_graph_ruling");
-	}
-
-	private boolean isKeyToggleHelp(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_toggle_help");
-	}
-
-	private boolean isKeyToggleRuling(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_toggle_ruling");
-	}
-
 	/**
 	 * Ignored.
 	 */
@@ -92,32 +72,31 @@ public class CommandListener implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent event) {
-		// Close the help when the <ESC> key is pressed.
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_help_close")) {
 			panel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
 
-		if (isKeyToggleHelp(event)) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_help")) {
 			panel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
-		if (isKeyToggleRuling(event)) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_ruling")) {
 			panel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (isKeyToggleGraphRuling(event)) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_graph_ruling")) {
 			panel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (isKeyOnionLayersIncrease(event)) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_increase")) {
 			panel.onionLayersIncrease();
 		}
 
-		if (isKeyOnionLayersDecrease(event)) {
+		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_decrease")) {
 			panel.onionLayersDecrease();
 		}
 
