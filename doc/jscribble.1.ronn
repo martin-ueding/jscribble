@@ -220,6 +220,12 @@ The value in parentheses is the default value.
   String, it does not make much sense to overwrite this since this property is always looked up in the default config.
   (config.properties)
 
+## SECURITY CONSIDERATIONS
+
+Named notebooks are saved in a folder in the user's home directory. Notebooks that are in the scribble mode are not saved to the user's home directory but in the temporary directory of the system. On Linux, this is usually `/tmp`. The files are not readable to anyone but the user.
+
+If the user's home directory is encrypted, but the temporary folder is not, an attacker might be able to recover images drawn in the scribble mode.
+
 ## AUTHOR
 
 Martin Ueding <dev@martin-ueding.de>
