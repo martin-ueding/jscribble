@@ -7,13 +7,15 @@ javac=javac -encoding UTF-8
 
 version=1.5.2
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties jscribble/default_config.properties
+ronn=/var/lib/gems/1.8/bin/ronn
+
+all: jscribble.jar doc/jscribble.1
+
+jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class jscribble_de.properties jscribble/default_config.properties
+	find jscribble -name "*.class" -print > classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
 
-classlist: $(shell find jscribble -name "*.class")
-	find jscribble -name "*.class" -print > classlist
-
-all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
+everything: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
 
 jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
@@ -36,12 +38,9 @@ html/.doxygen: $(javafiles)
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version)
 
-test: .testrun
-
-.testrun:
+test:
 	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
 	bash run_tests.sh
-	touch .testrun
 
 tarball=jscribble_$(version).tar.gz
 fullname=jscribble-$(version)
@@ -55,6 +54,9 @@ install: jscribble.jar
 	install jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
 	mkdir -p "$(DESTDIR)/usr/bin"
 	install install_files/jscribble "$(DESTDIR)/usr/bin/"
+
+doc/jscribble.1: doc/jscribble.1.ronn
+	$(ronn) $^ --style=toc --manual=jscribble
 
 clean:
 	$(RM) *.mo
