@@ -5,7 +5,7 @@ classfiles=$(javafiles:.java=.class)
 
 javac=javac -encoding UTF-8
 
-version=1.5
+version=1.5.2
 
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class classlist jscribble_de.properties jscribble/default_config.properties
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
