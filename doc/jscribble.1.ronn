@@ -249,13 +249,30 @@ This program is featured in [Debian][deb] and [Arch Linux][arc] so far.
 You can obtain a tarball with the latest source code from the [jscribble
 website][jsc].
 
-In order to build, you need at least the first three.
+If everything is installed, you should be able to compile and install with this:
 
-* make
-* Java Development Kit (jdk)
-* xgettext, msgfmt
-* ronn:
-  Translates markdown into html and manual page. Get it [here][ron]
+	make
+	make install	# as root
+
+The following software is needed to compile this program:
+
+* **make**:
+  Build system.
+* **Java Development Kit** (jdk):
+  Java compiler.
+* **xgettext**, **msgfmt**:
+  Parses source code for translation calls and converts translation file into the Java property format.
+* **ronn**:
+  Converts markdown into html and manual page. Get it [here][ron].
+
+In case you want to build all the documentations, you might want to install these as well:
+
+* **Doxygen**:
+  A HTML and LaTeX documentation generator for various languages.
+* **javadoc**:
+  This should be included with the Java Development Kit.
+* **junit**:
+  Unit tests for Java.
 
 If you care for the git repository, please let me know.
 
