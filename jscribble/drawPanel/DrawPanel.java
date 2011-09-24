@@ -362,7 +362,7 @@ public class DrawPanel extends JPanel {
 	 * @return Image which contains all the drawing information
 	 */
 	private BufferedImage getCachedImage() {
-		// If the onion mode is not enables, the original image can be used.
+		// If the onion mode is not enabled, the original image can be used.
 		if (!isOnionMode() && ruling == RulingType.NONE) {
 			return notebook.getCurrentSheet().getImg();
 		}
