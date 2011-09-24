@@ -267,7 +267,7 @@ The following software is needed to compile this program:
 
 In case you want to build all the documentations, you might want to install these as well:
 
-* **Doxygen**:
+* **doxygen**:
   A HTML and LaTeX documentation generator for various languages.
 * **javadoc**:
   This should be included with the Java Development Kit.
