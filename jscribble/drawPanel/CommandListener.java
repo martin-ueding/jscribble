@@ -75,22 +75,22 @@ public class CommandListener implements KeyListener, MouseListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent event) {
-		if (SettingsWrapper.isKeyForCommand(event, "key_help_close")) {
+		if (SettingsWrapper.isKeyForCommand(event, "help_screen_close_key")) {
 			drawPanel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
 
-		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_help")) {
+		if (SettingsWrapper.isKeyForCommand(event, "help_screen_toggle_key")) {
 			drawPanel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
 
-		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_ruling")) {
+		if (SettingsWrapper.isKeyForCommand(event, "ruling_toggle_key")) {
 			drawPanel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
 
-		if (SettingsWrapper.isKeyForCommand(event, "key_toggle_graph_ruling")) {
+		if (SettingsWrapper.isKeyForCommand(event, "ruling_graph_toggle_key")) {
 			drawPanel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
@@ -118,10 +118,10 @@ public class CommandListener implements KeyListener, MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		if (SettingsWrapper.isButtonForCommand(event, "mouse_button_go_forward")) {
+		if (SettingsWrapper.isButtonForCommand(event, "notebook_go_forward_mouse_button")) {
 			drawPanel.goForward();
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "mouse_button_go_back")) {
+		else if (SettingsWrapper.isButtonForCommand(event, "notebook_go_back_mouse_button")) {
 			drawPanel.goBackwards();
 		}
 	}

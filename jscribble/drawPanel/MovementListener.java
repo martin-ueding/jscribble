@@ -51,7 +51,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going back a page.
 	 */
 	private boolean isKeyGoBack(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_go_back");
+		return SettingsWrapper.isKeyForCommand(event, "notebook_go_back_key");
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going forward a page.
 	 */
 	private boolean isKeyGoForward(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_go_forward");
+		return SettingsWrapper.isKeyForCommand(event, "notebook_go_forward_key");
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going to the first page.
 	 */
 	private boolean isKeyGotoFirst(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_goto_first");
+		return SettingsWrapper.isKeyForCommand(event, "notebook_goto_first_key");
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going to the last page.
 	 */
 	private boolean isKeyGotoLast(KeyEvent event) {
-		return SettingsWrapper.isKeyForCommand(event, "key_goto_last");
+		return SettingsWrapper.isKeyForCommand(event, "notebook_goto_last_key");
 	}
 
 	/**
