@@ -56,7 +56,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	}
 
 	/**
-	 * Draws a single dot when the mouse is clicked.
+	 * Draws a single dot when the mouse is clicked. Handles the scroll panels
+	 * in the mouse only mode. Erases on single right click.
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
