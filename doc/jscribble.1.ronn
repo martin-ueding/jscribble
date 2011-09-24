@@ -15,13 +15,20 @@ Some prefer to draw these by hand but do not like carrying lots of paper with
 me.
 
 jscribble offers screen based note taking with as many pages as you want.
-[`Xournal`](http://xournal.sourceforge.net/) offers more features but is paper
-size oriented which does not make sense on a 10" netbook screen where one wants
-to use the whole screen for taking notes.
+Xournal offers more features but is paper size oriented which does not make
+sense on a 10" netbook screen where one wants to use the whole screen for
+taking notes.
 
 Another focus was set to avoid any mouse navigation. All you can do with your
 mouse (or pen) is draw, therefore you cannot click anything accidentally.
-Navigation is done with the keyboard.
+Navigation is done with the keyboard. This stance is weakened a little now,
+there is a mouse only mode which features panels at the left and right side of
+the screen to flip pages. You can also advance to the next page using the
+middle click. Both of these options have to be enabled in the configuration
+file, though.
+
+The eraser was implemented later too, it can be disabled in the config if it
+causes trouble. It is activated by default since it is very handy.
 
 ## OPTIONS
 
@@ -154,7 +161,7 @@ The value in parentheses is the default value.
   (j,40,39,32,10)
 * `notebook_go_forward_mouse_button`:
   Mouse
-  (512)
+  ()
 * `notebook_goto_first_key`:
   Key
   (f,36)
@@ -235,4 +242,4 @@ Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 ## SEE ALSO
 
-xournal(1)
+[`Xournal`](http://xournal.sourceforge.net/)
