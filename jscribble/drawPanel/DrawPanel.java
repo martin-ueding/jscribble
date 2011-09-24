@@ -124,6 +124,8 @@ public class DrawPanel extends JPanel {
 
 	private Runtime r;
 
+	private InvalidationThread invalidationThread;
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
@@ -345,8 +347,10 @@ public class DrawPanel extends JPanel {
 		if (hasCachedImage()) {
 			getImageWrapper().eraseLine(line);
 
-			// FIXME Prevent erasing of the underlying onion layers, maybe by
-			// redoing the background image.
+			/*
+			 * The user might have erased some of the underlying ruling or onion layers. Refreshing the picture with all its layers takes too much time to do with each repaint. Schedule the picture for expiration if that did not happen yet. If it is scheduled already, keep it alive for a little longer.
+			 */
+			getInvalidationThread().keepAlive();
 		}
 
 		notebook.eraseLine(line);
@@ -422,6 +426,18 @@ public class DrawPanel extends JPanel {
 		}
 
 		return imageWrapper;
+	}
+
+	/**
+	 * Returns an initializes the InvalidationThread.
+	 * @return Initialized InvalidationThread.
+	 */
+	private InvalidationThread getInvalidationThread() {
+		if (invalidationThread == null || !invalidationThread.isAlive()) {
+			invalidationThread = new InvalidationThread(this);
+			invalidationThread.start();
+		}
+		return invalidationThread;
 	}
 
 	/**
@@ -525,7 +541,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Resets the cached image after changing pages for instance.
 	 */
-	private void resetCachedImage() {
+	protected void resetCachedImage() {
 		cachedImage = null;
 		imageWrapper = null;
 		showHelpSplash = false;
