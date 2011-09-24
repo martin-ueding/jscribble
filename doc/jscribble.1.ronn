@@ -1,12 +1,11 @@
-jscribble(1) -- infinite notepad
-================================
+# jscribble(1) -- infinite notepad written in Java
 
 ## SYNOPSIS
 
 `jscribble` [-v]
 
 ## DESCRIPTION
-`jscribble` is a graphical notepad with as many pages as you want. You can
+jscribble is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
 
@@ -15,7 +14,7 @@ people are fast enough in LaTeX to set complicated formulas while in a lecture.
 Some prefer to draw these by hand but do not like carrying lots of paper with
 me.
 
-`jscribble` offers screen based note taking with as many pages as you want.
+jscribble offers screen based note taking with as many pages as you want.
 [`Xournal`](http://xournal.sourceforge.net/) offers more features but is paper
 size oriented which does not make sense on a 10" netbook screen where one wants
 to use the whole screen for taking notes.
