@@ -65,6 +65,8 @@ clean:
 	$(RM) .testrun
 	$(RM) classlist
 	$(RM) de.po~
+	$(RM) doc/jscribble.1
+	$(RM) doc/jscribble.1.html
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
