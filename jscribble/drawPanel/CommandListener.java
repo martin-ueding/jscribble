@@ -95,11 +95,11 @@ public class CommandListener implements KeyListener, MouseListener {
 			redrawer.actionPerformed(null);
 		}
 
-		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_increase")) {
+		if (SettingsWrapper.isKeyForCommand(event, "onion_layer_increase_key")) {
 			drawPanel.onionLayersIncrease();
 		}
 
-		if (SettingsWrapper.isKeyForCommand(event, "key_onion_layer_decrease")) {
+		if (SettingsWrapper.isKeyForCommand(event, "onion_layer_decrease_key")) {
 			drawPanel.onionLayersDecrease();
 		}
 

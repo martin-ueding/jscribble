@@ -372,7 +372,7 @@ public class DrawPanel extends JPanel {
 			cachedImage = new BufferedImage(getWidth(), getHeight(),
 			        BufferedImage.TYPE_BYTE_GRAY);
 			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
-			g2.setColor(SettingsWrapper.getColor("note_sheet_background_color"));
+			g2.setColor(SettingsWrapper.getColor("notesheet_background_color"));
 			g2.fillRect(0, 0, getWidth(), getHeight());
 
 			// Go back as many pages as there should be onion layers.

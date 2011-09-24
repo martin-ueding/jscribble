@@ -60,12 +60,12 @@ public class BufferedImageWrapper {
 	/**
 	 * Background color.
 	 */
-	private Color background = SettingsWrapper.getColor("note_sheet_background_color");
+	private Color background = SettingsWrapper.getColor("notesheet_background_color");
 
 	/**
 	 * Foreground color.
 	 */
-	private Color foreground = SettingsWrapper.getColor("note_sheet_foreground_color");
+	private Color foreground = SettingsWrapper.getColor("notesheet_foreground_color");
 
 	/**
 	 * Creates a new wrapper around the given image.
