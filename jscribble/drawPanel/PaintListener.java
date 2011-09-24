@@ -77,11 +77,11 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			}
 		}
 
-		if (SettingsWrapper.isButtonForCommand(event, "mouse_button_paint")) {
+		if (SettingsWrapper.isButtonForCommand(event, "notebook_draw_mouse_button")) {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "mouse_button_erase")) {
+		else if (SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.eraseLine(line);
 		}
@@ -91,11 +91,11 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * Tells the NoteBook to draw a line on it.
 	 */
 	public void mouseDragged(MouseEvent event) {
-		if (SettingsWrapper.isButtonForCommand(event, "mouse_button_paint")) {
+		if (SettingsWrapper.isButtonForCommand(event, "notebook_draw_mouse_button")) {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "mouse_button_erase")) {
+		else if (SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.eraseLine(line);
 		}
