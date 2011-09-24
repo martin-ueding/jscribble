@@ -19,7 +19,8 @@
 
 package jscribble.helpers;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -55,17 +56,8 @@ public class Logger {
 	 */
 	public static void log(String reportingClass, String message) {
 		if (debug) {
-			Calendar c = Calendar.getInstance();
-			// TODO Add support for various date formats.
-			String date = String.format("%d-%02d-%02d %02d:%02d:%02d.%03d",
-			        c.get(Calendar.YEAR),
-			        c.get(Calendar.MONTH),
-			        c.get(Calendar.DAY_OF_MONTH),
-			        c.get(Calendar.HOUR_OF_DAY),
-			        c.get(Calendar.MINUTE),
-			        c.get(Calendar.SECOND),
-			        c.get(Calendar.MILLISECOND)
-			                           );
+			SimpleDateFormat formatter = new SimpleDateFormat(SettingsWrapper.getString("date_format"));
+			String date = formatter.format(new Date());
 			String output =  date + " " + reportingClass + ":\t" + message;
 			System.out.println(output);
 		}
