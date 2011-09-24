@@ -200,6 +200,13 @@ public class SettingsWrapper {
 		return Double.parseDouble(retrieve(key));
 	}
 
+	/**
+	 * Checks whether a pressed key should trigger a command.
+	 *
+	 * @param event Pressed key.
+	 * @param command Command in question.
+	 * @return Whether this should trigger.
+	 */
 	public static boolean isKeyForCommand(KeyEvent event, String command) {
 		String raw_array = retrieve(command);
 		String[] parts = raw_array.split(",");
@@ -218,6 +225,13 @@ public class SettingsWrapper {
 		return false;
 	}
 
+	/**
+	 * Checks whether a pressed mouse button should trigger a command.
+	 *
+	 * @param event Pressed mouse button.
+	 * @param command Command in question.
+	 * @return Whether this should trigger.
+	 */
 	public static boolean isButtonForCommand(MouseEvent event, String command) {
 		String raw_array = retrieve(command);
 		String[] parts = raw_array.split(",");
