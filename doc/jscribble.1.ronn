@@ -9,7 +9,7 @@ jscribble is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
 
-Taking notes on paper allow you to draw and write whatever you want. Some
+Taking notes on paper allows you to draw and write whatever you want. Some
 people are fast enough in LaTeX to set complicated formulas while in a lecture.
 Some prefer to draw these by hand but do not like carrying lots of paper with
 me.
