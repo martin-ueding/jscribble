@@ -64,7 +64,7 @@ public class CommandListener implements KeyListener {
 	 * Ignored.
 	 */
 	@Override
-	public void keyPressed(KeyEvent arg0) {
+	public void keyPressed(KeyEvent ignored) {
 	}
 
 	/**
@@ -107,6 +107,6 @@ public class CommandListener implements KeyListener {
 	 * Ignored.
 	 */
 	@Override
-	public void keyTyped(KeyEvent event) {
+	public void keyTyped(KeyEvent ignored) {
 	}
 }
