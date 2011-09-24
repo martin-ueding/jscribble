@@ -4,6 +4,8 @@
 
 `jscribble` [-v]
 
+java -jar jscribble.jar [-v]
+
 ## DESCRIPTION
 
 jscribble is a graphical notepad with as many pages as you want. You can
@@ -238,6 +240,30 @@ files are not readable to anyone but the user.
 If the user's home directory is encrypted, but the temporary folder is not, an
 attacker might be able to recover images drawn in the scribble mode.
 
+## PACKAGES
+
+This program is featured in [Debian][deb] and [Arch Linux][arc] so far.
+
+## BUILDING FROM SOURCE
+
+You can obtain a tarball with the latest source code from the [jscribble
+website][jsc].
+
+In order to build, you need at least the first three.
+
+* make
+* Java Development Kit (jdk)
+* xgettext, msgfmt
+* ronn:
+  Translates markdown into html and manual page. Get it [here][ron]
+
+If you care for the git repository, please let me know.
+
+## BUGS
+
+Please report bugs in English or German via email to me. Include the version
+number which is displayed at the bottom of the help screen within the program.
+
 ## AUTHOR
 
 Martin Ueding <dev@martin-ueding.de>
@@ -248,4 +274,10 @@ Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 ## SEE ALSO
 
-[`Xournal`](http://xournal.sourceforge.net/)
+[Xournal][xou]
+
+[xou]: http://xournal.sourceforge.net/
+[jsc]: http://martin-ueding.de/jscribble/
+[deb]: http://packages.debian.org/sid/jscribble
+[arc]: https://aur.archlinux.org/packages.php?ID=51337
+[ron]: http://rtomayko.github.com/ronn/
