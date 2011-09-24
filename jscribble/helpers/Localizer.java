@@ -47,12 +47,12 @@ public class Localizer {
 				bundle = ResourceBundle.getBundle("jscribble");
 			}
 			catch (ExceptionInInitializerError e) {
-				Logger.log(Localizer.class.getClass().getName(),
+				Logger.log(Localizer.class.getName(),
 				           "Error: " + e.getMessage());
 				bundle = null;
 			}
 			catch (MissingResourceException e) {
-				Logger.log(Localizer.class.getClass().getName(),
+				Logger.log(Localizer.class.getName(),
 				           "Error: " + e.getMessage());
 				bundle = null;
 			}
@@ -67,7 +67,7 @@ public class Localizer {
 				return bundle.getString(ident);
 			}
 			catch (MissingResourceException e) {
-				Logger.log(Localizer.class.getClass().getName(),
+				Logger.log(Localizer.class.getName(),
 				           e.getMessage());
 				return ident;
 			}
