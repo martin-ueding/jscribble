@@ -56,9 +56,12 @@ Create a file called *config.properties* in the *.jscribble* directory in your h
 * Mouse Mask Type:
   A comma separated list of mouse down masks.
 
+* Boolean Type:
+  `true` or `false`.
+
 ### Example Config
 
-	# example config file for jscribble
+	# example config file for jscribble saved in .jscribble/config.properties
 	memory_usage_show=true
 	rule_line_spacing=20
 
@@ -67,105 +70,154 @@ Create a file called *config.properties* in the *.jscribble* directory in your h
 The value in parentheses is the default value.
 
 * `date_format`:
-  (*yyyy-MM-dd HH:mm:ss*)
+  String, date format used for logging.
+  (yyyy-MM-dd HH:mm:ss)
 * `help_screen_background_color`:
-  (*C8000000*)
+  Color
+  (C8000000)
 * `help_screen_border_radius`:
-  (*20*)
+  Integer
+  (20)
 * `help_screen_close_key`:
-  (*27*)
+  Integer
+  (27)
 * `help_screen_margin`:
-  (*50*)
+  Integer
+  (50)
 * `help_screen_padding`:
-  (*70*)
+  Integer
+  (70)
 * `help_screen_spacing`:
-  (*250*)
+  Integer, spacing between left and right column of the help screen.
+  (250)
 * `help_screen_toggle_key`:
-  (*h,112*)
+  Key
+  (h,112)
 * `help_screen_vspacing`:
-  (*30*)
+  Integer, spacing between the rows of the help screen.
+  (30)
 * `help_splash_background_color`:
-  (*64000000*)
+  Color
+  (64000000)
 * `help_splash_border_radius`:
-  (*20*)
+  Integer
+  (20)
 * `help_splash_height`:
-  (*50*)
+  Integer
+  (50)
 * `help_splash_margin`:
-  (*15*)
+  Integer
+  (15)
 * `memory_usage_position_bottom`:
-  (*10*)
+  Integer
+  (10)
 * `memory_usage_position_left`:
-  (*10*)
+  Integer
+  (10)
 * `memory_usage_show`:
-  (*false*)
+  Boolean
+  (false)
 * `notebook_background_color`:
-  (*FFFFFF*)
+  Color
+  (FFFFFF)
 * `notebook_cache_width`:
-  (*10*)
+  Integer
+  (10)
 * `notebook_default_height`:
-  (*600*)
+  Integer
+  (600)
 * `notebook_default_width`:
-  (*1024*)
+  Integer
+  (1024)
 * `notebook_draw_mouse_button`:
-  (*0,1024*)
+  Integer
+  (0,1024)
 * `notebook_draw_stroke_width`:
-  (*1*)
+  Integer
+  (1)
 * `notebook_erase_mouse_button`:
-  (*256,4096*)
+  (256,4096)
 * `notebook_erase_stroke_width`:
-  (*8*)
+  Integer
+  (8)
 * `notebook_foreground_color`:
-  (*000000*)
+  Color
+  (000000)
 * `notebook_go_back_key`:
-  (*k,38,37,8*)
-* `notebook_go_back_mouse_button`
-  (*:*)
+  Key
+  (k,38,37,8)
+* `notebook_go_back_mouse_button`:
+  Mouse
+  ()
 * `notebook_go_forward_key`:
-  (*j,40,39,32,10*)
+  Key
+  (j,40,39,32,10)
 * `notebook_go_forward_mouse_button`:
-  (*512*)
+  Mouse
+  (512)
 * `notebook_goto_first_key`:
-  (*f,36*)
+  Key
+  (f,36)
 * `notebook_goto_last_key`:
-  (*l,35*)
+  Key
+  (l,35)
 * `notebook_name_validation_pattern`:
-  (*[A-Za-z0-9-_]+*)
+  String, the name of every new notebook is validated against this. This prevents anything cumbersome in file names.
+  ([A-Za-z0-9-_]+)
 * `notebook_selection_window_height`:
-  (*300*)
+  Integer
+  (300)
 * `notebook_selection_window_width`:
-  (*400*)
+  Integer
+  (400)
 * `onion_info_position_left`:
-  (*10*)
+  Integer
+  (10)
 * `onion_info_position_top`:
-  (*15*)
+  Integer
+  (15)
 * `onion_layer_decrease_key`:
-  (*-*)
+  Key
+  (-)
 * `onion_layer_increase_key`:
-  (*+*)
+  Key
+  (+)
 * `onion_mode_opacity`:
-  (*0.8*)
+  Float
+  (0.8)
 * `page_number_position_top`:
-  (*15*)
+  Integer
+  (15)
 * `program_name`:
-  (*jscribble*)
+  String, the name is used for the settings directory. If this is changed, all previously made notebooks are still on the disk, but cannot be accessed through the program any more.
+  (jscribble)
 * `ruling_graph_toggle_key`:
-  (*g*)
+  Key
+  (g)
 * `ruling_line_color`:
-  (*646464*)
+  Color
+  (646464)
 * `ruling_line_spacing`:
-  (*40*)
+  Integer
+  (40)
 * `ruling_toggle_key`:
-  (*r*)
+  Key
+  (r)
 * `scroll_panel_color`:
-  (*64000000*)
+  Color
+  (64000000)
 * `scroll_panel_padding`:
-  (*5*)
+  Integer
+  (5)
 * `scroll_panel_width`:
-  (*20*)
+  Integer
+  (20)
 * `scroll_panels_show`:
-  (*false*)
+  Boolean
+  (false)
 * `user_config_filename`:
-  (*config.properties*)
+  String
+  (config.properties)
 
 ## AUTHOR
 
