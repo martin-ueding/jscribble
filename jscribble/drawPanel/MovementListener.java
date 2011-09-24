@@ -22,6 +22,8 @@ package jscribble.drawPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import jscribble.helpers.SettingsWrapper;
+
 /**
  * Handles movement commands from the keyboard.
  *
@@ -49,10 +51,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going back a page.
 	 */
 	private boolean isKeyGoBack(KeyEvent event) {
-		return event.getKeyChar() == 'k' ||
-		       event.getKeyCode() == KeyEvent.VK_UP ||
-		       event.getKeyCode() == KeyEvent.VK_LEFT ||
-		       event.getKeyCode() == KeyEvent.VK_BACK_SPACE;
+		return SettingsWrapper.isKeyForCommand(event, "key_go_back");
 	}
 
 	/**
@@ -62,11 +61,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going forward a page.
 	 */
 	private boolean isKeyGoForward(KeyEvent event) {
-		return event.getKeyChar() == 'j' ||
-		       event.getKeyCode() == KeyEvent.VK_DOWN ||
-		       event.getKeyCode() == KeyEvent.VK_RIGHT ||
-		       event.getKeyCode() == KeyEvent.VK_SPACE ||
-		       event.getKeyCode() == KeyEvent.VK_ENTER;
+		return SettingsWrapper.isKeyForCommand(event, "key_go_forward");
 	}
 
 	/**
@@ -76,8 +71,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going to the first page.
 	 */
 	private boolean isKeyGotoFirst(KeyEvent event) {
-		return event.getKeyChar() == 'f' ||
-		       event.getKeyCode() == KeyEvent.VK_HOME;
+		return SettingsWrapper.isKeyForCommand(event, "key_goto_first");
 	}
 
 	/**
@@ -87,8 +81,7 @@ public class MovementListener implements KeyListener {
 	 * @return Whether this should fire going to the last page.
 	 */
 	private boolean isKeyGotoLast(KeyEvent event) {
-		return event.getKeyChar() == 'l' ||
-		       event.getKeyCode() == KeyEvent.VK_END;
+		return SettingsWrapper.isKeyForCommand(event, "key_goto_last");
 	}
 
 	/**
@@ -100,8 +93,6 @@ public class MovementListener implements KeyListener {
 	 * Handles various keys.
 	 */
 	public void keyReleased(KeyEvent event) {
-		// TODO externalize keys
-
 		if (isKeyGoForward(event)) {
 			drawPanel.goForward();
 		}
