@@ -1,3 +1,6 @@
+v1.5.2
+	* Create more config options, e. g. mouse buttons and keyboard keys.
+	* Repaint ruling and onion layers after erasing.
 v1.5.1
 	* Create config for most settings, overwriteable by user.
 	* Optional memory usage display.
