@@ -22,6 +22,8 @@ package jscribble.drawPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import jscribble.helpers.SettingsWrapper;
+
 /**
  * Listens to the keyboard for the command key and then polls the user for a
  * command. The command is then executed.
@@ -59,23 +61,23 @@ public class CommandListener implements KeyListener {
 	}
 
 	private boolean isKeyOnionLayersDecrease(KeyEvent event) {
-		return event.getKeyChar() == '-';
+		return SettingsWrapper.isKeyForCommand(event, "key_onion_layer_decrease");
 	}
 
 	private boolean isKeyOnionLayersIncrease(KeyEvent event) {
-		return event.getKeyChar() == '+';
+		return SettingsWrapper.isKeyForCommand(event, "key_onion_layer_increase");
 	}
 
 	private boolean isKeyToggleGraphRuling(KeyEvent event) {
-		return event.getKeyChar() == 'g';
+		return SettingsWrapper.isKeyForCommand(event, "key_toggle_graph_ruling");
 	}
 
 	private boolean isKeyToggleHelp(KeyEvent event) {
-		return event.getKeyChar() == 'h' || event.getKeyCode() == KeyEvent.VK_F1;
+		return SettingsWrapper.isKeyForCommand(event, "key_toggle_help");
 	}
 
 	private boolean isKeyToggleRuling(KeyEvent event) {
-		return event.getKeyChar() == 'r';
+		return SettingsWrapper.isKeyForCommand(event, "key_toggle_ruling");
 	}
 
 	/**
@@ -90,8 +92,6 @@ public class CommandListener implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent event) {
-		// TODO externalize keys
-
 		// Close the help when the <ESC> key is pressed.
 		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			panel.setShowHelp(false);

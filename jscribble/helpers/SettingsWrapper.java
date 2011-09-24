@@ -20,6 +20,7 @@
 package jscribble.helpers;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -196,5 +197,23 @@ public class SettingsWrapper {
 	 */
 	public static double getDouble(String key) {
 		return Double.parseDouble(retrieve(key));
+	}
+
+	public static boolean isKeyForCommand(KeyEvent event, String command) {
+		String raw_array = retrieve(command);
+		String[] parts = raw_array.split(",");
+		for (String part : parts) {
+			if (part.length() == 1) {
+				if (event.getKeyChar() == part.charAt(0)) {
+					Logger.log(SettingsWrapper.class.getClass().getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
+					return true;
+				}
+			}
+			else if (event.getKeyCode() == Integer.parseInt(part)) {
+				Logger.log(SettingsWrapper.class.getClass().getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
+				return true;
+			}
+		}
+		return false;
 	}
 }
