@@ -5,6 +5,7 @@
 `jscribble` [-v]
 
 ## DESCRIPTION
+
 jscribble is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
