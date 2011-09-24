@@ -138,11 +138,7 @@ public class DrawPanel extends JPanel {
 		// Notify this instance when the notebook was is done drawing.
 		notebook.setDoneDrawing(new Redrawer(this));
 
-		// This handles the painting onto the NoteBook that this DrawPanel
-		// displays.
-		PaintListener pl = new PaintListener(this);
-		addMouseMotionListener(pl);
-		addMouseListener(pl);
+		new PaintListener(this);
 
 		r = Runtime.getRuntime();
 	}

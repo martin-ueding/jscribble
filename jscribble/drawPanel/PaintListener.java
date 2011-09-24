@@ -53,6 +53,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 */
 	public PaintListener(DrawPanel drawPanel) {
 		this.drawPanel = drawPanel;
+		drawPanel.addMouseListener(this);
+		drawPanel.addMouseMotionListener(this);
 	}
 
 	/**
