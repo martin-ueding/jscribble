@@ -209,6 +209,9 @@ public class SettingsWrapper {
 	 */
 	public static boolean isKeyForCommand(KeyEvent event, String command) {
 		String raw_array = retrieve(command);
+		if (raw_array.length() == 0) {
+			return false;
+		}
 		String[] parts = raw_array.split(",");
 		for (String part : parts) {
 			if (part.length() == 1) {
@@ -234,6 +237,9 @@ public class SettingsWrapper {
 	 */
 	public static boolean isButtonForCommand(MouseEvent event, String command) {
 		String raw_array = retrieve(command);
+		if (raw_array.length() == 0) {
+			return false;
+		}
 		String[] parts = raw_array.split(",");
 		for (String part : parts) {
 			if (event.getModifiersEx() == Integer.parseInt(part)) {
