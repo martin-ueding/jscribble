@@ -78,6 +78,10 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			Line2D line = new Line2D.Float(e.getPoint(), e.getPoint());
 			drawPanel.drawLine(line);
 		}
+		else if (e.getModifiers() == MouseEvent.BUTTON3_MASK) {
+			Line2D line = new Line2D.Float(e.getPoint(), e.getPoint());
+			drawPanel.eraseLine(line);
+		}
 	}
 
 	/**
