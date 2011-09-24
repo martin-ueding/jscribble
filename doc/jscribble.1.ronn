@@ -1,3 +1,11 @@
+jscribble(1) -- infinite notepad
+================================
+
+## SYNOPSIS
+
+`jscribble` [-v]
+
+## DESCRIPTION
 `jscribble` is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
@@ -15,3 +23,119 @@ to use the whole screen for taking notes.
 Another focus was set to avoid any mouse navigation. All you can do with your
 mouse (or pen) is draw, therefore you cannot click anything accidentally.
 Navigation is done with the keyboard.
+
+## OPTIONS
+
+* `-v`:
+  Verbose Mode.
+
+## CONFIG FILE
+
+jscribble supports a user config file that overrides values from the default
+config file.
+
+Create a file called *config.properties* in the *.jscribble* directory in your home directory. Then insert key-value pairs `key=value` in each line.
+
+### Value Types
+
+* String Type:
+  A string which will get parsed in some way.
+
+* Integer Type:
+  A number.
+
+* Color Type:
+  A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
+
+* Float Type:
+  A decimal number.
+
+* Keyboard Char and Code Type:
+  A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
+
+* Mouse Mask Type:
+  A comma separated list of mouse down masks.
+
+### Example Config
+
+	# example config file for jscribble
+	memory_usage_show=true
+	rule_line_spacing=20
+
+### Available Keys
+
+* `program_name`: jscribble
+* `date_format`: yyyy-MM-dd HH:mm:ss
+* `user_config_filename`: config.properties
+
+* `default_height`: 600
+* `default_width`: 1024
+
+* `draw_stroke_width`: 1
+* `erase_stroke_width`: 8
+* `background_color`: FFFFFF
+* `foreground_color`: 000000
+
+* `show_scroll_panels`: false
+* `scroll_panel_padding`: 5
+* `scroll_panel_width`: 20
+* `scroll_panel_color`: 64000000
+
+* `ruling_line_spacing`: 40
+* `ruling_line_color`: 646464
+
+* `help_screen_vspacing`: 30
+* `help_screen_spacing`: 250
+* `help_screen_padding`: 70
+* `help_screen_background_color`: C8000000
+* `help_screen_margin`: 50
+* `help_screen_border_radius`: 20
+
+* `help_splash_background_color`: 64000000
+* `help_splash_margin`: 15
+* `help_splash_height`: 50
+* `help_splash_border_radius`: 20
+
+* `onion_info_position_top`: 15
+* `onion_info_position_left`: 10
+* `onion_mode_opacity`: 0.8
+
+* `page_number_position_top`: 15
+
+* `notebook_cache_width`: 10
+* `notebook_name_validation_pattern`: [A-Za-z0-9-_]+
+
+* `notebook_selection_window_width`: 400
+* `notebook_selection_window_height`: 300
+
+* `memory_usage_show`: false
+* `memory_usage_position_left`: 10
+* `memory_usage_position_bottom`: 10
+
+* `key_onion_layer_decrease`: -
+* `key_onion_layer_increase`: +
+* `key_toggle_graph_ruling`: g
+* `key_toggle_help`: h,112
+* `key_toggle_ruling`: r
+* `key_go_back`: k,38,37,8
+* `key_go_forward`: j,40,39,32,10
+* `key_goto_first`: f,36
+* `key_goto_last`: l,35
+* `key_help_close`: 27
+
+* `mouse_button_paint`: 0,1024
+* `mouse_button_erase`: 256,4096
+* `mouse_button_go_forward`: 512
+* `mouse_button_go_back: `
+
+## AUTHOR
+
+Martin Ueding <dev@martin-ueding.de>
+
+## COPYRIGHT
+
+Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+## SEE ALSO
+
+xournal(1)
