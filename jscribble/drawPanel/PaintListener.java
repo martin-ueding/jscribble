@@ -60,8 +60,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * in the mouse only mode. Erases on single right click.
 	 */
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		int x = e.getX();
+	public void mouseClicked(MouseEvent event) {
+		int x = event.getX();
 
 		if (SettingsWrapper.getBoolean("show_scroll_panels")) {
 			if (x <= SettingsWrapper.getInteger("scroll_panel_width")) {
@@ -75,12 +75,12 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			}
 		}
 
-		if (e.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			Line2D line = new Line2D.Float(e.getPoint(), e.getPoint());
+		if (event.getModifiers() == MouseEvent.BUTTON1_MASK) {
+			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (e.getModifiers() == MouseEvent.BUTTON3_MASK) {
-			Line2D line = new Line2D.Float(e.getPoint(), e.getPoint());
+		else if (event.getModifiers() == MouseEvent.BUTTON3_MASK) {
+			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.eraseLine(line);
 		}
 	}
@@ -88,17 +88,17 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	/**
 	 * Tells the NoteBook to draw a line on it.
 	 */
-	public void mouseDragged(MouseEvent arg0) {
-		if (arg0.getModifiers() == MouseEvent.BUTTON1_MASK) {
-			Line2D line = new Line2D.Float(lastPosition, arg0.getPoint());
+	public void mouseDragged(MouseEvent event) {
+		if (event.getModifiers() == MouseEvent.BUTTON1_MASK) {
+			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (arg0.getModifiers() == MouseEvent.BUTTON3_MASK) {
-			Line2D line = new Line2D.Float(lastPosition, arg0.getPoint());
+		else if (event.getModifiers() == MouseEvent.BUTTON3_MASK) {
+			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.eraseLine(line);
 		}
 
-		lastPosition = arg0.getPoint();
+		lastPosition = event.getPoint();
 	}
 
 	/**
