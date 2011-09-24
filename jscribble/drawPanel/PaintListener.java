@@ -105,31 +105,31 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * Ignored.
 	 */
 	@Override
-	public void mouseEntered(MouseEvent e) { }
+	public void mouseEntered(MouseEvent ignored) { }
 
 	/**
 	 * Ignored.
 	 */
 	@Override
-	public void mouseExited(MouseEvent e) { }
+	public void mouseExited(MouseEvent ignored) { }
 
 	/**
 	 * Sets last mouse position so that the next line is not drawn across the
 	 * screen.
 	 */
-	public void mouseMoved(MouseEvent arg0) {
-		lastPosition = arg0.getPoint();
+	public void mouseMoved(MouseEvent event) {
+		lastPosition = event.getPoint();
 	}
 
 	/**
 	 * Ignored.
 	 */
 	@Override
-	public void mousePressed(MouseEvent e) { }
+	public void mousePressed(MouseEvent ignored) { }
 
 	/**
 	 * Ignored.
 	 */
 	@Override
-	public void mouseReleased(MouseEvent e) { }
+	public void mouseReleased(MouseEvent ignored) { }
 }
