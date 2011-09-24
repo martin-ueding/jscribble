@@ -44,29 +44,31 @@ jscribble supports a user config file that overrides values from the default
 config file.
 
 Create a file called *config.properties* in the *.jscribble* directory in your
-home directory. Then insert key-value pairs `key=value` in each line.
+home directory. Then insert key-value pairs with an equal sign in each line.
+
+The format is the standard Java Properties format.
 
 ### Value Types
 
-* String Type:
+* **String**:
   A string which will get parsed in some way.
 
-* Integer Type:
+* **Integer**:
   A number, often sizes measured in pixels.
 
-* Color Type:
+* **Color**:
   A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
 
-* Float Type:
+* **Float**:
   A decimal number.
 
-* Keyboard Char and Code Type:
+* **Keyboard Char or Code**:
   A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
 
-* Mouse Mask Type:
+* **Mouse Mask**:
   A comma separated list of mouse down masks.
 
-* Boolean Type:
+* **Boolean**:
   `true` or `false`.
 
 ### Example Config
@@ -274,12 +276,16 @@ In case you want to build all the documentations, you might want to install thes
 * **junit**:
   Unit tests for Java.
 
-If you care for the git repository, please let me know.
-
 ## BUGS
 
 Please report bugs in English or German via email to me. Include the version
 number which is displayed at the bottom of the help screen within the program.
+
+## CONTRIBUTING
+
+If you like, you can send patches from the latest source checkout. Please
+include which version you based on, so that I can merge. If you care for the
+git repository, please let me know.
 
 ## AUTHOR
 
