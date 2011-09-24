@@ -1,6 +1,3 @@
-About
-=====
-
 `jscribble` is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
@@ -18,11 +15,3 @@ to use the whole screen for taking notes.
 Another focus was set to avoid any mouse navigation. All you can do with your
 mouse (or pen) is draw, therefore you cannot click anything accidentally.
 Navigation is done with the keyboard.
-
-
-Controls
-========
-
-You can flip the pages with the arrow keys, down and right advance a page, up
-and left go one page back. Go to the first and last page with `f` and `l` keys,
-respectively.
