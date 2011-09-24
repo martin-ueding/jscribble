@@ -42,7 +42,7 @@ Create a file called *config.properties* in the *.jscribble* directory in your h
   A string which will get parsed in some way.
 
 * Integer Type:
-  A number.
+  A number, often sizes measured in pixels.
 
 * Color Type:
   A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
@@ -199,7 +199,7 @@ The value in parentheses is the default value.
   Color
   (646464)
 * `ruling_line_spacing`:
-  Integer
+  Integer, spacing between the lines or squares.
   (40)
 * `ruling_toggle_key`:
   Key
