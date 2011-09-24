@@ -7,76 +7,76 @@ v1.5.1
 v1.5
 	* Support for any screen size.
 v1.4
-	* Added ruling and graph paper.
-	* Added splash screen for help.
+	* Add ruling and graph paper.
+	* Add splash screen for help.
 v1.3.1
-	* Fixed sorting of notebooks.
+	* Fix sorting of notebooks.
 v1.3
-	* Added eraser on right click.
-	- Sorting notebooks in the selection window.
+	* Add eraser on right click.
+	- Sort notebooks in the selection window.
 v1.2.2
 	* Multiple layers in onion mode.
-	- Added window icon in notebook view too.
+	- Add window icon in notebook view too.
 v1.2.1
-	* Using git describe version number.
+	* Use git describe version number.
 v1.2
-	* Added onion layer mode.
+	* Add onion layer mode.
 v1.1.1
-	* Added "make install" target.
+	* Add "make install" target.
 v1.1
-	* Added German localization.
-	* Added scroll panels for touch only devices.
-	* Using a config file.
-	- Added -v flag to activate log messages.
-	- Added logo to main window.
-	- Added simple man page.
-	- Deleting the temporary files after the programs exists.
-	- Disallowing to resize the window.
-	- Fixed null pointer exception when clicking cancel on new dialog.
-	- Fixed temp file permissions.
+	* Add German localization.
+	* Add scroll panels for touch only devices.
+	* Use a config file.
+	- Add -v flag to activate log messages.
+	- Add logo to main window.
+	- Add simple man page.
+	- Delete the temporary files after the programs exists.
+	- Disallow to resize the window.
+	- Fix null pointer exception when clicking cancel on new dialog.
+	- Fix temp file permissions.
 v1.0.1
-	* Added desktop entry.
-	* Added launcher script
-	* Added logo for the program.
+	* Add desktop entry.
+	* Add launcher script
+	* Add logo for the program.
 v1.0
 	* Do not close application after closing notebook.
-	* Drastically simplified file structure, tests are still buggy.
-	* Opening notebook on double click.
-	* Saving all notebooks that are opened when closing the opening dialog.
-	- Added version flag to CLI.
+	* Drastically simplify file structure, tests are still buggy.
+	* Open notebook on double click.
+	* Save all notebooks that are opened when closing the opening dialog.
+	- Add version flag to CLI.
 	- Bug fix blank page reloading error.
-	- Fixed case where going back and forth faster than WriteoutThread could handle writing.
+	- Fix case where going back and forth faster than WriteoutThread could handle writing.
 v0.3
-	* Added default directory option.
-	* Added delete function.
-	* Added help message.
-	* Added more keys to control program.
-	* Only draw with primary mouse button.
+	* Add default directory option.
+	* Add delete function.
+	* Add help message.
+	* Add more keys to control program.
+	* Draw only with primary mouse button.
 	- Ask user when the default directory is not valid any more.
 	- Display page count in overview.
 v0.2.1
-	* Added option to write out loading and writing.
+	* Add option to write out loading and writing.
 v0.2
-	* Added "scribble" mode.
-	* Added ability to paint a single dot.
-	* Added basic lines for the background.
-	* Added basic notebook selection window.
-	* Added full screen support.
-	* Added support for notebooks in folders.
-	* Centering all new windows.
-	* Going to last page in notebook after opening it.
-	* Loading pictures in right order.
-	- Added meaningful error messages.
-	- Added memory usage display.
-	- Added scroll pane around list.
-	- Added total page number to display.
-	- Added touched/unsaved differentiation.
+	* Add "scribble" mode.
+	* Add ability to paint a single dot.
+	* Add basic lines for the background.
+	* Add basic notebook selection window.
+	* Add full screen support.
+	* Add support for notebooks in folders.
+	* Center all new windows.
+	* Go to last page in notebook after opening it.
+	* Load pictures in right order.
+	- Add meaningful error messages.
+	- Add memory usage display.
+	- Add scroll pane around list.
+	- Add total page number to display.
+	- Add touched/unsaved differentiation.
 	- Do not save empty pictures.
 	- Fancy name in the window title.
-	- Only using full screen when the display is the same size.
+	- Use full screen only when the display is the same size.
 	- Open notebook after creation.
 	- Put the swapping into a separate thread.
-	- Swapping in backwards direction as well.
-	- Using zero padding in filename for the date.
+	- Swap in backwards direction as well.
+	- Use zero padding in filename for the date.
 v0.1
 	* Initial release.
