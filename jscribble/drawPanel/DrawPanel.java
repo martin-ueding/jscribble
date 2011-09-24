@@ -307,7 +307,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private void drawScrollPanels(Graphics2D g) {
 		// Do nothing if the option is not set.
-		if (!SettingsWrapper.getBoolean("show_scroll_panels")) {
+		if (!SettingsWrapper.getBoolean("scroll_panels_show")) {
 			return;
 		}
 
@@ -372,7 +372,7 @@ public class DrawPanel extends JPanel {
 			cachedImage = new BufferedImage(getWidth(), getHeight(),
 			        BufferedImage.TYPE_BYTE_GRAY);
 			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
-			g2.setColor(SettingsWrapper.getColor("background_color"));
+			g2.setColor(SettingsWrapper.getColor("note_sheet_background_color"));
 			g2.fillRect(0, 0, getWidth(), getHeight());
 
 			// Go back as many pages as there should be onion layers.

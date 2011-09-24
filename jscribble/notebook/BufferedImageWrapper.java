@@ -49,23 +49,23 @@ public class BufferedImageWrapper {
 	 * Stroke for drawing.
 	 */
 	private Stroke drawStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("draw_stroke_width"));
+	    SettingsWrapper.getInteger("stroke_width_draw"));
 
 	/**
 	 * Stroke for erasing.
 	 */
 	private Stroke eraseStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("erase_stroke_width"));
+	    SettingsWrapper.getInteger("stroke_width_erase"));
 
 	/**
 	 * Background color.
 	 */
-	private Color background = SettingsWrapper.getColor("background_color");
+	private Color background = SettingsWrapper.getColor("note_sheet_background_color");
 
 	/**
 	 * Foreground color.
 	 */
-	private Color foreground = SettingsWrapper.getColor("foreground_color");
+	private Color foreground = SettingsWrapper.getColor("note_sheet_foreground_color");
 
 	/**
 	 * Creates a new wrapper around the given image.

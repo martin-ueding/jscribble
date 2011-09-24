@@ -237,7 +237,7 @@ public class NoteSheet {
 		        BufferedImage.TYPE_BYTE_GRAY);
 
 		graphics = getGraphics();
-		graphics.setColor(SettingsWrapper.getColor("background_color"));
+		graphics.setColor(SettingsWrapper.getColor("note_sheet_background_color"));
 		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
 
 		unsaved = false;
