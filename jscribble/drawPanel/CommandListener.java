@@ -21,6 +21,8 @@ package jscribble.drawPanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import jscribble.helpers.SettingsWrapper;
 
@@ -30,7 +32,7 @@ import jscribble.helpers.SettingsWrapper;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class CommandListener implements KeyListener {
+public class CommandListener implements KeyListener, MouseListener {
 	/**
 	 * The DrawPanel that is displaying the NoteBook.
 	 */
@@ -48,6 +50,7 @@ public class CommandListener implements KeyListener {
 	 */
 	public CommandListener(DrawPanel drawPanel) {
 		this.drawPanel = drawPanel;
+		drawPanel.addMouseListener(this);
 	}
 
 	/**
@@ -108,5 +111,50 @@ public class CommandListener implements KeyListener {
 	 */
 	@Override
 	public void keyTyped(KeyEvent ignored) {
+	}
+
+	/**
+	 * Checks for third and fourth mouse button.
+	 */
+	@Override
+	public void mouseClicked(MouseEvent event) {
+		if (SettingsWrapper.isButtonForCommand(event, "mouse_button_go_forward")) {
+			drawPanel.goForward();
+		}
+		else if (SettingsWrapper.isButtonForCommand(event, "mouse_button_go_back")) {
+			drawPanel.goBackwards();
+		}
+	}
+
+	/**
+	 * Ignored.
+	 */
+	@Override
+	public void mouseEntered(MouseEvent ignored) {
+
+	}
+
+	/**
+	 * Ignored.
+	 */
+	@Override
+	public void mouseExited(MouseEvent ignored) {
+
+	}
+
+	/**
+	 * Ignored.
+	 */
+	@Override
+	public void mousePressed(MouseEvent ignored) {
+
+	}
+
+	/**
+	 * Ignored.
+	 */
+	@Override
+	public void mouseReleased(MouseEvent ignored) {
+
 	}
 }
