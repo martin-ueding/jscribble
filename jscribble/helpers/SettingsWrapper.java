@@ -21,6 +21,7 @@ package jscribble.helpers;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -205,12 +206,24 @@ public class SettingsWrapper {
 		for (String part : parts) {
 			if (part.length() == 1) {
 				if (event.getKeyChar() == part.charAt(0)) {
-					Logger.log(SettingsWrapper.class.getClass().getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
+					Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
 					return true;
 				}
 			}
 			else if (event.getKeyCode() == Integer.parseInt(part)) {
-				Logger.log(SettingsWrapper.class.getClass().getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
+				Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean isButtonForCommand(MouseEvent event, String command) {
+		String raw_array = retrieve(command);
+		String[] parts = raw_array.split(",");
+		for (String part : parts) {
+			if (event.getModifiersEx() == Integer.parseInt(part)) {
+				Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), MouseEvent.getModifiersExText(event.getModifiersEx()), command));
 				return true;
 			}
 		}
