@@ -1,3 +1,9 @@
+v1.5.3
+	* Add Java Webstart.
+	* Create extensive manual page.
+	- Fix drawing dots (broken since v1.5.2).
+	- Allow movements with extra mouse buttons (enable in config).
+	- Add config option to disable eraser.
 v1.5.2
 	* Create more config options, e. g. mouse buttons and keyboard keys.
 	* Repaint ruling and onion layers after erasing.
