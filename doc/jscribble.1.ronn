@@ -38,6 +38,16 @@ causes trouble. It is activated by default since it is very handy.
 * `-v`:
   Verbose Mode.
 
+## DEFAULT CONTROLS
+
+To flip between the pages, you can use the arrows keys, spacebar, enter and
+backspace.
+
+When the primary mouse button is pressed, a line is drawn, the secondary mouse
+button erases.
+
+All controls are displayed in the online help screen activated by `h` or `F1`.
+
 ## CONFIG FILE
 
 jscribble supports a user config file that overrides values from the default
