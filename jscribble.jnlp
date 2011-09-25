@@ -7,6 +7,9 @@
 		<homepage href="http://martin-ueding.de/jscribble/" />
         <offline-allowed/>
     </information>
+	<security>
+		<all-permissions />
+	</security>
     <resources>
         <j2se version="1.5+" />
         <jar href="latest.php" main="true" />
