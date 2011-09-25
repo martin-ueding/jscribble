@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://martin-ueding.de/download/jscribble/" href="jscribble.jnlp">
+    <information>
+        <title>jscribble</title>
+		<description>Infinite Notepad</description>
+        <vendor>Martin Ueding</vendor>
+		<homepage href="http://martin-ueding.de/jscribble/" />
+        <offline-allowed/>
+    </information>
+    <resources>
+        <j2se version="1.5+" />
+        <jar href="latest.php" main="true" />
+    </resources>
+	<application-desc name="" main-class="jscribble.NoteBookProgram" />
+</jnlp>
