@@ -95,31 +95,31 @@ The value in parentheses is the default value.
   String, date format used for logging.
   (yyyy-MM-dd HH:mm:ss)
 * `help_screen_background_color`:
-  Color
+  Color, background color of the online help screen. This is a translucent black currently.
   (C8000000)
 * `help_screen_border_radius`:
-  Integer
+  Integer, border radius on the backdrop of the online help screen.
   (20)
 * `help_screen_close_key`:
-  Integer
+  Key, closes the online help screen.
   (27)
 * `help_screen_margin`:
-  Integer
+  Integer, margin outside the backdrop.
   (50)
 * `help_screen_padding`:
-  Integer
+  Integer, padding inside the backdrop.
   (70)
 * `help_screen_spacing`:
   Integer, spacing between left and right column of the help screen.
   (250)
 * `help_screen_toggle_key`:
-  Key
+  Key, toggles the online help screen.
   (h,112)
 * `help_screen_vspacing`:
   Integer, spacing between the rows of the help screen.
   (30)
 * `help_splash_background_color`:
-  Color
+  Color, color of the help splash. This is a very translucent black currently.
   (64000000)
 * `help_splash_border_radius`:
   Integer
@@ -137,13 +137,13 @@ The value in parentheses is the default value.
   Integer
   (10)
 * `memory_usage_show`:
-  Boolean
+  Boolean, enables the memory usage display.
   (false)
 * `notebook_background_color`:
-  Color
+  Color, color of the paper.
   (FFFFFF)
 * `notebook_cache_width`:
-  Integer
+  Integer, number of notesheets that are to be cached when moving back and forward in the notebook.
   (10)
 * `notebook_default_height`:
   Integer, height of new notebooks if the user does not use his native resolution.
@@ -164,7 +164,7 @@ The value in parentheses is the default value.
   Integer, width of the eraser. It should be way larger than the pen to make erasing easy.
   (8)
 * `notebook_foreground_color`:
-  Color
+  Color, color of the pen.
   (000000)
 * `notebook_go_back_key`:
   Key
@@ -200,10 +200,10 @@ The value in parentheses is the default value.
   Integer
   (15)
 * `onion_layer_decrease_key`:
-  Key
+  Key, removes one onion layer.
   (-)
 * `onion_layer_increase_key`:
-  Key
+  Key, adds one onion layer.
   (+)
 * `onion_mode_opacity`:
   Float, opacity of the individual onion layers. If this is set high, one can see the other layers pretty well, if one sets it low, a better separation is achieved.
@@ -218,7 +218,7 @@ The value in parentheses is the default value.
   Key
   (g)
 * `ruling_line_color`:
-  Color
+  Color, color of the ruling. It is drawn with the same opaqueness as the onion layers.
   (646464)
 * `ruling_line_spacing`:
   Integer, spacing between the lines or squares.
