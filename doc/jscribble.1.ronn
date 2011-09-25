@@ -124,6 +124,9 @@ The value in parentheses is the default value.
 * `help_splash_border_radius`:
   Integer
   (20)
+* `help_splash_enable`:
+  Boolean, enables the help splash at startup.
+  (true)
 * `help_splash_height`:
   Integer
   (50)

@@ -116,7 +116,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Whether the help splash screen is (still) displayed.
 	 */
-	private boolean showHelpSplash = true;
+	private boolean showHelpSplash = SettingsWrapper.getBoolean("help_splash_enable");
 
 	/**
 	 * Which type of ruling is used.
