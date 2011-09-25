@@ -349,7 +349,11 @@ public class DrawPanel extends JPanel {
 			getImageWrapper().eraseLine(line);
 
 			/*
-			 * The user might have erased some of the underlying ruling or onion layers. Refreshing the picture with all its layers takes too much time to do with each repaint. Schedule the picture for expiration if that did not happen yet. If it is scheduled already, keep it alive for a little longer.
+			 * The user might have erased some of the underlying ruling or
+			 * onion layers. Refreshing the picture with all its layers takes
+			 * too much time to do with each repaint. Schedule the picture for
+			 * expiration if that did not happen yet. If it is scheduled
+			 * already, keep it alive for a little longer.
 			 */
 			getInvalidationThread().keepAlive();
 		}
