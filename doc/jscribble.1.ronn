@@ -4,7 +4,9 @@
 
 `jscribble` [-v]
 
-java -jar jscribble.jar [-v]
+`java -jar jscribble.jar` [-v]
+
+`javaws http://martin-ueding.de/download/jscribble/jscribble.jnlp`
 
 ## DESCRIPTION
 
@@ -50,16 +52,12 @@ All controls are displayed in the online help screen activated by `h` or `F1`.
 
 ## INSTALLING
 
-### Windows & Mac
+Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folder or your home directory.
 
-Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folders at `C:\Program Files` or `/Applications`.
-
-### Linux
+To be always up to date, use the [webstart][web].
 
 If you use Debian or Arch Linux, you can use the package.
 
-Otherwise, you can either download the current `.jar` from the website and put
-it into your home directory or install it from source.
 
 ## CONFIG FILE
 
@@ -342,3 +340,4 @@ Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 [deb]: http://packages.debian.org/sid/jscribble
 [arc]: https://aur.archlinux.org/packages.php?ID=51337
 [ron]: http://rtomayko.github.com/ronn/
+[web]: http://martin-ueding.de/download/jscribble/jscribble.jnlp
