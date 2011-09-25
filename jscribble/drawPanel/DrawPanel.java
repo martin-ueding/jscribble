@@ -72,6 +72,7 @@ public class DrawPanel extends JPanel {
 	 */
 	private boolean showHelp = false;
 
+	// TODO Generate this list from the config file.
 	/**
 	 * A list with all the HelpItem to display.
 	 */
