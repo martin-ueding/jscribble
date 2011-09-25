@@ -81,7 +81,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
+		else if (SettingsWrapper.getBoolean("notebook_erase_enable")
+		         && SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.eraseLine(line);
 		}
@@ -95,7 +96,8 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
+		else if (SettingsWrapper.getBoolean("notebook_erase_enable")
+		         && SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.eraseLine(line);
 		}

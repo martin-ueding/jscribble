@@ -157,6 +157,9 @@ The value in parentheses is the default value.
 * `notebook_draw_stroke_width`:
   Integer, width of the pen.
   (1)
+* `notebook_erase_enable`:
+  Boolean, enables the eraser.
+  (true)
 * `notebook_erase_mouse_button`:
   Mouse
   (256,4096)
