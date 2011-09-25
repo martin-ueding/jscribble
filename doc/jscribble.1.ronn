@@ -48,6 +48,19 @@ button erases.
 
 All controls are displayed in the online help screen activated by `h` or `F1`.
 
+## INSTALLING
+
+### Windows & Mac
+
+Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folders at `C:\Program Files` or `/Applications`.
+
+### Linux
+
+If you use Debian or Arch Linux, you can use the package.
+
+Otherwise, you can either download the current `.jar` from the website and put
+it into your home directory or install it from source.
+
 ## CONFIG FILE
 
 jscribble supports a user config file that overrides values from the default
@@ -247,19 +260,6 @@ The value in parentheses is the default value.
 * `user_config_filename`:
   String, it does not make much sense to overwrite this since this property is always looked up in the default config.
   (config.properties)
-
-## INSTALLING
-
-### Windows & Mac
-
-Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folders at `C:\Program Files` or `/Applications`.
-
-### Linux
-
-If you use Debian or Arch Linux, you can use the package.
-
-Otherwise, you can either download the current `.jar` from the website and put
-it into your home directory or install it from source.
 
 ## SECURITY CONSIDERATIONS
 
