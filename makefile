@@ -14,6 +14,7 @@ all: jscribble.jar doc/jscribble.1
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class jscribble_de.properties jscribble/default_config.properties
 	find jscribble -name "*.class" -print > classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
+	rm classlist
 
 everything: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
 
