@@ -251,6 +251,11 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Draws the memory usage onto the screen.
+	 *
+	 * @param g Graphics2D to draw on
+	 */
 	private void drawMemoryUsage(Graphics2D g) {
 		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
 			return;
