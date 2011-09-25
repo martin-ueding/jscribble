@@ -156,8 +156,8 @@ public class NoteBookSelectionWindow {
 
 		try {
 			frame.setIconImage(ImageIO.read(
-			            ClassLoader.getSystemResourceAsStream(
-			                    "install_files/jscribble.png")));
+			            getClass().getResourceAsStream(
+			                    "/install_files/jscribble.png")));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -286,8 +286,8 @@ public class NoteBookSelectionWindow {
 
 		try {
 			f.setIconImage(ImageIO.read(
-			            ClassLoader.getSystemResourceAsStream(
-			                    "install_files/jscribble.png")));
+			            getClass().getResourceAsStream(
+			                    "/install_files/jscribble.png")));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
