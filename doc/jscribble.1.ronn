@@ -312,6 +312,10 @@ To build the javadoc and doxygen output, use this:
 
 	make everything
 
+To run all tests:
+
+	make test
+
 ## BUGS
 
 Please report bugs in English or German via email to me. Include the version
