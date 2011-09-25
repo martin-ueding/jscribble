@@ -5,7 +5,7 @@ classfiles=$(javafiles:.java=.class)
 
 javac=javac -encoding UTF-8
 
-version=1.5.2
+version=1.5.3
 
 ronn=/var/lib/gems/1.8/bin/ronn
 
