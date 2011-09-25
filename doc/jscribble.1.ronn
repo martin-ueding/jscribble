@@ -232,6 +232,19 @@ The value in parentheses is the default value.
   String, it does not make much sense to overwrite this since this property is always looked up in the default config.
   (config.properties)
 
+## INSTALLING
+
+### Windows & Mac
+
+Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folders at `C:\Program Files` or `/Applications`.
+
+### Linux
+
+If you use Debian or Arch Linux, you can use the package.
+
+Otherwise, you can either download the current `.jar` from the website and put
+it into your home directory or install it from source.
+
 ## SECURITY CONSIDERATIONS
 
 Named notebooks are saved in a folder in the user's home directory. Notebooks
@@ -251,9 +264,10 @@ This program is featured in [Debian][deb] and [Arch Linux][arc] so far.
 You can obtain a tarball with the latest source code from the [jscribble
 website][jsc].
 
-If everything is installed, you should be able to compile and install with this:
+If the minimum set is installed, you should be able to compile and install with
+this:
 
-	make
+	make jscribble.jar
 	make install	# as root
 
 The following software is needed to compile this program:
@@ -264,17 +278,25 @@ The following software is needed to compile this program:
   Java compiler.
 * **xgettext**, **msgfmt**:
   Parses source code for translation calls and converts translation file into the Java property format.
-* **ronn**:
-  Converts markdown into html and manual page. Get it [here][ron].
 
-In case you want to build all the documentations, you might want to install these as well:
+In case you want to build all the documentation, you might want to install these as well:
 
 * **doxygen**:
   A HTML and LaTeX documentation generator for various languages.
 * **javadoc**:
-  This should be included with the Java Development Kit.
+  A HTML documentation generator for Java. This should be included with the Java Development Kit.
 * **junit**:
-  Unit tests for Java.
+  Unit test runner for Java.
+* **ronn**:
+  Converts markdown into html and manual page. Get it [here][ron].
+
+Then you can call this to compile the binary and the manual page:
+
+	make
+
+To build the javadoc and doxygen output, use this:
+
+	make everything
 
 ## BUGS
 
