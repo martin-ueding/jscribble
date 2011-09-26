@@ -61,7 +61,7 @@ install: jscribble.jar
 	install install_files/jscribble "$(DESTDIR)/usr/bin/"
 
 doc/jscribble.1: doc/jscribble.1.ronn
-	$(ronn) $^ --style=toc --manual=jscribble
+	ronn $^ --style=toc --manual=jscribble
 
 clean:
 	$(RM) *.mo
