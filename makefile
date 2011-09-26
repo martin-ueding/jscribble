@@ -46,8 +46,8 @@ test:
 tarball=jscribble_$(version).tar.gz
 fullname=jscribble-$(version)
 
-tarball: $(tarball) doc/jscribble.1 CHANGELOG .git/HEAD
-$(tarball):
+tarball: $(tarball)
+$(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
 	$(RM) -f $@
 	git archive --prefix=$(fullname)/ HEAD > $(basename $@ .gz)
 	tar -cf surrogates.tar doc/jscribble.1 CHANGELOG
