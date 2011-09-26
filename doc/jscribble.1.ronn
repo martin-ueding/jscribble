@@ -301,6 +301,9 @@ In case you want to build all the documentation, you might want to install these
   A HTML documentation generator for Java. This should be included with the Java Development Kit.
 * **junit**:
   Unit test runner for Java.
+
+This manual is written in the ronn-format, the tarball already contains the converted output to lighten the build dependencies. In case you want to convert the ronn-format manual page, you need ronn as well.
+
 * **ronn**:
   Converts markdown into html and manual page. Get it [here][ron].
 
@@ -310,7 +313,7 @@ Then you can call this to compile the binary and the manual page:
 
 To build the javadoc and doxygen output, use this:
 
-	make everything
+	make all
 
 To run all tests:
 
