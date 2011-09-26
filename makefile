@@ -55,6 +55,9 @@ $(tarball):
 	$(RM) surrogates.tar
 	gzip $(basename $@ .gz)
 
+CHANGELOG: .git/HEAD
+	git-changelog > CHANGELOG
+
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
 	install jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
