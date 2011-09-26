@@ -64,7 +64,6 @@ msgid "h, F1, <Esc>"
 msgstr ""
 
 #: jscribble/drawPanel/DrawPanel.java:81
-#, fuzzy
 msgid "hide help"
 msgstr "verstecke Hilfe"
 
@@ -161,7 +160,6 @@ msgid "Page %d/%d"
 msgstr "Seite %d/%d"
 
 #: jscribble/drawPanel/DrawPanel.java:336
-#, fuzzy
 msgid "Malformed entry in config file."
 msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
