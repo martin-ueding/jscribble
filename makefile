@@ -7,16 +7,12 @@ javac=javac -encoding UTF-8
 
 version=1.5.3
 
-ronn=/var/lib/gems/1.8/bin/ronn
-
-all: jscribble.jar doc/jscribble.1
-
 jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class jscribble_de.properties jscribble/default_config.properties
 	find jscribble -name "*.class" -print > classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
 	rm classlist
 
-everything: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot
+all: jscribble.jar javadoc/.javadoc html/.doxygen jscribble.pot doc/jscribble.1
 
 jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
@@ -74,7 +70,6 @@ clean:
 	$(RM) .testrun
 	$(RM) classlist
 	$(RM) de.po~
-	$(RM) doc/jscribble.1
 	$(RM) doc/jscribble.1.html
 	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
