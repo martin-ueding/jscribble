@@ -46,9 +46,14 @@ test:
 tarball=jscribble_$(version).tar.gz
 fullname=jscribble-$(version)
 
-tarball: $(tarball)
+tarball: $(tarball) doc/jscribble.1 CHANGELOG .git/HEAD
 $(tarball):
-	git archive --prefix=$(fullname)/ HEAD | gzip > $@
+	$(RM) -f $@
+	git archive --prefix=$(fullname)/ HEAD > $(basename $@ .gz)
+	tar -cf surrogates.tar doc/jscribble.1 CHANGELOG
+	tar -Af $(basename $@ .gz) surrogates.tar
+	$(RM) surrogates.tar
+	gzip $(basename $@ .gz)
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
