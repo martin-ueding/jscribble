@@ -102,162 +102,30 @@ The format is the standard Java Properties format.
 
 The value in parentheses is the default value.
 
-* `date_format`:
-  String, date format used for logging.
-  (yyyy-MM-dd HH:mm:ss)
-* `help_screen_background_color`:
-  Color, background color of the online help screen. This is a translucent black currently.
-  (C8000000)
-* `help_screen_border_radius`:
-  Integer, border radius on the backdrop of the online help screen.
-  (20)
-* `help_screen_close_key`:
-  Key, closes the online help screen.
-  (27)
-* `help_screen_margin`:
-  Integer, margin outside the backdrop.
-  (50)
-* `help_screen_padding`:
-  Integer, padding inside the backdrop.
-  (70)
-* `help_screen_spacing`:
-  Integer, spacing between left and right column of the help screen.
-  (250)
-* `help_screen_toggle_key`:
-  Key, toggles the online help screen.
-  (h,112)
-* `help_screen_vspacing`:
-  Integer, spacing between the rows of the help screen.
-  (30)
-* `help_splash_background_color`:
-  Color, color of the help splash. This is a very translucent black currently.
-  (64000000)
-* `help_splash_border_radius`:
-  Integer
-  (20)
-* `help_splash_enable`:
-  Boolean, enables the help splash at startup.
-  (true)
-* `help_splash_height`:
-  Integer
-  (50)
-* `help_splash_margin`:
-  Integer
-  (15)
-* `memory_usage_position_bottom`:
-  Integer
-  (10)
-* `memory_usage_position_left`:
-  Integer
-  (10)
-* `memory_usage_show`:
-  Boolean, enables the memory usage display.
-  (false)
-* `notebook_background_color`:
-  Color, color of the paper.
-  (FFFFFF)
-* `notebook_cache_width`:
-  Integer, number of notesheets that are to be cached when moving back and forward in the notebook.
-  (10)
-* `notebook_default_height`:
-  Integer, height of new notebooks if the user does not use his native resolution.
-  (600)
-* `notebook_default_width`:
-  Integer, width of new notebooks if the user does not use his native resolution.
-  (1024)
-* `notebook_draw_mouse_button`:
-  Integer
-  (0,1024)
-* `notebook_draw_stroke_width`:
-  Integer, width of the pen.
-  (1)
-* `notebook_erase_enable`:
-  Boolean, enables the eraser.
-  (true)
-* `notebook_erase_mouse_button`:
-  Mouse
-  (256,4096)
-* `notebook_erase_stroke_width`:
-  Integer, width of the eraser. It should be way larger than the pen to make erasing easy.
-  (8)
-* `notebook_foreground_color`:
-  Color, color of the pen.
-  (000000)
-* `notebook_go_back_key`:
-  Key
-  (k,38,37,8)
-* `notebook_go_back_mouse_button`:
-  Mouse
-  ()
-* `notebook_go_forward_key`:
-  Key
-  (j,40,39,32,10)
-* `notebook_go_forward_mouse_button`:
-  Mouse
-  ()
-* `notebook_goto_first_key`:
-  Key
-  (f,36)
-* `notebook_goto_last_key`:
-  Key
-  (l,35)
-* `notebook_name_validation_pattern`:
-  String, the name of every new notebook is validated against this. This prevents anything cumbersome in file names.
-  ([A-Za-z0-9-_]+)
-* `notebook_selection_window_height`:
-  Integer
-  (300)
-* `notebook_selection_window_width`:
-  Integer
-  (400)
-* `onion_info_position_left`:
-  Integer
-  (10)
-* `onion_info_position_top`:
-  Integer
-  (15)
-* `onion_layer_decrease_key`:
-  Key, removes one onion layer.
-  (-)
-* `onion_layer_increase_key`:
-  Key, adds one onion layer.
-  (+)
-* `onion_mode_opacity`:
-  Float, opacity of the individual onion layers. If this is set high, one can see the other layers pretty well, if one sets it low, a better separation is achieved.
-  (0.8)
-* `page_number_position_top`:
-  Integer
-  (15)
-* `program_name`:
-  String, the name is used for the settings directory. If this is changed, all previously made notebooks are still on the disk, but cannot be accessed through the program any more.
-  (jscribble)
-* `ruling_graph_toggle_key`:
-  Key
-  (g)
-* `ruling_line_color`:
-  Color, color of the ruling. It is drawn with the same opaqueness as the onion layers.
-  (646464)
-* `ruling_line_spacing`:
-  Integer, spacing between the lines or squares.
-  (40)
-* `ruling_toggle_key`:
-  Key
-  (r)
-* `scroll_panel_color`:
-  Color
-  (64000000)
-* `scroll_panel_padding`:
-  Integer
-  (5)
-* `scroll_panel_width`:
-  Integer
-  (20)
-* `scroll_panels_show`:
-  Boolean, enables panels at the side of the screen to navigate without a keyboard. Useful for tablet computers.
-  (false)
-* `user_config_filename`:
-  String, it does not make much sense to overwrite this since this property is always looked up in the default config.
-  (config.properties)
+<?php
+/*
+ * Parse the default config file and insert the comments and default value
+ * here. */
+
+$config_file = '../jscribble/default_config.properties';
+if (!file_exists($config_file)) {
+	die('Could not find default config.');
+}
+
+$lines = file($config_file);
+
+for ($i = 2; $i < count($lines)-1; $i+=2) {
+	$comment = trim(substr($lines[$i], 2));
+	$key_value = trim($lines[$i+1]);
+	$key_value_array = explode('=', $key_value);
+	$key = $key_value_array[0];
+	$value = $key_value_array[1];
+
+	echo "* `$key`:\n";
+	echo "  $comment\n";
+	echo "  ($value)\n";
+}
+?>
 
 ## SECURITY CONSIDERATIONS
 
