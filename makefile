@@ -13,12 +13,13 @@ classfiles:=$(javafiles:.java=.class)
 javac:=javac -encoding UTF-8
 
 # Current version of the program.
+name=jscribble
 version:=1.5.3
 
 # Output file names.
-tarball:=jscribble_$(version).tar.gz
-foldername:=jscribble-$(version)
-signedjar:=jscribble_$(version).jar
+tarball:=$(name)_$(version).tar.gz
+foldername:=$(name)-$(version)
+signedjar:=$(name)_$(version).jar
 
 ###########################################################################
 #                              Named Targets                              #
