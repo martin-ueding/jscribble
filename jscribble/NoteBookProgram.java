@@ -24,6 +24,7 @@ import java.io.File;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.ShutdownHook;
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**
@@ -36,6 +37,8 @@ public class NoteBookProgram {
 	 * The folder where everything is stored.
 	 */
 	private static File dotDir;
+
+	private static ShutdownHook sh;
 
 	/**
 	 * Getter for dotDir.
@@ -76,6 +79,10 @@ public class NoteBookProgram {
 
 		Logger.log(NoteBookProgram.class.getClass().getName(),
 		           Localizer.get("Entering interactive mode."));
+
+		sh = new ShutdownHook();
+
+		Runtime.getRuntime().addShutdownHook(sh);
 	}
 
 	/**

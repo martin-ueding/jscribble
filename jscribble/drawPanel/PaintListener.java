@@ -27,7 +27,6 @@ import java.awt.geom.Line2D;
 
 import jscribble.helpers.SettingsWrapper;
 
-
 /**
  * Listens to mouse movements on the displaying panel and updates the NoteBook.
  *
