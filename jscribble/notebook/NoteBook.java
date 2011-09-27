@@ -446,7 +446,6 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {
-		// TODO save everything no matter how the application is exited
 		Logger.log(getClass().getName(), Localizer.get(
 		        "Starting to write out image files."));
 		for (NoteSheet s : sheets) {
