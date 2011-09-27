@@ -20,7 +20,9 @@ fullname:=jscribble-$(version)
 #                              Named Targets                              #
 ###########################################################################
 
-all: jscribble.jar jscribble.pot
+all: jscribble.jar
+
+i18n: jscribble.pot
 
 doc: doc/jscribble.1
 
