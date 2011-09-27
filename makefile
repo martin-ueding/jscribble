@@ -33,21 +33,14 @@ test: $(classfiles)
 	bash run_tests.sh
 
 clean:
-	$(RM) *.jar
-	$(RM) *.mo
-	$(RM) -r html
-	$(RM) -r javadoc
+	$(RM) *.jar jscribble_*.*.tar.gz
+	$(RM) *.mo jscribble_*.properties de.po~
+	$(RM) -r html javadoc
 	$(RM) .testrun
-	$(RM) classlist
-	$(RM) de.po~
 	$(RM) doc/jscribble.1.html
-	$(RM) jscribble.jar.asc
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
-	$(RM) jscribble_*.*.tar.gz
-	$(RM) jscribble_*.properties
-	find . -name "*.class" -delete
-	find . -name "*.orig" -delete
+	$(RM) $(classfiles)
 
 install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
