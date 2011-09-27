@@ -67,6 +67,9 @@ install: jscribble.jar
 doc/jscribble.1: doc/jscribble.1.ronn
 	ronn $^ --style=toc --manual=jscribble
 
+doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properties
+	php $^ > $@
+
 clean:
 	$(RM) *.mo
 	$(RM) -r html
