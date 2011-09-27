@@ -9,7 +9,7 @@ version:=1.5.3
 
 # TODO add target for signed jar
 
-jscribble.jar: jscribble/VersionName.java $(classfiles) jscribble_de.properties jscribble/default_config.properties
+jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties
 	find jscribble -name "*.class" -print > classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
 	rm classlist
