@@ -3,7 +3,7 @@
 jscribble.1: jscribble.1.ronn
 	ronn $^
 
-jscribble.1.ronn: jscribble.1.ronn.php
+jscribble.1.ronn: jscribble.1.ronn.php ../jscribble/default_config.properties
 	php $^ > $@
 
 .PHONY: clean
