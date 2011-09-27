@@ -19,6 +19,8 @@
 
 package jscribble.drawPanel;
 
+import java.awt.event.KeyEvent;
+
 /**
  * A container for a key and help text.
  *
@@ -38,8 +40,23 @@ class HelpItem {
 	/**
 	 * Generates a new HelpItem.
 	 */
-	public HelpItem(String key, String helptext) {
-		this.key = key;
+	public HelpItem(String keys, String helptext) {
 		this.helptext = helptext;
+		
+		String[] parts = keys.split(",");
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < parts.length; i++) {
+			String part = parts[i];
+			if (i > 0) {
+				sb.append(", ");
+			}
+			if (part.length() == 1) {
+				sb.append(part.toUpperCase());
+			}
+			else {
+				sb.append(KeyEvent.getKeyText(Integer.parseInt(part)));
+			}
+		}
+		this.key = sb.toString();
 	}
 }

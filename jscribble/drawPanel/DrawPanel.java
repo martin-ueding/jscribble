@@ -73,29 +73,53 @@ public class DrawPanel extends JPanel {
 	 */
 	private boolean showHelp = false;
 
-	// TODO Generate this list from the config file.
 	/**
 	 * A list with all the HelpItem to display.
 	 */
 	private HelpItem[] helpItems = {
-		new HelpItem(Localizer.get("h, F1"), Localizer.get("show help")),
-		new HelpItem(Localizer.get("h, F1, <Esc>"),
-		Localizer.get("hide help")),
 		new HelpItem(
-		    Localizer.get("j, <Space>, <Enter>, <DownArrow>, <RightArrow>"),
-		    Localizer.get("go forward")),
-		new HelpItem(Localizer.get("k, <Backspace>, <UpArrow>, <LeftArrow>"),
-		Localizer.get("go backward")),
-		new HelpItem(Localizer.get("f, <Pos1>"), Localizer.get("goto first")),
-		new HelpItem(Localizer.get("l, <End>"), Localizer.get("goto last")),
-		new HelpItem(Localizer.get("<Alt-F4> / <CMD-Q>"),
-		Localizer.get("save & exit")),
-		new HelpItem(Localizer.get("+"),
-		Localizer.get("increase onion layers")),
-		new HelpItem(Localizer.get("-"),
-		Localizer.get("decrease onion layers")),
-		new HelpItem(Localizer.get("r"), Localizer.get("toggle ruling")),
-		new HelpItem(Localizer.get("g"), Localizer.get("toggle graph paper")),
+		    SettingsWrapper.getString("help_screen_toggle_key"),
+		    Localizer.get("show help")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("help_screen_close_key"),
+		    Localizer.get("hide help")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("notebook_go_forward_key"),
+		    Localizer.get("go forward")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("notebook_go_back_key"),
+		    Localizer.get("go backward")),
+		new HelpItem(
+		    SettingsWrapper.getString("notebook_goto_first_key"),
+		    Localizer.get("goto first")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("notebook_goto_last_key"),
+		    Localizer.get("goto last")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("notebook_close_key"),
+		    Localizer.get("save & exit")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("onion_layer_increase_key"),
+		    Localizer.get("increase onion layers")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("onion_layer_decrease_key"),
+		    Localizer.get("decrease onion layers")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("ruling_toggle_key"),
+		    Localizer.get("toggle ruling")
+		),
+		new HelpItem(
+		    SettingsWrapper.getString("ruling_graph_toggle_key"),
+		    Localizer.get("toggle graph paper")
+		),
 	};
 
 	/**
