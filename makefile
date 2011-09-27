@@ -9,7 +9,7 @@ version:=1.5.3
 
 # TODO add target for signed jar
 
-jscribble.jar: jscribble/VersionName.java jscribble/NoteBookProgram.class jscribble_de.properties jscribble/default_config.properties
+jscribble.jar: jscribble/VersionName.java $(classfiles) jscribble_de.properties jscribble/default_config.properties
 	find jscribble -name "*.class" -print > classlist
 	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
 	rm classlist
@@ -22,8 +22,11 @@ jscribble_de.properties: de.po
 jscribble.pot: $(javafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
-jscribble/NoteBookProgram.class: $(javafiles)
-	$(javac) jscribble/NoteBookProgram.java
+jscribble/%.class: jscribble/%.java
+	$(javac) $^
+
+tests/%.class: tests/%.java
+	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $^
 
 javadoc/.javadoc: $(javafiles)
 	javadoc -d javadoc $^
@@ -37,8 +40,7 @@ html/.doxygen: $(javafiles)
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version)
 
-test:
-	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
+test: $(classfiles)
 	bash run_tests.sh
 
 tarball:=jscribble_$(version).tar.gz
