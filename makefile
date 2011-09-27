@@ -12,9 +12,7 @@ javac:=javac -encoding UTF-8
 version:=1.5.3
 
 tarball:=jscribble_$(version).tar.gz
-fullname:=jscribble-$(version)
-
-# TODO add target for signed jar
+foldername:=jscribble-$(version)
 
 ###########################################################################
 #                              Named Targets                              #
@@ -62,7 +60,7 @@ install: jscribble.jar
 
 $(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
 	$(RM) $@
-	git archive --prefix=$(fullname)/ HEAD > $(basename $@ .gz)
+	git archive --prefix=$(foldername)/ HEAD > $(basename $@ .gz)
 	tar -cf surrogates.tar doc/jscribble.1 CHANGELOG
 	tar -Af $(basename $@ .gz) surrogates.tar
 	$(RM) surrogates.tar
