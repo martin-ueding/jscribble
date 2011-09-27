@@ -1,11 +1,11 @@
 # Copyright © Martin Ueding <dev@martin-ueding.de>
 
-javafiles=$(shell find . -name "*.java")
-classfiles=$(javafiles:.java=.class)
+javafiles:=$(shell find . -name "*.java")
+classfiles:=$(javafiles:.java=.class)
 
-javac=javac -encoding UTF-8
+javac:=javac -encoding UTF-8
 
-version=1.5.3
+version:=1.5.3
 
 # TODO add target for signed jar
 
@@ -41,8 +41,8 @@ test:
 	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $(shell find tests -type f -name "*Test.java")
 	bash run_tests.sh
 
-tarball=jscribble_$(version).tar.gz
-fullname=jscribble-$(version)
+tarball:=jscribble_$(version).tar.gz
+fullname:=jscribble-$(version)
 
 tarball: $(tarball)
 $(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
