@@ -100,7 +100,6 @@ public class CommandListener implements KeyListener, MouseListener {
 		else if (SettingsWrapper.isKeyForCommand(event, "notebook_close_key")) {
 			drawPanel.shutdown();
 		}
-
 	}
 
 	/**
