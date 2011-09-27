@@ -48,7 +48,6 @@ import jscribble.drawPanel.NoteBookClosingAdapter;
 import jscribble.drawPanel.Redrawer;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.SettingsWrapper;
-import jscribble.helpers.ShutdownHook;
 import jscribble.notebook.NoteBook;
 
 /**

@@ -17,10 +17,12 @@
  * jscribble.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package jscribble.helpers;
+package jscribble.selectionWindow;
 
 import java.util.LinkedList;
 
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
 public class ShutdownHook extends Thread {
