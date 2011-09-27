@@ -103,9 +103,9 @@ The format is the standard Java Properties format.
 The value in parentheses is the default value.
 
 <?php
-/*
- * Parse the default config file and insert the comments and default value
- * here. */
+
+// Parse the default config file and insert the comments and default value
+// here.
 
 $config_file = '../jscribble/default_config.properties';
 if (!file_exists($config_file)) {
@@ -114,9 +114,38 @@ if (!file_exists($config_file)) {
 
 $lines = file($config_file);
 
-for ($i = 2; $i < count($lines)-1; $i+=2) {
-	$comment = trim(substr($lines[$i], 2));
-	$key_value = trim($lines[$i+1]);
+$i = 1;
+
+while ($i < count($lines)) {
+	// Advance until there is a comment sign in the line.
+	while ($lines[$i][0] != '#') {
+		$i++;
+	}
+
+	// Assume that all the following lines are the comment for the key-value
+	// pair that follows after that.
+
+	$comment = "";
+	while ($i < count($lines) && $lines[$i][0] == '#') {
+		$comment .= trim(substr($lines[$i], 2));
+		$i++;
+	}
+
+	// Skip over any blank lines that might be between the comment and the
+	// key-value pair.
+	while ($i < count($lines) && strlen(trim($lines[$i])) == 0) {
+		$i++;
+	}
+
+	// If the last comment was a finish commit at the end of the file, break
+	// here.
+	if ($i >= count($lines)) {
+		break;
+	}
+
+	// There should be a non-comment, non-blank line which can only be a
+	// key-value pair.
+	$key_value = trim($lines[$i]);
 	$key_value_array = explode('=', $key_value);
 	$key = $key_value_array[0];
 	$value = $key_value_array[1];
@@ -124,6 +153,8 @@ for ($i = 2; $i < count($lines)-1; $i+=2) {
 	echo "* `$key`:\n";
 	echo "  $comment\n";
 	echo "  ($value)\n";
+
+	$i++;
 }
 ?>
 
