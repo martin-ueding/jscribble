@@ -79,27 +79,22 @@ public class CommandListener implements KeyListener, MouseListener {
 			drawPanel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
-
-		if (SettingsWrapper.isKeyForCommand(event, "help_screen_toggle_key")) {
+		else if (SettingsWrapper.isKeyForCommand(event, "help_screen_toggle_key")) {
 			drawPanel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
-
-		if (SettingsWrapper.isKeyForCommand(event, "ruling_toggle_key")) {
+		else if (SettingsWrapper.isKeyForCommand(event, "ruling_toggle_key")) {
 			drawPanel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
-
-		if (SettingsWrapper.isKeyForCommand(event, "ruling_graph_toggle_key")) {
+		else if (SettingsWrapper.isKeyForCommand(event, "ruling_graph_toggle_key")) {
 			drawPanel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
-
-		if (SettingsWrapper.isKeyForCommand(event, "onion_layer_increase_key")) {
+		else if (SettingsWrapper.isKeyForCommand(event, "onion_layer_increase_key")) {
 			drawPanel.onionLayersIncrease();
 		}
-
-		if (SettingsWrapper.isKeyForCommand(event, "onion_layer_decrease_key")) {
+		else if (SettingsWrapper.isKeyForCommand(event, "onion_layer_decrease_key")) {
 			drawPanel.onionLayersDecrease();
 		}
 
