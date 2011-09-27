@@ -66,7 +66,7 @@ install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/bin"
 	install install_files/jscribble "$(DESTDIR)/usr/bin/"
 
-# Creates a jar file which contains the version name, ready for webstart
+# Creates a jar file which contains the version name, ready for Java Web Start
 # deployment.
 signed-jar: $(signedjar)
 
