@@ -33,6 +33,7 @@ test: $(classfiles)
 	bash run_tests.sh
 
 clean:
+	$(RM) *.jar
 	$(RM) *.mo
 	$(RM) -r html
 	$(RM) -r javadoc
@@ -46,7 +47,6 @@ clean:
 	$(RM) jscribble_*.*.tar.gz
 	$(RM) jscribble_*.properties
 	find . -name "*.class" -delete
-	find . -name "*.jar" -delete
 	find . -name "*.orig" -delete
 
 install: jscribble.jar
