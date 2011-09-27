@@ -20,6 +20,7 @@
 package tests.jscribble.notebook;
 
 import java.awt.Dimension;
+
 import java.awt.geom.Line2D;
 import java.io.File;
 import java.util.UUID;
@@ -29,6 +30,11 @@ import jscribble.notebook.NoteBook;
 import jscribble.notebook.NoteSheet;
 import junit.framework.TestCase;
 
+/**
+ * Exercises the NoteBook.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class NoteBookTest extends TestCase {
 	public NoteBookTest() {
 		super();

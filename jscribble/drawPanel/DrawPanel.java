@@ -148,17 +148,27 @@ public class DrawPanel extends JPanel {
 	 */
 	private RulingType ruling = RulingType.NONE;
 
+	/**
+	 * Runtime to obtain memory usage.
+	 */
 	private Runtime r;
 
+	/**
+	 * Thread that handles redrawing after the erasing stops.
+	 */
 	private InvalidationThread invalidationThread;
 
+	/**
+	 * Parent frame that needs to be closed when the user hits the close button.
+	 */
 	private JFrame parent;
 
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
 	 *
-	 * @param notebook the NoteBook to display
+	 * @param notebook The NoteBook to display.
+	 * @param parent Window to close when NoteBook is closed.
 	 */
 	public DrawPanel(NoteBook notebook, JFrame parent) {
 		this.notebook = notebook;
@@ -589,6 +599,14 @@ public class DrawPanel extends JPanel {
 	}
 
 	/**
+	 * Saves the NoteBook and closes the window.
+	 */
+	public void shutdown() {
+		notebook.saveToFiles();
+		parent.setVisible(false);
+	}
+
+	/**
 	 * Toggles the display of graph ruling.
 	 */
 	public void toggleGraphRuling() {
@@ -610,10 +628,5 @@ public class DrawPanel extends JPanel {
 	public void toggleRuling() {
 		ruling = ruling == RulingType.LINE ? RulingType.NONE : RulingType.LINE;
 		resetCachedImage();
-	}
-
-	public void shutdown() {
-		notebook.saveToFiles();
-		parent.setVisible(false);
 	}
 }

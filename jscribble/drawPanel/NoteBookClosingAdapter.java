@@ -28,6 +28,11 @@ import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
+/**
+ * Closes a given NoteBook when its DrawPanel is closed.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class NoteBookClosingAdapter extends WindowAdapter {
 	private final NoteBook notebook;
 	private final JFrame f;

@@ -27,6 +27,11 @@ import jscribble.notebook.writeoutThread.ImageSwapTask;
 import jscribble.notebook.writeoutThread.WriteoutThread;
 import junit.framework.TestCase;
 
+/**
+ * Exercises the WriteoutThread.
+ * 
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class WriteoutThreadTest extends TestCase {
 	public WriteoutThreadTest() {
 		super();
