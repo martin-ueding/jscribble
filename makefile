@@ -13,6 +13,7 @@ version:=1.5.3
 
 tarball:=jscribble_$(version).tar.gz
 foldername:=jscribble-$(version)
+signedjar:=jscribble_$(version).jar
 
 ###########################################################################
 #                              Named Targets                              #
@@ -54,9 +55,15 @@ install: jscribble.jar
 	mkdir -p "$(DESTDIR)/usr/bin"
 	install install_files/jscribble "$(DESTDIR)/usr/bin/"
 
+signed-jar: $(signedjar)
+
 ###########################################################################
 #                             Explicit Rules                              #
 ###########################################################################
+
+$(signedjar): jscribble.jar
+	jarsigner $< mu
+	cp $< $@
 
 $(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
 	$(RM) $@
