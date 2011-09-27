@@ -75,11 +75,8 @@ doc/jscribble.1: doc/jscribble.1.ronn
 doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properties
 	php $^ > $@
 
-# TODO Use $classfiles for jar?
-jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties
-	find jscribble -name "*.class" -print > classlist
-	jar -cfm $@ manifest.txt @classlist install_files/jscribble.png *.properties jscribble/default_config.properties
-	rm classlist
+jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties install_files/jscribble.png
+	jar -cfm $@ manifest.txt $^
 
 jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
