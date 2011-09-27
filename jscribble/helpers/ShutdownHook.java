@@ -19,8 +19,43 @@
 
 package jscribble.helpers;
 
+import java.util.LinkedList;
+
+import jscribble.notebook.NoteBook;
+
 public class ShutdownHook extends Thread {
+	/**
+	 * All opened NoteBook.
+	 */
+	private LinkedList<NoteBook> openedNotebooks;
+
+	/**
+	 * Hooks a new adapter to the closing.
+	 *
+	 * @param openedNotebooks List with opened NoteBook
+	 * @param frame Frame to close.
+	 */
+	public ShutdownHook() {
+		super();
+
+		openedNotebooks = new LinkedList<NoteBook>();
+	}
+
 	public void run() {
-		System.out.println(Localizer.get("Caught interrupt, shutting down …"));
+		Logger.log(getClass().getName(), Localizer.get("Shutting down …"));
+
+
+		for (NoteBook notebook : openedNotebooks) {
+			notebook.saveToFiles();
+			Logger.log(getClass().getName(),
+			           String.format(Localizer.get("Closing NoteBook \"%s\"."),
+			                   notebook.getName()));
+		}
+
+		Logger.log(getClass().getName(), Localizer.get("Everything saved properly. Thanks for waiting!"));
+	}
+
+	public void add(NoteBook notebook) {
+		openedNotebooks.add(notebook);
 	}
 }

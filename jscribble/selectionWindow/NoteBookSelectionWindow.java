@@ -48,6 +48,7 @@ import jscribble.drawPanel.NoteBookClosingAdapter;
 import jscribble.drawPanel.Redrawer;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.ShutdownHook;
 import jscribble.notebook.NoteBook;
 
 /**
@@ -100,14 +101,11 @@ public class NoteBookSelectionWindow {
 	private DrawPanel panel;
 
 	/**
-	 * List with opened NoteBook.
-	 */
-	private LinkedList<NoteBook> openedNotebooks;
-
-	/**
 	 * Model for the NoteBook list.
 	 */
 	private DefaultListModel listModel = new DefaultListModel();
+
+	private ShutdownHook shutdownHook;
 
 	/**
 	 * Creates a new window to select NoteBook from. It automatically searches
@@ -115,7 +113,6 @@ public class NoteBookSelectionWindow {
 	 */
 	public NoteBookSelectionWindow() {
 		notebooks = findNotebooks();
-		openedNotebooks = new LinkedList<NoteBook>();
 
 		myList = new JList(listModel);
 		myList.addMouseListener(new ListListener(this));
@@ -151,9 +148,6 @@ public class NoteBookSelectionWindow {
 		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.addWindowListener(new CloseEverythingAdapter(openedNotebooks,
-		        frame));
-
 		try {
 			frame.setIconImage(ImageIO.read(
 			            getClass().getResourceAsStream(
@@ -162,6 +156,11 @@ public class NoteBookSelectionWindow {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+
+		shutdownHook = new ShutdownHook();
+		Runtime.getRuntime().addShutdownHook(shutdownHook);
 
 
 		updateOpenButton();
@@ -274,7 +273,7 @@ public class NoteBookSelectionWindow {
 	 * @param notebook NoteBook to open
 	 */
 	private void openNotebook(final NoteBook notebook) {
-		openedNotebooks.add(notebook);
+		shutdownHook.add(notebook);
 
 		final JFrame f = new JFrame(String.format(Localizer.get(
 		            "Notebook \"%s\""), notebook.getName()));
