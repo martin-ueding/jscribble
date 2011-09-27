@@ -2,11 +2,12 @@
 *.jar
 *.properties
 .testrun
+CHANGELOG
 VersionName.java
 de.mo
-doc/jscribble.1.ronn
 doc/jscribble.1
 doc/jscribble.1.html
+doc/jscribble.1.ronn
 html
 javadoc
 jscribble.pot
