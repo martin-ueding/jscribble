@@ -125,11 +125,12 @@ while ($i < count($lines)) {
 	// Assume that all the following lines are the comment for the key-value
 	// pair that follows after that.
 
-	$comment = "";
 	while ($i < count($lines) && $lines[$i][0] == '#') {
-		$comment .= trim(substr($lines[$i], 2));
+		$comment_pieces[] = trim(substr($lines[$i], 2));
 		$i++;
 	}
+	$comment = implode(' ', $comment_pieces);
+	unset($comment_pieces);
 
 	// Skip over any blank lines that might be between the comment and the
 	// key-value pair.
