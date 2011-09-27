@@ -25,6 +25,11 @@ import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
 import jscribble.notebook.NoteBook;
 
+/**
+ * Keeps track of all opened NoteBook and saves them on exit.
+ *
+ * @author Martin Ueding <dev@martin-ueding.de>
+ */
 public class ShutdownHook extends Thread {
 	/**
 	 * All opened NoteBook.
@@ -33,9 +38,6 @@ public class ShutdownHook extends Thread {
 
 	/**
 	 * Hooks a new adapter to the closing.
-	 *
-	 * @param openedNotebooks List with opened NoteBook
-	 * @param frame Frame to close.
 	 */
 	public ShutdownHook() {
 		super();
@@ -43,21 +45,35 @@ public class ShutdownHook extends Thread {
 		openedNotebooks = new LinkedList<NoteBook>();
 	}
 
+	/**
+	 * Adds a new NoteBook to the list this hook has to take care of.
+	 *
+	 * @param notebook Instance to close on exit.
+	 */
+	public void add(NoteBook notebook) {
+		openedNotebooks.add(notebook);
+	}
+
+	/**
+	 * Saves all opened NoteBook.
+	 */
 	public void run() {
 		Logger.log(getClass().getName(), Localizer.get("Shutting down …"));
 
-
 		for (NoteBook notebook : openedNotebooks) {
 			notebook.saveToFiles();
-			Logger.log(getClass().getName(),
-			           String.format(Localizer.get("Closing NoteBook \"%s\"."),
-			                   notebook.getName()));
+			Logger.log(
+			    getClass().getName(),
+			    String.format(
+			        Localizer.get("Closing NoteBook \"%s\"."),
+			        notebook.getName()
+			    )
+			);
 		}
 
-		Logger.log(getClass().getName(), Localizer.get("Everything saved properly. Thanks for waiting!"));
-	}
-
-	public void add(NoteBook notebook) {
-		openedNotebooks.add(notebook);
+		Logger.log(
+		    getClass().getName(),
+		    Localizer.get("Everything saved properly. Thanks for waiting!")
+		);
 	}
 }
