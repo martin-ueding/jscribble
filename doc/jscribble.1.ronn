@@ -292,6 +292,8 @@ The following software is needed to compile this program:
   Java compiler.
 * **xgettext**, **msgfmt**:
   Parses source code for translation calls and converts translation file into the Java property format.
+* **various linux tools**:
+  find, rm, touch, bash
 
 In case you want to build all the documentation, you might want to install these as well:
 
