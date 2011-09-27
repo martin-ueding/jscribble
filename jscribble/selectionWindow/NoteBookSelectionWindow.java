@@ -292,7 +292,7 @@ public class NoteBookSelectionWindow {
 			e.printStackTrace();
 		}
 
-		panel = new DrawPanel(notebook);
+		panel = new DrawPanel(notebook, f);
 		f.add(panel);
 
 		f.addKeyListener(new MovementListener(panel));

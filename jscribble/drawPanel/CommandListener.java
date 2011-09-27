@@ -97,8 +97,10 @@ public class CommandListener implements KeyListener, MouseListener {
 		else if (SettingsWrapper.isKeyForCommand(event, "onion_layer_decrease_key")) {
 			drawPanel.onionLayersDecrease();
 		}
+		else if (SettingsWrapper.isKeyForCommand(event, "notebook_close_key")) {
+			drawPanel.shutdown();
+		}
 
-		// TODO add extra exit button, maybe "q"
 	}
 
 	/**

@@ -29,6 +29,7 @@ import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import jscribble.VersionName;
@@ -127,14 +128,17 @@ public class DrawPanel extends JPanel {
 
 	private InvalidationThread invalidationThread;
 
+	private JFrame parent;
+
 	/**
 	 * Creates a new display panel that will listen to changes from a specific
 	 * NoteBook.
 	 *
 	 * @param notebook the NoteBook to display
 	 */
-	public DrawPanel(NoteBook notebook) {
+	public DrawPanel(NoteBook notebook, JFrame parent) {
 		this.notebook = notebook;
+		this.parent = parent;
 
 		// Notify this instance when the notebook was is done drawing.
 		notebook.setDoneDrawing(new Redrawer(this));
@@ -582,5 +586,10 @@ public class DrawPanel extends JPanel {
 	public void toggleRuling() {
 		ruling = ruling == RulingType.LINE ? RulingType.NONE : RulingType.LINE;
 		resetCachedImage();
+	}
+
+	public void shutdown() {
+		notebook.saveToFiles();
+		parent.setVisible(false);
 	}
 }
