@@ -102,6 +102,7 @@ doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properti
 	php $^ > $@
 
 # Put all the class files into the jar.
+# TODO The normal jar should not depend on the unit tests.
 jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties install_files/jscribble.png
 	jar -cfm $@ manifest.txt $^
 
