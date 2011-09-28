@@ -20,7 +20,6 @@
 package tests.jscribble.notebook;
 
 import java.awt.Dimension;
-
 import java.awt.geom.Line2D;
 import java.io.File;
 import java.util.UUID;
@@ -312,6 +311,27 @@ public class NoteBookTest extends TestCase {
 		current = nb.getCurrentSheet();
 		assertTrue(current.getFile().exists());
 		assertNotSame(0, current.getFile().length());
+	}
+
+	/**
+	 * Creates a NoteBook, draws on the page, flips and does not save. Then
+	 * checks whether the Image was saved.
+	 */
+	public void testAutomaticSaveOnPageFlip() {
+		NoteBook b = createNamedTempNoteBook();
+		String name = b.getName();
+		b.drawLine(new Line2D.Float(100, 100, 100, 200));
+		int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+		b.goForward();
+
+		b = null;
+
+		NoteBook c = new NoteBook(name);
+		c.gotoFirst();
+
+		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
+
+		c.deleteSure();
 	}
 
 	/**
