@@ -29,7 +29,7 @@ import junit.framework.TestCase;
 
 /**
  * Exercises the WriteoutThread.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class WriteoutThreadTest extends TestCase {

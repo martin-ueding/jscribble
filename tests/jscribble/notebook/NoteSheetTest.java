@@ -29,7 +29,7 @@ import junit.framework.TestCase;
 
 /**
  * Exercises the NoteSheet.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteSheetTest extends TestCase {

@@ -346,12 +346,18 @@ public class NoteSheet {
 			writethread.schedule(new ImageSwapTask(img, imagefile));
 		}
 
+		unsaved = false;
+	}
+
+	public void freeImage() {
+		if (unsaved()) {
+			saveToFile();
+		}
+
 		// remove the image from the memory
 		img = null;
 		graphics = null;
 		resetImageWrapper();
-
-		unsaved = false;
 	}
 
 	/**

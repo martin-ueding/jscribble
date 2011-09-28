@@ -32,7 +32,7 @@ import junit.framework.TestCase;
 
 /**
  * Exercises the NoteBook.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookTest extends TestCase {

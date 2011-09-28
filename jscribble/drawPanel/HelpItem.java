@@ -42,7 +42,7 @@ class HelpItem {
 	 */
 	public HelpItem(String keys, String helptext) {
 		this.helptext = helptext;
-		
+
 		String[] parts = keys.split(",");
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < parts.length; i++) {

@@ -30,7 +30,7 @@ import jscribble.notebook.NoteBook;
 
 /**
  * Closes a given NoteBook when its DrawPanel is closed.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookClosingAdapter extends WindowAdapter {

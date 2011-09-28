@@ -329,8 +329,9 @@ public class NoteBook implements Comparable<NoteBook> {
 	 */
 	public void goBackwards() {
 		if (currentSheet > 0) {
+			getCurrentSheet().saveToFile();
 			if (currentSheet + cacheWidth < sheets.size()) {
-				sheets.get(currentSheet + cacheWidth).saveToFile();
+				sheets.get(currentSheet + cacheWidth).freeImage();
 			}
 
 			currentSheet--;
@@ -362,8 +363,9 @@ public class NoteBook implements Comparable<NoteBook> {
 		}
 
 		// Page sheets that are far away to RAM.
+		getCurrentSheet().saveToFile();
 		if (currentSheet >= cacheWidth) {
-			sheets.get(currentSheet - cacheWidth).saveToFile();
+			sheets.get(currentSheet - cacheWidth).freeImage();
 		}
 
 		fireDoneDrawing();
@@ -373,6 +375,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * Goes to the first page in the NoteBook.
 	 */
 	public void gotoFirst() {
+		getCurrentSheet().saveToFile();
 		currentSheet = 0;
 		fireDoneDrawing();
 	}
@@ -381,6 +384,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * Goes to the last page in the NoteBook.
 	 */
 	public void gotoLast() {
+		getCurrentSheet().saveToFile();
 		currentSheet = Math.max(0, sheets.size() - 1);
 		fireDoneDrawing();
 	}
@@ -449,7 +453,7 @@ public class NoteBook implements Comparable<NoteBook> {
 		Logger.log(getClass().getName(), Localizer.get(
 		        "Starting to write out image files."));
 		for (NoteSheet s : sheets) {
-			s.saveToFile();
+			s.freeImage();
 		}
 		quitWithWriteoutThread();
 	}
