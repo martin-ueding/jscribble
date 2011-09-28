@@ -6,7 +6,9 @@
 
 # Find all the Java files in the source tree and generate a matching list of
 # class files (targets) from that.
-javafiles:=$(shell find . -name "*.java")
+alljavafiles:=$(shell find . -name "*.java")
+allclassfiles:=$(alljavafiles:.java=.class)
+javafiles:=$(shell find jscribble -name "*.java")
 classfiles:=$(javafiles:.java=.class)
 
 # Java compiler to use.
@@ -44,7 +46,7 @@ doc-dev: javadoc/.javadoc html/.doxygen
 tarball: $(tarball)
 
 # Runs all available unit tests.
-test: $(classfiles)
+test: $(allclassfiles)
 	bash run_tests.sh
 
 # Removes all build files. The changelog and the manual page are not included
@@ -57,7 +59,7 @@ clean:
 	$(RM) doc/jscribble.1.html
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
-	$(RM) $(classfiles)
+	$(RM) $(allclassfiles)
 
 # Installs the jar file and the launcher script into DESTDIR.
 install: jscribble.jar
@@ -102,7 +104,6 @@ doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properti
 	php $^ > $@
 
 # Put all the class files into the jar.
-# TODO The normal jar should not depend on the unit tests.
 jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties install_files/jscribble.png
 	jar -cfm $@ manifest.txt $^
 
@@ -111,16 +112,16 @@ jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
 
 # Extract the strings from all Java source files.
-jscribble.pot: $(javafiles)
+jscribble.pot: $(alljavafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
 # Create standard javadoc.
-javadoc/.javadoc: $(javafiles)
+javadoc/.javadoc: $(alljavafiles)
 	javadoc -d javadoc $^
 	touch $@
 
 # Create doxygen doc.
-html/.doxygen: $(javafiles)
+html/.doxygen: $(alljavafiles)
 	doxygen
 	touch $@
 
