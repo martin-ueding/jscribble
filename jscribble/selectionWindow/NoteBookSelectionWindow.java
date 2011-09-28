@@ -150,7 +150,7 @@ public class NoteBookSelectionWindow {
 		try {
 			frame.setIconImage(ImageIO.read(
 			            getClass().getResourceAsStream(
-			                    "/install_files/jscribble.png")));
+			                    "/artwork/jscribble_gray.png")));
 		}
 		catch (IOException e) {
 			e.printStackTrace();

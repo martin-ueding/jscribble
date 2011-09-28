@@ -104,7 +104,7 @@ doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properti
 	php $^ > $@
 
 # Put all the class files into the jar.
-jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties install_files/jscribble.png
+jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties install_files/jscribble.png artwork/jscribble_gray.png
 	jar -cfm $@ manifest.txt $^
 
 # Convert the object into a Java compatible file.
