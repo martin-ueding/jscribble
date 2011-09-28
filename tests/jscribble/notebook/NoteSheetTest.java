@@ -53,9 +53,7 @@ public class NoteSheetTest extends TestCase {
 		assertNotNull(n.getImg());
 		int previousColor = n.getImg().getRGB(100, 100);
 		n.drawLine(new Line2D.Float(100, 100, 100, 200));
-		int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
-		assertTrue(rgbarray.length > 0);
-		assertFalse(rgbarray[0] == previousColor);
+		assertFalse(n.getImg().getRGB(100, 100) == previousColor);
 	}
 
 	/**
