@@ -102,62 +102,61 @@ The format is the standard Java Properties format.
 
 The value in parentheses is the default value.
 
-<?php
-
-// Parse the default config file and insert the comments and default value
-// here.
-
-$config_file = 'jscribble/default_config.properties';
-if (!file_exists($config_file)) {
-	die('Could not find default config.');
-}
-
-$lines = file($config_file);
-
-$i = 1;
-
-while ($i < count($lines)) {
-	// Advance until there is a comment sign in the line.
-	while ($lines[$i][0] != '#') {
-		$i++;
-	}
-
-	// Assume that all the following lines are the comment for the key-value
-	// pair that follows after that.
-
-	while ($i < count($lines) && $lines[$i][0] == '#') {
-		$comment_pieces[] = trim(substr($lines[$i], 2));
-		$i++;
-	}
-	$comment = implode(' ', $comment_pieces);
-	unset($comment_pieces);
-
-	// Skip over any blank lines that might be between the comment and the
-	// key-value pair.
-	while ($i < count($lines) && strlen(trim($lines[$i])) == 0) {
-		$i++;
-	}
-
-	// If the last comment was a finish commit at the end of the file, break
+	<?php
+	// Parse the default config file and insert the comments and default value
 	// here.
-	if ($i >= count($lines)) {
-		break;
+
+	$config_file = 'jscribble/default_config.properties';
+	if (!file_exists($config_file)) {
+		die('Could not find default config.');
 	}
 
-	// There should be a non-comment, non-blank line which can only be a
-	// key-value pair.
-	$key_value = trim($lines[$i]);
-	$key_value_array = explode('=', $key_value);
-	$key = $key_value_array[0];
-	$value = $key_value_array[1];
+	$lines = file($config_file);
 
-	echo "* `$key`:\n";
-	echo "  $comment\n";
-	echo "  ($value)\n";
+	$i = 1;
 
-	$i++;
-}
-?>
+	while ($i < count($lines)) {
+		// Advance until there is a comment sign in the line.
+		while ($lines[$i][0] != '#') {
+			$i++;
+		}
+
+		// Assume that all the following lines are the comment for the key-value
+		// pair that follows after that.
+
+		while ($i < count($lines) && $lines[$i][0] == '#') {
+			$comment_pieces[] = trim(substr($lines[$i], 2));
+			$i++;
+		}
+		$comment = implode(' ', $comment_pieces);
+		unset($comment_pieces);
+
+		// Skip over any blank lines that might be between the comment and the
+		// key-value pair.
+		while ($i < count($lines) && strlen(trim($lines[$i])) == 0) {
+			$i++;
+		}
+
+		// If the last comment was a finish commit at the end of the file, break
+		// here.
+		if ($i >= count($lines)) {
+			break;
+		}
+
+		// There should be a non-comment, non-blank line which can only be a
+		// key-value pair.
+		$key_value = trim($lines[$i]);
+		$key_value_array = explode('=', $key_value);
+		$key = $key_value_array[0];
+		$value = $key_value_array[1];
+
+		echo "* `$key`:\n";
+		echo "  $comment\n";
+		echo "  ($value)\n";
+
+		$i++;
+	}
+	?>
 
 ## SECURITY CONSIDERATIONS
 
@@ -250,3 +249,5 @@ Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 [arc]: https://aur.archlinux.org/packages.php?ID=51337
 [ron]: http://rtomayko.github.com/ronn/
 [web]: http://martin-ueding.de/download/jscribble/jscribble.jnlp
+
+<!--- vi: set filetype=markdown: -->
