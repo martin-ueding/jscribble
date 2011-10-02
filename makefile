@@ -47,7 +47,7 @@ tarball: $(tarball)
 
 # Runs all available unit tests.
 test: $(allclassfiles)
-	bash run_tests.sh
+	junit -text tests.TestSuite
 
 # Removes all build files. The changelog and the manual page are not included
 # since they are hard to come by.
