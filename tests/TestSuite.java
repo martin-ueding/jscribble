@@ -29,13 +29,12 @@ import tests.jscribble.notebook.WriteoutThreadTest;
 
 
 @RunWith(Suite.class)
-@SuiteClasses(
-		{
-			NoteBookTest.class,
-			NoteSheetTest.class,
-			WriteoutThreadTest.class,
-		}
-		)
+@SuiteClasses( {
+	NoteBookTest.class,
+	NoteSheetTest.class,
+	WriteoutThreadTest.class,
+}
+             )
 public class TestSuite {
 
 }
