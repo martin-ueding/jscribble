@@ -19,22 +19,19 @@
 
 package tests;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-
+import junit.framework.Test;
+import junit.framework.TestSuite;
 import tests.jscribble.notebook.NoteBookTest;
 import tests.jscribble.notebook.NoteSheetTest;
 import tests.jscribble.notebook.WriteoutThreadTest;
 
+public class JscribbleTestSuite {
 
-@RunWith(Suite.class)
-@SuiteClasses( {
-	NoteBookTest.class,
-	NoteSheetTest.class,
-	WriteoutThreadTest.class,
-}
-             )
-public class TestSuite {
-
+	public static Test suite() {
+		TestSuite suite = new TestSuite();
+		suite.addTestSuite(NoteBookTest.class);
+		suite.addTestSuite(NoteSheetTest.class);
+		suite.addTestSuite(WriteoutThreadTest.class);
+		return suite;
+	}
 }
