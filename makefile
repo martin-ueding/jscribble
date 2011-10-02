@@ -46,7 +46,7 @@ doc-dev: javadoc/.javadoc html/.doxygen
 tarball: $(tarball)
 
 # Runs all available unit tests.
-test: $(allclassfiles)
+test: jscribble/VersionName.class $(allclassfiles)
 	junit -text tests.JscribbleTestSuite
 
 # Removes all build files. The changelog and the manual page are not included
