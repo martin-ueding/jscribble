@@ -26,7 +26,7 @@ import java.awt.event.KeyEvent;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-class HelpItem {
+public class HelpItem {
 	/**
 	 * The buttons(s) that cause some action.
 	 */
