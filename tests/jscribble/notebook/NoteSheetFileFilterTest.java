@@ -57,4 +57,8 @@ public class NoteSheetFileFilterTest extends TestCase {
 	public void testWrongSuffix() {
 		assertFalse(filter.accept(null, "00000.jpg"));
 	}
+
+	public void testNoSuffix() {
+		assertFalse(filter.accept(null, "00000"));
+	}
 }
