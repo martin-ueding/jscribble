@@ -93,8 +93,9 @@ public class NoteBookTest extends TestCase {
 	}
 
 	/**
-	 * Creates a NoteBook, draws on the page, flips and does not save. Then
-	 * checks whether the Image was saved.
+	 * Creates a NoteBook, draws on the page, flips, draws and flips back.
+	 * Then the NoteBook is closed without saving and tested whether the data
+	 * is still there.
 	 */
 	public void testAutomaticSaveOnPageFlipBackwards() {
 		// Create a new NoteBook.
