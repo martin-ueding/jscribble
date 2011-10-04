@@ -112,6 +112,7 @@ jscribble_de.properties: de.po
 	msgcat --properties-output -o $@ $^
 
 # Extract the strings from all Java source files.
+# FIXME Prevent extraction of config items.
 jscribble.pot: $(alljavafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
