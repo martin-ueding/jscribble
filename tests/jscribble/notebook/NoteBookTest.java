@@ -319,14 +319,26 @@ public class NoteBookTest extends TestCase {
 	 */
 	public void testAutomaticSaveOnPageFlip() {
 		NoteBook b = createNamedTempNoteBook();
+		assertEquals(0, b.getSheetCount());
+		assertNotNull(b);
 		String name = b.getName();
-		b.drawLine(new Line2D.Float(100, 100, 100, 200));
+		assertNotNull(name);
 		int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+		b.drawLine(new Line2D.Float(100, 100, 100, 200));
+		assertFalse(previousColor == b.getCurrentSheet().getImg().getRGB(100, 100));
+		assertEquals(1, b.getSheetCount());
+		assertEquals(1, b.getCurrentSheet().getPagenumber());
 		b.goForward();
+		assertEquals(2, b.getCurrentSheet().getPagenumber());
 
 		b = null;
+		assertNull(b);
 
 		NoteBook c = new NoteBook(name);
+		assertNotNull(c);
+		assertEquals(1, c.getSheetCount());
+		assertNotNull(c.getCurrentSheet());
+		assertNotNull(c.getCurrentSheet().getImg());
 		c.gotoFirst();
 
 		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
