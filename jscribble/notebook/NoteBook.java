@@ -446,6 +446,13 @@ public class NoteBook implements Comparable<NoteBook> {
 	}
 
 	/**
+	 * @deprecated
+	 */
+	public void finalize() {
+		quitWithWriteoutThread();
+	}
+
+	/**
 	 * Persists the whole NoteBook into individual files.
 	 */
 	public void saveToFiles() {

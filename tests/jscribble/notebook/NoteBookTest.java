@@ -75,6 +75,8 @@ public class NoteBookTest extends TestCase {
 		b.goForward();
 		assertEquals(2, b.getCurrentSheet().getPagenumber());
 
+		b.finalize();
+
 		b = null;
 		assertNull(b);
 
