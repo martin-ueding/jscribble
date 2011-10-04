@@ -32,6 +32,7 @@ public class JscribbleTestSuite {
 		suite.addTestSuite(NoteBookTest.class);
 		suite.addTestSuite(NoteSheetTest.class);
 		suite.addTestSuite(WriteoutThreadTest.class);
+		suite.addTestSuite(VersionNameTest.class);
 		return suite;
 	}
 }
