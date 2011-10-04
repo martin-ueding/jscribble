@@ -61,7 +61,7 @@ public class NoteBookTest extends TestCase {
 	 * Creates a NoteBook, draws on the page, flips and does not save. Then
 	 * checks whether the Image was saved.
 	 */
-	public void testAutomaticSaveOnPageFlip() {
+	public void testAutomaticSaveOnPageFlipForward() {
 		NoteBook b = createNamedTempNoteBook();
 		assertEquals(0, b.getSheetCount());
 		assertNotNull(b);
@@ -88,6 +88,66 @@ public class NoteBookTest extends TestCase {
 		c.gotoFirst();
 
 		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
+
+		c.deleteSure();
+	}
+
+	/**
+	 * Creates a NoteBook, draws on the page, flips and does not save. Then
+	 * checks whether the Image was saved.
+	 */
+	public void testAutomaticSaveOnPageFlipBackwards() {
+		// Create a new NoteBook.
+		NoteBook b = createNamedTempNoteBook();
+		assertEquals(0, b.getSheetCount());
+		assertNotNull(b);
+		String name = b.getName();
+		assertNotNull(name);
+
+		// Determine foreground and background color with a line.
+		int backgroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+		b.drawLine(new Line2D.Float(100, 100, 100, 200));
+		int foregroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+		assertFalse(backgroundColor == foregroundColor);
+		assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(100, 100));
+
+		// Check page numbers.
+		assertEquals(1, b.getSheetCount());
+		assertEquals(1, b.getCurrentSheet().getPagenumber());
+		b.goForward();
+		assertEquals(2, b.getCurrentSheet().getPagenumber());
+
+		// Draw another line somewhere else.
+		assertEquals(backgroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
+		b.drawLine(new Line2D.Float(50, 50, 50, 50));
+		assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
+
+		// Go back.
+		assertEquals(2, b.getSheetCount());
+		assertEquals(2, b.getCurrentSheet().getPagenumber());
+		b.goBackwards();
+		assertEquals(1, b.getCurrentSheet().getPagenumber());
+
+		b.finalize();
+
+		// Get rid of the NoteBook.
+		b = null;
+		assertNull(b);
+
+		// Load the NoteBook from disk.
+		NoteBook c = new NoteBook(name);
+		assertNotNull(c);
+		assertEquals(2, c.getSheetCount());
+		assertNotNull(c.getCurrentSheet());
+		assertNotNull(c.getCurrentSheet().getImg());
+
+		// Check the page number.
+		c.gotoLast();
+		assertEquals(2, c.getCurrentSheet().getPagenumber());
+
+		// Check whether there is only the line from the second sheet.
+		assertEquals(foregroundColor, c.getCurrentSheet().getImg().getRGB(50, 50));
+		assertEquals(backgroundColor, c.getCurrentSheet().getImg().getRGB(100, 100));
 
 		c.deleteSure();
 	}
