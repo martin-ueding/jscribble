@@ -134,6 +134,10 @@ public class WriteoutThread extends Thread {
 	 */
 	public boolean isFileInQueue(File imagefile) {
 		for (ImageSwapTask task : tasks) {
+			// There might be an empty task object to clean out the WriteoutThread. If this is caught, ignore it.
+			if (task.getOutfile() == null) {
+				continue;
+			}
 			if (task.getOutfile().equals(imagefile)) {
 				return true;
 			}
