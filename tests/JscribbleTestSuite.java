@@ -40,6 +40,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import tests.jscribble.VersionNameTest;
 import tests.jscribble.notebook.NoteBookTest;
+import tests.jscribble.notebook.NoteSheetFileFilterTest;
 import tests.jscribble.notebook.NoteSheetTest;
 import tests.jscribble.notebook.WriteoutThreadTest;
 
@@ -51,6 +52,7 @@ public class JscribbleTestSuite {
 		suite.addTestSuite(NoteSheetTest.class);
 		suite.addTestSuite(WriteoutThreadTest.class);
 		suite.addTestSuite(VersionNameTest.class);
+		suite.addTestSuite(NoteSheetFileFilterTest.class);
 		return suite;
 	}
 }

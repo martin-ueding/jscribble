@@ -37,6 +37,9 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	/**
 	 * Determines whether a file is accepted or not. A file is accepted if it
 	 * starts with the correct prefix and matches the regular expression.
+	 *
+	 * @param arg0 Ignored.
+	 * @param arg1 This is checked.
 	 */
 	@Override
 	public boolean accept(File arg0, String arg1) {
