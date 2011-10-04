@@ -420,6 +420,7 @@ public class NoteBook implements Comparable<NoteBook> {
 					            Integer.parseInt(m.group(1)));
 					sheets.add(new NoteSheet(noteSize,
 					           Integer.parseInt(m.group(1)), file));
+					pagecount++;
 
 					if (noteSize == null) {
 						try {
@@ -428,13 +429,11 @@ public class NoteBook implements Comparable<NoteBook> {
 						}
 						catch (IOException e) {
 							Logger.handleError(Localizer.get("Unable to determine resolution from first image in NoteBook."));
-							askForResolution();
 							e.printStackTrace();
 						}
 					}
 				}
 			}
-			pagecount++;
 		}
 	}
 
