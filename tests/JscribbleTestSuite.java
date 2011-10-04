@@ -23,6 +23,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import tests.jscribble.VersionNameTest;
 import tests.jscribble.drawPanel.HelpItemTest;
+import tests.jscribble.helpers.FileComparatorTest;
 import tests.jscribble.notebook.NoteBookTest;
 import tests.jscribble.notebook.NoteSheetFileFilterTest;
 import tests.jscribble.notebook.NoteSheetTest;
@@ -32,6 +33,7 @@ public class JscribbleTestSuite {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
+		suite.addTestSuite(FileComparatorTest.class);
 		suite.addTestSuite(HelpItemTest.class);
 		suite.addTestSuite(NoteBookTest.class);
 		suite.addTestSuite(NoteSheetFileFilterTest.class);
