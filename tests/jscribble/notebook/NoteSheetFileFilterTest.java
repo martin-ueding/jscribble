@@ -25,27 +25,36 @@ import junit.framework.TestCase;
 public class NoteSheetFileFilterTest extends TestCase {
 	private NoteSheetFileFilter filter = new NoteSheetFileFilter();
 
-	public void testSimple() {
-		assertTrue(filter.accept(null, "000001.png"));
-	}
-
-	public void testShort() {
-		assertTrue(filter.accept(null, "0.png"));
-	}
-
-	public void testWrongSuffix() {
-		assertFalse(filter.accept(null, "00000.jpg"));
+	public void testLetters() {
+		assertFalse(filter.accept(null, "asdfgh.png"));
 	}
 
 	public void testLongNumber() {
 		assertTrue(filter.accept(null, "1234567890.png"));
 	}
 
+	public void testMixed() {
+		assertFalse(filter.accept(null, "asd123.png"));
+	}
+
 	public void testNegativeNumber() {
 		assertFalse(filter.accept(null, "-123456.png"));
 	}
 
-	public void testLetters() {
-		assertFalse(filter.accept(null, "asdfgh.png"));
+	public void testShort() {
+		assertTrue(filter.accept(null, "0.png"));
+	}
+
+	public void testSimple() {
+		assertTrue(filter.accept(null, "000001.png"));
+	}
+
+	public void testSpaces() {
+		assertFalse(filter.accept(null, " 000001.png"));
+		assertFalse(filter.accept(null, "000001.png "));
+	}
+
+	public void testWrongSuffix() {
+		assertFalse(filter.accept(null, "00000.jpg"));
 	}
 }
