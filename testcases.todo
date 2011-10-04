@@ -1,7 +1,6 @@
-InvalidationThread
-HelpItem
-SettingsWrapper
-Logger
-Localizer
-FileComparator
 BufferedImageWrapper
+FileComparator
+InvalidationThread
+Localizer
+Logger
+SettingsWrapper
