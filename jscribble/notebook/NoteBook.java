@@ -446,6 +446,11 @@ public class NoteBook implements Comparable<NoteBook> {
 	}
 
 	/**
+	 * Waits for the last image to be written without initializing the saving
+	 * itself. This is pretty pointless, *unless* to test how whether the
+	 * NoteBook actually saves every sheet after moving. Do not use within the
+	 * program.
+	 *
 	 * @deprecated
 	 */
 	public void finalize() {
