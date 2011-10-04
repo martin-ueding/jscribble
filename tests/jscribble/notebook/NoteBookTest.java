@@ -40,6 +40,15 @@ public class NoteBookTest extends TestCase {
 	}
 
 	/**
+	 * Generates a temporary NoteBook that has a name.
+	 *
+	 * @return Named temporary NoteBook.
+	 */
+	private NoteBook createNamedTempNoteBook() {
+		return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
+	}
+
+	/**
 	 * Creates a NoteBook stored in a temporary folder np name.
 	 *
 	 * @return Unnamed temporary NoteBook.
@@ -49,12 +58,36 @@ public class NoteBookTest extends TestCase {
 	}
 
 	/**
-	 * Generates a temporary NoteBook that has a name.
-	 *
-	 * @return Named temporary NoteBook.
+	 * Creates a NoteBook, draws on the page, flips and does not save. Then
+	 * checks whether the Image was saved.
 	 */
-	private NoteBook createNamedTempNoteBook() {
-		return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
+	public void testAutomaticSaveOnPageFlip() {
+		NoteBook b = createNamedTempNoteBook();
+		assertEquals(0, b.getSheetCount());
+		assertNotNull(b);
+		String name = b.getName();
+		assertNotNull(name);
+		int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+		b.drawLine(new Line2D.Float(100, 100, 100, 200));
+		assertFalse(previousColor == b.getCurrentSheet().getImg().getRGB(100, 100));
+		assertEquals(1, b.getSheetCount());
+		assertEquals(1, b.getCurrentSheet().getPagenumber());
+		b.goForward();
+		assertEquals(2, b.getCurrentSheet().getPagenumber());
+
+		b = null;
+		assertNull(b);
+
+		NoteBook c = new NoteBook(name);
+		assertNotNull(c);
+		assertEquals(1, c.getSheetCount());
+		assertNotNull(c.getCurrentSheet());
+		assertNotNull(c.getCurrentSheet().getImg());
+		c.gotoFirst();
+
+		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
+
+		c.deleteSure();
 	}
 
 	/**
@@ -311,39 +344,6 @@ public class NoteBookTest extends TestCase {
 		current = nb.getCurrentSheet();
 		assertTrue(current.getFile().exists());
 		assertNotSame(0, current.getFile().length());
-	}
-
-	/**
-	 * Creates a NoteBook, draws on the page, flips and does not save. Then
-	 * checks whether the Image was saved.
-	 */
-	public void testAutomaticSaveOnPageFlip() {
-		NoteBook b = createNamedTempNoteBook();
-		assertEquals(0, b.getSheetCount());
-		assertNotNull(b);
-		String name = b.getName();
-		assertNotNull(name);
-		int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
-		b.drawLine(new Line2D.Float(100, 100, 100, 200));
-		assertFalse(previousColor == b.getCurrentSheet().getImg().getRGB(100, 100));
-		assertEquals(1, b.getSheetCount());
-		assertEquals(1, b.getCurrentSheet().getPagenumber());
-		b.goForward();
-		assertEquals(2, b.getCurrentSheet().getPagenumber());
-
-		b = null;
-		assertNull(b);
-
-		NoteBook c = new NoteBook(name);
-		assertNotNull(c);
-		assertEquals(1, c.getSheetCount());
-		assertNotNull(c.getCurrentSheet());
-		assertNotNull(c.getCurrentSheet().getImg());
-		c.gotoFirst();
-
-		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
-
-		c.deleteSure();
 	}
 
 	/**
