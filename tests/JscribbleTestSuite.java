@@ -32,12 +32,12 @@ public class JscribbleTestSuite {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
-		suite.addTestSuite(NoteBookTest.class);
-		suite.addTestSuite(NoteSheetTest.class);
-		suite.addTestSuite(WriteoutThreadTest.class);
-		suite.addTestSuite(VersionNameTest.class);
-		suite.addTestSuite(NoteSheetFileFilterTest.class);
 		suite.addTestSuite(HelpItemTest.class);
+		suite.addTestSuite(NoteBookTest.class);
+		suite.addTestSuite(NoteSheetFileFilterTest.class);
+		suite.addTestSuite(NoteSheetTest.class);
+		suite.addTestSuite(VersionNameTest.class);
+		suite.addTestSuite(WriteoutThreadTest.class);
 		return suite;
 	}
 }
