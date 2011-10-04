@@ -38,6 +38,7 @@ package tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import tests.jscribble.VersionNameTest;
 import tests.jscribble.notebook.NoteBookTest;
 import tests.jscribble.notebook.NoteSheetTest;
 import tests.jscribble.notebook.WriteoutThreadTest;

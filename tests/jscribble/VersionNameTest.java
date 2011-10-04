@@ -1,6 +1,6 @@
 // Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-package tests;
+package tests.jscribble;
 
 import java.util.regex.Pattern;
 
