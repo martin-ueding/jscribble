@@ -28,7 +28,7 @@ signedjar:=$(name)_$(version).jar
 ###########################################################################
 
 # Builds the main program.
-all: jscribble.jar
+all: jscribble.jar install_files/completion/jscribble
 
 # Creates the template for translators.
 i18n: jscribble.pot
@@ -62,11 +62,13 @@ clean:
 	$(RM) $(allclassfiles)
 
 # Installs the jar file and the launcher script into DESTDIR.
-install: jscribble.jar
+install: jscribble.jar install_files/completion/jscribble
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
 	install jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
 	mkdir -p "$(DESTDIR)/usr/bin"
 	install install_files/jscribble "$(DESTDIR)/usr/bin/"
+	mkdir -p "$(DESTDIR)/etc/bash_completion.d/"
+	install install_files/completion/jscribble "$(DESTDIR)/etc/bash_completion.d/"
 
 # Creates a jar file which contains the version name, ready for Java Web Start
 # deployment.
@@ -75,6 +77,9 @@ signed-jar: $(signedjar)
 ###########################################################################
 #                             Explicit Rules                              #
 ###########################################################################
+
+install_files/completion/jscribble: install_files/completion/jscribble.php
+	php $< > $@
 
 # Signs the jar file with Martin's key.
 $(signedjar): jscribble.jar
