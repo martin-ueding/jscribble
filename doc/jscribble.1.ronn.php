@@ -194,6 +194,8 @@ The following software is needed to compile this program:
   Java compiler.
 * **xgettext**, **msgfmt**:
   Parses source code for translation calls and converts translation file into the Java property format.
+* **php-cli**:
+  Reads the default config file and parses the options into the manual page. It is also needed to parse the config for the bash completion.
 * **various linux tools**:
   find, rm, touch, bash
 
