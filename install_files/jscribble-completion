@@ -1,0 +1,17 @@
+_jscribble() {
+	local cur
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_WORD]}
+
+	case "$cur" in
+		-*)
+			COMPREPLY=( $(compgen -W '-v' -- $cur) )
+			;;
+	esac
+
+	return 0
+}
+
+complete -F _jscribble jscribble
+
+# vim: ft=sh
