@@ -16,12 +16,10 @@ foreach ($file as $line) {
 		continue;
 	}
 
-	$key_value = trim($lines[$i]);
-	$key_value_array = explode('=', $key_value);
+	$key_value_array = explode('=', $line);
 	$key = $key_value_array[0];
 
-	echo $key;
-	echo ' ';
+	echo ' --'.$key;
 }
 
 ?>
