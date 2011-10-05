@@ -49,6 +49,11 @@ public class SettingsWrapper {
 	private static Properties defaultConfig;
 
 	/**
+	 * Config options specified at the command line.
+	 */
+	private static Properties sessionConfig;
+
+	/**
 	 * Looks up a boolean value in the config file.
 	 *
 	 * @param key Key to look up.
@@ -175,7 +180,10 @@ public class SettingsWrapper {
 	 * @return Value.
 	 */
 	private static String retrieve(String key) {
-		if (getUserConfig().containsKey(key)) {
+		if (sessionConfig != null && sessionConfig.containsKey(key)) {
+			return sessionConfig.getProperty(key);
+		}
+		else if (getUserConfig().containsKey(key)) {
 			return getUserConfig().getProperty(key);
 		}
 		else if (getDefaultConfig().containsKey(key)) {
