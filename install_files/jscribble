@@ -1,5 +1,5 @@
 #!/bin/bash
 # Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
-java -jar /usr/share/jscribble/jscribble.jar
+java -jar /usr/share/jscribble/jscribble.jar "$@"
 
