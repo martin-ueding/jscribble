@@ -36,7 +36,7 @@ import jscribble.NoteBookProgram;
  *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
-public class SettingsWrapper {
+public class Config {
 	/**
 	 * Main config used for user specific settings.
 	 */
@@ -137,7 +137,7 @@ public class SettingsWrapper {
 	private static void initDefaultConfig() {
 		defaultConfig = new Properties();
 		try {
-			defaultConfig.load(SettingsWrapper.class.getResourceAsStream("/jscribble/default_config.properties"));
+			defaultConfig.load(Config.class.getResourceAsStream("/jscribble/default_config.properties"));
 		}
 		catch (FileNotFoundException e) {
 			Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
@@ -224,12 +224,12 @@ public class SettingsWrapper {
 		for (String part : parts) {
 			if (part.length() == 1) {
 				if (event.getKeyChar() == part.charAt(0)) {
-					Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
+					Logger.log(Config.class.getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
 					return true;
 				}
 			}
 			else if (event.getKeyCode() == Integer.parseInt(part)) {
-				Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
+				Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
 				return true;
 			}
 		}
@@ -251,7 +251,7 @@ public class SettingsWrapper {
 		String[] parts = raw_array.split(",");
 		for (String part : parts) {
 			if (event.getModifiersEx() == Integer.parseInt(part)) {
-				Logger.log(SettingsWrapper.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), MouseEvent.getModifiersExText(event.getModifiersEx()), command));
+				Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), MouseEvent.getModifiersExText(event.getModifiersEx()), command));
 				return true;
 			}
 		}

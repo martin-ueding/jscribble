@@ -19,7 +19,7 @@
 
 package jscribble.drawPanel;
 
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 
 /**
  * Waits until no more events come in and repaints the DrawPanel.
@@ -61,7 +61,7 @@ public class InvalidationThread extends Thread {
 		while (keepAlive) {
 			keepAlive = false;
 			try {
-				sleep(SettingsWrapper.getInteger("notebook_erase_timeout"));
+				sleep(Config.getInteger("notebook_erase_timeout"));
 			}
 			catch (InterruptedException e) {
 				e.printStackTrace();

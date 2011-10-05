@@ -27,7 +27,7 @@ import java.awt.Stroke;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 
 /**
  * Wraps drawing on an image.
@@ -49,23 +49,23 @@ public class BufferedImageWrapper {
 	 * Stroke for drawing.
 	 */
 	private Stroke drawStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("notebook_draw_stroke_width"));
+	    Config.getInteger("notebook_draw_stroke_width"));
 
 	/**
 	 * Stroke for erasing.
 	 */
 	private Stroke eraseStroke = new BasicStroke(
-	    SettingsWrapper.getInteger("notebook_erase_stroke_width"));
+	    Config.getInteger("notebook_erase_stroke_width"));
 
 	/**
 	 * Background color.
 	 */
-	private Color background = SettingsWrapper.getColor("notebook_background_color");
+	private Color background = Config.getColor("notebook_background_color");
 
 	/**
 	 * Foreground color.
 	 */
-	private Color foreground = SettingsWrapper.getColor("notebook_foreground_color");
+	private Color foreground = Config.getColor("notebook_foreground_color");
 
 	/**
 	 * Creates a new wrapper around the given image.

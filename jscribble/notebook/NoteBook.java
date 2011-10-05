@@ -38,7 +38,7 @@ import jscribble.NoteBookProgram;
 import jscribble.helpers.FileComparator;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 
 /**
  * A container for several NoteSheet.
@@ -77,8 +77,8 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * Default size of the NoteSheet.
 	 */
 	private Dimension noteSizeDefault = new Dimension(
-	    SettingsWrapper.getInteger("notebook_default_width"),
-	    SettingsWrapper.getInteger("notebook_default_height")
+	    Config.getInteger("notebook_default_width"),
+	    Config.getInteger("notebook_default_height")
 	);
 
 	/**
@@ -94,7 +94,7 @@ public class NoteBook implements Comparable<NoteBook> {
 	/**
 	 * How many images to cache back and front.
 	 */
-	private int cacheWidth = SettingsWrapper.getInteger("notebook_cache_width");
+	private int cacheWidth = Config.getInteger("notebook_cache_width");
 
 	/**
 	 * The name of this NoteBook. It is also the folder name.

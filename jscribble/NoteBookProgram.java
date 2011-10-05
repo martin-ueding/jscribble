@@ -23,7 +23,7 @@ import java.io.File;
 
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**
@@ -52,7 +52,7 @@ public class NoteBookProgram {
 	 * Returns the name of the program.
 	 */
 	public static String getProgramname() {
-		return SettingsWrapper.getString("program_name");
+		return Config.getString("program_name");
 	}
 
 	/**
@@ -68,10 +68,10 @@ public class NoteBookProgram {
 				Logger.setDebug(true);
 			}
 			else {
-				if (string.startsWith("--") && i+1 < args.length && !args[i+1].startsWith("--")) {
+				if (string.startsWith("--") && i + 1 < args.length && !args[i+1].startsWith("--")) {
 					String newValue = args[i+1];
 					String key = string.substring(2);
-					SettingsWrapper.set(key, newValue);
+					Config.set(key, newValue);
 				}
 			}
 		}

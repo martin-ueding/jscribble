@@ -56,7 +56,7 @@ public class Logger {
 	 */
 	public static void log(String reportingClass, String message) {
 		if (debug) {
-			SimpleDateFormat formatter = new SimpleDateFormat(SettingsWrapper.getString("date_format"));
+			SimpleDateFormat formatter = new SimpleDateFormat(Config.getString("date_format"));
 			String date = formatter.format(new Date());
 			String output =  date + " " + reportingClass + ":\t" + message;
 			System.out.println(output);

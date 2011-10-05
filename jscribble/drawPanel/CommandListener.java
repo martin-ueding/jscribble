@@ -24,7 +24,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 
 /**
  * Listens to the keyboard for the command key and then polls the user for a
@@ -75,29 +75,29 @@ public class CommandListener implements KeyListener, MouseListener {
 	 */
 	@Override
 	public void keyReleased(KeyEvent event) {
-		if (SettingsWrapper.isKeyForCommand(event, "help_screen_close_key")) {
+		if (Config.isKeyForCommand(event, "help_screen_close_key")) {
 			drawPanel.setShowHelp(false);
 			redrawer.actionPerformed(null);
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "help_screen_toggle_key")) {
+		else if (Config.isKeyForCommand(event, "help_screen_toggle_key")) {
 			drawPanel.toggleHelp();
 			redrawer.actionPerformed(null);
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "ruling_toggle_key")) {
+		else if (Config.isKeyForCommand(event, "ruling_toggle_key")) {
 			drawPanel.toggleRuling();
 			redrawer.actionPerformed(null);
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "ruling_graph_toggle_key")) {
+		else if (Config.isKeyForCommand(event, "ruling_graph_toggle_key")) {
 			drawPanel.toggleGraphRuling();
 			redrawer.actionPerformed(null);
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "onion_layer_increase_key")) {
+		else if (Config.isKeyForCommand(event, "onion_layer_increase_key")) {
 			drawPanel.onionLayersIncrease();
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "onion_layer_decrease_key")) {
+		else if (Config.isKeyForCommand(event, "onion_layer_decrease_key")) {
 			drawPanel.onionLayersDecrease();
 		}
-		else if (SettingsWrapper.isKeyForCommand(event, "notebook_close_key")) {
+		else if (Config.isKeyForCommand(event, "notebook_close_key")) {
 			drawPanel.shutdown();
 		}
 	}
@@ -114,10 +114,10 @@ public class CommandListener implements KeyListener, MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		if (SettingsWrapper.isButtonForCommand(event, "notebook_go_forward_mouse_button")) {
+		if (Config.isButtonForCommand(event, "notebook_go_forward_mouse_button")) {
 			drawPanel.goForward();
 		}
-		else if (SettingsWrapper.isButtonForCommand(event, "notebook_go_back_mouse_button")) {
+		else if (Config.isButtonForCommand(event, "notebook_go_back_mouse_button")) {
 			drawPanel.goBackwards();
 		}
 	}

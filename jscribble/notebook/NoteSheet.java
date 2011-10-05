@@ -33,7 +33,7 @@ import javax.imageio.ImageIO;
 import jscribble.NoteBookProgram;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 import jscribble.notebook.writeoutThread.ImageSwapTask;
 import jscribble.notebook.writeoutThread.WriteoutThread;
 
@@ -237,7 +237,7 @@ public class NoteSheet {
 		        BufferedImage.TYPE_BYTE_GRAY);
 
 		graphics = getGraphics();
-		graphics.setColor(SettingsWrapper.getColor("notebook_background_color"));
+		graphics.setColor(Config.getColor("notebook_background_color"));
 		graphics.fillRect(0, 0, noteSize.width, noteSize.height);
 
 		unsaved = false;

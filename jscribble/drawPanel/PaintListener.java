@@ -25,7 +25,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
 
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 
 /**
  * Listens to mouse movements on the displaying panel and updates the NoteBook.
@@ -64,24 +64,24 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	public void mouseClicked(MouseEvent event) {
 		int x = event.getX();
 
-		if (SettingsWrapper.getBoolean("scroll_panels_show")) {
-			if (x <= SettingsWrapper.getInteger("scroll_panel_width")) {
+		if (Config.getBoolean("scroll_panels_show")) {
+			if (x <= Config.getInteger("scroll_panel_width")) {
 				drawPanel.goBackwards();
 				return;
 			}
 			if (x >= drawPanel.getWidth() -
-			        SettingsWrapper.getInteger("scroll_panel_width")) {
+			        Config.getInteger("scroll_panel_width")) {
 				drawPanel.goForward();
 				return;
 			}
 		}
 
-		if (SettingsWrapper.isButtonForCommand(event, "notebook_draw_mouse_button")) {
+		if (Config.isButtonForCommand(event, "notebook_draw_mouse_button")) {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.getBoolean("notebook_erase_enable")
-		         && SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
+		else if (Config.getBoolean("notebook_erase_enable")
+		         && Config.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(event.getPoint(), event.getPoint());
 			drawPanel.eraseLine(line);
 		}
@@ -91,12 +91,12 @@ public class PaintListener implements MouseMotionListener, MouseListener {
 	 * Tells the NoteBook to draw a line on it.
 	 */
 	public void mouseDragged(MouseEvent event) {
-		if (SettingsWrapper.isButtonForCommand(event, "notebook_draw_mouse_button")) {
+		if (Config.isButtonForCommand(event, "notebook_draw_mouse_button")) {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.drawLine(line);
 		}
-		else if (SettingsWrapper.getBoolean("notebook_erase_enable")
-		         && SettingsWrapper.isButtonForCommand(event, "notebook_erase_mouse_button")) {
+		else if (Config.getBoolean("notebook_erase_enable")
+		         && Config.isButtonForCommand(event, "notebook_erase_mouse_button")) {
 			Line2D line = new Line2D.Float(lastPosition, event.getPoint());
 			drawPanel.eraseLine(line);
 		}

@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import jscribble.VersionName;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.SettingsWrapper;
+import jscribble.helpers.Config;
 import jscribble.notebook.BufferedImageWrapper;
 import jscribble.notebook.NoteBook;
 
@@ -51,12 +51,12 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Color of the help lines.
 	 */
-	private static final Color lineColor = SettingsWrapper.getColor("ruling_line_color");
+	private static final Color lineColor = Config.getColor("ruling_line_color");
 
 	/**
 	 * The spacing between the help lines.
 	 */
-	private static final int lineSpacing = SettingsWrapper.getInteger("ruling_line_spacing");
+	private static final int lineSpacing = Config.getInteger("ruling_line_spacing");
 
 	/**
 	 * The NoteBook that is currently displayed.
@@ -78,46 +78,46 @@ public class DrawPanel extends JPanel {
 	 */
 	private HelpItem[] helpItems = {
 		new HelpItem(
-		    SettingsWrapper.getString("help_screen_toggle_key"),
+		    Config.getString("help_screen_toggle_key"),
 		    Localizer.get("show help")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("help_screen_close_key"),
+		    Config.getString("help_screen_close_key"),
 		    Localizer.get("hide help")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("notebook_go_forward_key"),
+		    Config.getString("notebook_go_forward_key"),
 		    Localizer.get("go forward")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("notebook_go_back_key"),
+		    Config.getString("notebook_go_back_key"),
 		    Localizer.get("go backward")),
 		new HelpItem(
-		    SettingsWrapper.getString("notebook_goto_first_key"),
+		    Config.getString("notebook_goto_first_key"),
 		    Localizer.get("goto first")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("notebook_goto_last_key"),
+		    Config.getString("notebook_goto_last_key"),
 		    Localizer.get("goto last")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("notebook_close_key"),
+		    Config.getString("notebook_close_key"),
 		    Localizer.get("save & exit")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("onion_layer_increase_key"),
+		    Config.getString("onion_layer_increase_key"),
 		    Localizer.get("increase onion layers")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("onion_layer_decrease_key"),
+		    Config.getString("onion_layer_decrease_key"),
 		    Localizer.get("decrease onion layers")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("ruling_toggle_key"),
+		    Config.getString("ruling_toggle_key"),
 		    Localizer.get("toggle ruling")
 		),
 		new HelpItem(
-		    SettingsWrapper.getString("ruling_graph_toggle_key"),
+		    Config.getString("ruling_graph_toggle_key"),
 		    Localizer.get("toggle graph paper")
 		),
 	};
@@ -141,7 +141,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * Whether the help splash screen is (still) displayed.
 	 */
-	private boolean showHelpSplash = SettingsWrapper.getBoolean("help_splash_enable");
+	private boolean showHelpSplash = Config.getBoolean("help_splash_enable");
 
 	/**
 	 * Which type of ruling is used.
@@ -193,9 +193,9 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		g.setColor(SettingsWrapper.getColor("help_screen_background_color"));
-		int helpMargin = SettingsWrapper.getInteger("help_screen_margin");
-		int helpBorderRadius = SettingsWrapper.getInteger("help_screen_border_radius");
+		g.setColor(Config.getColor("help_screen_background_color"));
+		int helpMargin = Config.getInteger("help_screen_margin");
+		int helpBorderRadius = Config.getInteger("help_screen_border_radius");
 		g.fillRoundRect(
 		    helpMargin,
 		    helpMargin,
@@ -207,9 +207,9 @@ public class DrawPanel extends JPanel {
 
 		// Iterate through the help items and display them.
 		int i = 0;
-		int vspacing = SettingsWrapper.getInteger("help_screen_vspacing");
-		int spacing = SettingsWrapper.getInteger("help_screen_spacing");
-		int padding = SettingsWrapper.getInteger("help_screen_padding");
+		int vspacing = Config.getInteger("help_screen_vspacing");
+		int spacing = Config.getInteger("help_screen_spacing");
+		int padding = Config.getInteger("help_screen_padding");
 		for (HelpItem h : helpItems) {
 			g.drawString(h.helptext, padding, i * vspacing + padding);
 			g.drawString(h.key, spacing + padding, i * vspacing +
@@ -234,11 +234,11 @@ public class DrawPanel extends JPanel {
 		}
 
 		// Draw a dark rectangle to write the help text on.
-		g.setColor(SettingsWrapper.getColor("help_splash_background_color"));
+		g.setColor(Config.getColor("help_splash_background_color"));
 		Dimension splashSize = new Dimension(
-		    getWidth() - SettingsWrapper.getInteger("help_splash_margin") * 2,
-		    SettingsWrapper.getInteger("help_splash_height"));
-		int helpSplashBorderRadius = SettingsWrapper.getInteger("help_splash_border_radius");
+		    getWidth() - Config.getInteger("help_splash_margin") * 2,
+		    Config.getInteger("help_splash_height"));
+		int helpSplashBorderRadius = Config.getInteger("help_splash_border_radius");
 		g.fillRoundRect(
 		    (getWidth() - splashSize.width) / 2,
 		    (getHeight() - splashSize.height) / 2,
@@ -248,7 +248,7 @@ public class DrawPanel extends JPanel {
 		g.setColor(Color.WHITE);
 
 		g.drawString(Localizer.get("Press h or F1 to get help."),
-		        (getWidth() - splashSize.width) / 2 + SettingsWrapper.getInteger("help_splash_margin"),
+		        (getWidth() - splashSize.width) / 2 + Config.getInteger("help_splash_margin"),
 		        getHeight() / 2 + 5);
 	}
 
@@ -296,7 +296,7 @@ public class DrawPanel extends JPanel {
 	 * @param g Graphics2D to draw on
 	 */
 	private void drawMemoryUsage(Graphics2D g) {
-		if (!SettingsWrapper.getBoolean("memory_usage_show")) {
+		if (!Config.getBoolean("memory_usage_show")) {
 			return;
 		}
 
@@ -307,8 +307,8 @@ public class DrawPanel extends JPanel {
 		        r.freeMemory() / 1024 / 1024,
 		        r.totalMemory() / 1024 / 1024
 		    ),
-		    SettingsWrapper.getInteger("memory_usage_position_left"),
-		    getHeight() - SettingsWrapper.getInteger("memory_usage_position_bottom")
+		    Config.getInteger("memory_usage_position_left"),
+		    getHeight() - Config.getInteger("memory_usage_position_bottom")
 		);
 	}
 
@@ -324,8 +324,8 @@ public class DrawPanel extends JPanel {
 
 		g.drawString(
 		    String.format(Localizer.get("Onion Layers: %d"), onionMode),
-		    SettingsWrapper.getInteger("onion_info_position_left"),
-		    SettingsWrapper.getInteger("onion_info_position_top")
+		    Config.getInteger("onion_info_position_left"),
+		    Config.getInteger("onion_info_position_top")
 		);
 	}
 
@@ -340,7 +340,7 @@ public class DrawPanel extends JPanel {
 		        notebook.getCurrentSheet().getPagenumber(),
 		        notebook.getSheetCount()),
 		        getWidth() / 2,
-		        SettingsWrapper.getInteger("page_number_position_top"));
+		        Config.getInteger("page_number_position_top"));
 	}
 
 	/**
@@ -351,17 +351,17 @@ public class DrawPanel extends JPanel {
 	 */
 	private void drawScrollPanels(Graphics2D g) {
 		// Do nothing if the option is not set.
-		if (!SettingsWrapper.getBoolean("scroll_panels_show")) {
+		if (!Config.getBoolean("scroll_panels_show")) {
 			return;
 		}
 
 		try {
 			// Read the dimension of the panel from the config file.
-			int scrollPanelRadius = SettingsWrapper.getInteger("scroll_panel_width");
-			int scrollPanelPadding = SettingsWrapper.getInteger("scroll_panel_padding");
+			int scrollPanelRadius = Config.getInteger("scroll_panel_width");
+			int scrollPanelPadding = Config.getInteger("scroll_panel_padding");
 
 			// Draw the panels on the sides.
-			g.setColor(SettingsWrapper.getColor("scroll_panel_color"));
+			g.setColor(Config.getColor("scroll_panel_color"));
 			g.fillRoundRect(-scrollPanelRadius, scrollPanelPadding,
 			        2 * scrollPanelRadius,
 			        getHeight() - 2 * scrollPanelPadding,
@@ -420,7 +420,7 @@ public class DrawPanel extends JPanel {
 			cachedImage = new BufferedImage(getWidth(), getHeight(),
 			        BufferedImage.TYPE_BYTE_GRAY);
 			Graphics2D g2 = (Graphics2D) cachedImage.getGraphics();
-			g2.setColor(SettingsWrapper.getColor("notebook_background_color"));
+			g2.setColor(Config.getColor("notebook_background_color"));
 			g2.fillRect(0, 0, getWidth(), getHeight());
 
 			// Go back as many pages as there should be onion layers.
@@ -438,7 +438,7 @@ public class DrawPanel extends JPanel {
 			// Set the layers to a given opacity.
 			g2.setComposite(AlphaComposite.getInstance(
 			            AlphaComposite.SRC_ATOP,
-			            (float)(SettingsWrapper.getDouble("onion_mode_opacity") / Math.max(onionMode, 1))));
+			            (float)(Config.getDouble("onion_mode_opacity") / Math.max(onionMode, 1))));
 
 			// Iterate through from the bottom to the top layer and compose
 			// the images onto the cache image.
