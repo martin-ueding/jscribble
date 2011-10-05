@@ -40,7 +40,7 @@ causes trouble. It is activated by default since it is very handy.
 * `-v`:
   Verbose Mode.
 * `--key value`:
-  Allows to overwrite any config key in the default config and the user config. See below for a list of all available config keys
+  Allows one to overwrite any config key in the default config and the user config. See below for a list of all available config keys
 
 ## DEFAULT CONTROLS
 
