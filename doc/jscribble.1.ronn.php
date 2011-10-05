@@ -40,11 +40,11 @@ causes trouble. It is activated by default since it is very handy.
 * `-v`:
   Verbose Mode.
 * `--key value`:
-  Allows to overwrite any config key in the default config and the user config. See below for a list of all avalialbe config keys
+  Allows to overwrite any config key in the default config and the user config. See below for a list of all available config keys
 
 ## DEFAULT CONTROLS
 
-To flip between the pages, you can use the arrows keys, spacebar, enter and
+To flip between the pages, you can use the arrows keys, space bar, enter and
 backspace.
 
 When the primary mouse button is pressed, a line is drawn, the secondary mouse
