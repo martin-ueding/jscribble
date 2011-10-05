@@ -257,4 +257,17 @@ public class SettingsWrapper {
 		}
 		return false;
 	}
+
+	/**
+	 * Override a config setting for this session.
+	 *
+	 * @param key Key to override.
+	 * @param value New value.
+	 */
+	public void set(String key, String value) {
+		if (sessionConfig == null) {
+			sessionConfig = new Properties();
+		}
+		sessionConfig.setProperty(key, value);
+	}
 }
