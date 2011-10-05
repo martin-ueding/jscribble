@@ -12,3 +12,4 @@ html
 javadoc
 jscribble.pot
 jscribble_*.tar.gz
+install_files/completion/jscribble
