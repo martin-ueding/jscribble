@@ -2,9 +2,9 @@
 
 ## SYNOPSIS
 
-`jscribble` [-v]
+`jscribble` [options]
 
-`java -jar jscribble.jar` [-v]
+`java -jar jscribble.jar` [options]
 
 `javaws http://martin-ueding.de/download/jscribble/jscribble.jnlp`
 
