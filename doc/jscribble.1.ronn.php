@@ -39,7 +39,7 @@ causes trouble. It is activated by default since it is very handy.
 
 * `-v`:
   Verbose Mode.
-* `--<config_key>=<new_value>`:
+* `--key value`:
   Allows to overwrite any config key in the default config and the user config. See below for a list of all avalialbe config keys
 
 ## DEFAULT CONTROLS
