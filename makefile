@@ -16,7 +16,7 @@ javac:=javac -encoding UTF-8
 
 # Current version of the program.
 name=jscribble
-version:=1.6
+version:=1.6.1
 
 # Output file names.
 tarball:=$(name)_$(version).tar.gz
