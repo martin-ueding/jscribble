@@ -105,6 +105,7 @@ The value in parentheses is the default value.
 	<?php
 	// Parse the default config file and insert the comments and default value
 	// here.
+	echo "\n";
 
 	$config_file = 'jscribble/default_config.properties';
 	if (!file_exists($config_file)) {
