@@ -62,9 +62,17 @@ public class NoteBookProgram {
 	 */
 	public static void main(String[] args) {
 		// Parse the command line options.
-		for (String string : args) {
+		for (int i = 0; i < args.length; i++) {
+			String string = args[i];
 			if (string.equalsIgnoreCase("-v")) {
 				Logger.setDebug(true);
+			}
+			else {
+				if (string.startsWith("--") && i+1 < args.length && !args[i+1].startsWith("--")) {
+					String newValue = args[i+1];
+					System.out.println(newValue);
+					SettingsWrapper.set(string, newValue);
+				}
 			}
 		}
 

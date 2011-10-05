@@ -264,7 +264,7 @@ public class SettingsWrapper {
 	 * @param key Key to override.
 	 * @param value New value.
 	 */
-	public void set(String key, String value) {
+	public static void set(String key, String value) {
 		if (sessionConfig == null) {
 			sessionConfig = new Properties();
 		}
