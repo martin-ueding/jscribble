@@ -1,7 +1,7 @@
 _jscribble() {
 	local cur
 	COMPREPLY=()
-	cur=${COMP_WORDS[COMP_WORD]}
+	cur=${COMP_WORDS[COMP_CWORD]}
 
 	case "$cur" in
 		-*)
