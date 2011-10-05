@@ -70,8 +70,8 @@ public class NoteBookProgram {
 			else {
 				if (string.startsWith("--") && i+1 < args.length && !args[i+1].startsWith("--")) {
 					String newValue = args[i+1];
-					System.out.println(newValue);
-					SettingsWrapper.set(string, newValue);
+					String key = string.substring(2);
+					SettingsWrapper.set(key, newValue);
 				}
 			}
 		}
