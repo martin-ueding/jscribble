@@ -59,6 +59,7 @@ clean:
 	$(RM) doc/jscribble.1.html
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
+	$(RM) install_files/completion/jscribble
 	$(RM) $(allclassfiles)
 
 # Installs the jar file and the launcher script into DESTDIR.
