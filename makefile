@@ -92,11 +92,9 @@ $(signedjar): jscribble.jar
 $(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
 	$(RM) $@
 	git archive --prefix=$(foldername)/ HEAD > $(basename $@ .gz)
-	$(RM) surrogates.tar $(foldername)
-	ln -s . $(foldername)
-	tar -cf surrogates.tar $(foldername)/doc/jscribble.1 $(foldername)/CHANGELOG
+	tar -cf surrogates.tar --transform 's,^,/$(foldername)/,' doc/jscribble.1 CHANGELOG
 	tar -Af $(basename $@ .gz) surrogates.tar
-	$(RM) surrogates.tar $(foldername)
+	$(RM) surrogates.tar
 	gzip $(basename $@ .gz)
 
 # Creates a changelog file with the information in the git tags.
