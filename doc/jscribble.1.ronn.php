@@ -102,62 +102,21 @@ The format is the standard Java Properties format.
 
 ### Available Keys
 
-The value in parentheses is the default value.
+The type is given in brackets, the default value in parentheses.
 
 	<?php
 	// Parse the default config file and insert the comments and default value
 	// here.
 	echo "\n";
 
-	$config_file = 'jscribble/default_config.properties';
-	if (!file_exists($config_file)) {
-		die('Could not find default config.');
-	}
+	$file = file_get_contents('config/config.js');
+	$config = json_decode($file, true);
 
-	$lines = file($config_file);
-
-	$i = 1;
-
-	while ($i < count($lines)) {
-		// Advance until there is a comment sign in the line.
-		while ($lines[$i][0] != '#') {
-			$i++;
-		}
-
-		// Assume that all the following lines are the comment for the key-value
-		// pair that follows after that.
-
-		while ($i < count($lines) && $lines[$i][0] == '#') {
-			$comment_pieces[] = trim(substr($lines[$i], 2));
-			$i++;
-		}
-		$comment = implode(' ', $comment_pieces);
-		unset($comment_pieces);
-
-		// Skip over any blank lines that might be between the comment and the
-		// key-value pair.
-		while ($i < count($lines) && strlen(trim($lines[$i])) == 0) {
-			$i++;
-		}
-
-		// If the last comment was a finish commit at the end of the file, break
-		// here.
-		if ($i >= count($lines)) {
-			break;
-		}
-
-		// There should be a non-comment, non-blank line which can only be a
-		// key-value pair.
-		$key_value = trim($lines[$i]);
-		$key_value_array = explode('=', $key_value);
-		$key = $key_value_array[0];
-		$value = $key_value_array[1];
-
-		echo "* `$key`:\n";
-		echo "  $comment\n";
-		echo "  ($value)\n";
-
-		$i++;
+	foreach ($config as $item) {
+		echo "* `".$item['key']."`:\n";
+		if (!empty($item['comment']))
+			echo "  ".$item['comment']."\n";
+		echo " [".$item['type']."] (".$item['value'].")\n";
 	}
 	?>
 
