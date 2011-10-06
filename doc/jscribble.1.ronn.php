@@ -255,4 +255,4 @@ Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 [ron]: http://rtomayko.github.com/ronn/
 [web]: http://martin-ueding.de/download/jscribble/jscribble.jnlp
 
-<!--- vi: set filetype=markdown: -->
+	<?php /* vi: set filetype=markdown: */ ?>
