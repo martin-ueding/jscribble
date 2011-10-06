@@ -105,8 +105,8 @@ The format is the standard Java Properties format.
 The type is given in brackets, the default value in parentheses.
 
 	<?php
-	// Parse the default config file and insert the comments and default value
-	// here.
+	# Parse the default config file and insert the comments and default value
+	# here.
 	echo "\n";
 
 	$file = file_get_contents('config/config.js');
