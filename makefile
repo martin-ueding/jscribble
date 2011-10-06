@@ -28,7 +28,9 @@ signedjar:=$(name)_$(version).jar
 ###########################################################################
 
 # Builds the main program.
-all: jscribble.jar install_files/completion/jscribble
+all: program install_files/completion/jscribble
+
+program: jscribble/default_config.properties jscribble.jar
 
 # Creates the template for translators.
 i18n: jscribble.pot
@@ -46,7 +48,7 @@ doc-dev: javadoc/.javadoc html/.doxygen
 tarball: $(tarball)
 
 # Runs all available unit tests.
-test: jscribble/VersionName.class $(allclassfiles)
+test: program $(allclassfiles)
 	junit -text tests.JscribbleTestSuite
 
 # Removes all build files. The changelog and the manual page are not included
@@ -135,6 +137,9 @@ html/.doxygen: $(alljavafiles)
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version)
+
+jscribble/default_config.properties: config/generate_properties.php config/config.js
+	php $< > $@
 
 ###########################################################################
 #                             Implicit Rules                              #
