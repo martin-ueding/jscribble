@@ -138,8 +138,8 @@ html/.doxygen: $(alljavafiles)
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version)
 
-jscribble/default_config.properties: config/generate_properties.php config/config.js
-	php $< > $@
+jscribble/default_config.properties: config/generate_properties config/config.js
+	$< > $@
 
 ###########################################################################
 #                             Implicit Rules                              #
