@@ -62,6 +62,7 @@ clean:
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
 	$(RM) install_files/completion/jscribble
+	$(RM) jscribble/default_config.properties
 	$(RM) $(allclassfiles)
 
 # Installs the jar file and the launcher script into DESTDIR.
