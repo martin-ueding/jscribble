@@ -85,8 +85,9 @@ signed-jar: $(signedjar)
 #                             Explicit Rules                              #
 ###########################################################################
 
-install_files/completion/jscribble: install_files/completion/jscribble.php
-	php $< > $@
+install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
+	$< > $@.tmp
+	mv $@.tmp $@
 
 # Signs the jar file with Martin's key.
 $(signedjar): jscribble.jar

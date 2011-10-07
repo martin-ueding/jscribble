@@ -1,3 +1,4 @@
+#!/usr/bin/php
 _jscribble() {
 	local cur
 	COMPREPLY=()
