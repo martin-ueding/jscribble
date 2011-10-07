@@ -44,8 +44,8 @@ clean:
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
 	$(RM) jscribble/default_config.properties
+	$(RM) jscribble/jscribble_*.properties
 	$(RM) jscribble_*.*.tar.gz
-	$(RM) jscribble_*.properties
 
 # Assembles the documentation for the users.
 doc: doc/jscribble.1
@@ -130,17 +130,17 @@ javadoc/.javadoc: $(alljavafiles)
 jscribble/default_config.properties: config/generate_properties config/config.js
 	$< > $@
 
+# Convert the object into a Java compatible file.
+jscribble/jscribble_de.properties: de.po
+	msgcat --properties-output -o $@ $^
+
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version) > $@.tmp
 	mv $@.tmp $@
 
-# Convert the object into a Java compatible file.
-jscribble_de.properties: de.po
-	msgcat --properties-output -o $@ $^
-
 # Put all the class files into the jar.
-jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
+jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble/jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
 	jar -cfm $@ manifest.txt $^
 
 # Extract the strings from all Java source files.

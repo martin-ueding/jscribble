@@ -44,7 +44,7 @@ public class Localizer {
 		// Try to load the ResourceBundle.
 		if (bundle == null) {
 			try {
-				bundle = ResourceBundle.getBundle("jscribble");
+				bundle = ResourceBundle.getBundle("jscribble/jscribble");
 			}
 			catch (ExceptionInInitializerError e) {
 				Logger.log(Localizer.class.getName(),
