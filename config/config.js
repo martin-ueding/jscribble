@@ -61,7 +61,7 @@
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Corner radius of the help splash screen.",
 	"key": "help_splash_border_radius",
 	"value": "20"
 },
@@ -73,25 +73,25 @@
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Height of the help splash box.",
 	"key": "help_splash_height",
 	"value": "50"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Margin around the help splash.",
 	"key": "help_splash_margin",
 	"value": "15"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Distance of the memory usage from the bottom.",
 	"key": "memory_usage_position_bottom",
 	"value": "10"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Distance of the memory usage from the left.",
 	"key": "memory_usage_position_left",
 	"value": "10"
 },
@@ -132,8 +132,8 @@
 	"value": "1024"
 },
 {
-	"type": "Integer",
-	"comment": "",
+	"type": "Mouse",
+	"comment": "Mouse button to use for drawing.",
 	"key": "notebook_draw_mouse_button",
 	"value": "0,1024"
 },
@@ -151,7 +151,7 @@
 },
 {
 	"type": "Mouse",
-	"comment": "",
+	"comment": "Mouse button to use for erasing.",
 	"key": "notebook_erase_mouse_button",
 	"value": "256,4096"
 },
@@ -175,37 +175,37 @@
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to go back a page.",
 	"key": "notebook_go_back_key",
 	"value": "k,38,37,08"
 },
 {
 	"type": "Mouse",
-	"comment": "",
+	"comment": "Mouse button to go back a page.",
 	"key": "notebook_go_back_mouse_button",
 	"value": ""
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to go forward a page.",
 	"key": "notebook_go_forward_key",
 	"value": "j,40,39,32,10"
 },
 {
 	"type": "Mouse",
-	"comment": "",
+	"comment": "Mouse button to go forward a page.",
 	"key": "notebook_go_forward_mouse_button",
 	"value": ""
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to go to first page.",
 	"key": "notebook_goto_first_key",
 	"value": "f,36"
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to go to last page.",
 	"key": "notebook_goto_last_key",
 	"value": "l,35"
 },
@@ -217,25 +217,25 @@
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Height of the initial selection window.",
 	"key": "notebook_selection_window_height",
 	"value": "300"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Width of the initial selection window.",
 	"key": "notebook_selection_window_width",
 	"value": "400"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Position of the onion layer info from the left.",
 	"key": "onion_info_position_left",
 	"value": "10"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Position of the onion layer info from the top.",
 	"key": "onion_info_position_top",
 	"value": "15"
 },
@@ -259,7 +259,7 @@
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Position of the page number from the top.",
 	"key": "page_number_position_top",
 	"value": "15"
 },
@@ -271,7 +271,7 @@
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to toggle graph ruling.",
 	"key": "ruling_graph_toggle_key",
 	"value": "g"
 },
@@ -289,25 +289,25 @@
 },
 {
 	"type": "Key",
-	"comment": "",
+	"comment": "Key to toggle line ruling.",
 	"key": "ruling_toggle_key",
 	"value": "r"
 },
 {
 	"type": "Color",
-	"comment": "",
+	"comment": "Color of the mouse only mode scroll panels.",
 	"key": "scroll_panel_color",
 	"value": "64000000"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Padding top and bottom of the scroll panels.",
 	"key": "scroll_panel_padding",
 	"value": "5"
 },
 {
 	"type": "Integer",
-	"comment": "",
+	"comment": "Width of the scroll panels.",
 	"key": "scroll_panel_width",
 	"value": "20"
 },
