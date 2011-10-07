@@ -28,8 +28,16 @@ foreach ($config as $item) {
 
 		case "$prev" in
 			<?php
-			foreach ($file as $line) {
-				if (
+			foreach ($config as $item) {
+				if ($item['type'] == 'Boolean') {
+					$keys[] = '--'.$item['key'];
+				}
+			}
+			echo implode('|', $keys);
+			?>)
+				COMPREPLY=( $(compgen -W 'true false' -- $cur) )
+				;;
+		esac
 	fi
 
 	return 0
