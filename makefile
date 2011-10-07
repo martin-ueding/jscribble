@@ -38,14 +38,14 @@ clean:
 	$(RM) *.mo
 	$(RM) -r html javadoc
 	$(RM) .testrun
-	$(RM) de.po~
+	$(RM) l10n/de.po~
 	$(RM) doc/jscribble.1.html
 	$(RM) install_files/completion/jscribble
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
 	$(RM) jscribble/default_config.properties
-	$(RM) jscribble/jscribble_*.properties
 	$(RM) jscribble_*.*.tar.gz
+	$(RM) l10n/jscribble_*.properties
 
 # Assembles the documentation for the users.
 doc: doc/jscribble.1
@@ -130,23 +130,23 @@ javadoc/.javadoc: $(alljavafiles)
 jscribble/default_config.properties: config/generate_properties config/config.js
 	$< > $@
 
-# Convert the object into a Java compatible file.
-jscribble/jscribble_de.properties: de.po
-	msgcat --properties-output -o $@ $^
-
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version) > $@.tmp
 	mv $@.tmp $@
 
 # Put all the class files into the jar.
-jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble/jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
+jscribble.jar: jscribble/VersionName.class $(classfiles) l10n/jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
 	jar -cfm $@ manifest.txt $^
 
 # Extract the strings from all Java source files.
 # FIXME Prevent extraction of config items.
 jscribble.pot: $(alljavafiles)
 	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
+
+# Convert the object into a Java compatible file.
+l10n/jscribble_de.properties: l10n/de.po
+	msgcat --properties-output -o $@ $^
 
 ###########################################################################
 #                             Implicit Rules                              #
