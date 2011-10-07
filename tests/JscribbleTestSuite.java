@@ -33,6 +33,13 @@ public class JscribbleTestSuite {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
+
+		// TODO Add test for BufferedImageWrapper.
+		// TODO Add test for InvalidationThread.
+		// TODO Add test for Localizer.
+		// TODO Add test for Logger.
+		// TODO Add test for SettingsWrapper.
+
 		suite.addTestSuite(FileComparatorTest.class);
 		suite.addTestSuite(HelpItemTest.class);
 		suite.addTestSuite(NoteBookTest.class);
