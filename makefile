@@ -4,6 +4,10 @@
 #                          Variables, File Lists                          #
 ###########################################################################
 
+# Current version of the program.
+name=jscribble
+version:=1.6.1
+
 # Find all the Java files in the source tree and generate a matching list of
 # class files (targets) from that.
 alljavafiles:=$(shell find . -name "*.java")
@@ -13,10 +17,6 @@ classfiles:=$(javafiles:.java=.class)
 
 # Java compiler to use.
 javac:=javac -encoding UTF-8
-
-# Current version of the program.
-name=jscribble
-version:=1.6.1
 
 # Output file names.
 tarball:=$(name)_$(version).tar.gz
