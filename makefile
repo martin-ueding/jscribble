@@ -41,10 +41,10 @@ clean:
 	$(RM) l10n/de.po~
 	$(RM) doc/jscribble.1.html
 	$(RM) install_files/completion/jscribble
-	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
 	$(RM) jscribble/default_config.properties
 	$(RM) jscribble_*.*.tar.gz
+	$(RM) l10n/jscribble.pot
 	$(RM) l10n/jscribble_*.properties
 
 # Assembles the documentation for the users.
@@ -55,7 +55,7 @@ doc: doc/jscribble.1
 doc-dev: javadoc/.javadoc html/.doxygen
 
 # Creates the template for translators.
-i18n: jscribble.pot
+i18n: l10n/jscribble.pot
 
 # Installs the jar file and the launcher script into DESTDIR.
 install: jscribble.jar install_files/completion/jscribble
@@ -139,14 +139,14 @@ jscribble/VersionName.java: makefile
 jscribble.jar: jscribble/VersionName.class $(classfiles) l10n/jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
 	jar -cfm $@ manifest.txt $^
 
-# Extract the strings from all Java source files.
-# FIXME Prevent extraction of config items.
-jscribble.pot: $(alljavafiles)
-	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
-
 # Convert the object into a Java compatible file.
 l10n/jscribble_de.properties: l10n/de.po
 	msgcat --properties-output -o $@ $^
+
+# Extract the strings from all Java source files.
+# FIXME Prevent extraction of config items.
+l10n/jscribble.pot: $(alljavafiles)
+	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
 ###########################################################################
 #                             Implicit Rules                              #
