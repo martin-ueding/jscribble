@@ -9,18 +9,11 @@ _jscribble() {
 			COMPREPLY=( $(compgen -W '-v' -- $cur) \
 				$(compgen -W '
 <?php
-$file = file('jscribble/default_config.properties');
+$file = file_get_contents('config/config.js');
+$config = json_decode($file, true);
 
-foreach ($file as $line) {
-	$line = trim($line);
-	if (strlen($line) == 0 || $line[0] == '#') {
-		continue;
-	}
-
-	$key_value_array = explode('=', $line);
-	$key = $key_value_array[0];
-
-	echo ' --'.$key;
+foreach ($config as $item) {
+	echo ' --'.$item['key'];
 }
 
 ?>
