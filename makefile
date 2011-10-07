@@ -19,9 +19,9 @@ classfiles:=$(javafiles:.java=.class)
 javac:=javac -encoding UTF-8
 
 # Output file names.
-tarball:=$(name)_$(version).tar.gz
 foldername:=$(name)-$(version)
 signedjar:=$(name)_$(version).jar
+tarball:=$(name)_$(version).tar.gz
 
 ###########################################################################
 #                              Named Targets                              #
@@ -29,27 +29,6 @@ signedjar:=$(name)_$(version).jar
 
 # Builds the main program.
 all: program install_files/completion/jscribble
-
-program: jscribble/default_config.properties jscribble.jar
-
-# Creates the template for translators.
-i18n: jscribble.pot
-
-# Assembles the documentation for the users.
-doc: doc/jscribble.1
-
-# Extracts all javadoc comments from the source codes and generates HTML pages
-# with that information.
-doc-dev: javadoc/.javadoc html/.doxygen
-
-# Creates a tarball which contains all the source code. The changelog and the
-# manual page are included, although they are build files, since the tools
-# needed for that are not ubiquitous.
-tarball: $(tarball)
-
-# Runs all available unit tests.
-test: program $(allclassfiles)
-	junit -text tests.JscribbleTestSuite
 
 # Removes all build files. The changelog and the manual page are not included
 # since they are hard to come by.
@@ -68,6 +47,16 @@ clean:
 	$(RM) jscribble_*.*.tar.gz
 	$(RM) jscribble_*.properties
 
+# Assembles the documentation for the users.
+doc: doc/jscribble.1
+
+# Extracts all javadoc comments from the source codes and generates HTML pages
+# with that information.
+doc-dev: javadoc/.javadoc html/.doxygen
+
+# Creates the template for translators.
+i18n: jscribble.pot
+
 # Installs the jar file and the launcher script into DESTDIR.
 install: jscribble.jar install_files/completion/jscribble
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
@@ -77,17 +66,24 @@ install: jscribble.jar install_files/completion/jscribble
 	mkdir -p "$(DESTDIR)/etc/bash_completion.d/"
 	install install_files/completion/jscribble "$(DESTDIR)/etc/bash_completion.d/"
 
+program: jscribble/default_config.properties jscribble.jar
+
 # Creates a jar file which contains the version name, ready for Java Web Start
 # deployment.
 signed-jar: $(signedjar)
 
+# Creates a tarball which contains all the source code. The changelog and the
+# manual page are included, although they are build files, since the tools
+# needed for that are not ubiquitous.
+tarball: $(tarball)
+
+# Runs all available unit tests.
+test: program $(allclassfiles)
+	junit -text tests.JscribbleTestSuite
+
 ###########################################################################
 #                             Explicit Rules                              #
 ###########################################################################
-
-install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
-	$< > $@.tmp
-	mv $@.tmp $@
 
 # Signs the jar file with Martin's key.
 $(signedjar): jscribble.jar
@@ -117,36 +113,40 @@ doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properti
 	php $^ > $@.tmp
 	mv $@.tmp $@
 
-# Put all the class files into the jar.
-jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
-	jar -cfm $@ manifest.txt $^
+# Create doxygen doc.
+html/.doxygen: $(alljavafiles)
+	doxygen
+	touch $@
 
-# Convert the object into a Java compatible file.
-jscribble_de.properties: de.po
-	msgcat --properties-output -o $@ $^
-
-# Extract the strings from all Java source files.
-# FIXME Prevent extraction of config items.
-jscribble.pot: $(alljavafiles)
-	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
+install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
+	$< > $@.tmp
+	mv $@.tmp $@
 
 # Create standard javadoc.
 javadoc/.javadoc: $(alljavafiles)
 	javadoc -d javadoc $^
 	touch $@
 
-# Create doxygen doc.
-html/.doxygen: $(alljavafiles)
-	doxygen
-	touch $@
+jscribble/default_config.properties: config/generate_properties config/config.js
+	$< > $@
 
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
 	./generate_version_class $(version) > $@.tmp
 	mv $@.tmp $@
 
-jscribble/default_config.properties: config/generate_properties config/config.js
-	$< > $@
+# Convert the object into a Java compatible file.
+jscribble_de.properties: de.po
+	msgcat --properties-output -o $@ $^
+
+# Put all the class files into the jar.
+jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
+	jar -cfm $@ manifest.txt $^
+
+# Extract the strings from all Java source files.
+# FIXME Prevent extraction of config items.
+jscribble.pot: $(alljavafiles)
+	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
 
 ###########################################################################
 #                             Implicit Rules                              #
