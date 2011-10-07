@@ -114,7 +114,8 @@ doc/jscribble.1: doc/jscribble.1.ronn
 
 # Inserts the values and comments from the default config into the manual page.
 doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properties
-	php $^ > $@
+	php $^ > $@.tmp
+	mv $@.tmp $@
 
 # Put all the class files into the jar.
 jscribble.jar: jscribble/VersionName.class $(classfiles) jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
