@@ -35,6 +35,8 @@ file, though.
 The eraser was implemented later too, it can be disabled in the config if it
 causes trouble. It is activated by default since it is very handy.
 
+You need the Java Runtime Environment (JRE) to run jscribble.
+
 ## OPTIONS
 
 * `-v`:
@@ -136,53 +138,70 @@ This program is featured in [Debian][deb] and [Arch Linux][arc] so far.
 
 ## BUILDING FROM SOURCE
 
+### Just The Program
+
 You can obtain a tarball with the latest source code from the [jscribble
 website][jsc].
-
-If the minimum set is installed, you should be able to compile and install with
-this:
-
-	make jscribble.jar
-	make install	# as root
 
 The following software is needed to compile this program:
 
 * **make**:
   Build system.
-* **Java Development Kit** (jdk):
-  Java compiler.
+* **Java Development Kit** (JDK):
+  Java compiler, version 1.6 works.
 * **xgettext**, **msgfmt**:
   Parses source code for translation calls and converts translation file into the Java property format.
 * **php5-cli**:
-  Reads the default config file and parses the options into the manual page. It is also needed to parse the config for the bash completion.
-* **various linux tools**:
+  Used for various file creations, lists all the config entries in the manual page for instance.
+* **various Linux tools**:
   find, rm, touch, bash
 
-In case you want to build all the documentation, you might want to install these as well:
+To build the main program, simply invoke make:
+
+	make
+
+Then you can just launch the program with a `java -jar jscribble.jar`. In case
+you use Linux and want to install it for all users, run this:
+
+	make install	# as root
+
+Now it can be launched with a simple `jscribble`.
+
+### Developer Documentation
+
+In case you want to build all the developer documentation, you might want to
+install these as well:
 
 * **doxygen**:
   A HTML and LaTeX documentation generator for various languages.
 * **javadoc**:
-  A HTML documentation generator for Java. This should be included with the Java Development Kit.
+  A HTML documentation generator for Java. This should be included with the Java Development Kit (JDK).
+
+To build the documentation, call:
+
+	build dev-doc
+
+### Unit Tests
+
+jscribble has a couple test cases which can be run with junit.
+
 * **junit**:
   Unit test runner for Java.
 
-This manual is written in the ronn-format, the tarball already contains the converted output to lighten the build dependencies. In case you want to convert the ronn-format manual page, you need ronn as well.
+To run the tests, call `make test`.
+
+### User Manual
+
+This manual is written in the ronn-format, the tarball already contains the
+converted output to lighten the build dependencies. In case you want to convert
+the ronn-format manual page, you need ronn as well.
 
 * **ronn**:
   Converts markdown into html and manual page. Get it [here][ron].
 
-Then you can call this to compile the binary and the manual page:
+To convert the ronn manual page into a roff and html manual page, invoke:
 
-	make
-
-To build the javadoc and doxygen output, use this:
-
-	make all
-
-To run all tests:
-
-	make test
+	make doc
 
 ## BUGS
 
@@ -201,7 +220,7 @@ Martin Ueding <dev@martin-ueding.de>
 
 ## COPYRIGHT
 
-Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
 ## SEE ALSO
 
