@@ -134,7 +134,7 @@ attacker might be able to recover images drawn in the scribble mode.
 
 ## PACKAGES
 
-This program is featured in [Debian][deb] and [Arch Linux][arc] so far.
+This program is featured in [Debian Sid][sid], [Debian Wheezy][whe] and [Arch Linux][arc] so far.
 
 ## BUILDING FROM SOURCE
 
@@ -228,7 +228,8 @@ Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
 [xou]: http://xournal.sourceforge.net/
 [jsc]: http://martin-ueding.de/jscribble/
-[deb]: http://packages.debian.org/sid/jscribble
+[sid]: http://packages.debian.org/sid/jscribble
+[whe]: http://packages.debian.org/wheezy/jscribble
 [arc]: https://aur.archlinux.org/packages.php?ID=51337
 [ron]: http://rtomayko.github.com/ronn/
 [web]: http://martin-ueding.de/download/jscribble/jscribble.jnlp
