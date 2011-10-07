@@ -29,6 +29,16 @@ foreach ($file as $line) {
 			;;
 	esac
 
+	if (( COMP_CWORD > 0 ))
+	then
+		prev=${COMP_WORDS[((COMP_CWORD-1))]}
+
+		case "$prev" in
+			<?php
+			foreach ($file as $line) {
+				if (
+	fi
+
 	return 0
 }
 
