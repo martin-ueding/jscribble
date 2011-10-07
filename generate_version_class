@@ -1,19 +1,16 @@
 #!/bin/bash
 # Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
-outfile=jscribble/VersionName.java
-
 version=$1
 
-echo "package jscribble;" > "$outfile"
-echo "/**" >> "$outfile"
-echo " * Version name dummy." >> "$outfile"
-echo " */" >> "$outfile"
-echo "public class VersionName {" >> $outfile
-echo "	/**" >> "$outfile"
-echo "	 * Current version number of the VCS." >> "$outfile"
-echo "	 */" >> "$outfile"
-echo "	public static final String version = \"$version\";" >> $outfile
-echo "}" >> $outfile
-echo >> $outfile
-
+echo "package jscribble;"
+echo "/**"
+echo " * Version name dummy."
+echo " */"
+echo "public class VersionName {"
+echo "	/**"
+echo "	 * Current version number of the VCS."
+echo "	 */"
+echo "	public static final String version = \"$version\";"
+echo "}"
+echo

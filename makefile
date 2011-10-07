@@ -142,7 +142,8 @@ html/.doxygen: $(alljavafiles)
 
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
-	./generate_version_class $(version)
+	./generate_version_class $(version) > $@.tmp
+	mv $@.tmp $@
 
 jscribble/default_config.properties: config/generate_properties config/config.js
 	$< > $@
