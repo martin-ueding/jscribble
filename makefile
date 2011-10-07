@@ -54,16 +54,19 @@ test: program $(allclassfiles)
 # Removes all build files. The changelog and the manual page are not included
 # since they are hard to come by.
 clean:
-	$(RM) *.jar jscribble_*.*.tar.gz
-	$(RM) *.mo jscribble_*.properties de.po~
+	$(RM) $(allclassfiles)
+	$(RM) *.jar
+	$(RM) *.mo
 	$(RM) -r html javadoc
 	$(RM) .testrun
+	$(RM) de.po~
 	$(RM) doc/jscribble.1.html
+	$(RM) install_files/completion/jscribble
 	$(RM) jscribble.pot
 	$(RM) jscribble/VersionName.java
-	$(RM) install_files/completion/jscribble
 	$(RM) jscribble/default_config.properties
-	$(RM) $(allclassfiles)
+	$(RM) jscribble_*.*.tar.gz
+	$(RM) jscribble_*.properties
 
 # Installs the jar file and the launcher script into DESTDIR.
 install: jscribble.jar install_files/completion/jscribble
