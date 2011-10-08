@@ -6,7 +6,7 @@
 
 # Current version of the program.
 name=jscribble
-version:=1.6.1
+version:=1.6.2
 
 # Find all the Java files in the source tree and generate a matching list of
 # class files (targets) from that.
