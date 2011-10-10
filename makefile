@@ -144,9 +144,8 @@ l10n/jscribble_de.properties: l10n/de.po
 	msgcat --properties-output -o $@ $^
 
 # Extract the strings from all Java source files.
-# FIXME Prevent extraction of config items.
 l10n/jscribble.pot: $(alljavafiles)
-	xgettext -o $@ -k"Localizer.get" $^ --from-code=utf-8
+	xgettext -o $@ -k -k"Localizer.get" $^ --from-code=utf-8
 
 ###########################################################################
 #                             Implicit Rules                              #
