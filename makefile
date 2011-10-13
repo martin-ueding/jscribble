@@ -60,13 +60,13 @@ i18n: l10n/jscribble.pot
 # Installs the jar file and the launcher script into DESTDIR.
 install: jscribble.jar install_files/completion/jscribble
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
-	install jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
+	install -m 644 jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
 	mkdir -p "$(DESTDIR)/usr/bin"
-	install install_files/jscribble "$(DESTDIR)/usr/bin/"
+	install -m 755 install_files/jscribble "$(DESTDIR)/usr/bin/"
 	mkdir -p "$(DESTDIR)/etc/bash_completion.d/"
-	install install_files/completion/jscribble "$(DESTDIR)/etc/bash_completion.d/"
+	install -m 644 install_files/completion/jscribble "$(DESTDIR)/etc/bash_completion.d/"
 	mkdir -p "$(DESTDIR)/usr/share/man/man1/"
-	install doc/jscribble.1 "$(DESTDIR)/usr/share/man/man1/"
+	install -m 644 doc/jscribble.1 "$(DESTDIR)/usr/share/man/man1/"
 	gzip "$(DESTDIR)/usr/share/man/man1/jscribble.1"
 
 program: jscribble/default_config.properties jscribble.jar
