@@ -58,7 +58,7 @@ doc-dev: javadoc/.javadoc html/.doxygen
 i18n: l10n/jscribble.pot
 
 # Installs the jar file and the launcher script into DESTDIR.
-install: jscribble.jar install_files/completion/jscribble doc/jscribble.1
+install: jscribble.jar install_files/completion/jscribble
 	mkdir -p "$(DESTDIR)/usr/share/jscribble"
 	install jscribble.jar "$(DESTDIR)/usr/share/jscribble/"
 	mkdir -p "$(DESTDIR)/usr/bin"
