@@ -1,6 +1,8 @@
 *.class
 *.jar
 *.properties
+.classpath
+.project
 .testrun
 CHANGELOG
 VersionName.java
@@ -9,7 +11,7 @@ doc/jscribble.1
 doc/jscribble.1.html
 doc/jscribble.1.ronn
 html
+install_files/completion/jscribble
 javadoc
 jscribble.pot
 jscribble_*.tar.gz
-install_files/completion/jscribble
