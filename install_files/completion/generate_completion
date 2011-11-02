@@ -15,9 +15,9 @@
 # jscribble.  If not, see <http://www.gnu.org/licenses/>.
 
 _jscribble() {
-	local cur
+	local cur prev
 	COMPREPLY=()
-	cur=${COMP_WORDS[COMP_CWORD]}
+	_get_comp_words_by_ref cur prev
 
 	case "$cur" in
 		*)
@@ -39,8 +39,6 @@ foreach ($config as $item) {
 
 	if (( COMP_CWORD > 0 ))
 	then
-		prev=${COMP_WORDS[((COMP_CWORD-1))]}
-
 		case "$prev" in
 			<?php
 			foreach ($config as $item) {
