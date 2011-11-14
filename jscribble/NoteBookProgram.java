@@ -68,8 +68,8 @@ public class NoteBookProgram {
 				Logger.setDebug(true);
 			}
 			else {
-				if (string.startsWith("--") && i + 1 < args.length && !args[i+1].startsWith("--")) {
-					String newValue = args[i+1];
+				if (string.startsWith("--") && i + 1 < args.length && !args[i + 1].startsWith("--")) {
+					String newValue = args[i + 1];
 					String key = string.substring(2);
 					Config.set(key, newValue);
 				}

@@ -413,7 +413,7 @@ public class NoteBook implements Comparable<NoteBook> {
 			for (File file : allImages) {
 				String[] nameparts =
 				    file.getName().split(Pattern.quote(File.separator));
-				String basename = nameparts[nameparts.length-1];
+				String basename = nameparts[nameparts.length - 1];
 				Matcher m = p.matcher(basename);
 				if (m.matches()) {
 					pagecount = Math.max(pagecount,

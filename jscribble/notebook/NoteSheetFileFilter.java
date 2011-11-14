@@ -44,7 +44,7 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	@Override
 	public boolean accept(File arg0, String arg1) {
 		String[] nameparts = arg1.split(Pattern.quote(File.separator));
-		String fileBasename = nameparts[nameparts.length-1];
+		String fileBasename = nameparts[nameparts.length - 1];
 		return p.matcher(fileBasename).matches();
 	}
 }
