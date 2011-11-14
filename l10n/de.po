@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: Martin Ueding <dev@martin-ueding.de>\n"
-"POT-Creation-Date: 2011-10-04 21:07+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-14 15:15+0100\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -19,170 +19,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: jscribble/helpers/Logger.java:59
-msgid "date_format"
+#: jscribble/NoteBookProgram.java:81
+msgid "Starting up."
+msgstr "Starte."
+
+#: jscribble/NoteBookProgram.java:86
+msgid "Entering interactive mode."
+msgstr "Starte interaktiven Modus."
+
+#: jscribble/NoteBookProgram.java:96
+msgid "Version: %s"
 msgstr ""
 
-#: jscribble/helpers/SettingsWrapper.java:138
-#: jscribble/helpers/SettingsWrapper.java:161
+#: jscribble/helpers/Config.java:143 jscribble/helpers/Config.java:166
 msgid "Could not find the config file. (This should *not* happen!)"
 msgstr ""
 "Konnte keine Konfigurationsdatei finden. (Dies sollte *nicht* passieren!)"
 
-#: jscribble/helpers/SettingsWrapper.java:143
-#: jscribble/helpers/SettingsWrapper.java:166
+#: jscribble/helpers/Config.java:148 jscribble/helpers/Config.java:171
 msgid "IO error while reading config file."
 msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
 
-#: jscribble/helpers/SettingsWrapper.java:155
-msgid "user_config_filename"
-msgstr ""
-
-#: jscribble/helpers/SettingsWrapper.java:186
+#: jscribble/helpers/Config.java:194
 msgid "There is no default setting for %s."
 msgstr "Es gibt keine Standardeinstellung für %s."
 
-#: jscribble/helpers/SettingsWrapper.java:219
+#: jscribble/helpers/Config.java:227
 msgid "%c is a valid key for %s."
 msgstr "%c ist eine gültige Taste für %s."
 
-#: jscribble/helpers/SettingsWrapper.java:224
-#: jscribble/helpers/SettingsWrapper.java:246
+#: jscribble/helpers/Config.java:232 jscribble/helpers/Config.java:254
 msgid "%s is a valid key for %s."
 msgstr "%s ist eine gültige Taste für %s."
 
-#: jscribble/drawPanel/DrawPanel.java:81
-msgid "help_screen_toggle_key"
-msgstr ""
+#: jscribble/selectionWindow/ShutdownHook.java:61
+msgid "Shutting down …"
+msgstr "Fahre herunter …"
 
-#: jscribble/drawPanel/DrawPanel.java:82
-msgid "show help"
-msgstr "zeige Hilfe"
-
-#: jscribble/drawPanel/DrawPanel.java:85
-msgid "help_screen_close_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:86
-msgid "hide help"
-msgstr "verstecke Hilfe"
-
-#: jscribble/drawPanel/DrawPanel.java:89
-msgid "notebook_go_forward_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:90
-msgid "go forward"
-msgstr "gehe vorwärts"
-
-#: jscribble/drawPanel/DrawPanel.java:93
-msgid "notebook_go_back_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:94
-msgid "go backward"
-msgstr "gehe zurück"
-
-#: jscribble/drawPanel/DrawPanel.java:96
-msgid "notebook_goto_first_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:97
-msgid "goto first"
-msgstr "gehe zum Anfang"
-
-#: jscribble/drawPanel/DrawPanel.java:100
-msgid "notebook_goto_last_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:101
-msgid "goto last"
-msgstr "gehe zum Ende"
-
-#: jscribble/drawPanel/DrawPanel.java:104
-msgid "notebook_close_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:105
-msgid "save & exit"
-msgstr "speichern & beenden"
-
-#: jscribble/drawPanel/DrawPanel.java:108
-msgid "onion_layer_increase_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:109
-msgid "increase onion layers"
-msgstr "erhöhe Zwiebelschichten"
-
-#: jscribble/drawPanel/DrawPanel.java:112
-msgid "onion_layer_decrease_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:113
-msgid "decrease onion layers"
-msgstr "verringere Zwiebelschichten"
-
-#: jscribble/drawPanel/DrawPanel.java:116
-msgid "ruling_toggle_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:117
-msgid "toggle ruling"
-msgstr "schalte Linierung an/aus"
-
-#: jscribble/drawPanel/DrawPanel.java:120
-msgid "ruling_graph_toggle_key"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:121
-msgid "toggle graph paper"
-msgstr "schalte Karierung an/aus"
-
-#: jscribble/drawPanel/DrawPanel.java:222
-msgid "Version %s"
-msgstr ""
-
-#: jscribble/drawPanel/DrawPanel.java:250
-msgid "Press h or F1 to get help."
-msgstr "Drücken Sie h oder F1 für Hilfe."
-
-#: jscribble/drawPanel/DrawPanel.java:305
-msgid "%d MiB used, %d MiB free, %d MiB total"
-msgstr "%d MiB benutzt, %d MiB frei, %d MiB total"
-
-#: jscribble/drawPanel/DrawPanel.java:326
-msgid "Onion Layers: %d"
-msgstr "Zwiebelschichten: %d"
-
-#: jscribble/drawPanel/DrawPanel.java:339
-msgid "Page %d/%d"
-msgstr "Seite %d/%d"
-
-#: jscribble/drawPanel/DrawPanel.java:376
-msgid "Malformed entry in config file."
-msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
-
-#: jscribble/drawPanel/NoteBookClosingAdapter.java:57
 #: jscribble/selectionWindow/ShutdownHook.java:68
+#: jscribble/drawPanel/NoteBookClosingAdapter.java:57
 msgid "Closing NoteBook \"%s\"."
 msgstr "Schließe Notizbuch \"%s\""
 
-#: jscribble/NoteBookProgram.java:55
-msgid "program_name"
+#: jscribble/selectionWindow/ShutdownHook.java:76
+msgid "Everything saved properly. Thanks for waiting!"
+msgstr "Alles gespeichert. Danke für's warten!"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:119
+msgid "New"
+msgstr "Neu"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:121
+msgid "Open"
+msgstr "Öffnen"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:123
+msgid "Delete"
+msgstr "Löschen"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:125
+msgid "Scribble"
+msgstr "Kritzeln"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:141
+msgid "Select your Notebook"
+msgstr "Wählen Sie Ihr Notizbuch"
+
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:181
+msgid ""
+"Nickname of your Notebook: (please only use characters, numbers, _ and -)"
 msgstr ""
+"Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
-#: jscribble/NoteBookProgram.java:73
-msgid "Starting up."
-msgstr "Starte."
-
-#: jscribble/NoteBookProgram.java:78
-msgid "Entering interactive mode."
-msgstr "Starte interaktiven Modus."
-
-#: jscribble/NoteBookProgram.java:88
-msgid "Version: %s"
-msgstr ""
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:278
+msgid "Notebook \"%s\""
+msgstr "Notizbuch \"%s\""
 
 #: jscribble/notebook/writeoutThread/WriteoutThread.java:78
 msgid "Writing %s."
@@ -207,42 +118,6 @@ msgstr "Thread läuft aus."
 #: jscribble/notebook/writeoutThread/WriteoutThread.java:116
 msgid "Interrupted while scheduling a disk write task."
 msgstr "Beim speichern unterbrochen."
-
-#: jscribble/notebook/NoteBook.java:159
-msgid ""
-"Would you like to use your native resolution (%dx%d) instead of the default "
-"(%dx%d)?"
-msgstr ""
-"Wollen Sie Ihre Auflösung (%dx%d) anstelle der Standardauflösung (%dx%d) "
-"benutzen?"
-
-#: jscribble/notebook/NoteBook.java:165
-msgid "Default Resolution"
-msgstr "Standardauflösung"
-
-#: jscribble/notebook/NoteBook.java:187
-msgid "Do you really want to delete \"%s\"?"
-msgstr "Möchtest du wirklich \"%s\" löschen?"
-
-#: jscribble/notebook/NoteBook.java:188
-msgid "Really delete?"
-msgstr "Wirklich löschen?"
-
-#: jscribble/notebook/NoteBook.java:221
-msgid "Could not delete folder."
-msgstr "Konnte den Ordner nicht löschen"
-
-#: jscribble/notebook/NoteBook.java:271
-msgid "Could not determine path of NoteBook folder."
-msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
-
-#: jscribble/notebook/NoteBook.java:431
-msgid "Unable to determine resolution from first image in NoteBook."
-msgstr "Konnte die Auflösung nicht vom ersten Bild des Notizbuches erkennen."
-
-#: jscribble/notebook/NoteBook.java:465
-msgid "Starting to write out image files."
-msgstr "Beginne Bild-Datei zu speichern"
 
 #: jscribble/notebook/NoteSheet.java:160
 msgid "BufferedImage is null."
@@ -304,44 +179,110 @@ msgstr "Plane %s zum Speichern ein."
 msgid "WriteThread was interrupted."
 msgstr "WriteThread wurde unterbrochen."
 
-#: jscribble/selectionWindow/ShutdownHook.java:61
-msgid "Shutting down …"
-msgstr "Fahre herunter …"
-
-#: jscribble/selectionWindow/ShutdownHook.java:76
-msgid "Everything saved properly. Thanks for waiting!"
-msgstr "Alles gespeichert. Danke für's warten!"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:119
-msgid "New"
-msgstr "Neu"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:121
-msgid "Open"
-msgstr "Öffnen"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:123
-msgid "Delete"
-msgstr "Löschen"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:125
-msgid "Scribble"
-msgstr "Kritzeln"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:141
-msgid "Select your Notebook"
-msgstr "Wählen Sie Ihr Notizbuch"
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:177
-msgid "notebook_name_validation_pattern"
-msgstr ""
-
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:181
+#: jscribble/notebook/NoteBook.java:159
 msgid ""
-"Nickname of your Notebook: (please only use characters, numbers, _ and -)"
+"Would you like to use your native resolution (%dx%d) instead of the default "
+"(%dx%d)?"
 msgstr ""
-"Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
+"Wollen Sie Ihre Auflösung (%dx%d) anstelle der Standardauflösung (%dx%d) "
+"benutzen?"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:278
-msgid "Notebook \"%s\""
-msgstr "Notizbuch \"%s\""
+#: jscribble/notebook/NoteBook.java:165
+msgid "Default Resolution"
+msgstr "Standardauflösung"
+
+#: jscribble/notebook/NoteBook.java:187
+msgid "Do you really want to delete \"%s\"?"
+msgstr "Möchtest du wirklich \"%s\" löschen?"
+
+#: jscribble/notebook/NoteBook.java:188
+msgid "Really delete?"
+msgstr "Wirklich löschen?"
+
+#: jscribble/notebook/NoteBook.java:221
+msgid "Could not delete folder."
+msgstr "Konnte den Ordner nicht löschen"
+
+#: jscribble/notebook/NoteBook.java:271
+msgid "Could not determine path of NoteBook folder."
+msgstr "Konnte den Pfad des NoteBook-Ordners nicht bestimmen"
+
+#: jscribble/notebook/NoteBook.java:437
+msgid "Unable to determine resolution from first image in NoteBook."
+msgstr "Konnte die Auflösung nicht vom ersten Bild des Notizbuches erkennen."
+
+#: jscribble/notebook/NoteBook.java:471
+msgid "Starting to write out image files."
+msgstr "Beginne Bild-Datei zu speichern"
+
+#: jscribble/notebook/NoteBookCompressor.java:67
+msgid "Rename %s to %s."
+msgstr "Benenne %s zu %s um."
+
+#: jscribble/drawPanel/DrawPanel.java:82
+msgid "show help"
+msgstr "zeige Hilfe"
+
+#: jscribble/drawPanel/DrawPanel.java:86
+msgid "hide help"
+msgstr "verstecke Hilfe"
+
+#: jscribble/drawPanel/DrawPanel.java:90
+msgid "go forward"
+msgstr "gehe vorwärts"
+
+#: jscribble/drawPanel/DrawPanel.java:94
+msgid "go backward"
+msgstr "gehe zurück"
+
+#: jscribble/drawPanel/DrawPanel.java:97
+msgid "goto first"
+msgstr "gehe zum Anfang"
+
+#: jscribble/drawPanel/DrawPanel.java:101
+msgid "goto last"
+msgstr "gehe zum Ende"
+
+#: jscribble/drawPanel/DrawPanel.java:105
+msgid "save & exit"
+msgstr "speichern & beenden"
+
+#: jscribble/drawPanel/DrawPanel.java:109
+msgid "increase onion layers"
+msgstr "erhöhe Zwiebelschichten"
+
+#: jscribble/drawPanel/DrawPanel.java:113
+msgid "decrease onion layers"
+msgstr "verringere Zwiebelschichten"
+
+#: jscribble/drawPanel/DrawPanel.java:117
+msgid "toggle ruling"
+msgstr "schalte Linierung an/aus"
+
+#: jscribble/drawPanel/DrawPanel.java:121
+msgid "toggle graph paper"
+msgstr "schalte Karierung an/aus"
+
+#: jscribble/drawPanel/DrawPanel.java:222
+msgid "Version %s"
+msgstr ""
+
+#: jscribble/drawPanel/DrawPanel.java:250
+msgid "Press h or F1 to get help."
+msgstr "Drücken Sie h oder F1 für Hilfe."
+
+#: jscribble/drawPanel/DrawPanel.java:305
+msgid "%d MiB used, %d MiB free, %d MiB total"
+msgstr "%d MiB benutzt, %d MiB frei, %d MiB total"
+
+#: jscribble/drawPanel/DrawPanel.java:326
+msgid "Onion Layers: %d"
+msgstr "Zwiebelschichten: %d"
+
+#: jscribble/drawPanel/DrawPanel.java:339
+msgid "Page %d/%d"
+msgstr "Seite %d/%d"
+
+#: jscribble/drawPanel/DrawPanel.java:376
+msgid "Malformed entry in config file."
+msgstr "Zugriffsfehler beim Einlesen der Konfigurationsdatei."
