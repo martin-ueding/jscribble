@@ -401,6 +401,12 @@ public class NoteBook implements Comparable<NoteBook> {
 			return;
 		}
 
+		// If the user wants it, compress the filenames.
+		if (Config.getBoolean("notebook_auto_compress")) {
+			NoteBookCompressor nbc = new NoteBookCompressor(folder);
+			nbc.compress();
+		}
+
 		// try to load all images that match the name
 		File[] allImages = folder.listFiles(new NoteSheetFileFilter());
 
