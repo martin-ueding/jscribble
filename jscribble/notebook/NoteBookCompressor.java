@@ -58,7 +58,7 @@ public class NoteBookCompressor {
 			image.renameTo(new File(
 			            image.getParent()
 			            + File.separator
-			            + String.format("%06d.png", i)
+			            + String.format("%06d.png", i + 1)
 			        ));
 		}
 	}
