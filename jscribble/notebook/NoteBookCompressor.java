@@ -21,8 +21,11 @@ package jscribble.notebook;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Locale;
 
 import jscribble.helpers.FileComparator;
+import jscribble.helpers.Localizer;
+import jscribble.helpers.Logger;
 
 /**
  * Takes a folder which contains a notebook and compresses the file names so
@@ -55,11 +58,14 @@ public class NoteBookCompressor {
 
 			image.getParent();
 
-			image.renameTo(new File(
-			            image.getParent()
-			            + File.separator
-			            + String.format("%06d.png", i + 1)
-			        ));
+			File newName = new File(
+			    image.getParent()
+			    + File.separator
+			    + String.format("%06d.png", i + 1)
+			);
+
+			Logger.log(getClass().getName(), String.format(Localizer.get("Rename %s to %s."), image.getName(), newName.getName()));
+			image.renameTo(newName);
 		}
 	}
 }
