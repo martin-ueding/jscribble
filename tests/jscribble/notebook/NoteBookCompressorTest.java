@@ -42,10 +42,10 @@ public class NoteBookCompressorTest extends TestCase {
 			folder.delete();
 			folder = new File(tempname);
 			folder.mkdirs();
+			folder.deleteOnExit();
 
 			// Create some files which are not in direct order.
 			File[] files = {
-				new File(tempname + File.separator + "000000.png"),
 				new File(tempname + File.separator + "000001.png"),
 				new File(tempname + File.separator + "000003.png"),
 				new File(tempname + File.separator + "000004.png"),
@@ -56,22 +56,24 @@ public class NoteBookCompressorTest extends TestCase {
 
 			for (File file : files) {
 				file.createNewFile();
+				file.deleteOnExit();
 			}
+
+			File[] originalFiles = folder.listFiles(new NoteSheetFileFilter());
+			assertEquals(files.length, originalFiles.length);
 
 			NoteBookCompressor nbc = new NoteBookCompressor(folder);
 			nbc.compress();
 
 			File[] renamedFiles = folder.listFiles(new NoteSheetFileFilter());
+
 			assertEquals(files.length, renamedFiles.length);
 			Arrays.sort(renamedFiles, new FileComparator());
 			assertEquals(files.length, renamedFiles.length);
 
-
 			for (int i = 0; i < renamedFiles.length; i++) {
-				System.out.println(renamedFiles[i]);
-				renamedFiles[i].getName().equals(String.format("%06d.png", i + 1));
+				assertEquals(String.format("%06d.png", i + 1), renamedFiles[i].getName());
 			}
-
 		}
 		catch (IOException e) {
 			e.printStackTrace();
