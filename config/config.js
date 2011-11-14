@@ -102,6 +102,12 @@
 	"comment": "Enables the memory usage display."
 },
 {
+	"key": "notebook_auto_compress",
+	"value": "false",
+	"type": "Boolean",
+	"comment": "Enables automatic renaming of files."
+},
+{
 	"key": "notebook_background_color",
 	"value": "FFFFFF",
 	"type": "Color",
