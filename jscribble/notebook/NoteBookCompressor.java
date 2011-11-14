@@ -19,11 +19,47 @@
 
 package jscribble.notebook;
 
+import java.io.File;
+import java.util.Arrays;
+
+import jscribble.helpers.FileComparator;
+
 /**
  * Takes a folder which contains a notebook and compresses the file names so
  * that there are no gaps in the numbering.
- * 
+ *
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookCompressor {
+	File folder;
+
+	public NoteBookCompressor(File folder) {
+		this.folder = folder;
+	}
+
+	public void compress() {
+		// Gather all the file names from the folder.
+		File[] allImages = folder.listFiles(new NoteSheetFileFilter());
+
+		// If there are no images in this folder, there is nothing to do.
+		if (allImages == null || allImages.length == 0) {
+			return;
+		}
+
+		// Sort the file names.
+		Arrays.sort(allImages, new FileComparator());
+
+		// Rename the files according to their place in the array.
+		for (int i = 0; i < allImages.length; i++) {
+			File image = allImages[i];
+
+			image.getParent();
+
+			image.renameTo(new File(
+			            image.getParent()
+			            + File.separator
+			            + String.format("%06d.png", i)
+			        ));
+		}
+	}
 }
