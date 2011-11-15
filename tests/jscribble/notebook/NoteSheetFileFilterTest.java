@@ -29,7 +29,7 @@ public class NoteSheetFileFilterTest extends TestCase {
 		assertFalse(filter.accept(null, "asdfgh.png"));
 	}
 
-	public void testNoZero() {
+	public void testZero() {
 		assertFalse(filter.accept(null, "000000.png"));
 	}
 
@@ -37,7 +37,7 @@ public class NoteSheetFileFilterTest extends TestCase {
 		assertTrue(filter.accept(null, "1234567890.png"));
 	}
 
-	public void testMixed() {
+	public void testAlphanumeric() {
 		assertFalse(filter.accept(null, "asd123.png"));
 	}
 
@@ -46,7 +46,7 @@ public class NoteSheetFileFilterTest extends TestCase {
 	}
 
 	public void testShort() {
-		assertTrue(filter.accept(null, "0.png"));
+		assertTrue(filter.accept(null, "1.png"));
 	}
 
 	public void testSimple() {
