@@ -29,6 +29,10 @@ public class NoteSheetFileFilterTest extends TestCase {
 		assertFalse(filter.accept(null, "asdfgh.png"));
 	}
 
+	public void testNoZero() {
+		assertFalse(filter.accept(null, "000000.png"));
+	}
+
 	public void testLongNumber() {
 		assertTrue(filter.accept(null, "1234567890.png"));
 	}
@@ -56,9 +60,11 @@ public class NoteSheetFileFilterTest extends TestCase {
 
 	public void testWrongSuffix() {
 		assertFalse(filter.accept(null, "00000.jpg"));
+		assertFalse(filter.accept(null, "000001.jpg"));
 	}
 
 	public void testNoSuffix() {
 		assertFalse(filter.accept(null, "00000"));
+		assertFalse(filter.accept(null, "000001"));
 	}
 }
