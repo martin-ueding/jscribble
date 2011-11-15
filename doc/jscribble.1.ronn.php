@@ -56,7 +56,8 @@ All controls are displayed in the online help screen activated by `h` or `F1`.
 
 ## INSTALLING
 
-Download the current `.jar` file from the [jscribble website][jsc]. Copy this file wherever you like, e. g. your program folder or your home directory.
+Download the current `.jar` file from the [jscribble website][jsc]. Copy this
+file wherever you like, e. g. your program folder or your home directory.
 
 To be always up to date, use the [webstart][web].
 
@@ -121,6 +122,36 @@ The type is given in brackets, the default value in parentheses.
 		echo " [".$item['type']."] (".$item['value'].")\n";
 	}
 	?>
+
+## FILE FORMAT
+
+jscribble uses plain PNG images to store your drawings. They are, by default,
+in the `~/.jscribble` directory. On Windows, that is somewhere in the
+`C:\Documents & Settings` or `C:\Users` directory.
+
+The notebooks are plain folders, each containing a heap of images. The folder
+name corresponds to the notebook name. To avoid strange names, the notebook
+name is restricted to very few characters by default.
+
+The images are numbered, zero padded to 6 digits. The program uses `%06d` to
+format the number. In case you have more images, the file name will get longer.
+
+	~/.jscribble/test_notebook/
+		000001.png
+		000002.png
+		...
+		000100.png
+		...
+		999999.png
+		1000000.png
+		...
+
+You can delete images from the folder, the program will still find them. You
+will get something like `Page 15/13` if you delete two images in front of the
+gast one.
+
+There is a configuration option that will tell jscribble to automatically
+compress the file names, that is to renumber them so that they are consecutive.
 
 ## SECURITY CONSIDERATIONS
 
