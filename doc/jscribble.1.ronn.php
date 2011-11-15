@@ -133,8 +133,9 @@ The notebooks are plain folders, each containing a heap of images. The folder
 name corresponds to the notebook name. To avoid strange names, the notebook
 name is restricted to very few characters by default.
 
-The images are numbered, zero padded to 6 digits. The program uses `%06d` to
-format the number. In case you have more images, the file name will get longer.
+The images are numbered, zero padded to 6 digits. The program uses `%06d.png`
+to format the number. In case you have more images, the file name will get
+longer.
 
 	~/.jscribble/test_notebook/
 		000001.png
