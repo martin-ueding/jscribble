@@ -21,6 +21,7 @@ package jscribble.notebook;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -45,6 +46,16 @@ public class NoteSheetFileFilter implements FilenameFilter {
 	public boolean accept(File arg0, String arg1) {
 		String[] nameparts = arg1.split(Pattern.quote(File.separator));
 		String fileBasename = nameparts[nameparts.length - 1];
-		return p.matcher(fileBasename).matches();
+		Matcher m = p.matcher(fileBasename);
+
+		if (m.matches()) {
+			// Check whether the number is >= 1, since the file
+			// format says numbers start with 1.
+			int number = Integer.parseInt(m.group(1));
+			if (number >= 1) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
