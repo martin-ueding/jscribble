@@ -87,7 +87,7 @@ public class NoteBookSelectionWindow {
 	 * List that holds all the found NoteBook from the user's configuration
 	 * directory.
 	 */
-	private LinkedList<NoteBook> notebooks;
+	private LinkedList<String> notebooks;
 
 	/**
 	 * List GUI Element to display the NoteBook items in.
@@ -203,7 +203,8 @@ public class NoteBookSelectionWindow {
 		int selection = myList.getSelectedIndex();
 
 		if (selection >= 0) {
-			boolean wasdeleted = notebooks.get(selection).delete();
+			NoteBook toDelete = new NoteBook(notebooks.get(selection));
+			boolean wasdeleted = toDelete.delete();
 
 			if (wasdeleted) {
 				listModel.remove(selection);
@@ -217,20 +218,20 @@ public class NoteBookSelectionWindow {
 	 *
 	 * @return list of NoteBook
 	 */
-	private LinkedList<NoteBook> findNotebooks() {
-		LinkedList<NoteBook> notebooks = new LinkedList<NoteBook>();
+	private LinkedList<String> findNotebooks() {
+		LinkedList<String> notebooks = new LinkedList<String>();
 
 		if (NoteBookProgram.getDotDir().exists()) {
 			File[] folders = NoteBookProgram.getDotDir().listFiles();
 
 			for (File folder : folders) {
 				if (folder.isDirectory()) {
-					NoteBook justfound = new NoteBook(folder.getName());
+					String justfound = folder.getName();
 					notebooks.add(justfound);
 				}
 			}
 			Collections.sort(notebooks);
-			for (NoteBook notebook : notebooks) {
+			for (String notebook : notebooks) {
 				listModel.addElement(notebook);
 
 			}
@@ -248,7 +249,7 @@ public class NoteBookSelectionWindow {
 	protected void newEvent() {
 		NoteBook newNoteBook = createNewNotebook();
 		if (newNoteBook != null) {
-			notebooks.add(newNoteBook);
+			notebooks.add(newNoteBook.getName());
 			listModel.addElement(newNoteBook);
 			updateOpenButton();
 			openNotebook(newNoteBook);
@@ -262,7 +263,7 @@ public class NoteBookSelectionWindow {
 		int selection = myList.getSelectedIndex();
 
 		if (selection >= 0) {
-			openNotebook(notebooks.get(selection));
+			openNotebook(new NoteBook(notebooks.get(selection)));
 		}
 	}
 
