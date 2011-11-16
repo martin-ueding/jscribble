@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-14 15:15+0100\n"
+"POT-Creation-Date: 2011-11-16 14:41+0100\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
 "Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
 "Language-Team: German\n"
@@ -91,7 +91,7 @@ msgid ""
 msgstr ""
 "Names des Notizbuches: (bitte nur Buchstaben, Zahlen, _ und - benutzen)"
 
-#: jscribble/selectionWindow/NoteBookSelectionWindow.java:278
+#: jscribble/selectionWindow/NoteBookSelectionWindow.java:279
 msgid "Notebook \"%s\""
 msgstr "Notizbuch \"%s\""
 
@@ -215,7 +215,11 @@ msgstr "Konnte die Auflösung nicht vom ersten Bild des Notizbuches erkennen."
 msgid "Starting to write out image files."
 msgstr "Beginne Bild-Datei zu speichern"
 
-#: jscribble/notebook/NoteBookCompressor.java:67
+#: jscribble/notebook/NoteBookCompressor.java:58
+msgid "Stop processing %s"
+msgstr "Stoppe Behandlung von %s."
+
+#: jscribble/notebook/NoteBookCompressor.java:74
 msgid "Rename %s to %s."
 msgstr "Benenne %s zu %s um."
 
