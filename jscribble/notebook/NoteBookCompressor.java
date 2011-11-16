@@ -52,6 +52,13 @@ public class NoteBookCompressor {
 		// Sort the file names.
 		Arrays.sort(allImages, new FileComparator());
 
+		// Stop if it is already in the correct order.
+		if (allImages[allImages.length - 1].getName().equalsIgnoreCase(String.format("%06d.png", allImages.length))) {
+			Logger.log(getClass().getName(),
+			           String.format(Localizer.get("Stop processing %s"), folder.getName()));
+			return;
+		}
+
 		// Rename the files according to their place in the array.
 		for (int i = 0; i < allImages.length; i++) {
 			File image = allImages[i];
