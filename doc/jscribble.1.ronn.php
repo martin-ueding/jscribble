@@ -54,16 +54,6 @@ button erases.
 
 All controls are displayed in the online help screen activated by `h` or `F1`.
 
-## INSTALLING
-
-Download the current `.jar` file from the [jscribble website][jsc]. Copy this
-file wherever you like, e. g. your program folder or your home directory.
-
-To be always up to date, use the [webstart][web].
-
-If you use Debian or Arch Linux, you can use the package.
-
-
 ## FILES
 
 jscribble uses plain PNG images to store your drawings. They are, by default,
@@ -96,7 +86,6 @@ There is a configuration option that will tell jscribble to automatically
 compress the file names, that is to renumber them so that they are consecutive.
 
 ### Config File
-
 
 jscribble supports a user config file that overrides values from the default
 config file.
@@ -165,87 +154,10 @@ files are not readable to anyone but the user.
 If the user's home directory is encrypted, but the temporary folder is not, an
 attacker might be able to recover images drawn in the scribble mode.
 
-## PACKAGES
-
-This program is featured in [Debian Sid][sid], [Debian Wheezy][whe] and [Arch Linux][arc] so far.
-
-## BUILDING FROM SOURCE
-
-### Just The Program
-
-You can obtain a tarball with the latest source code from the [jscribble
-website][jsc].
-
-The following software is needed to compile this program:
-
-* **make**:
-  Build system.
-* **Java Development Kit** (JDK):
-  Java compiler, version 1.6 works.
-* **xgettext**, **msgfmt**:
-  Parses source code for translation calls and converts translation file into the Java property format.
-* **php5-cli**:
-  Used for various file creations, lists all the config entries in the manual page for instance.
-* **various Linux tools**:
-  find, rm, touch, bash
-
-To build the main program, simply invoke make:
-
-	make
-
-Then you can just launch the program with a `java -jar jscribble.jar`. In case
-you use Linux and want to install it for all users, run this:
-
-	make install	# as root
-
-Now it can be launched with a simple `jscribble`.
-
-### Developer Documentation
-
-In case you want to build all the developer documentation, you might want to
-install these as well:
-
-* **doxygen**:
-  A HTML and LaTeX documentation generator for various languages.
-* **javadoc**:
-  A HTML documentation generator for Java. This should be included with the Java Development Kit (JDK).
-
-To build the documentation, call:
-
-	build dev-doc
-
-### Unit Tests
-
-jscribble has a couple test cases which can be run with junit.
-
-* **junit**:
-  Unit test runner for Java.
-
-To run the tests, call `make test`.
-
-### User Manual
-
-This manual is written in the ronn-format, the tarball already contains the
-converted output to lighten the build dependencies. In case you want to convert
-the ronn-format manual page, you need ronn as well.
-
-* **ronn**:
-  Converts markdown into html and manual page. Get it [here][ron].
-
-To convert the ronn manual page into a roff and html manual page, invoke:
-
-	make doc
-
 ## BUGS
 
 Please report bugs in English or German via email to me. Include the version
 number which is displayed at the bottom of the help screen within the program.
-
-## CONTRIBUTING
-
-If you like, you can send patches from the latest source checkout. Please
-include which version you based on, so that I can merge. If you care for the
-git repository, please let me know.
 
 ## AUTHOR
 
