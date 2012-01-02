@@ -110,16 +110,16 @@ $(signedjar): jscribble.jar
 
 # Put all the files that are tracked in git in a tarball and amend the hard to
 # come by build files.
-$(tarball): CHANGELOG .git/HEAD surrogates.tar
+$(tarball): surrogates.tar .git/HEAD
 	$(RM) $@
 	git archive --prefix=$(foldername)/ HEAD > $(basename $@ .gz)
-	tar -Af $(basename $@ .gz) surrogates.tar
+	tar -Af $(basename $@ .gz) $<
 	gzip $(basename $@ .gz)
 
 # Tar achive which contains files which cannot be generated with out the git
 # repository.
 surrogates.tar: CHANGELOG
-	tar -cf surrogates.tar --transform 's,^,/$(foldername)/,' CHANGELOG
+	tar -cf $@ --transform 's,^,/$(foldername)/,' $^
 
 # Creates a changelog file with the information in the git tags.
 CHANGELOG: .git/HEAD
@@ -127,15 +127,15 @@ CHANGELOG: .git/HEAD
 
 # Creates the roff manual page.
 doc/jscribble.1: doc/jscribble.1.markdown
-	pandoc --standalone --from markdown --to man $^ -o $@
+	pandoc --standalone --from markdown --to man $< -o $@
 
 # Creates a HTML 5 version of the manual page.
 doc/jscribble.1.html: doc/jscribble.1.markdown
-	pandoc --standalone --from markdown --to html --html5 $^ -o $@
+	pandoc --standalone --from markdown --to html --html5 $< -o $@
 
 # Inserts the values and comments from the default config into the manual page.
 doc/jscribble.1.markdown: doc/jscribble.1.markdown.php jscribble/default_config.properties
-	php $^ > $@
+	php $< > $@
 
 # Create doxygen doc.
 html/index.html: $(alljavafiles)
@@ -161,7 +161,7 @@ jscribble.jar: jscribble/VersionName.class $(classfiles) l10n/jscribble_de.prope
 
 # Convert the object into a Java compatible file.
 l10n/jscribble_de.properties: l10n/de.po
-	msgcat --properties-output -o $@ $^
+	msgcat --properties-output -o $@ $<
 
 # Extract the strings from all Java source files.
 l10n/jscribble.pot: $(alljavafiles)
@@ -173,8 +173,8 @@ l10n/jscribble.pot: $(alljavafiles)
 
 # How to compile regular Java files.
 jscribble/%.class: jscribble/%.java
-	$(javac) $^
+	$(javac) $<
 
 # How to compile unit tests.
 tests/%.class: tests/%.java
-	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $^
+	$(javac) -classpath /usr/share/java/junit.jar -sourcepath .:jscribble $<
