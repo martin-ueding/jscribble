@@ -67,7 +67,7 @@ doc: doc/jscribble.1 doc/jscribble.1.html
 
 # Extracts all javadoc comments from the source codes and generates HTML pages
 # with that information.
-doc-dev: javadoc/.javadoc html/.doxygen
+doc-dev: javadoc/index.html html/index.html
 
 # Creates the template for translators.
 i18n: l10n/jscribble.pot
@@ -138,17 +138,15 @@ doc/jscribble.1.markdown: doc/jscribble.1.markdown.php jscribble/default_config.
 	php $^ > $@
 
 # Create doxygen doc.
-html/.doxygen: $(alljavafiles)
+html/index.html: $(alljavafiles)
 	doxygen
-	touch $@
 
 install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
 	$< > $@
 
 # Create standard javadoc.
-javadoc/.javadoc: $(alljavafiles)
+javadoc/index.html: $(alljavafiles)
 	javadoc -d javadoc $^
-	touch $@
 
 jscribble/default_config.properties: config/generate_properties config/config.js
 	$< > $@
