@@ -102,25 +102,25 @@ The format is the standard Java Properties format.
 ## Value Types
 
 **String**
-: A string which will get parsed in some way.
+  ~ A string which will get parsed in some way.
 
 **Integer**
-: A number, often sizes measured in pixels.
+  ~ A number, often sizes measured in pixels.
 
 **Color**
-: A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
+  ~ A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
 
 **Float**
-: A decimal number.
+  ~ A decimal number.
 
 **Keyboard Char or Code**
-: A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
+  ~ A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
 
 **Mouse Mask**
-: A comma separated list of mouse down masks.
+  ~ A comma separated list of mouse down masks.
 
 **Boolean**
-: `true` or `false`.
+  ~ `true` or `false`.
 
 ## Example Config
 
@@ -141,10 +141,10 @@ The type is given in brackets, the default value in parentheses.
 	$config = json_decode($file, true);
 
 	foreach ($config as $item) {
-		echo "`".$item['key']."`\n:";
+		echo "`".$item['key']."`\n  ~ ";
 		if (!empty($item['comment']))
-			echo "  ".$item['comment']."\n";
-		echo " [".$item['type']."] (".$item['value'].")\n";
+			echo $item['comment']."\n";
+		echo "\t[".$item['type']."] (".$item['value'].")\n";
 	}
 	?>
 
