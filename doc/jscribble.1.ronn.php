@@ -1,7 +1,7 @@
 % jscribble(1)
-% Martin Ueding <dev@martin-ueding.de>
 
 # NAME
+
 jscribble -- infinite notepad written in Java
 
 # SYNOPSIS
