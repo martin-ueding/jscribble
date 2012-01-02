@@ -176,11 +176,5 @@ Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 [Xournal][xou]
 
 [xou]: http://xournal.sourceforge.net/
-[jsc]: http://martin-ueding.de/jscribble/
-[sid]: http://packages.debian.org/sid/jscribble
-[whe]: http://packages.debian.org/wheezy/jscribble
-[arc]: https://aur.archlinux.org/packages.php?ID=51337
-[ron]: http://rtomayko.github.com/ronn/
-[web]: http://martin-ueding.de/download/jscribble/jscribble.jnlp
 
 	<?php /* vi: set filetype=markdown: */ ?>
