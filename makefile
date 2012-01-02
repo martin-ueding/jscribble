@@ -116,11 +116,6 @@ $(tarball): surrogates.tar .git/HEAD
 	tar -Af $(basename $@ .gz) $<
 	gzip $(basename $@ .gz)
 
-# Tar achive which contains files which cannot be generated with out the git
-# repository.
-surrogates.tar: CHANGELOG
-	tar -cf $@ --transform 's,^,/$(foldername)/,' $^
-
 # Creates a changelog file with the information in the git tags.
 CHANGELOG: .git/HEAD
 	git-changelog > CHANGELOG
@@ -166,6 +161,11 @@ l10n/jscribble_de.properties: l10n/de.po
 # Extract the strings from all Java source files.
 l10n/jscribble.pot: $(alljavafiles)
 	xgettext -o $@ -k -k"Localizer.get" $^ --from-code=utf-8
+
+# Tar achive which contains files which cannot be generated with out the git
+# repository.
+surrogates.tar: CHANGELOG
+	tar -cf $@ --transform 's,^,/$(foldername)/,' $^
 
 ###########################################################################
 #                             Implicit Rules                              #
