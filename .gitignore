@@ -15,4 +15,5 @@ html
 install_files/completion/jscribble
 javadoc
 jscribble.pot
+surrogates.tar
 jscribble_*.tar.gz

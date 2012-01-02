@@ -37,12 +37,14 @@ foldername:=$(name)-$(version)
 signedjar:=$(name)_$(version).jar
 tarball:=$(name)_$(version).tar.gz
 
+.DELETE_ON_ERROR:
+
 ###########################################################################
 #                              Named Targets                              #
 ###########################################################################
 
 # Builds the main program.
-all: program install_files/completion/jscribble
+all: program install_files/completion/jscribble doc
 
 # Removes all build files. The changelog and the manual page are not included
 # since they are hard to come by.
@@ -61,8 +63,7 @@ clean:
 	$(RM) l10n/jscribble.pot
 	$(RM) l10n/jscribble_*.properties
 
-# Assembles the documentation for the users.
-doc: doc/jscribble.1
+doc: doc/jscribble.1 doc/jscribble.1.html
 
 # Extracts all javadoc comments from the source codes and generates HTML pages
 # with that information.
@@ -109,13 +110,16 @@ $(signedjar): jscribble.jar
 
 # Put all the files that are tracked in git in a tarball and amend the hard to
 # come by build files.
-$(tarball): doc/jscribble.1 CHANGELOG .git/HEAD
+$(tarball): CHANGELOG .git/HEAD surrogates.tar
 	$(RM) $@
 	git archive --prefix=$(foldername)/ HEAD > $(basename $@ .gz)
-	tar -cf surrogates.tar --transform 's,^,/$(foldername)/,' doc/jscribble.1 CHANGELOG
 	tar -Af $(basename $@ .gz) surrogates.tar
-	$(RM) surrogates.tar
 	gzip $(basename $@ .gz)
+
+# Tar achive which contains files which cannot be generated with out the git
+# repository.
+surrogates.tar: CHANGELOG
+	tar -cf surrogates.tar --transform 's,^,/$(foldername)/,' CHANGELOG
 
 # Creates a changelog file with the information in the git tags.
 CHANGELOG: .git/HEAD
@@ -124,12 +128,14 @@ CHANGELOG: .git/HEAD
 # Creates the roff manual page.
 doc/jscribble.1: doc/jscribble.1.markdown
 	pandoc --standalone --from markdown --to man $^ -o $@
-	pandoc --standalone --from markdown --to html --html5 $^ -o $@.html
+
+# Creates a HTML 5 version of the manual page.
+doc/jscribble.1.html: doc/jscribble.1.markdown
+	pandoc --standalone --from markdown --to html --html5 $^ -o $@
 
 # Inserts the values and comments from the default config into the manual page.
 doc/jscribble.1.markdown: doc/jscribble.1.markdown.php jscribble/default_config.properties
-	php $^ > $@.tmp
-	mv $@.tmp $@
+	php $^ > $@
 
 # Create doxygen doc.
 html/.doxygen: $(alljavafiles)
@@ -137,8 +143,7 @@ html/.doxygen: $(alljavafiles)
 	touch $@
 
 install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
-	$< > $@.tmp
-	mv $@.tmp $@
+	$< > $@
 
 # Create standard javadoc.
 javadoc/.javadoc: $(alljavafiles)
@@ -150,8 +155,7 @@ jscribble/default_config.properties: config/generate_properties config/config.js
 
 # Generate a Java file that tells the program its version number.
 jscribble/VersionName.java: makefile
-	./generate_version_class $(version) > $@.tmp
-	mv $@.tmp $@
+	./generate_version_class $(version) > $@
 
 # Put all the class files into the jar.
 jscribble.jar: jscribble/VersionName.class $(classfiles) l10n/jscribble_de.properties jscribble/default_config.properties artwork/jscribble.png artwork/jscribble_gray.png
