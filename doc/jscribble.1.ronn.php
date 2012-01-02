@@ -43,10 +43,10 @@ You need the Java Runtime Environment (JRE) to run jscribble.
 
 # OPTIONS
 
-* `-v`:
-  Verbose Mode.
-* `--key value`:
-  Allows one to overwrite any config key in the default config and the user config. See below for a list of all available config keys
+`-v`
+: Verbose Mode.
+`--key value`
+: Allows one to overwrite any config key in the default config and the user config. See below for a list of all available config keys
 
 # DEFAULT CONTROLS
 
@@ -101,26 +101,26 @@ The format is the standard Java Properties format.
 
 ## Value Types
 
-* **String**:
-  A string which will get parsed in some way.
+**String**
+: A string which will get parsed in some way.
 
-* **Integer**:
-  A number, often sizes measured in pixels.
+**Integer**
+: A number, often sizes measured in pixels.
 
-* **Color**:
-  A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
+**Color**
+: A hexadecimal color with optional alpha part in the front, RRGGBB or AARRGGBB.
 
-* **Float**:
-  A decimal number.
+**Float**
+: A decimal number.
 
-* **Keyboard Char or Code**:
-  A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
+**Keyboard Char or Code**
+: A comma separated list of key key codes and key chars. A single character will be interpreted as a literal character on the keyboard, multiple characters will be interpreted as a key code number.
 
-* **Mouse Mask**:
-  A comma separated list of mouse down masks.
+**Mouse Mask**
+: A comma separated list of mouse down masks.
 
-* **Boolean**:
-  `true` or `false`.
+**Boolean**
+: `true` or `false`.
 
 ## Example Config
 
@@ -141,7 +141,7 @@ The type is given in brackets, the default value in parentheses.
 	$config = json_decode($file, true);
 
 	foreach ($config as $item) {
-		echo "* `".$item['key']."`:\n";
+		echo "`".$item['key']."`\n:";
 		if (!empty($item['comment']))
 			echo "  ".$item['comment']."\n";
 		echo " [".$item['type']."] (".$item['value'].")\n";
