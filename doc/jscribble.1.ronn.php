@@ -1,6 +1,10 @@
-# jscribble(1) -- infinite notepad written in Java
+% jscribble(1)
+% Martin Ueding <dev@martin-ueding.de>
 
-## SYNOPSIS
+# NAME
+jscribble -- infinite notepad written in Java
+
+# SYNOPSIS
 
 `jscribble` [options]
 
@@ -8,7 +12,7 @@
 
 `javaws http://martin-ueding.de/download/jscribble/jscribble.jnlp`
 
-## DESCRIPTION
+# DESCRIPTION
 
 jscribble is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
@@ -37,14 +41,14 @@ causes trouble. It is activated by default since it is very handy.
 
 You need the Java Runtime Environment (JRE) to run jscribble.
 
-## OPTIONS
+# OPTIONS
 
 * `-v`:
   Verbose Mode.
 * `--key value`:
   Allows one to overwrite any config key in the default config and the user config. See below for a list of all available config keys
 
-## DEFAULT CONTROLS
+# DEFAULT CONTROLS
 
 To flip between the pages, you can use the arrows keys, space bar, enter and
 backspace.
@@ -54,7 +58,7 @@ button erases.
 
 All controls are displayed in the online help screen activated by `h` or `F1`.
 
-## FILES
+# FILES
 
 jscribble uses plain PNG images to store your drawings. They are, by default,
 in the `~/.jscribble` directory. On Windows, that is somewhere in the
@@ -85,7 +89,7 @@ gast one.
 There is a configuration option that will tell jscribble to automatically
 compress the file names, that is to renumber them so that they are consecutive.
 
-### Config File
+## Config File
 
 jscribble supports a user config file that overrides values from the default
 config file.
@@ -95,7 +99,7 @@ home directory. Then insert key-value pairs with an equal sign in each line.
 
 The format is the standard Java Properties format.
 
-### Value Types
+## Value Types
 
 * **String**:
   A string which will get parsed in some way.
@@ -118,13 +122,13 @@ The format is the standard Java Properties format.
 * **Boolean**:
   `true` or `false`.
 
-### Example Config
+## Example Config
 
 	# example config file for jscribble saved in .jscribble/config.properties
 	memory_usage_show=true
 	rule_line_spacing=20
 
-### Available Keys
+## Available Keys
 
 The type is given in brackets, the default value in parentheses.
 
@@ -144,7 +148,7 @@ The type is given in brackets, the default value in parentheses.
 	}
 	?>
 
-## SECURITY CONSIDERATIONS
+# SECURITY CONSIDERATIONS
 
 Named notebooks are saved in a folder in the user's home directory. Notebooks
 that are in the scribble mode are not saved to the user's home directory but in
@@ -154,20 +158,20 @@ files are not readable to anyone but the user.
 If the user's home directory is encrypted, but the temporary folder is not, an
 attacker might be able to recover images drawn in the scribble mode.
 
-## BUGS
+# BUGS
 
 Please report bugs in English or German via email to me. Include the version
 number which is displayed at the bottom of the help screen within the program.
 
-## AUTHOR
+# AUTHOR
 
 Martin Ueding <dev@martin-ueding.de>
 
-## COPYRIGHT
+# COPYRIGHT
 
 Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
 
-## SEE ALSO
+# SEE ALSO
 
 [Xournal][xou]
 
