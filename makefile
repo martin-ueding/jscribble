@@ -124,6 +124,7 @@ CHANGELOG: .git/HEAD
 # Creates the roff manual page.
 doc/jscribble.1: doc/jscribble.1.ronn
 	pandoc --standalone --from markdown --to man $^ -o $@
+	pandoc --standalone --from markdown --to html $^ -o $@.html
 
 # Inserts the values and comments from the default config into the manual page.
 doc/jscribble.1.ronn: doc/jscribble.1.ronn.php jscribble/default_config.properties
