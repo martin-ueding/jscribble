@@ -10,7 +10,7 @@ VersionName.java
 de.mo
 doc/jscribble.1
 doc/jscribble.1.html
-doc/jscribble.1.ronn
+doc/jscribble.1.markdown
 html
 install_files/completion/jscribble
 javadoc
