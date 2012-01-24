@@ -159,7 +159,11 @@ public class Config {
 			File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
 			        getString("user_config_filename"));
 			if (configfile.exists()) {
+				Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("Loading user configuration file from %s."), configfile.getName()));
 				userConfig.load(new FileInputStream(configfile));
+			}
+			else {
+				Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("There is no user config in %s."), configfile.getAbsolutePath()));
 			}
 		}
 		catch (FileNotFoundException e) {
