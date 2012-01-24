@@ -75,7 +75,7 @@ public class NoteBookTest extends TestCase {
 		b.goForward();
 		assertEquals(2, b.getCurrentSheet().getPagenumber());
 
-		b.finalize();
+		b.testing_finalize();
 
 		b = null;
 		assertNull(b);
@@ -129,7 +129,7 @@ public class NoteBookTest extends TestCase {
 		b.goBackwards();
 		assertEquals(1, b.getCurrentSheet().getPagenumber());
 
-		b.finalize();
+		b.testing_finalize();
 
 		// Get rid of the NoteBook.
 		b = null;
