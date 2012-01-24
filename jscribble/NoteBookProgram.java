@@ -21,9 +21,11 @@ package jscribble;
 
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
+import jscribble.helpers.Config;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.Config;
 import jscribble.selectionWindow.NoteBookSelectionWindow;
 
 /**
@@ -33,21 +35,72 @@ import jscribble.selectionWindow.NoteBookSelectionWindow;
  */
 public class NoteBookProgram {
 	/**
-	 * The folder where everything is stored.
+	 * The folder where the images is stored.
 	 */
-	private static File dotDir = null;
+	private static File fileDirectory = null;
 
 	/**
-	 * Getter for dotDir.
+	 * The folder where the config file is stored.
 	 */
-	public static File getDotDir() {
-		if (dotDir == null) {
-			dotDir = new File(
+	private static File configDirectory = null;
+
+	/**
+	 * Getter for fileDirectory.
+	 */
+	public static File getFileDirectory() {
+		if (fileDirectory == null) {
+			fileDirectory = new File(
 			    System.getProperty("user.home") +
-			    File.separator + "." + NoteBookProgram.getProgramname()
+			    File.separator + ".local" + File.separator + "share" + File.separator + NoteBookProgram.getProgramname()
+			);
+
+			if (!fileDirectory.exists()) {
+				File oldDotDir = new File(
+				    System.getProperty("user.home") +
+				    File.separator + "." + NoteBookProgram.getProgramname()
+				);
+
+				if (oldDotDir.exists()) {
+					int answer = JOptionPane.showConfirmDialog(
+					            null,
+					            Localizer.get("Would you like to move the files from .jscribble to .local/share/jscribble?"),
+					            Localizer.get("Move files?"),
+					            JOptionPane.YES_NO_OPTION
+					        );
+					if (answer == JOptionPane.YES_OPTION) {
+						File oldConfigFile = new File(
+						    System.getProperty("user.home") +
+						    File.separator + "." + NoteBookProgram.getProgramname() + File.separator + "config.properties"
+						);
+						File newConfigFile = new File(
+						    System.getProperty("user.home") +
+						    File.separator + ".config" + File.separator + NoteBookProgram.getProgramname() + File.separator + "config.properties"
+						);
+						newConfigFile.getParentFile().mkdirs();
+						oldConfigFile.renameTo(newConfigFile);
+
+						oldDotDir.renameTo(fileDirectory);
+					}
+					else {
+						fileDirectory = oldDotDir;
+					}
+				}
+			}
+		}
+		return fileDirectory;
+	}
+
+	/**
+	 * Getter for configDirectory.
+	 */
+	public static File getConfigDirectory() {
+		if (configDirectory == null) {
+			configDirectory = new File(
+			    System.getProperty("user.home") +
+			    File.separator + ".config" + File.separator + NoteBookProgram.getProgramname()
 			);
 		}
-		return dotDir;
+		return configDirectory;
 	}
 
 	/**

@@ -156,7 +156,7 @@ public class Config {
 	private static void initUserConfig() {
 		userConfig = new Properties();
 		try {
-			File configfile = new File(NoteBookProgram.getDotDir() + File.separator +
+			File configfile = new File(NoteBookProgram.getConfigDirectory() + File.separator +
 			        getString("user_config_filename"));
 			if (configfile.exists()) {
 				Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("Loading user configuration file from %s."), configfile.getName()));

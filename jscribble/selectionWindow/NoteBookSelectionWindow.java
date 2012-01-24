@@ -221,8 +221,8 @@ public class NoteBookSelectionWindow {
 	private LinkedList<String> findNotebooks() {
 		LinkedList<String> notebooks = new LinkedList<String>();
 
-		if (NoteBookProgram.getDotDir().exists()) {
-			File[] folders = NoteBookProgram.getDotDir().listFiles();
+		if (NoteBookProgram.getFileDirectory().exists()) {
+			File[] folders = NoteBookProgram.getFileDirectory().listFiles();
 
 			for (File folder : folders) {
 				if (folder.isDirectory()) {
@@ -237,7 +237,7 @@ public class NoteBookSelectionWindow {
 			}
 		}
 		else {
-			NoteBookProgram.getDotDir().mkdirs();
+			NoteBookProgram.getFileDirectory().mkdirs();
 		}
 
 		return notebooks;

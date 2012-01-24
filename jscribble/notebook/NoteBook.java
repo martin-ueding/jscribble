@@ -113,7 +113,7 @@ public class NoteBook implements Comparable<NoteBook> {
 
 		// if a NoteBook should be used
 		if (name != null) {
-			folder = new File(NoteBookProgram.getDotDir().getAbsolutePath() +
+			folder = new File(NoteBookProgram.getFileDirectory().getAbsolutePath() +
 			        File.separator + name);
 			loadImagesFromFolder();
 		}
