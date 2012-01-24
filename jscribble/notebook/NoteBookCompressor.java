@@ -21,7 +21,6 @@ package jscribble.notebook;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Locale;
 
 import jscribble.helpers.FileComparator;
 import jscribble.helpers.Localizer;
