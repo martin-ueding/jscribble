@@ -63,7 +63,7 @@ clean:
 	$(RM) l10n/jscribble.pot
 	$(RM) l10n/jscribble_*.properties
 
-doc: doc/jscribble.1 doc/jscribble.1.html
+doc: doc/jscribble.1
 
 # Extracts all javadoc comments from the source codes and generates HTML pages
 # with that information.
@@ -121,15 +121,11 @@ CHANGELOG: .git/HEAD
 	git-changelog > CHANGELOG
 
 # Creates the roff manual page.
-doc/jscribble.1: doc/jscribble.1.markdown
-	pandoc --standalone --from markdown --to man $< -o $@
-
-# Creates a HTML 5 version of the manual page.
-doc/jscribble.1.html: doc/jscribble.1.markdown
-	pandoc --standalone --from markdown --to html --html5 $< -o $@
+doc/jscribble.1: doc/jscribble.1.rst doc/keylist.rst
+	rst2man $< $@
 
 # Inserts the values and comments from the default config into the manual page.
-doc/jscribble.1.markdown: doc/jscribble.1.markdown.php jscribble/default_config.properties
+doc/keylist.rst: doc/keylist.php jscribble/default_config.properties
 	php $< > $@
 
 # Create doxygen doc.

@@ -9,11 +9,10 @@ CHANGELOG
 VersionName.java
 de.mo
 doc/jscribble.1
-doc/jscribble.1.html
-doc/jscribble.1.markdown
+doc/keylist.rst
 html
 install_files/completion/jscribble
 javadoc
 jscribble.pot
-surrogates.tar
 jscribble_*.tar.gz
+surrogates.tar
