@@ -1,7 +1,14 @@
-NAME
-====
-jscribble -- infinite notepad written in Java
+#########
+jscribble
+#########
 
+********************************
+infinite notepad written in Java
+********************************
+
+:Author: Martin Ueding <dev@martin-ueding.de>
+:Date: 2012-02-27
+:Manual section: 1
 
 SYNOPSIS
 ========
@@ -169,16 +176,6 @@ BUGS
 Please report bugs in English or German via email to me. Include the
 version number which is displayed at the bottom of the help screen
 within the program.
-
-
-AUTHOR
-======
-Martin Ueding dev@martin-ueding.de
-
-
-COPYRIGHT
-=========
-Copyright © 2011 Martin Ueding dev@martin-ueding.de
 
 
 SEE ALSO
