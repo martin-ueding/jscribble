@@ -152,7 +152,6 @@ The type is given in brackets, the default value in parentheses.
 .. include:: keylist.rst
 
 
-
 SECURITY CONSIDERATIONS
 =======================
 Named notebooks are saved in a folder in the user's home directory.
