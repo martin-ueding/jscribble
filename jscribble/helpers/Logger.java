@@ -19,6 +19,7 @@
 
 package jscribble.helpers;
 
+import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,7 +45,13 @@ public class Logger {
 	 */
 	public static void handleError(String errorMessage) {
 		log("ERROR", errorMessage);
-		JOptionPane.showMessageDialog(null, errorMessage);
+		try {
+			JOptionPane.showMessageDialog(null, errorMessage);
+		}
+		// When running unit tests in headless mode, any errors that show up
+		// will try to display a message dialog, which will make the test crash.
+		// With this try-catch, the test will not fail because of that.
+		catch (HeadlessException ignored) {}
 		System.exit(1);
 	}
 
