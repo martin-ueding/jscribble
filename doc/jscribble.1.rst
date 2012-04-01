@@ -161,7 +161,6 @@ Example Config
 
 ::
 
-    # example config file for jscribble saved in .jscribble/config.properties
     memory_usage_show=true
     rule_line_spacing=20
 
