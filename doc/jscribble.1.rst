@@ -31,7 +31,7 @@ You can organize your notes into notebooks, which allow you to have several
 collections of notesheets. At startup, you can select which notepad you want to
 use. If you do not want to save your notes, you can go into the *scribble*
 mode. All notes that you take there, will be thrown away when you close the
-program---without any sheet of paper wasted.
+program—without any sheet of paper wasted.
 
 Taking notes on paper allows you to draw and write whatever you want. Some
 people are fast enough in LaTeX to set complicated formulas while in a lecture.
