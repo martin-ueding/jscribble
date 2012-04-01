@@ -45,8 +45,6 @@ developer documentation
 In case you want to build all the developer documentation, you might want to
 install these as well:
 
-doxygen
-    A HTML and LaTeX documentation generator for various languages.
 javadoc
     A HTML documentation generator for Java. This should be included with the
     Java Development Kit (JDK).
