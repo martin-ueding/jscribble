@@ -9,7 +9,7 @@ infinite notepad written in Java
 ********************************
 
 :Author: Martin Ueding <dev@martin-ueding.de>
-:Date: 2012-02-27
+:Date: 2012-04-01
 :Manual section: 1
 
 SYNOPSIS
