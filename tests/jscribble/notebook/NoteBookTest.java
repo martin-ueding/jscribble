@@ -22,6 +22,7 @@ package tests.jscribble.notebook;
 import java.awt.Dimension;
 import java.awt.geom.Line2D;
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import jscribble.helpers.Logger;
@@ -328,8 +329,13 @@ public class NoteBookTest extends TestCase {
 		nb.gotoFirst();
 		reloaded.gotoFirst();
 
-		assertEquals(nb.getCurrentSheet().getFile().getAbsolutePath(),
-		        reloaded.getCurrentSheet().getFile().getAbsolutePath());
+		try {
+			assertEquals(nb.getCurrentSheet().getFile().getCanonicalPath(),
+			        reloaded.getCurrentSheet().getFile().getCanonicalPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
 
 		nb.deleteSure();
