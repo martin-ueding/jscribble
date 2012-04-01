@@ -156,7 +156,7 @@ Value Types
 Example Config
 --------------
 
-::
+.. code:: properties
 
     # example config file for jscribble saved in .jscribble/config.properties
     memory_usage_show=true
