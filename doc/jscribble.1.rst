@@ -86,8 +86,8 @@ FILES
 =====
 
 jscribble uses plain PNG images to store your drawings. They are, by default,
-in the ``~/.jscribble`` directory. On Windows, that is somewhere in the
-``C:\Documents & Settings`` or ``C:\Users`` directory.
+in the ``~/.local/share/jscribble`` directory. On Windows, that is somewhere in
+the ``C:\Documents & Settings`` or ``C:\Users`` directory.
 
 The notebooks are plain folders, each containing a heap of images. The folder
 name corresponds to the notebook name. To avoid strange names, the notebook
@@ -121,8 +121,9 @@ Config File
 jscribble supports a user config file that overrides values from the default
 config file.
 
-Create a file called *config.properties* in the *.jscribble* directory in your
-home directory. Then insert key-value pairs with an equal sign in each line.
+Create a file called ``config.properties`` in the ``.config/jscribble``
+directory in your home directory. Then insert key-value pairs with an equal
+sign in each line.
 
 The format is the standard Java Properties format.
 
