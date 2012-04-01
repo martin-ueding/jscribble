@@ -22,8 +22,8 @@ xgettext, msgfmt
 php5-cli
     Used for various file creations, lists all the config entries in the manual
     page for instance.
-pandoc
-    Converts markdown into html and manual page.
+rst2man
+    Converts reStructuredText into html and manual page.
 various Linux tools
     find, rm, touch, bash
 
