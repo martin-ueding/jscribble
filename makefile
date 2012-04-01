@@ -52,10 +52,9 @@ clean:
 	$(RM) $(allclassfiles)
 	$(RM) *.jar
 	$(RM) *.mo
-	$(RM) -r html javadoc
+	$(RM) -r javadoc
 	$(RM) .testrun
 	$(RM) l10n/de.po~
-	$(RM) doc/jscribble.1.html
 	$(RM) install_files/completion/jscribble
 	$(RM) jscribble/VersionName.java
 	$(RM) jscribble/default_config.properties
@@ -67,7 +66,7 @@ doc: doc/jscribble.1
 
 # Extracts all javadoc comments from the source codes and generates HTML pages
 # with that information.
-doc-dev: javadoc/index.html html/index.html
+doc-dev: javadoc/index.html
 
 # Creates the template for translators.
 i18n: l10n/jscribble.pot
@@ -127,10 +126,6 @@ doc/jscribble.1: doc/jscribble.1.rst doc/keylist.rst
 # Inserts the values and comments from the default config into the manual page.
 doc/keylist.rst: doc/keylist.php jscribble/default_config.properties
 	php $< > $@
-
-# Create doxygen doc.
-html/index.html: $(alljavafiles)
-	doxygen
 
 install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
 	$< > $@
