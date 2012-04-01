@@ -12,9 +12,9 @@ infinite notepad written in Java
 
 SYNOPSIS
 ========
-``jscribble`` [options]
+``jscribble [options]``
 
-``java -jar jscribble.jar`` [options]
+``java -jar jscribble.jar [options]``
 
 ``javaws http://martin-ueding.de/download/jscribble/jscribble.jnlp``
 
