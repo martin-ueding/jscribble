@@ -12,6 +12,7 @@ infinite notepad written in Java
 
 SYNOPSIS
 ========
+
 ``jscribble [options]``
 
 ``java -jar jscribble.jar [options]``
@@ -21,6 +22,7 @@ SYNOPSIS
 
 DESCRIPTION
 ===========
+
 jscribble is a graphical notepad with as many pages as you want. You can
 organize your notes within notepads. Best used with a graphics tablet or
 touchscreen.
@@ -31,7 +33,7 @@ use. If you do not want to save your notes, you can go into the *scribble*
 mode. All notes that you take there, will be thrown away when you close the
 program---without any sheet of paper wasted.
 
-Taking notes on paper allows you to draw and write whatever you want.  Some
+Taking notes on paper allows you to draw and write whatever you want. Some
 people are fast enough in LaTeX to set complicated formulas while in a lecture.
 Some prefer to draw these by hand but do not like carrying lots of paper with
 them.
@@ -57,6 +59,7 @@ You need the Java Runtime Environment (JRE) to run jscribble.
 
 OPTIONS
 =======
+
 ``-v``
     Verbose Mode.
 ``--key value``
@@ -66,6 +69,7 @@ OPTIONS
 
 DEFAULT CONTROLS
 ================
+
 To flip between the pages, you can use the arrows keys, space bar, enter and
 backspace.
 
@@ -78,6 +82,7 @@ All controls are displayed in the online help screen activated by ``h`` or
 
 FILES
 =====
+
 jscribble uses plain PNG images to store your drawings. They are, by default,
 in the ``~/.jscribble`` directory. On Windows, that is somewhere in the
 ``C:\Documents & Settings`` or ``C:\Users`` directory.
@@ -100,7 +105,7 @@ longer. ::
         1000000.png
         ...
 
-You can delete images from the folder, the program will still find them.  You
+You can delete images from the folder, the program will still find them. You
 will get something like ``Page 15/13`` if you delete two images in front of the
 gast one.
 
@@ -110,6 +115,7 @@ compress the file names, that is to renumber them so that they are consecutive.
 
 Config File
 -----------
+
 jscribble supports a user config file that overrides values from the default
 config file.
 
@@ -121,6 +127,7 @@ The format is the standard Java Properties format.
 
 Value Types
 -----------
+
 **String**
     A string which will get parsed in some way.
 
@@ -148,6 +155,7 @@ Value Types
 
 Example Config
 --------------
+
 ::
 
     # example config file for jscribble saved in .jscribble/config.properties
@@ -157,6 +165,7 @@ Example Config
 
 Available Keys
 --------------
+
 The type is given in brackets, the default value in parentheses.
 
 .. include:: keylist.rst
@@ -164,7 +173,8 @@ The type is given in brackets, the default value in parentheses.
 
 SECURITY CONSIDERATIONS
 =======================
-Named notebooks are saved in a folder in the user's home directory.  Notebooks
+
+Named notebooks are saved in a folder in the user's home directory. Notebooks
 that are in the scribble mode are not saved to the user's home directory but in
 the temporary directory of the system. On Linux, this is usually ``/tmp``. The
 files are not readable to anyone but the user.
@@ -175,10 +185,12 @@ attacker might be able to recover images drawn in the scribble mode.
 
 BUGS
 ====
+
 Please report bugs in English or German via email to me. Include the version
 number which is displayed at the bottom of the help screen within the program.
 
 
 SEE ALSO
 ========
+
 `Xournal <http://xournal.sourceforge.net/>`_
