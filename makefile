@@ -54,11 +54,13 @@ clean:
 	$(RM) *.mo
 	$(RM) -r javadoc
 	$(RM) .testrun
-	$(RM) l10n/de.po~
+	$(RM) doc/jscribble.1
+	$(RM) doc/keylist.rst
 	$(RM) install_files/completion/jscribble
 	$(RM) jscribble/VersionName.java
 	$(RM) jscribble/default_config.properties
 	$(RM) jscribble_*.*.tar.gz
+	$(RM) l10n/de.po~
 	$(RM) l10n/jscribble.pot
 	$(RM) l10n/jscribble_*.properties
 
