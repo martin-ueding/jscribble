@@ -47,7 +47,7 @@ public class NoteBookProgram {
 	/**
 	 * Getter for fileDirectory.
 	 */
-	public static File getFileDirectory() {
+	public static File getFileDirectory(boolean offerMigration) {
 		if (fileDirectory == null) {
 			fileDirectory = new File(
 			    System.getProperty("user.home") +
@@ -60,7 +60,7 @@ public class NoteBookProgram {
 				    File.separator + "." + NoteBookProgram.getProgramname()
 				);
 
-				if (oldDotDir.exists()) {
+				if (offerMigration && oldDotDir.exists()) {
 					int answer = JOptionPane.showConfirmDialog(
 					            null,
 					            Localizer.get("Would you like to move the files from .jscribble to .local/share/jscribble?"),

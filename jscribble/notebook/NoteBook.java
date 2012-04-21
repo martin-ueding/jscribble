@@ -20,6 +20,7 @@
 package jscribble.notebook;
 
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
@@ -35,10 +36,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import jscribble.NoteBookProgram;
+import jscribble.helpers.Config;
 import jscribble.helpers.FileComparator;
 import jscribble.helpers.Localizer;
 import jscribble.helpers.Logger;
-import jscribble.helpers.Config;
 
 /**
  * A container for several NoteSheet.
@@ -113,7 +114,7 @@ public class NoteBook implements Comparable<NoteBook> {
 
 		// if a NoteBook should be used
 		if (name != null) {
-			folder = new File(NoteBookProgram.getFileDirectory().getAbsolutePath() +
+			folder = new File(NoteBookProgram.getFileDirectory(false).getAbsolutePath() +
 			        File.separator + name);
 			loadImagesFromFolder();
 		}
@@ -152,21 +153,26 @@ public class NoteBook implements Comparable<NoteBook> {
 	 * to use his screen size or the default size.
 	 */
 	private void askForResolution() {
-		Dimension nativeSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		if (!nativeSize.equals(noteSizeDefault) && JOptionPane.showConfirmDialog(
-		            null,
-		            String.format(
-		                    Localizer.get("Would you like to use your native resolution (%dx%d) instead of the default (%dx%d)?"),
-		                    (int) nativeSize.getWidth(),
-		                    (int) nativeSize.getHeight(),
-		                    (int) noteSizeDefault.getWidth(),
-		                    (int) noteSizeDefault.getHeight()
-		            ),
-		            Localizer.get("Default Resolution"),
-		            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			noteSize = nativeSize;
+		try {
+			Dimension nativeSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+			if (!nativeSize.equals(noteSizeDefault) && JOptionPane.showConfirmDialog(
+			            null,
+			            String.format(
+			                    Localizer.get("Would you like to use your native resolution (%dx%d) instead of the default (%dx%d)?"),
+			                    (int) nativeSize.getWidth(),
+			                    (int) nativeSize.getHeight(),
+			                    (int) noteSizeDefault.getWidth(),
+			                    (int) noteSizeDefault.getHeight()
+			            ),
+			            Localizer.get("Default Resolution"),
+			            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				noteSize = nativeSize;
+			}
+			else {
+				noteSize = noteSizeDefault;
+			}
 		}
-		else {
+		catch (HeadlessException ignored) {
 			noteSize = noteSizeDefault;
 		}
 	}

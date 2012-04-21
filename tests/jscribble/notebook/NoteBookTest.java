@@ -332,7 +332,8 @@ public class NoteBookTest extends TestCase {
 		try {
 			assertEquals(nb.getCurrentSheet().getFile().getCanonicalPath(),
 			        reloaded.getCurrentSheet().getFile().getCanonicalPath());
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
