@@ -1,11 +1,12 @@
+#########
 jscribble
-=========
+#########
 
 building from source
---------------------
+====================
 
 just the program
-~~~~~~~~~~~~~~~~
+----------------
 
 You can obtain a tarball with the latest source code from the [jscribble
 website](http://martin-ueding.de/jscribble/)
@@ -40,7 +41,7 @@ Now it can be launched with a simple `jscribble`.
 
 
 developer documentation
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 In case you want to build all the developer documentation, you might want to
 install these as well:
@@ -55,7 +56,7 @@ To build the documentation, call::
 
 
 unit tests
-~~~~~~~~~~
+----------
 
 jscribble has a couple test cases which can be run with junit.
 
@@ -66,7 +67,7 @@ To run the tests, call ``make test``.
 
 
 contributing
-------------
+============
 
 If you like, you can send patches from the latest source checkout. Please
 include which version you based on, so that I can merge. If you care for the
