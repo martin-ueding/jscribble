@@ -8,8 +8,8 @@ building from source
 just the program
 ----------------
 
-You can obtain a tarball with the latest source code from the [jscribble
-website](http://martin-ueding.de/jscribble/)
+You can obtain a tarball with the latest source code from the `jscribble
+website <http://martin-ueding.de/jscribble/>`_.
 
 The following software is needed to compile this program:
 
@@ -34,14 +34,14 @@ To build the main program, simply invoke make:
 
 	$ make
 
-Then you can just launch the program with a `java -jar jscribble.jar`. In case
+Then you can just launch the program with a ``java -jar jscribble.jar``. In case
 you use Linux and want to install it for all users, run this:
 
 .. code:: console
 
 	# make install
 
-Now it can be launched with a simple `jscribble`.
+Now it can be launched with a simple ``jscribble``.
 
 
 developer documentation
