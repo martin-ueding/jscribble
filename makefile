@@ -113,7 +113,7 @@ $(signedjar): jscribble.jar
 # come by build files.
 $(tarball): .git/HEAD
 	$(RM) $@
-	git archive --prefix=$(foldername)/ HEAD > $@
+	git archive --prefix=$(foldername)/ HEAD | gzip > $@
 
 # Creates a changelog file with the information in the git tags.
 CHANGELOG: .git/HEAD
