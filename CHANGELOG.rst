@@ -4,6 +4,13 @@
 Changelog
 #########
 
+v1.7.8
+    - Convert markdown to reStructuredText
+    - Add changelog file to the project
+    - Add small icons for https://launchpad.net/
+    - Indent with 4 spaces instead of tab
+    - Update homepage URL (although there is a redirect)
+
 v1.7.7
     * Be more careful before using JOptionPane.
 
