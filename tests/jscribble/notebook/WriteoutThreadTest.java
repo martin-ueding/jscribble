@@ -33,49 +33,49 @@ import junit.framework.TestCase;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class WriteoutThreadTest extends TestCase {
-	public WriteoutThreadTest() {
-		super();
-	}
+    public WriteoutThreadTest() {
+        super();
+    }
 
-	/**
-	 * Schedules a single task and tests whether it is written to disk.
-	 */
-	public void testSingleWriteout() {
-		WriteoutThread wt = new WriteoutThread();
+    /**
+     * Schedules a single task and tests whether it is written to disk.
+     */
+    public void testSingleWriteout() {
+        WriteoutThread wt = new WriteoutThread();
 
-		File outfile = null;
-		try {
-			outfile = File.createTempFile("JUnit-testSingleWriteout-", ".png");
-		}
-		catch (IOException e1) {
-			e1.printStackTrace();
-		}
+        File outfile = null;
+        try {
+            outfile = File.createTempFile("JUnit-testSingleWriteout-", ".png");
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
-		assertNotNull(outfile);
+        assertNotNull(outfile);
 
-		assertTrue(outfile.exists());
-		assertEquals(0L, outfile.length());
-
-
-		wt.schedule(new ImageSwapTask(new BufferedImage(10, 10,
-		            BufferedImage.TYPE_BYTE_GRAY), outfile));
-
-		assertTrue(wt.isAlive());
-
-		wt.stopAfterLast();
-		try {
-			wt.join();
-		}
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		assertFalse(wt.isAlive());
-
-		assertTrue(outfile.exists());
-		assertTrue(outfile.length() > 0);
+        assertTrue(outfile.exists());
+        assertEquals(0L, outfile.length());
 
 
-		outfile.delete();
-		assertFalse(outfile.exists());
-	}
+        wt.schedule(new ImageSwapTask(new BufferedImage(10, 10,
+                    BufferedImage.TYPE_BYTE_GRAY), outfile));
+
+        assertTrue(wt.isAlive());
+
+        wt.stopAfterLast();
+        try {
+            wt.join();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertFalse(wt.isAlive());
+
+        assertTrue(outfile.exists());
+        assertTrue(outfile.length() > 0);
+
+
+        outfile.delete();
+        assertFalse(outfile.exists());
+    }
 }

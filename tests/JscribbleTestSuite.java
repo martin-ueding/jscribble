@@ -32,23 +32,23 @@ import tests.jscribble.notebook.WriteoutThreadTest;
 
 public class JscribbleTestSuite {
 
-	public static Test suite() {
-		TestSuite suite = new TestSuite();
+    public static Test suite() {
+        TestSuite suite = new TestSuite();
 
-		// TODO Add test for BufferedImageWrapper.
-		// TODO Add test for InvalidationThread.
-		// TODO Add test for Localizer.
-		// TODO Add test for Logger.
-		// TODO Add test for SettingsWrapper.
+        // TODO Add test for BufferedImageWrapper.
+        // TODO Add test for InvalidationThread.
+        // TODO Add test for Localizer.
+        // TODO Add test for Logger.
+        // TODO Add test for SettingsWrapper.
 
-		suite.addTestSuite(FileComparatorTest.class);
-		suite.addTestSuite(HelpItemTest.class);
-		suite.addTestSuite(NoteBookCompressorTest.class);
-		suite.addTestSuite(NoteBookTest.class);
-		suite.addTestSuite(NoteSheetFileFilterTest.class);
-		suite.addTestSuite(NoteSheetTest.class);
-		suite.addTestSuite(VersionNameTest.class);
-		suite.addTestSuite(WriteoutThreadTest.class);
-		return suite;
-	}
+        suite.addTestSuite(FileComparatorTest.class);
+        suite.addTestSuite(HelpItemTest.class);
+        suite.addTestSuite(NoteBookCompressorTest.class);
+        suite.addTestSuite(NoteBookTest.class);
+        suite.addTestSuite(NoteSheetFileFilterTest.class);
+        suite.addTestSuite(NoteSheetTest.class);
+        suite.addTestSuite(VersionNameTest.class);
+        suite.addTestSuite(WriteoutThreadTest.class);
+        return suite;
+    }
 }

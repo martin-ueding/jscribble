@@ -30,32 +30,32 @@ import java.util.regex.Pattern;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteSheetFileFilter implements FilenameFilter {
-	/**
-	 * The pattern that every filename is matched against.
-	 */
-	private Pattern p = Pattern.compile("(\\d+)\\.png");
+    /**
+     * The pattern that every filename is matched against.
+     */
+    private Pattern p = Pattern.compile("(\\d+)\\.png");
 
-	/**
-	 * Determines whether a file is accepted or not. A file is accepted if it
-	 * starts with the correct prefix and matches the regular expression.
-	 *
-	 * @param arg0 Ignored.
-	 * @param arg1 This is checked.
-	 */
-	@Override
-	public boolean accept(File arg0, String arg1) {
-		String[] nameparts = arg1.split(Pattern.quote(File.separator));
-		String fileBasename = nameparts[nameparts.length - 1];
-		Matcher m = p.matcher(fileBasename);
+    /**
+     * Determines whether a file is accepted or not. A file is accepted if it
+     * starts with the correct prefix and matches the regular expression.
+     *
+     * @param arg0 Ignored.
+     * @param arg1 This is checked.
+     */
+    @Override
+    public boolean accept(File arg0, String arg1) {
+        String[] nameparts = arg1.split(Pattern.quote(File.separator));
+        String fileBasename = nameparts[nameparts.length - 1];
+        Matcher m = p.matcher(fileBasename);
 
-		if (m.matches()) {
-			// Check whether the number is >= 1, since the file
-			// format says numbers start with 1.
-			int number = Integer.parseInt(m.group(1));
-			if (number >= 1) {
-				return true;
-			}
-		}
-		return false;
-	}
+        if (m.matches()) {
+            // Check whether the number is >= 1, since the file
+            // format says numbers start with 1.
+            int number = Integer.parseInt(m.group(1));
+            if (number >= 1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

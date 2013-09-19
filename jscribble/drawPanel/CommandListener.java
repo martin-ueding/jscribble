@@ -33,124 +33,124 @@ import jscribble.helpers.Config;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class CommandListener implements KeyListener, MouseListener {
-	/**
-	 * The DrawPanel that is displaying the NoteBook.
-	 */
-	private DrawPanel drawPanel;
+    /**
+     * The DrawPanel that is displaying the NoteBook.
+     */
+    private DrawPanel drawPanel;
 
-	/**
-	 * The listener that is to be notified when something is changed.
-	 */
-	private Redrawer redrawer;
+    /**
+     * The listener that is to be notified when something is changed.
+     */
+    private Redrawer redrawer;
 
-	/**
-	 * Creates a new listener that listens to the given panel
-	 *
-	 * @param drawPanel panel to listen to
-	 */
-	public CommandListener(DrawPanel drawPanel) {
-		this.drawPanel = drawPanel;
-		drawPanel.addMouseListener(this);
-	}
+    /**
+     * Creates a new listener that listens to the given panel
+     *
+     * @param drawPanel panel to listen to
+     */
+    public CommandListener(DrawPanel drawPanel) {
+        this.drawPanel = drawPanel;
+        drawPanel.addMouseListener(this);
+    }
 
-	/**
-	 * A listener to be called when a setting causes the panel to need
-	 * refreshing.
-	 *
-	 * @param redrawer listener to call after setting change
-	 */
-	public void addChangeListener(Redrawer redrawer) {
-		this.redrawer = redrawer;
-	}
+    /**
+     * A listener to be called when a setting causes the panel to need
+     * refreshing.
+     *
+     * @param redrawer listener to call after setting change
+     */
+    public void addChangeListener(Redrawer redrawer) {
+        this.redrawer = redrawer;
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void keyPressed(KeyEvent ignored) {
-	}
+    /**
+     * Ignored.
+     */
+    @Override
+    public void keyPressed(KeyEvent ignored) {
+    }
 
-	/**
-	 * Handles various keyboard commands.
-	 */
-	@Override
-	public void keyReleased(KeyEvent event) {
-		if (Config.isKeyForCommand(event, "help_screen_close_key")) {
-			drawPanel.setShowHelp(false);
-			redrawer.actionPerformed(null);
-		}
-		else if (Config.isKeyForCommand(event, "help_screen_toggle_key")) {
-			drawPanel.toggleHelp();
-			redrawer.actionPerformed(null);
-		}
-		else if (Config.isKeyForCommand(event, "ruling_toggle_key")) {
-			drawPanel.toggleRuling();
-			redrawer.actionPerformed(null);
-		}
-		else if (Config.isKeyForCommand(event, "ruling_graph_toggle_key")) {
-			drawPanel.toggleGraphRuling();
-			redrawer.actionPerformed(null);
-		}
-		else if (Config.isKeyForCommand(event, "onion_layer_increase_key")) {
-			drawPanel.onionLayersIncrease();
-		}
-		else if (Config.isKeyForCommand(event, "onion_layer_decrease_key")) {
-			drawPanel.onionLayersDecrease();
-		}
-		else if (Config.isKeyForCommand(event, "notebook_close_key")) {
-			drawPanel.shutdown();
-		}
-	}
+    /**
+     * Handles various keyboard commands.
+     */
+    @Override
+    public void keyReleased(KeyEvent event) {
+        if (Config.isKeyForCommand(event, "help_screen_close_key")) {
+            drawPanel.setShowHelp(false);
+            redrawer.actionPerformed(null);
+        }
+        else if (Config.isKeyForCommand(event, "help_screen_toggle_key")) {
+            drawPanel.toggleHelp();
+            redrawer.actionPerformed(null);
+        }
+        else if (Config.isKeyForCommand(event, "ruling_toggle_key")) {
+            drawPanel.toggleRuling();
+            redrawer.actionPerformed(null);
+        }
+        else if (Config.isKeyForCommand(event, "ruling_graph_toggle_key")) {
+            drawPanel.toggleGraphRuling();
+            redrawer.actionPerformed(null);
+        }
+        else if (Config.isKeyForCommand(event, "onion_layer_increase_key")) {
+            drawPanel.onionLayersIncrease();
+        }
+        else if (Config.isKeyForCommand(event, "onion_layer_decrease_key")) {
+            drawPanel.onionLayersDecrease();
+        }
+        else if (Config.isKeyForCommand(event, "notebook_close_key")) {
+            drawPanel.shutdown();
+        }
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void keyTyped(KeyEvent ignored) {
-	}
+    /**
+     * Ignored.
+     */
+    @Override
+    public void keyTyped(KeyEvent ignored) {
+    }
 
-	/**
-	 * Checks for third and fourth mouse button.
-	 */
-	@Override
-	public void mouseClicked(MouseEvent event) {
-		if (Config.isButtonForCommand(event, "notebook_go_forward_mouse_button")) {
-			drawPanel.goForward();
-		}
-		else if (Config.isButtonForCommand(event, "notebook_go_back_mouse_button")) {
-			drawPanel.goBackwards();
-		}
-	}
+    /**
+     * Checks for third and fourth mouse button.
+     */
+    @Override
+    public void mouseClicked(MouseEvent event) {
+        if (Config.isButtonForCommand(event, "notebook_go_forward_mouse_button")) {
+            drawPanel.goForward();
+        }
+        else if (Config.isButtonForCommand(event, "notebook_go_back_mouse_button")) {
+            drawPanel.goBackwards();
+        }
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void mouseEntered(MouseEvent ignored) {
+    /**
+     * Ignored.
+     */
+    @Override
+    public void mouseEntered(MouseEvent ignored) {
 
-	}
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void mouseExited(MouseEvent ignored) {
+    /**
+     * Ignored.
+     */
+    @Override
+    public void mouseExited(MouseEvent ignored) {
 
-	}
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void mousePressed(MouseEvent ignored) {
+    /**
+     * Ignored.
+     */
+    @Override
+    public void mousePressed(MouseEvent ignored) {
 
-	}
+    }
 
-	/**
-	 * Ignored.
-	 */
-	@Override
-	public void mouseReleased(MouseEvent ignored) {
+    /**
+     * Ignored.
+     */
+    @Override
+    public void mouseReleased(MouseEvent ignored) {
 
-	}
+    }
 }

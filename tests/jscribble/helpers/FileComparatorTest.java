@@ -25,23 +25,23 @@ import jscribble.helpers.FileComparator;
 import junit.framework.TestCase;
 
 public class FileComparatorTest extends TestCase {
-	private FileComparator fc = new FileComparator();
+    private FileComparator fc = new FileComparator();
 
-	public void testEqual() {
-		File a = new File("test");
-		File b = new File("test");
-		assertEquals(0, fc.compare(a, b));
-	}
+    public void testEqual() {
+        File a = new File("test");
+        File b = new File("test");
+        assertEquals(0, fc.compare(a, b));
+    }
 
-	public void testGreater() {
-		File a = new File("foobar");
-		File b = new File("test");
-		assertTrue(fc.compare(a, b) < 0);
-	}
+    public void testGreater() {
+        File a = new File("foobar");
+        File b = new File("test");
+        assertTrue(fc.compare(a, b) < 0);
+    }
 
-	public void testLess() {
-		File a = new File("foobar");
-		File b = new File("test");
-		assertTrue(fc.compare(b, a) > 0);
-	}
+    public void testLess() {
+        File a = new File("foobar");
+        File b = new File("test");
+        assertTrue(fc.compare(b, a) > 0);
+    }
 }

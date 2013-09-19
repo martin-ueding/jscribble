@@ -23,48 +23,48 @@ import jscribble.notebook.NoteSheetFileFilter;
 import junit.framework.TestCase;
 
 public class NoteSheetFileFilterTest extends TestCase {
-	private NoteSheetFileFilter filter = new NoteSheetFileFilter();
+    private NoteSheetFileFilter filter = new NoteSheetFileFilter();
 
-	public void testLetters() {
-		assertFalse(filter.accept(null, "asdfgh.png"));
-	}
+    public void testLetters() {
+        assertFalse(filter.accept(null, "asdfgh.png"));
+    }
 
-	public void testZero() {
-		assertFalse(filter.accept(null, "000000.png"));
-	}
+    public void testZero() {
+        assertFalse(filter.accept(null, "000000.png"));
+    }
 
-	public void testLongNumber() {
-		assertTrue(filter.accept(null, "1234567890.png"));
-	}
+    public void testLongNumber() {
+        assertTrue(filter.accept(null, "1234567890.png"));
+    }
 
-	public void testAlphanumeric() {
-		assertFalse(filter.accept(null, "asd123.png"));
-	}
+    public void testAlphanumeric() {
+        assertFalse(filter.accept(null, "asd123.png"));
+    }
 
-	public void testNegativeNumber() {
-		assertFalse(filter.accept(null, "-123456.png"));
-	}
+    public void testNegativeNumber() {
+        assertFalse(filter.accept(null, "-123456.png"));
+    }
 
-	public void testShort() {
-		assertTrue(filter.accept(null, "1.png"));
-	}
+    public void testShort() {
+        assertTrue(filter.accept(null, "1.png"));
+    }
 
-	public void testSimple() {
-		assertTrue(filter.accept(null, "000001.png"));
-	}
+    public void testSimple() {
+        assertTrue(filter.accept(null, "000001.png"));
+    }
 
-	public void testSpaces() {
-		assertFalse(filter.accept(null, " 000001.png"));
-		assertFalse(filter.accept(null, "000001.png "));
-	}
+    public void testSpaces() {
+        assertFalse(filter.accept(null, " 000001.png"));
+        assertFalse(filter.accept(null, "000001.png "));
+    }
 
-	public void testWrongSuffix() {
-		assertFalse(filter.accept(null, "00000.jpg"));
-		assertFalse(filter.accept(null, "000001.jpg"));
-	}
+    public void testWrongSuffix() {
+        assertFalse(filter.accept(null, "00000.jpg"));
+        assertFalse(filter.accept(null, "000001.jpg"));
+    }
 
-	public void testNoSuffix() {
-		assertFalse(filter.accept(null, "00000"));
-		assertFalse(filter.accept(null, "000001"));
-	}
+    public void testNoSuffix() {
+        assertFalse(filter.accept(null, "00000"));
+        assertFalse(filter.accept(null, "000001"));
+    }
 }

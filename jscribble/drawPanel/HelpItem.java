@@ -27,36 +27,36 @@ import java.awt.event.KeyEvent;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class HelpItem {
-	/**
-	 * The buttons(s) that cause some action.
-	 */
-	public String key;
+    /**
+     * The buttons(s) that cause some action.
+     */
+    public String key;
 
-	/**
-	 * The action the buttons cause.
-	 */
-	public String helptext;
+    /**
+     * The action the buttons cause.
+     */
+    public String helptext;
 
-	/**
-	 * Generates a new HelpItem.
-	 */
-	public HelpItem(String keys, String helptext) {
-		this.helptext = helptext;
+    /**
+     * Generates a new HelpItem.
+     */
+    public HelpItem(String keys, String helptext) {
+        this.helptext = helptext;
 
-		String[] parts = keys.split(",");
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < parts.length; i++) {
-			String part = parts[i];
-			if (i > 0) {
-				sb.append(", ");
-			}
-			if (part.length() == 1) {
-				sb.append(part.toUpperCase());
-			}
-			else {
-				sb.append(KeyEvent.getKeyText(Integer.parseInt(part)));
-			}
-		}
-		this.key = sb.toString();
-	}
+        String[] parts = keys.split(",");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            if (i > 0) {
+                sb.append(", ");
+            }
+            if (part.length() == 1) {
+                sb.append(part.toUpperCase());
+            }
+            else {
+                sb.append(KeyEvent.getKeyText(Integer.parseInt(part)));
+            }
+        }
+        this.key = sb.toString();
+    }
 }

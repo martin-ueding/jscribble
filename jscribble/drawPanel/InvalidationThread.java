@@ -27,48 +27,48 @@ import jscribble.helpers.Config;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class InvalidationThread extends Thread {
-	/**
-	 * Whether the Thread should wait another turn.
-	 */
-	boolean keepAlive = true;
+    /**
+     * Whether the Thread should wait another turn.
+     */
+    boolean keepAlive = true;
 
-	/**
-	 * The DrawPanel to repaint.
-	 */
-	private DrawPanel drawPanel;
+    /**
+     * The DrawPanel to repaint.
+     */
+    private DrawPanel drawPanel;
 
-	/**
-	 * Creates a new Thread that repaints the DrawPanel after a no more events.
-	 *
-	 * @param drawPanel Panel to redraw.
-	 */
-	public InvalidationThread(DrawPanel drawPanel) {
-		super();
-		this.drawPanel = drawPanel;
-	}
+    /**
+     * Creates a new Thread that repaints the DrawPanel after a no more events.
+     *
+     * @param drawPanel Panel to redraw.
+     */
+    public InvalidationThread(DrawPanel drawPanel) {
+        super();
+        this.drawPanel = drawPanel;
+    }
 
-	/**
-	 * Tells the Thread that another event came in and that the picture is not to be repainted yet.
-	 */
-	public void keepAlive() {
-		keepAlive = true;
-	}
+    /**
+     * Tells the Thread that another event came in and that the picture is not to be repainted yet.
+     */
+    public void keepAlive() {
+        keepAlive = true;
+    }
 
-	/**
-	 * Waits until no more events come in and repaints the DrawPanel.
-	 */
-	public void run() {
-		while (keepAlive) {
-			keepAlive = false;
-			try {
-				sleep(Config.getInteger("notebook_erase_timeout"));
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+    /**
+     * Waits until no more events come in and repaints the DrawPanel.
+     */
+    public void run() {
+        while (keepAlive) {
+            keepAlive = false;
+            try {
+                sleep(Config.getInteger("notebook_erase_timeout"));
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-		drawPanel.resetCachedImage();
-		drawPanel.repaint();
-	}
+        drawPanel.resetCachedImage();
+        drawPanel.repaint();
+    }
 }

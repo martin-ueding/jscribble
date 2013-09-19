@@ -31,25 +31,25 @@ import javax.swing.JPanel;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Redrawer implements ActionListener {
-	/**
-	 * Panel which is to be redrawn.
-	 */
-	private JPanel panel;
+    /**
+     * Panel which is to be redrawn.
+     */
+    private JPanel panel;
 
-	/**
-	 * Creates a new Redrawer that tells the given Panel to redraw.
-	 *
-	 * @param panel panel to redraw when notified
-	 */
-	public Redrawer(JPanel panel) {
-		this.panel = panel;
-	}
+    /**
+     * Creates a new Redrawer that tells the given Panel to redraw.
+     *
+     * @param panel panel to redraw when notified
+     */
+    public Redrawer(JPanel panel) {
+        this.panel = panel;
+    }
 
-	/**
-	 * Redraws the previously set panel.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		panel.repaint();
-	}
+    /**
+     * Redraws the previously set panel.
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        panel.repaint();
+    }
 }

@@ -28,27 +28,27 @@ import java.awt.event.MouseEvent;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class ListListener extends MouseAdapter {
-	/**
-	 * The window to notify.
-	 */
-	private NoteBookSelectionWindow window;
+    /**
+     * The window to notify.
+     */
+    private NoteBookSelectionWindow window;
 
-	/**
-	 * Creates a new listener for the given window.
-	 *
-	 * @param window Window to notify.
-	 */
-	public ListListener(NoteBookSelectionWindow window) {
-		this.window = window;
-	}
+    /**
+     * Creates a new listener for the given window.
+     *
+     * @param window Window to notify.
+     */
+    public ListListener(NoteBookSelectionWindow window) {
+        this.window = window;
+    }
 
-	/**
-	 * Opens a NoteBook on a double click.
-	 */
-	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2) {
+    /**
+     * Opens a NoteBook on a double click.
+     */
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
 
-			window.openEvent();
-		}
-	}
+            window.openEvent();
+        }
+    }
 }

@@ -26,39 +26,39 @@ import junit.framework.TestCase;
 
 public class HelpItemTest extends TestCase {
 
-	public void testChar() {
-		HelpItem hi = new HelpItem("a", "text");
-		assertEquals("A", hi.key);
-	}
+    public void testChar() {
+        HelpItem hi = new HelpItem("a", "text");
+        assertEquals("A", hi.key);
+    }
 
-	public void testCharArray() {
-		HelpItem hi = new HelpItem("a,b", "text");
-		assertEquals("A, B", hi.key);
-	}
+    public void testCharArray() {
+        HelpItem hi = new HelpItem("a,b", "text");
+        assertEquals("A, B", hi.key);
+    }
 
-	public void testKeyCode() {
-		HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_ENTER), "text");
-		assertEquals(KeyEvent.getKeyText(KeyEvent.VK_ENTER), hi.key);
-	}
+    public void testKeyCode() {
+        HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_ENTER), "text");
+        assertEquals(KeyEvent.getKeyText(KeyEvent.VK_ENTER), hi.key);
+    }
 
-	public void testKeyCodeArray() {
-		HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_ENTER) + ",0" + String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
-		assertEquals(KeyEvent.getKeyText(KeyEvent.VK_ENTER) + ", " + KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE), hi.key);
-	}
+    public void testKeyCodeArray() {
+        HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_ENTER) + ",0" + String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
+        assertEquals(KeyEvent.getKeyText(KeyEvent.VK_ENTER) + ", " + KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE), hi.key);
+    }
 
-	public void testOneDigitKeyCodeWithoutPadding() {
-		HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
-		assertFalse(KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE).equals(hi.key));
-	}
+    public void testOneDigitKeyCodeWithoutPadding() {
+        HelpItem hi = new HelpItem(String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
+        assertFalse(KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE).equals(hi.key));
+    }
 
-	public void testOneDigitKeyCodeWithPadding() {
-		HelpItem hi = new HelpItem("0" + String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
-		assertEquals(KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE), hi.key);
-	}
+    public void testOneDigitKeyCodeWithPadding() {
+        HelpItem hi = new HelpItem("0" + String.valueOf(KeyEvent.VK_BACK_SPACE), "text");
+        assertEquals(KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE), hi.key);
+    }
 
-	public void testText() {
-		HelpItem hi = new HelpItem("a", "text");
-		assertEquals("text", hi.helptext);
-	}
+    public void testText() {
+        HelpItem hi = new HelpItem("a", "text");
+        assertEquals("text", hi.helptext);
+    }
 
 }

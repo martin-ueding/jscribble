@@ -31,49 +31,49 @@ import jscribble.notebook.NoteBook;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ShutdownHook extends Thread {
-	/**
-	 * All opened NoteBook.
-	 */
-	private LinkedList<NoteBook> openedNotebooks;
+    /**
+     * All opened NoteBook.
+     */
+    private LinkedList<NoteBook> openedNotebooks;
 
-	/**
-	 * Hooks a new adapter to the closing.
-	 */
-	public ShutdownHook() {
-		super();
+    /**
+     * Hooks a new adapter to the closing.
+     */
+    public ShutdownHook() {
+        super();
 
-		openedNotebooks = new LinkedList<NoteBook>();
-	}
+        openedNotebooks = new LinkedList<NoteBook>();
+    }
 
-	/**
-	 * Adds a new NoteBook to the list this hook has to take care of.
-	 *
-	 * @param notebook Instance to close on exit.
-	 */
-	public void add(NoteBook notebook) {
-		openedNotebooks.add(notebook);
-	}
+    /**
+     * Adds a new NoteBook to the list this hook has to take care of.
+     *
+     * @param notebook Instance to close on exit.
+     */
+    public void add(NoteBook notebook) {
+        openedNotebooks.add(notebook);
+    }
 
-	/**
-	 * Saves all opened NoteBook.
-	 */
-	public void run() {
-		Logger.log(getClass().getName(), Localizer.get("Shutting down …"));
+    /**
+     * Saves all opened NoteBook.
+     */
+    public void run() {
+        Logger.log(getClass().getName(), Localizer.get("Shutting down …"));
 
-		for (NoteBook notebook : openedNotebooks) {
-			notebook.saveToFiles();
-			Logger.log(
-			    getClass().getName(),
-			    String.format(
-			        Localizer.get("Closing NoteBook \"%s\"."),
-			        notebook.getName()
-			    )
-			);
-		}
+        for (NoteBook notebook : openedNotebooks) {
+            notebook.saveToFiles();
+            Logger.log(
+                getClass().getName(),
+                String.format(
+                    Localizer.get("Closing NoteBook \"%s\"."),
+                    notebook.getName()
+                )
+            );
+        }
 
-		Logger.log(
-		    getClass().getName(),
-		    Localizer.get("Everything saved properly. Thanks for waiting!")
-		);
-	}
+        Logger.log(
+            getClass().getName(),
+            Localizer.get("Everything saved properly. Thanks for waiting!")
+        );
+    }
 }

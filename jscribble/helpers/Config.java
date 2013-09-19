@@ -37,241 +37,241 @@ import jscribble.NoteBookProgram;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Config {
-	/**
-	 * Main config used for user specific settings.
-	 */
-	private static Properties userConfig;
+    /**
+     * Main config used for user specific settings.
+     */
+    private static Properties userConfig;
 
-	/**
-	 * Default config that is used if the user did not specify this in his
-	 * config file.
-	 */
-	private static Properties defaultConfig;
+    /**
+     * Default config that is used if the user did not specify this in his
+     * config file.
+     */
+    private static Properties defaultConfig;
 
-	/**
-	 * Config options specified at the command line.
-	 */
-	private static Properties sessionConfig;
+    /**
+     * Config options specified at the command line.
+     */
+    private static Properties sessionConfig;
 
-	/**
-	 * Looks up a boolean value in the config file.
-	 *
-	 * @param key Key to look up.
-	 * @return Config value or default as boolean.
-	 */
-	public static boolean getBoolean(String key) {
-		return Boolean.parseBoolean(retrieve(key));
-	}
+    /**
+     * Looks up a boolean value in the config file.
+     *
+     * @param key Key to look up.
+     * @return Config value or default as boolean.
+     */
+    public static boolean getBoolean(String key) {
+        return Boolean.parseBoolean(retrieve(key));
+    }
 
-	/**
-	 * Gets the default config, initializes if needed.
-	 *
-	 * @return Initialized config.
-	 */
-	private static Properties getDefaultConfig() {
-		if (defaultConfig == null) {
-			initDefaultConfig();
-		}
+    /**
+     * Gets the default config, initializes if needed.
+     *
+     * @return Initialized config.
+     */
+    private static Properties getDefaultConfig() {
+        if (defaultConfig == null) {
+            initDefaultConfig();
+        }
 
-		return defaultConfig;
-	}
+        return defaultConfig;
+    }
 
-	/**
-	 * Looks up a integer value in the config file.
-	 *
-	 * @param key Key to look up.
-	 * @return Config value or default as integer.
-	 */
-	public static int getInteger(String key) {
-		return Integer.parseInt(retrieve(key));
-	}
+    /**
+     * Looks up a integer value in the config file.
+     *
+     * @param key Key to look up.
+     * @return Config value or default as integer.
+     */
+    public static int getInteger(String key) {
+        return Integer.parseInt(retrieve(key));
+    }
 
-	/**
-	 * Looks up a hexadecimal integer value from the config and converts it
-	 * into a Color.
-	 *
-	 * @param key Key to look up.
-	 * @return Config value as Color.
-	 */
-	public static Color getColor(String key) {
-		int color = (int) Long.parseLong(retrieve(key), 16);
-		return new Color(color, isColorWithAlpha(color));
-	}
+    /**
+     * Looks up a hexadecimal integer value from the config and converts it
+     * into a Color.
+     *
+     * @param key Key to look up.
+     * @return Config value as Color.
+     */
+    public static Color getColor(String key) {
+        int color = (int) Long.parseLong(retrieve(key), 16);
+        return new Color(color, isColorWithAlpha(color));
+    }
 
-	/**
-	 * Determines whether a given color has an alpha part.
-	 *
-	 * @param color The color to check for alpha part.
-	 * @return Whether there is an alpha part.
-	 */
-	private static boolean isColorWithAlpha(int color) {
-		return color > 0xFFFFFF || color < 0;
-	}
+    /**
+     * Determines whether a given color has an alpha part.
+     *
+     * @param color The color to check for alpha part.
+     * @return Whether there is an alpha part.
+     */
+    private static boolean isColorWithAlpha(int color) {
+        return color > 0xFFFFFF || color < 0;
+    }
 
-	/**
-	 * Looks up a string value in the config file.
-	 *
-	 * @param key Key to look up.
-	 * @return Config value or default as string.
-	 */
-	public static String getString(String key) {
-		return retrieve(key);
-	}
+    /**
+     * Looks up a string value in the config file.
+     *
+     * @param key Key to look up.
+     * @return Config value or default as string.
+     */
+    public static String getString(String key) {
+        return retrieve(key);
+    }
 
-	/**
-	 * Gets the config, initializes if needed.
-	 *
-	 * @return Initialized config.
-	 */
-	private static Properties getUserConfig() {
-		if (userConfig == null) {
-			initUserConfig();
-		}
+    /**
+     * Gets the config, initializes if needed.
+     *
+     * @return Initialized config.
+     */
+    private static Properties getUserConfig() {
+        if (userConfig == null) {
+            initUserConfig();
+        }
 
-		return userConfig;
-	}
+        return userConfig;
+    }
 
-	/**
-	 * Loads the default config from the bundled file.
-	 */
-	private static void initDefaultConfig() {
-		defaultConfig = new Properties();
-		try {
-			defaultConfig.load(Config.class.getResourceAsStream("/jscribble/default_config.properties"));
-		}
-		catch (FileNotFoundException e) {
-			Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			Logger.handleError(Localizer.get(
-			            "IO error while reading config file."));
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Loads the default config from the bundled file.
+     */
+    private static void initDefaultConfig() {
+        defaultConfig = new Properties();
+        try {
+            defaultConfig.load(Config.class.getResourceAsStream("/jscribble/default_config.properties"));
+        }
+        catch (FileNotFoundException e) {
+            Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            Logger.handleError(Localizer.get(
+                        "IO error while reading config file."));
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Loads the user config if there is one.
-	 */
-	private static void initUserConfig() {
-		userConfig = new Properties();
-		try {
-			File configfile = new File(NoteBookProgram.getConfigDirectory() + File.separator +
-			        getString("user_config_filename"));
-			if (configfile.exists()) {
-				Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("Loading user configuration file from %s."), configfile.getName()));
-				userConfig.load(new FileInputStream(configfile));
-			}
-			else {
-				Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("There is no user config in %s."), configfile.getAbsolutePath()));
-			}
-		}
-		catch (FileNotFoundException e) {
-			Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			Logger.handleError(Localizer.get(
-			            "IO error while reading config file."));
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Loads the user config if there is one.
+     */
+    private static void initUserConfig() {
+        userConfig = new Properties();
+        try {
+            File configfile = new File(NoteBookProgram.getConfigDirectory() + File.separator +
+                    getString("user_config_filename"));
+            if (configfile.exists()) {
+                Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("Loading user configuration file from %s."), configfile.getName()));
+                userConfig.load(new FileInputStream(configfile));
+            }
+            else {
+                Logger.log(Config.class.getClass().getName(), String.format(Localizer.get("There is no user config in %s."), configfile.getAbsolutePath()));
+            }
+        }
+        catch (FileNotFoundException e) {
+            Logger.handleError(Localizer.get("Could not find the config file. (This should *not* happen!)"));
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            Logger.handleError(Localizer.get(
+                        "IO error while reading config file."));
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Retrieves a string from either the user or default config.
-	 *
-	 * @param key Parameter name to look up.
-	 * @return Value.
-	 */
-	private static String retrieve(String key) {
-		if (sessionConfig != null && sessionConfig.containsKey(key)) {
-			return sessionConfig.getProperty(key);
-		}
-		else if (getUserConfig().containsKey(key)) {
-			return getUserConfig().getProperty(key);
-		}
-		else if (getDefaultConfig().containsKey(key)) {
-			return getDefaultConfig().getProperty(key);
-		}
-		else {
-			Logger.handleError(String.format(
-			            Localizer.get("There is no default setting for %s."),
-			            key
-			        ));
-			return "";
-		}
-	}
+    /**
+     * Retrieves a string from either the user or default config.
+     *
+     * @param key Parameter name to look up.
+     * @return Value.
+     */
+    private static String retrieve(String key) {
+        if (sessionConfig != null && sessionConfig.containsKey(key)) {
+            return sessionConfig.getProperty(key);
+        }
+        else if (getUserConfig().containsKey(key)) {
+            return getUserConfig().getProperty(key);
+        }
+        else if (getDefaultConfig().containsKey(key)) {
+            return getDefaultConfig().getProperty(key);
+        }
+        else {
+            Logger.handleError(String.format(
+                        Localizer.get("There is no default setting for %s."),
+                        key
+                    ));
+            return "";
+        }
+    }
 
-	/**
-	 * Wrapper to retrieve a double.
-	 *
-	 * @param key Parameter name to look up.
-	 * @return Value.
-	 */
-	public static double getDouble(String key) {
-		return Double.parseDouble(retrieve(key));
-	}
+    /**
+     * Wrapper to retrieve a double.
+     *
+     * @param key Parameter name to look up.
+     * @return Value.
+     */
+    public static double getDouble(String key) {
+        return Double.parseDouble(retrieve(key));
+    }
 
-	/**
-	 * Checks whether a pressed key should trigger a command.
-	 *
-	 * @param event Pressed key.
-	 * @param command Command in question.
-	 * @return Whether this should trigger.
-	 */
-	public static boolean isKeyForCommand(KeyEvent event, String command) {
-		String raw_array = retrieve(command);
-		if (raw_array.length() == 0) {
-			return false;
-		}
-		String[] parts = raw_array.split(",");
-		for (String part : parts) {
-			if (part.length() == 1) {
-				if (event.getKeyChar() == part.charAt(0)) {
-					Logger.log(Config.class.getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
-					return true;
-				}
-			}
-			else if (event.getKeyCode() == Integer.parseInt(part)) {
-				Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Checks whether a pressed key should trigger a command.
+     *
+     * @param event Pressed key.
+     * @param command Command in question.
+     * @return Whether this should trigger.
+     */
+    public static boolean isKeyForCommand(KeyEvent event, String command) {
+        String raw_array = retrieve(command);
+        if (raw_array.length() == 0) {
+            return false;
+        }
+        String[] parts = raw_array.split(",");
+        for (String part : parts) {
+            if (part.length() == 1) {
+                if (event.getKeyChar() == part.charAt(0)) {
+                    Logger.log(Config.class.getName(), String.format(Localizer.get("%c is a valid key for %s."), event.getKeyChar(), command));
+                    return true;
+                }
+            }
+            else if (event.getKeyCode() == Integer.parseInt(part)) {
+                Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), KeyEvent.getKeyText(event.getKeyChar()), command));
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Checks whether a pressed mouse button should trigger a command.
-	 *
-	 * @param event Pressed mouse button.
-	 * @param command Command in question.
-	 * @return Whether this should trigger.
-	 */
-	public static boolean isButtonForCommand(MouseEvent event, String command) {
-		String raw_array = retrieve(command);
-		if (raw_array.length() == 0) {
-			return false;
-		}
-		String[] parts = raw_array.split(",");
-		for (String part : parts) {
-			if (event.getModifiersEx() == Integer.parseInt(part)) {
-				Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), MouseEvent.getModifiersExText(event.getModifiersEx()), command));
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Checks whether a pressed mouse button should trigger a command.
+     *
+     * @param event Pressed mouse button.
+     * @param command Command in question.
+     * @return Whether this should trigger.
+     */
+    public static boolean isButtonForCommand(MouseEvent event, String command) {
+        String raw_array = retrieve(command);
+        if (raw_array.length() == 0) {
+            return false;
+        }
+        String[] parts = raw_array.split(",");
+        for (String part : parts) {
+            if (event.getModifiersEx() == Integer.parseInt(part)) {
+                Logger.log(Config.class.getName(), String.format(Localizer.get("%s is a valid key for %s."), MouseEvent.getModifiersExText(event.getModifiersEx()), command));
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Override a config setting for this session.
-	 *
-	 * @param key Key to override.
-	 * @param value New value.
-	 */
-	public static void set(String key, String value) {
-		if (sessionConfig == null) {
-			sessionConfig = new Properties();
-		}
-		sessionConfig.setProperty(key, value);
-	}
+    /**
+     * Override a config setting for this session.
+     *
+     * @param key Key to override.
+     * @param value New value.
+     */
+    public static void set(String key, String value) {
+        if (sessionConfig == null) {
+            sessionConfig = new Properties();
+        }
+        sessionConfig.setProperty(key, value);
+    }
 }

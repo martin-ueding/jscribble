@@ -31,51 +31,51 @@ import javax.swing.JOptionPane;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Logger {
-	/**
-	 * Whether to show debug information by default. This can be overridden by
-	 * the "-v" command line option.
-	 */
-	private static boolean debug = false;
+    /**
+     * Whether to show debug information by default. This can be overridden by
+     * the "-v" command line option.
+     */
+    private static boolean debug = false;
 
-	/**
-	 * Handles some error message centrally, right now it just displays a
-	 * dialog box with the error message.
-	 *
-	 * @param errorMessage error message
-	 */
-	public static void handleError(String errorMessage) {
-		log("ERROR", errorMessage);
-		try {
-			JOptionPane.showMessageDialog(null, errorMessage);
-		}
-		// When running unit tests in headless mode, any errors that show up
-		// will try to display a message dialog, which will make the test crash.
-		// With this try-catch, the test will not fail because of that.
-		catch (HeadlessException ignored) {}
-		System.exit(1);
-	}
+    /**
+     * Handles some error message centrally, right now it just displays a
+     * dialog box with the error message.
+     *
+     * @param errorMessage error message
+     */
+    public static void handleError(String errorMessage) {
+        log("ERROR", errorMessage);
+        try {
+            JOptionPane.showMessageDialog(null, errorMessage);
+        }
+        // When running unit tests in headless mode, any errors that show up
+        // will try to display a message dialog, which will make the test crash.
+        // With this try-catch, the test will not fail because of that.
+        catch (HeadlessException ignored) {}
+        System.exit(1);
+    }
 
-	/**
-	 * Writes a message to a log file.
-	 *
-	 * @param reportingClass name of the reporting class
-	 * @param message message
-	 */
-	public static void log(String reportingClass, String message) {
-		if (debug) {
-			SimpleDateFormat formatter = new SimpleDateFormat(Config.getString("date_format"));
-			String date = formatter.format(new Date());
-			String output =  date + " " + reportingClass + ":\t" + message;
-			System.out.println(output);
-		}
-	}
+    /**
+     * Writes a message to a log file.
+     *
+     * @param reportingClass name of the reporting class
+     * @param message message
+     */
+    public static void log(String reportingClass, String message) {
+        if (debug) {
+            SimpleDateFormat formatter = new SimpleDateFormat(Config.getString("date_format"));
+            String date = formatter.format(new Date());
+            String output =  date + " " + reportingClass + ":\t" + message;
+            System.out.println(output);
+        }
+    }
 
-	/**
-	 * Switched debug mode on or off.
-	 *
-	 * @param b New value for debug mode.
-	 */
-	public static void setDebug(boolean b) {
-		debug = b;
-	}
+    /**
+     * Switched debug mode on or off.
+     *
+     * @param b New value for debug mode.
+     */
+    public static void setDebug(boolean b) {
+        debug = b;
+    }
 }

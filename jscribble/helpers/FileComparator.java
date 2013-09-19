@@ -27,22 +27,22 @@ import java.util.Comparator;
  * Compares two files by their file names.
  */
 public class FileComparator implements Comparator<File> {
-	/**
-	 * Collator to compare strings.
-	 */
-	private Collator c = Collator.getInstance();
+    /**
+     * Collator to compare strings.
+     */
+    private Collator c = Collator.getInstance();
 
-	/**
-	 * Compares two files by their filenames.
-	 */
-	public int compare(File o1, File o2) {
-		if (o1 == o2) {
-			return 0;
-		}
+    /**
+     * Compares two files by their filenames.
+     */
+    public int compare(File o1, File o2) {
+        if (o1 == o2) {
+            return 0;
+        }
 
-		File f1 = (File) o1;
-		File f2 = (File) o2;
+        File f1 = (File) o1;
+        File f2 = (File) o2;
 
-		return c.compare(f1.getName(), f2.getName());
-	}
+        return c.compare(f1.getName(), f2.getName());
+    }
 }

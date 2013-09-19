@@ -28,26 +28,26 @@ import java.awt.event.ActionListener;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 class NewActionListener implements ActionListener {
-	/**
-	 * Window to notify.
-	 */
-	private NoteBookSelectionWindow window;
+    /**
+     * Window to notify.
+     */
+    private NoteBookSelectionWindow window;
 
-	/**
-	 * Creates a new listener.
-	 *
-	 * @param window Window to relay actions to.
-	 */
-	public NewActionListener(NoteBookSelectionWindow window) {
-		super();
-		this.window = window;
-	}
+    /**
+     * Creates a new listener.
+     *
+     * @param window Window to relay actions to.
+     */
+    public NewActionListener(NoteBookSelectionWindow window) {
+        super();
+        this.window = window;
+    }
 
-	/**
-	 * Triggers the deletion of a NoteBook.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		window.newEvent();
-	}
+    /**
+     * Triggers the deletion of a NoteBook.
+     */
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        window.newEvent();
+    }
 }

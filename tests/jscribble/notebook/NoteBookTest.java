@@ -36,401 +36,401 @@ import junit.framework.TestCase;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookTest extends TestCase {
-	public NoteBookTest() {
-		super();
-	}
-
-	/**
-	 * Generates a temporary NoteBook that has a name.
-	 *
-	 * @return Named temporary NoteBook.
-	 */
-	private NoteBook createNamedTempNoteBook() {
-		return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
-	}
-
-	/**
-	 * Creates a NoteBook stored in a temporary folder np name.
-	 *
-	 * @return Unnamed temporary NoteBook.
-	 */
-	private NoteBook createTempNoteBook() {
-		return new NoteBook(null, new Dimension(300, 300));
-	}
-
-	/**
-	 * Creates a NoteBook, draws on the page, flips and does not save. Then
-	 * checks whether the Image was saved.
-	 */
-	public void testAutomaticSaveOnPageFlipForward() {
-		NoteBook b = createNamedTempNoteBook();
-		assertEquals(0, b.getSheetCount());
-		assertNotNull(b);
-		String name = b.getName();
-		assertNotNull(name);
-		int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
-		b.drawLine(new Line2D.Float(100, 100, 100, 200));
-		assertFalse(previousColor == b.getCurrentSheet().getImg().getRGB(100, 100));
-		assertEquals(1, b.getSheetCount());
-		assertEquals(1, b.getCurrentSheet().getPagenumber());
-		b.goForward();
-		assertEquals(2, b.getCurrentSheet().getPagenumber());
-
-		b.testing_finalize();
-
-		b = null;
-		assertNull(b);
-
-		NoteBook c = new NoteBook(name);
-		assertNotNull(c);
-		assertEquals(1, c.getSheetCount());
-		assertNotNull(c.getCurrentSheet());
-		assertNotNull(c.getCurrentSheet().getImg());
-		c.gotoFirst();
-
-		assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
-
-		c.deleteSure();
-	}
-
-	/**
-	 * Creates a NoteBook, draws on the page, flips, draws and flips back.
-	 * Then the NoteBook is closed without saving and tested whether the data
-	 * is still there.
-	 */
-	public void testAutomaticSaveOnPageFlipBackwards() {
-		// Create a new NoteBook.
-		NoteBook b = createNamedTempNoteBook();
-		assertEquals(0, b.getSheetCount());
-		assertNotNull(b);
-		String name = b.getName();
-		assertNotNull(name);
-
-		// Determine foreground and background color with a line.
-		int backgroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
-		b.drawLine(new Line2D.Float(100, 100, 100, 200));
-		int foregroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
-		assertFalse(backgroundColor == foregroundColor);
-		assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(100, 100));
-
-		// Check page numbers.
-		assertEquals(1, b.getSheetCount());
-		assertEquals(1, b.getCurrentSheet().getPagenumber());
-		b.goForward();
-		assertEquals(2, b.getCurrentSheet().getPagenumber());
-
-		// Draw another line somewhere else.
-		assertEquals(backgroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
-		b.drawLine(new Line2D.Float(50, 50, 50, 50));
-		assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
-
-		// Go back.
-		assertEquals(2, b.getSheetCount());
-		assertEquals(2, b.getCurrentSheet().getPagenumber());
-		b.goBackwards();
-		assertEquals(1, b.getCurrentSheet().getPagenumber());
-
-		b.testing_finalize();
-
-		// Get rid of the NoteBook.
-		b = null;
-		assertNull(b);
-
-		// Load the NoteBook from disk.
-		NoteBook c = new NoteBook(name);
-		assertNotNull(c);
-		assertEquals(2, c.getSheetCount());
-		assertNotNull(c.getCurrentSheet());
-		assertNotNull(c.getCurrentSheet().getImg());
-
-		// Check the page number.
-		c.gotoLast();
-		assertEquals(2, c.getCurrentSheet().getPagenumber());
-
-		// Check whether there is only the line from the second sheet.
-		assertEquals(foregroundColor, c.getCurrentSheet().getImg().getRGB(50, 50));
-		assertEquals(backgroundColor, c.getCurrentSheet().getImg().getRGB(100, 100));
-
-		c.deleteSure();
-	}
-
-	/**
-	 * There was an error in a previous version that a newly created sheet
-	 * which is still empty will be saved if you go back. When you go forward
-	 * again, the program tries to load the image which does not exist. This
-	 * test should cover this case.
-	 */
-	public void testBackWithEmptyLastSheet() {
-		NoteBook nb = createTempNoteBook();
-
-		int numAdvance = 15;
-
-		// Advance several pages.
-		for (int i = 0; i < numAdvance; i++) {
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			nb.goForward();
-		}
-
-		// Go back.
-		for (int i = numAdvance; i > 0; i--) {
-			nb.goBackwards();
-			nb.getCurrentSheet().getImg();
-		}
-
-		numAdvance += 5;
-
-		// Advance several pages.
-		for (int i = 0; i < numAdvance; i++) {
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			nb.goForward();
-		}
-
-		// There just should not be any error, that is it.
-	}
-
-	/**
-	 * Tests whether the current sheet of a new NoteBook is not null.
-	 */
-	public void testCurrentSheet() {
-		NoteBook nb = createTempNoteBook();
-		assertNotNull(nb.getCurrentSheet());
-	}
-
-	/**
-	 * Creates a NoteBook with many pages and deletes one of them. The NoteBook
-	 * is then reloaded from the configuration file. The NoteBook should now
-	 * have one page less than before.
-	 */
-	public void testDeletionOfPictureFile() {
-		NoteBook nb = createNamedTempNoteBook();
-
-		File[] filenames = new File[20];
-
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-
-		for (int i = 0; i < filenames.length; i++) {
-			nb.goForward();
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			filenames[i] = nb.getCurrentSheet().getFile();
-		}
-
-		nb.saveToFiles();
-
-		int oldSheetCount = nb.getSheetCount();
-
-		// delete a file from the notebook
-		for (File file : filenames) {
-			assertTrue(String.format("File %s should exist.",
-			           file.getAbsolutePath()), file.exists());
-		}
-		filenames[3].delete();
-		assertFalse(filenames[3].exists());
-
-		NoteBook reloaded = new NoteBook(nb.getName());
-
-		assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
-
-		Logger.log(getClass().getName(),
-		           "Trying to delete test files.");
-		for (File file : filenames) {
-			file.delete();
-		}
-
-		nb.deleteSure();
-	}
-
-	/**
-	 * Tests whether an newly created NoteBook has zero sheets in it, even if
-	 * you get the first (untouched) page.
-	 */
-	public void testEmptySheetCount() {
-		NoteBook nb = createTempNoteBook();
-		assertEquals(0, nb.getSheetCount());
-		nb.getCurrentSheet();
-		assertEquals(0, nb.getSheetCount());
-	}
-
-	/**
-	 * Tests the forward and backward functions in the NoteBook.
-	 */
-	public void testGoBackwards() {
-		NoteBook nb = createTempNoteBook();
-
-		// Try going back although the notebook is already at the first page.
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.goBackwards();
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-
-		// Go one page forward.
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.goForward();
-		assertEquals(2, nb.getCurrentSheet().getPagenumber());
-
-		// Try to go once more, which should not work
-		nb.goForward();
-		assertEquals(2, nb.getCurrentSheet().getPagenumber());
-
-		// Go back to the start.
-		nb.goBackwards();
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-
-		int numAdvance = 30;
-
-		// Advance several pages.
-		for (int i = 0; i < numAdvance; i++) {
-			nb.goForward();
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
-		}
-
-		// Go back again
-		for (int i = numAdvance; i > 0; i--) {
-			nb.goBackwards();
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());
-		}
-	}
-
-	/**
-	 * Tests whether going to first and lasts works.
-	 */
-	public void testGotoLast() {
-		NoteBook nb = createTempNoteBook();
-
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-
-		int numAdvance = 30;
-
-		// Advance several pages.
-		for (int i = 0; i < numAdvance; i++) {
-			nb.goForward();
-			nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-			assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
-		}
-
-		nb.gotoFirst();
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.gotoLast();
-		assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
-	}
-
-	/**
-	 * Tests whether a reloaded NoteBook is the same as the saved one.
-	 */
-	public void testLoadFromConfig() {
-		NoteBook nb = createNamedTempNoteBook();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.saveToFiles();
-
-		NoteBook reloaded = new NoteBook(nb.getName());
-
-		assertEquals(nb.getName(), reloaded.getName());
-
-		nb.gotoFirst();
-		reloaded.gotoFirst();
-
-		try {
-			assertEquals(nb.getCurrentSheet().getFile().getCanonicalPath(),
-			        reloaded.getCurrentSheet().getFile().getCanonicalPath());
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
-
-		nb.deleteSure();
-	}
-
-	/**
-	 * Tests whether the page number advances when you go a page forward.
-	 */
-	public void testPageNumber() {
-		NoteBook nb = createTempNoteBook();
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		assertEquals(1, nb.getCurrentSheet().getPagenumber());
-		nb.goForward();
-		assertEquals(2, nb.getCurrentSheet().getPagenumber());
-	}
-
-	/**
-	 * Tests whether saving the NoteBook actually creates image files. This
-	 * test draws a line onto the first page.
-	 */
-	public void testSavingAfterDrawing() {
-		NoteBook nb = createTempNoteBook();
-		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.saveToFiles();
-		assertTrue(current.getFile().exists());
-		assertNotSame(0, current.getFile().length());
-	}
-
-	/**
-	 * Tests whether saving the NoteBook actually creates image files. This
-	 * test draws a line and advances one page. It should only save one file.
-	 */
-	public void testSavingAfterDrawingAndAdvance() {
-		NoteBook nb = createTempNoteBook();
-		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.goForward();
-		nb.saveToFiles();
-		assertTrue(current.getFile().exists());
-		assertNotSame(0, current.getFile().length());
-		current = nb.getCurrentSheet();
-		assertTrue(current.getFile().exists());
-		assertNotSame(0, current.getFile().length());
-	}
-
-	/**
-	 * Tests whether saving a new NoteBook without any lines creates no files.
-	 */
-	public void testSavingAfterNew() {
-		NoteBook nb = createTempNoteBook();
-		NoteSheet current = nb.getCurrentSheet();
-		nb.saveToFiles();
-		assertTrue(current.getFile().exists());
-		assertEquals(String.format("File %s should be empty.",
-		        current.getFile().getAbsolutePath()), 0,
-		        current.getFile().length());
-	}
-
-	/**
-	 * Tests whether saving the NoteBook actually creates image files. This
-	 * test draws a line on page one and two and checks whether two pages are
-	 * created.
-	 */
-	public void testSavingAfterTwoDrawingAndAdvance() {
-		NoteBook nb = createTempNoteBook();
-		NoteSheet current = nb.getCurrentSheet();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.goForward();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		nb.saveToFiles();
-		assertTrue(current.getFile().exists());
-		assertNotSame(0, current.getFile().length());
-		current = nb.getCurrentSheet();
-		assertTrue(current.getFile().exists());
-		assertNotSame(0, current.getFile().length());
-	}
-
-	/**
-	 * Checks whether a new NoteBook with a line on the first page has one
-	 * page.
-	 */
-	public void testSheetCountAfterFirstLine() {
-		NoteBook nb = createTempNoteBook();
-		nb.drawLine(new Line2D.Float(0, 0, 0, 0));
-		assertEquals(1, nb.getSheetCount());
-	}
-
-	/**
-	 * Tests whether a new NoteBook has an untouched first page.
-	 */
-	public void testUntouchedFirstPage() {
-		NoteBook nb = createTempNoteBook();
-		assertFalse(nb.getCurrentSheet().touched());
-	}
+    public NoteBookTest() {
+        super();
+    }
+
+    /**
+     * Generates a temporary NoteBook that has a name.
+     *
+     * @return Named temporary NoteBook.
+     */
+    private NoteBook createNamedTempNoteBook() {
+        return new NoteBook(UUID.randomUUID().toString(), new Dimension(300, 300));
+    }
+
+    /**
+     * Creates a NoteBook stored in a temporary folder np name.
+     *
+     * @return Unnamed temporary NoteBook.
+     */
+    private NoteBook createTempNoteBook() {
+        return new NoteBook(null, new Dimension(300, 300));
+    }
+
+    /**
+     * Creates a NoteBook, draws on the page, flips and does not save. Then
+     * checks whether the Image was saved.
+     */
+    public void testAutomaticSaveOnPageFlipForward() {
+        NoteBook b = createNamedTempNoteBook();
+        assertEquals(0, b.getSheetCount());
+        assertNotNull(b);
+        String name = b.getName();
+        assertNotNull(name);
+        int previousColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+        b.drawLine(new Line2D.Float(100, 100, 100, 200));
+        assertFalse(previousColor == b.getCurrentSheet().getImg().getRGB(100, 100));
+        assertEquals(1, b.getSheetCount());
+        assertEquals(1, b.getCurrentSheet().getPagenumber());
+        b.goForward();
+        assertEquals(2, b.getCurrentSheet().getPagenumber());
+
+        b.testing_finalize();
+
+        b = null;
+        assertNull(b);
+
+        NoteBook c = new NoteBook(name);
+        assertNotNull(c);
+        assertEquals(1, c.getSheetCount());
+        assertNotNull(c.getCurrentSheet());
+        assertNotNull(c.getCurrentSheet().getImg());
+        c.gotoFirst();
+
+        assertFalse(c.getCurrentSheet().getImg().getRGB(100, 100) == previousColor);
+
+        c.deleteSure();
+    }
+
+    /**
+     * Creates a NoteBook, draws on the page, flips, draws and flips back.
+     * Then the NoteBook is closed without saving and tested whether the data
+     * is still there.
+     */
+    public void testAutomaticSaveOnPageFlipBackwards() {
+        // Create a new NoteBook.
+        NoteBook b = createNamedTempNoteBook();
+        assertEquals(0, b.getSheetCount());
+        assertNotNull(b);
+        String name = b.getName();
+        assertNotNull(name);
+
+        // Determine foreground and background color with a line.
+        int backgroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+        b.drawLine(new Line2D.Float(100, 100, 100, 200));
+        int foregroundColor = b.getCurrentSheet().getImg().getRGB(100, 100);
+        assertFalse(backgroundColor == foregroundColor);
+        assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(100, 100));
+
+        // Check page numbers.
+        assertEquals(1, b.getSheetCount());
+        assertEquals(1, b.getCurrentSheet().getPagenumber());
+        b.goForward();
+        assertEquals(2, b.getCurrentSheet().getPagenumber());
+
+        // Draw another line somewhere else.
+        assertEquals(backgroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
+        b.drawLine(new Line2D.Float(50, 50, 50, 50));
+        assertEquals(foregroundColor, b.getCurrentSheet().getImg().getRGB(50, 50));
+
+        // Go back.
+        assertEquals(2, b.getSheetCount());
+        assertEquals(2, b.getCurrentSheet().getPagenumber());
+        b.goBackwards();
+        assertEquals(1, b.getCurrentSheet().getPagenumber());
+
+        b.testing_finalize();
+
+        // Get rid of the NoteBook.
+        b = null;
+        assertNull(b);
+
+        // Load the NoteBook from disk.
+        NoteBook c = new NoteBook(name);
+        assertNotNull(c);
+        assertEquals(2, c.getSheetCount());
+        assertNotNull(c.getCurrentSheet());
+        assertNotNull(c.getCurrentSheet().getImg());
+
+        // Check the page number.
+        c.gotoLast();
+        assertEquals(2, c.getCurrentSheet().getPagenumber());
+
+        // Check whether there is only the line from the second sheet.
+        assertEquals(foregroundColor, c.getCurrentSheet().getImg().getRGB(50, 50));
+        assertEquals(backgroundColor, c.getCurrentSheet().getImg().getRGB(100, 100));
+
+        c.deleteSure();
+    }
+
+    /**
+     * There was an error in a previous version that a newly created sheet
+     * which is still empty will be saved if you go back. When you go forward
+     * again, the program tries to load the image which does not exist. This
+     * test should cover this case.
+     */
+    public void testBackWithEmptyLastSheet() {
+        NoteBook nb = createTempNoteBook();
+
+        int numAdvance = 15;
+
+        // Advance several pages.
+        for (int i = 0; i < numAdvance; i++) {
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            nb.goForward();
+        }
+
+        // Go back.
+        for (int i = numAdvance; i > 0; i--) {
+            nb.goBackwards();
+            nb.getCurrentSheet().getImg();
+        }
+
+        numAdvance += 5;
+
+        // Advance several pages.
+        for (int i = 0; i < numAdvance; i++) {
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            nb.goForward();
+        }
+
+        // There just should not be any error, that is it.
+    }
+
+    /**
+     * Tests whether the current sheet of a new NoteBook is not null.
+     */
+    public void testCurrentSheet() {
+        NoteBook nb = createTempNoteBook();
+        assertNotNull(nb.getCurrentSheet());
+    }
+
+    /**
+     * Creates a NoteBook with many pages and deletes one of them. The NoteBook
+     * is then reloaded from the configuration file. The NoteBook should now
+     * have one page less than before.
+     */
+    public void testDeletionOfPictureFile() {
+        NoteBook nb = createNamedTempNoteBook();
+
+        File[] filenames = new File[20];
+
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+
+        for (int i = 0; i < filenames.length; i++) {
+            nb.goForward();
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            filenames[i] = nb.getCurrentSheet().getFile();
+        }
+
+        nb.saveToFiles();
+
+        int oldSheetCount = nb.getSheetCount();
+
+        // delete a file from the notebook
+        for (File file : filenames) {
+            assertTrue(String.format("File %s should exist.",
+                       file.getAbsolutePath()), file.exists());
+        }
+        filenames[3].delete();
+        assertFalse(filenames[3].exists());
+
+        NoteBook reloaded = new NoteBook(nb.getName());
+
+        assertEquals(oldSheetCount - 1, reloaded.getSheetCount());
+
+        Logger.log(getClass().getName(),
+                   "Trying to delete test files.");
+        for (File file : filenames) {
+            file.delete();
+        }
+
+        nb.deleteSure();
+    }
+
+    /**
+     * Tests whether an newly created NoteBook has zero sheets in it, even if
+     * you get the first (untouched) page.
+     */
+    public void testEmptySheetCount() {
+        NoteBook nb = createTempNoteBook();
+        assertEquals(0, nb.getSheetCount());
+        nb.getCurrentSheet();
+        assertEquals(0, nb.getSheetCount());
+    }
+
+    /**
+     * Tests the forward and backward functions in the NoteBook.
+     */
+    public void testGoBackwards() {
+        NoteBook nb = createTempNoteBook();
+
+        // Try going back although the notebook is already at the first page.
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+        nb.goBackwards();
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+
+        // Go one page forward.
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.goForward();
+        assertEquals(2, nb.getCurrentSheet().getPagenumber());
+
+        // Try to go once more, which should not work
+        nb.goForward();
+        assertEquals(2, nb.getCurrentSheet().getPagenumber());
+
+        // Go back to the start.
+        nb.goBackwards();
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+
+        int numAdvance = 30;
+
+        // Advance several pages.
+        for (int i = 0; i < numAdvance; i++) {
+            nb.goForward();
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
+        }
+
+        // Go back again
+        for (int i = numAdvance; i > 0; i--) {
+            nb.goBackwards();
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            assertEquals(Math.max(1, i), nb.getCurrentSheet().getPagenumber());
+        }
+    }
+
+    /**
+     * Tests whether going to first and lasts works.
+     */
+    public void testGotoLast() {
+        NoteBook nb = createTempNoteBook();
+
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+
+        int numAdvance = 30;
+
+        // Advance several pages.
+        for (int i = 0; i < numAdvance; i++) {
+            nb.goForward();
+            nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+            assertEquals(i + 2, nb.getCurrentSheet().getPagenumber());
+        }
+
+        nb.gotoFirst();
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+        nb.gotoLast();
+        assertEquals(nb.getSheetCount(), nb.getCurrentSheet().getPagenumber());
+    }
+
+    /**
+     * Tests whether a reloaded NoteBook is the same as the saved one.
+     */
+    public void testLoadFromConfig() {
+        NoteBook nb = createNamedTempNoteBook();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.saveToFiles();
+
+        NoteBook reloaded = new NoteBook(nb.getName());
+
+        assertEquals(nb.getName(), reloaded.getName());
+
+        nb.gotoFirst();
+        reloaded.gotoFirst();
+
+        try {
+            assertEquals(nb.getCurrentSheet().getFile().getCanonicalPath(),
+                    reloaded.getCurrentSheet().getFile().getCanonicalPath());
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        assertEquals(nb.getSheetCount(), reloaded.getSheetCount());
+
+        nb.deleteSure();
+    }
+
+    /**
+     * Tests whether the page number advances when you go a page forward.
+     */
+    public void testPageNumber() {
+        NoteBook nb = createTempNoteBook();
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        assertEquals(1, nb.getCurrentSheet().getPagenumber());
+        nb.goForward();
+        assertEquals(2, nb.getCurrentSheet().getPagenumber());
+    }
+
+    /**
+     * Tests whether saving the NoteBook actually creates image files. This
+     * test draws a line onto the first page.
+     */
+    public void testSavingAfterDrawing() {
+        NoteBook nb = createTempNoteBook();
+        NoteSheet current = nb.getCurrentSheet();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.saveToFiles();
+        assertTrue(current.getFile().exists());
+        assertNotSame(0, current.getFile().length());
+    }
+
+    /**
+     * Tests whether saving the NoteBook actually creates image files. This
+     * test draws a line and advances one page. It should only save one file.
+     */
+    public void testSavingAfterDrawingAndAdvance() {
+        NoteBook nb = createTempNoteBook();
+        NoteSheet current = nb.getCurrentSheet();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.goForward();
+        nb.saveToFiles();
+        assertTrue(current.getFile().exists());
+        assertNotSame(0, current.getFile().length());
+        current = nb.getCurrentSheet();
+        assertTrue(current.getFile().exists());
+        assertNotSame(0, current.getFile().length());
+    }
+
+    /**
+     * Tests whether saving a new NoteBook without any lines creates no files.
+     */
+    public void testSavingAfterNew() {
+        NoteBook nb = createTempNoteBook();
+        NoteSheet current = nb.getCurrentSheet();
+        nb.saveToFiles();
+        assertTrue(current.getFile().exists());
+        assertEquals(String.format("File %s should be empty.",
+                current.getFile().getAbsolutePath()), 0,
+                current.getFile().length());
+    }
+
+    /**
+     * Tests whether saving the NoteBook actually creates image files. This
+     * test draws a line on page one and two and checks whether two pages are
+     * created.
+     */
+    public void testSavingAfterTwoDrawingAndAdvance() {
+        NoteBook nb = createTempNoteBook();
+        NoteSheet current = nb.getCurrentSheet();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.goForward();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        nb.saveToFiles();
+        assertTrue(current.getFile().exists());
+        assertNotSame(0, current.getFile().length());
+        current = nb.getCurrentSheet();
+        assertTrue(current.getFile().exists());
+        assertNotSame(0, current.getFile().length());
+    }
+
+    /**
+     * Checks whether a new NoteBook with a line on the first page has one
+     * page.
+     */
+    public void testSheetCountAfterFirstLine() {
+        NoteBook nb = createTempNoteBook();
+        nb.drawLine(new Line2D.Float(0, 0, 0, 0));
+        assertEquals(1, nb.getSheetCount());
+    }
+
+    /**
+     * Tests whether a new NoteBook has an untouched first page.
+     */
+    public void testUntouchedFirstPage() {
+        NoteBook nb = createTempNoteBook();
+        assertFalse(nb.getCurrentSheet().touched());
+    }
 }

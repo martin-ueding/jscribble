@@ -29,42 +29,42 @@ import java.io.File;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class ImageSwapTask {
-	/**
-	 * The image that is to be saved.
-	 */
-	private BufferedImage img;
+    /**
+     * The image that is to be saved.
+     */
+    private BufferedImage img;
 
-	/**
-	 * The file the image is to be saved to.
-	 */
-	private File outfile;
+    /**
+     * The file the image is to be saved to.
+     */
+    private File outfile;
 
-	/**
-	 * A task for the WriteoutTread.
-	 *
-	 * @param img image to save
-	 * @param outfile file to save the image to
-	 */
-	public ImageSwapTask(BufferedImage img, File outfile) {
-		this.img = img;
-		this.outfile = outfile;
-	}
+    /**
+     * A task for the WriteoutTread.
+     *
+     * @param img image to save
+     * @param outfile file to save the image to
+     */
+    public ImageSwapTask(BufferedImage img, File outfile) {
+        this.img = img;
+        this.outfile = outfile;
+    }
 
-	/**
-	 * Returns the image that this task is supposed to save to disk.
-	 *
-	 * @return the image
-	 */
-	public BufferedImage getImg() {
-		return img;
-	}
+    /**
+     * Returns the image that this task is supposed to save to disk.
+     *
+     * @return the image
+     */
+    public BufferedImage getImg() {
+        return img;
+    }
 
-	/**
-	 * Returns the file that the image is supposed to be written to.
-	 *
-	 * @return the file to write to
-	 */
-	public File getOutfile() {
-		return outfile;
-	}
+    /**
+     * Returns the file that the image is supposed to be written to.
+     *
+     * @return the file to write to
+     */
+    public File getOutfile() {
+        return outfile;
+    }
 }

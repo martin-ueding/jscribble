@@ -33,45 +33,45 @@ import jscribble.helpers.Logger;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookCompressor {
-	File folder;
+    File folder;
 
-	public NoteBookCompressor(File folder) {
-		this.folder = folder;
-	}
+    public NoteBookCompressor(File folder) {
+        this.folder = folder;
+    }
 
-	public void compress() {
-		// Gather all the file names from the folder.
-		File[] allImages = folder.listFiles(new NoteSheetFileFilter());
+    public void compress() {
+        // Gather all the file names from the folder.
+        File[] allImages = folder.listFiles(new NoteSheetFileFilter());
 
-		// If there are no images in this folder, there is nothing to do.
-		if (allImages == null || allImages.length == 0) {
-			return;
-		}
+        // If there are no images in this folder, there is nothing to do.
+        if (allImages == null || allImages.length == 0) {
+            return;
+        }
 
-		// Sort the file names.
-		Arrays.sort(allImages, new FileComparator());
+        // Sort the file names.
+        Arrays.sort(allImages, new FileComparator());
 
-		// Stop if it is already in the correct order.
-		if (allImages[allImages.length - 1].getName().equalsIgnoreCase(String.format("%06d.png", allImages.length))) {
-			Logger.log(getClass().getName(),
-			           String.format(Localizer.get("Stop processing %s"), folder.getName()));
-			return;
-		}
+        // Stop if it is already in the correct order.
+        if (allImages[allImages.length - 1].getName().equalsIgnoreCase(String.format("%06d.png", allImages.length))) {
+            Logger.log(getClass().getName(),
+                       String.format(Localizer.get("Stop processing %s"), folder.getName()));
+            return;
+        }
 
-		// Rename the files according to their place in the array.
-		for (int i = 0; i < allImages.length; i++) {
-			File image = allImages[i];
+        // Rename the files according to their place in the array.
+        for (int i = 0; i < allImages.length; i++) {
+            File image = allImages[i];
 
-			image.getParent();
+            image.getParent();
 
-			File newName = new File(
-			    image.getParent()
-			    + File.separator
-			    + String.format("%06d.png", i + 1)
-			);
+            File newName = new File(
+                image.getParent()
+                + File.separator
+                + String.format("%06d.png", i + 1)
+            );
 
-			Logger.log(getClass().getName(), String.format(Localizer.get("Rename %s to %s."), image.getName(), newName.getName()));
-			image.renameTo(newName);
-		}
-	}
+            Logger.log(getClass().getName(), String.format(Localizer.get("Rename %s to %s."), image.getName(), newName.getName()));
+            image.renameTo(newName);
+        }
+    }
 }

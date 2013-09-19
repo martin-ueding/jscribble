@@ -29,48 +29,48 @@ import java.util.ResourceBundle;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class Localizer {
-	/**
-	 * Bundle containing the l10n into.
-	 */
-	static ResourceBundle bundle;
+    /**
+     * Bundle containing the l10n into.
+     */
+    static ResourceBundle bundle;
 
-	/**
-	 * Translate a string.
-	 *
-	 * @param ident English language string.
-	 * @return Native language string.
-	 */
-	public static String get(String ident) {
-		// Try to load the ResourceBundle.
-		if (bundle == null) {
-			try {
-				bundle = ResourceBundle.getBundle("l10n/jscribble");
-			}
-			catch (ExceptionInInitializerError e) {
-				Logger.log(Localizer.class.getName(),
-				           "Error: " + e.getMessage());
-				bundle = null;
-			}
-			catch (MissingResourceException e) {
-				Logger.log(Localizer.class.getName(),
-				           "Error: " + e.getMessage());
-				bundle = null;
-			}
-		}
+    /**
+     * Translate a string.
+     *
+     * @param ident English language string.
+     * @return Native language string.
+     */
+    public static String get(String ident) {
+        // Try to load the ResourceBundle.
+        if (bundle == null) {
+            try {
+                bundle = ResourceBundle.getBundle("l10n/jscribble");
+            }
+            catch (ExceptionInInitializerError e) {
+                Logger.log(Localizer.class.getName(),
+                           "Error: " + e.getMessage());
+                bundle = null;
+            }
+            catch (MissingResourceException e) {
+                Logger.log(Localizer.class.getName(),
+                           "Error: " + e.getMessage());
+                bundle = null;
+            }
+        }
 
-		// Do not translate if there is no translation around.
-		if (bundle == null) {
-			return ident;
-		}
-		else {
-			try {
-				return bundle.getString(ident);
-			}
-			catch (MissingResourceException e) {
-				Logger.log(Localizer.class.getName(),
-				           e.getMessage());
-				return ident;
-			}
-		}
-	}
+        // Do not translate if there is no translation around.
+        if (bundle == null) {
+            return ident;
+        }
+        else {
+            try {
+                return bundle.getString(ident);
+            }
+            catch (MissingResourceException e) {
+                Logger.log(Localizer.class.getName(),
+                           e.getMessage());
+                return ident;
+            }
+        }
+    }
 }

@@ -34,49 +34,49 @@ import junit.framework.TestCase;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookCompressorTest extends TestCase {
-	public void testCompression() {
-		File folder;
-		try {
-			folder = File.createTempFile("jscribble", "");
-			String tempname = folder.getAbsolutePath();
-			folder.delete();
-			folder = new File(tempname);
-			folder.mkdirs();
-			folder.deleteOnExit();
+    public void testCompression() {
+        File folder;
+        try {
+            folder = File.createTempFile("jscribble", "");
+            String tempname = folder.getAbsolutePath();
+            folder.delete();
+            folder = new File(tempname);
+            folder.mkdirs();
+            folder.deleteOnExit();
 
-			// Create some files which are not in direct order.
-			File[] files = {
-				new File(tempname + File.separator + "000001.png"),
-				new File(tempname + File.separator + "000003.png"),
-				new File(tempname + File.separator + "000004.png"),
-				new File(tempname + File.separator + "000005.png"),
-				new File(tempname + File.separator + "000010.png"),
-				new File(tempname + File.separator + "000017.png"),
-			};
+            // Create some files which are not in direct order.
+            File[] files = {
+                new File(tempname + File.separator + "000001.png"),
+                new File(tempname + File.separator + "000003.png"),
+                new File(tempname + File.separator + "000004.png"),
+                new File(tempname + File.separator + "000005.png"),
+                new File(tempname + File.separator + "000010.png"),
+                new File(tempname + File.separator + "000017.png"),
+            };
 
-			for (File file : files) {
-				file.createNewFile();
-				file.deleteOnExit();
-			}
+            for (File file : files) {
+                file.createNewFile();
+                file.deleteOnExit();
+            }
 
-			File[] originalFiles = folder.listFiles(new NoteSheetFileFilter());
-			assertEquals(files.length, originalFiles.length);
+            File[] originalFiles = folder.listFiles(new NoteSheetFileFilter());
+            assertEquals(files.length, originalFiles.length);
 
-			NoteBookCompressor nbc = new NoteBookCompressor(folder);
-			nbc.compress();
+            NoteBookCompressor nbc = new NoteBookCompressor(folder);
+            nbc.compress();
 
-			File[] renamedFiles = folder.listFiles(new NoteSheetFileFilter());
+            File[] renamedFiles = folder.listFiles(new NoteSheetFileFilter());
 
-			assertEquals(files.length, renamedFiles.length);
-			Arrays.sort(renamedFiles, new FileComparator());
-			assertEquals(files.length, renamedFiles.length);
+            assertEquals(files.length, renamedFiles.length);
+            Arrays.sort(renamedFiles, new FileComparator());
+            assertEquals(files.length, renamedFiles.length);
 
-			for (int i = 0; i < renamedFiles.length; i++) {
-				assertEquals(String.format("%06d.png", i + 1), renamedFiles[i].getName());
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            for (int i = 0; i < renamedFiles.length; i++) {
+                assertEquals(String.format("%06d.png", i + 1), renamedFiles[i].getName());
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -58,286 +58,286 @@ import jscribble.notebook.NoteBook;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteBookSelectionWindow {
-	/**
-	 * Button to handle creation of a new NoteBook.
-	 */
-	private JButton buttonNew;
+    /**
+     * Button to handle creation of a new NoteBook.
+     */
+    private JButton buttonNew;
 
-	/**
-	 * Button to handle opening of a NoteBook.
-	 */
-	private JButton buttonOpen;
+    /**
+     * Button to handle opening of a NoteBook.
+     */
+    private JButton buttonOpen;
 
-	/**
-	 * Button to handle deletion of a NoteBook.
-	 */
-	private JButton buttonDelete;
+    /**
+     * Button to handle deletion of a NoteBook.
+     */
+    private JButton buttonDelete;
 
-	/**
-	 * Button to enter the scribble mode.
-	 */
-	private JButton buttonScribble;
+    /**
+     * Button to enter the scribble mode.
+     */
+    private JButton buttonScribble;
 
-	/**
-	 * Frame to display everything in.
-	 */
-	private JFrame frame;
+    /**
+     * Frame to display everything in.
+     */
+    private JFrame frame;
 
-	/**
-	 * List that holds all the found NoteBook from the user's configuration
-	 * directory.
-	 */
-	private LinkedList<String> notebooks;
+    /**
+     * List that holds all the found NoteBook from the user's configuration
+     * directory.
+     */
+    private LinkedList<String> notebooks;
 
-	/**
-	 * List GUI Element to display the NoteBook items in.
-	 */
-	private JList myList;
+    /**
+     * List GUI Element to display the NoteBook items in.
+     */
+    private JList myList;
 
-	/**
-	 * Panel to display the selected NoteBook.
-	 */
-	private DrawPanel panel;
+    /**
+     * Panel to display the selected NoteBook.
+     */
+    private DrawPanel panel;
 
-	/**
-	 * Model for the NoteBook list.
-	 */
-	private DefaultListModel listModel = new DefaultListModel();
+    /**
+     * Model for the NoteBook list.
+     */
+    private DefaultListModel listModel = new DefaultListModel();
 
-	private ShutdownHook shutdownHook;
+    private ShutdownHook shutdownHook;
 
-	/**
-	 * Creates a new window to select NoteBook from. It automatically searches
-	 * the user's configuration directory for NoteBook configuration files.
-	 */
-	public NoteBookSelectionWindow() {
-		notebooks = findNotebooks();
+    /**
+     * Creates a new window to select NoteBook from. It automatically searches
+     * the user's configuration directory for NoteBook configuration files.
+     */
+    public NoteBookSelectionWindow() {
+        notebooks = findNotebooks();
 
-		myList = new JList(listModel);
-		myList.addMouseListener(new ListListener(this));
+        myList = new JList(listModel);
+        myList.addMouseListener(new ListListener(this));
 
-		buttonNew = new JButton(Localizer.get("New"));
-		buttonNew.addActionListener(new NewActionListener(this));
-		buttonOpen = new JButton(Localizer.get("Open"));
-		buttonOpen.addActionListener(new OpenActionListener(this));
-		buttonDelete = new JButton(Localizer.get("Delete"));
-		buttonDelete.addActionListener(new DeleteActionListener(this));
-		buttonScribble = new JButton(Localizer.get("Scribble"));
-		buttonScribble.addActionListener(new ScribbleActionListener(this));
-
-
-		GridLayout gl = new GridLayout(1, 4);
-		JPanel buttonPanel = new JPanel(gl);
-		buttonPanel.add(buttonNew);
-		buttonPanel.add(buttonOpen);
-		buttonPanel.add(buttonDelete);
-		buttonPanel.add(buttonScribble);
-
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.add(new JScrollPane(myList), BorderLayout.CENTER);
-		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        buttonNew = new JButton(Localizer.get("New"));
+        buttonNew.addActionListener(new NewActionListener(this));
+        buttonOpen = new JButton(Localizer.get("Open"));
+        buttonOpen.addActionListener(new OpenActionListener(this));
+        buttonDelete = new JButton(Localizer.get("Delete"));
+        buttonDelete.addActionListener(new DeleteActionListener(this));
+        buttonScribble = new JButton(Localizer.get("Scribble"));
+        buttonScribble.addActionListener(new ScribbleActionListener(this));
 
 
-		frame = new JFrame(Localizer.get("Select your Notebook"));
-		frame.setSize(new Dimension(
-		            Config.getInteger("notebook_selection_window_width"),
-		            Config.getInteger("notebook_selection_window_height")
-		        ));
-		frame.setLocationRelativeTo(null);
-		frame.add(mainPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GridLayout gl = new GridLayout(1, 4);
+        JPanel buttonPanel = new JPanel(gl);
+        buttonPanel.add(buttonNew);
+        buttonPanel.add(buttonOpen);
+        buttonPanel.add(buttonDelete);
+        buttonPanel.add(buttonScribble);
 
-		try {
-			frame.setIconImage(ImageIO.read(
-			            getClass().getResourceAsStream(
-			                    "/artwork/jscribble_gray.png")));
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(new JScrollPane(myList), BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 
+        frame = new JFrame(Localizer.get("Select your Notebook"));
+        frame.setSize(new Dimension(
+                    Config.getInteger("notebook_selection_window_width"),
+                    Config.getInteger("notebook_selection_window_height")
+                ));
+        frame.setLocationRelativeTo(null);
+        frame.add(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		shutdownHook = new ShutdownHook();
-		Runtime.getRuntime().addShutdownHook(shutdownHook);
-
-
-		updateOpenButton();
-	}
-
-	/**
-	 * Creates a new NoteBook and prompts the user for a name and folder to
-	 * save the images in. A config file is automatically created in the config
-	 * directory.
-	 *
-	 * @return the new NoteBook
-	 */
-	private NoteBook createNewNotebook() {
-		String nickname = null;
-		Pattern p = Pattern.compile(Config.getString("notebook_name_validation_pattern"));
-
-		do {
-			nickname = JOptionPane.showInputDialog(Localizer.get(
-			        "Nickname of your Notebook:" + " " +
-			        "(please only use characters, numbers, _ and -)"));
-
-			if (nickname == null) {
-				return null;
-			}
-
-			Matcher m = p.matcher(nickname);
-			if (m != null && m.matches()) {
-				break;
-			}
-		}
-		while (nickname != null);
-
-		NoteBook nb = new NoteBook(nickname);
-		return nb;
-	}
-
-	/**
-	 * Deletes the currently selected NoteBook in the list.
-	 */
-	protected void deleteEvent() {
-		int selection = myList.getSelectedIndex();
-
-		if (selection >= 0) {
-			NoteBook toDelete = new NoteBook(notebooks.get(selection));
-			boolean wasdeleted = toDelete.delete();
-
-			if (wasdeleted) {
-				listModel.remove(selection);
-				updateOpenButton();
-			}
-		}
-	}
-
-	/**
-	 * Tries to find a configuration directory for this program.
-	 *
-	 * @return list of NoteBook
-	 */
-	private LinkedList<String> findNotebooks() {
-		LinkedList<String> notebooks = new LinkedList<String>();
-
-		if (NoteBookProgram.getFileDirectory(true).exists()) {
-			File[] folders = NoteBookProgram.getFileDirectory(true).listFiles();
-
-			for (File folder : folders) {
-				if (folder.isDirectory()) {
-					String justfound = folder.getName();
-					notebooks.add(justfound);
-				}
-			}
-			Collections.sort(notebooks);
-			for (String notebook : notebooks) {
-				listModel.addElement(notebook);
-
-			}
-		}
-		else {
-			NoteBookProgram.getFileDirectory(true).mkdirs();
-		}
-
-		return notebooks;
-	}
-
-	/**
-	 * Creates a new NoteBook.
-	 */
-	protected void newEvent() {
-		NoteBook newNoteBook = createNewNotebook();
-		if (newNoteBook != null) {
-			notebooks.add(newNoteBook.getName());
-			listModel.addElement(newNoteBook);
-			updateOpenButton();
-			openNotebook(newNoteBook);
-		}
-	}
-
-	/**
-	 * Opens the currently selected NoteBook in the list.
-	 */
-	protected void openEvent() {
-		int selection = myList.getSelectedIndex();
-
-		if (selection >= 0) {
-			openNotebook(new NoteBook(notebooks.get(selection)));
-		}
-	}
-
-	/**
-	 * Opens the given NoteBook in a DrawPanel.
-	 *
-	 * @param notebook NoteBook to open
-	 */
-	private void openNotebook(final NoteBook notebook) {
-		shutdownHook.add(notebook);
-
-		final JFrame f = new JFrame(String.format(Localizer.get(
-		            "Notebook \"%s\""), notebook.getName()));
-		f.setSize(notebook.getSize());
-		f.setLocationRelativeTo(null);
-
-		f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
-		f.setResizable(false);
-
-		try {
-			f.setIconImage(ImageIO.read(
-			            getClass().getResourceAsStream(
-			                    "/artwork/jscribble.png")));
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		panel = new DrawPanel(notebook, f);
-		f.add(panel);
-
-		f.addKeyListener(new MovementListener(panel));
-
-		notebook.gotoLast();
-
-		CommandListener cl = new CommandListener(panel);
-		f.addKeyListener(cl);
-		cl.addChangeListener(new Redrawer(panel));
+        try {
+            frame.setIconImage(ImageIO.read(
+                        getClass().getResourceAsStream(
+                                "/artwork/jscribble_gray.png")));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-		if (Toolkit.getDefaultToolkit().getScreenSize().equals(notebook.getSize())) {
-			GraphicsDevice myDevice = java.awt.GraphicsEnvironment.
-			        getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-			if (myDevice.isFullScreenSupported()) {
-				f.setUndecorated(true);
-				f.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-				myDevice.setFullScreenWindow(f);
+        shutdownHook = new ShutdownHook();
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
 
-				f.setLocation(0, 0);
-			}
-		}
-		f.setVisible(true);
-	}
 
-	/**
-	 * Starts a scribble mode NoteBook.
-	 */
-	protected void scribbleEvent() {
-		openNotebook(new NoteBook(null));
-	}
+        updateOpenButton();
+    }
 
-	/**
-	 * Displays the dialogue.
-	 */
-	public void showDialog() {
-		frame.setVisible(true);
-	}
+    /**
+     * Creates a new NoteBook and prompts the user for a name and folder to
+     * save the images in. A config file is automatically created in the config
+     * directory.
+     *
+     * @return the new NoteBook
+     */
+    private NoteBook createNewNotebook() {
+        String nickname = null;
+        Pattern p = Pattern.compile(Config.getString("notebook_name_validation_pattern"));
 
-	/**
-	 * Updates the state of the "open" button. This is needed when the last
-	 * NoteBook is deleted or the first one created.
-	 */
-	private void updateOpenButton() {
-		buttonOpen.setEnabled(notebooks.size() > 0);
-	}
+        do {
+            nickname = JOptionPane.showInputDialog(Localizer.get(
+                    "Nickname of your Notebook:" + " " +
+                    "(please only use characters, numbers, _ and -)"));
+
+            if (nickname == null) {
+                return null;
+            }
+
+            Matcher m = p.matcher(nickname);
+            if (m != null && m.matches()) {
+                break;
+            }
+        }
+        while (nickname != null);
+
+        NoteBook nb = new NoteBook(nickname);
+        return nb;
+    }
+
+    /**
+     * Deletes the currently selected NoteBook in the list.
+     */
+    protected void deleteEvent() {
+        int selection = myList.getSelectedIndex();
+
+        if (selection >= 0) {
+            NoteBook toDelete = new NoteBook(notebooks.get(selection));
+            boolean wasdeleted = toDelete.delete();
+
+            if (wasdeleted) {
+                listModel.remove(selection);
+                updateOpenButton();
+            }
+        }
+    }
+
+    /**
+     * Tries to find a configuration directory for this program.
+     *
+     * @return list of NoteBook
+     */
+    private LinkedList<String> findNotebooks() {
+        LinkedList<String> notebooks = new LinkedList<String>();
+
+        if (NoteBookProgram.getFileDirectory(true).exists()) {
+            File[] folders = NoteBookProgram.getFileDirectory(true).listFiles();
+
+            for (File folder : folders) {
+                if (folder.isDirectory()) {
+                    String justfound = folder.getName();
+                    notebooks.add(justfound);
+                }
+            }
+            Collections.sort(notebooks);
+            for (String notebook : notebooks) {
+                listModel.addElement(notebook);
+
+            }
+        }
+        else {
+            NoteBookProgram.getFileDirectory(true).mkdirs();
+        }
+
+        return notebooks;
+    }
+
+    /**
+     * Creates a new NoteBook.
+     */
+    protected void newEvent() {
+        NoteBook newNoteBook = createNewNotebook();
+        if (newNoteBook != null) {
+            notebooks.add(newNoteBook.getName());
+            listModel.addElement(newNoteBook);
+            updateOpenButton();
+            openNotebook(newNoteBook);
+        }
+    }
+
+    /**
+     * Opens the currently selected NoteBook in the list.
+     */
+    protected void openEvent() {
+        int selection = myList.getSelectedIndex();
+
+        if (selection >= 0) {
+            openNotebook(new NoteBook(notebooks.get(selection)));
+        }
+    }
+
+    /**
+     * Opens the given NoteBook in a DrawPanel.
+     *
+     * @param notebook NoteBook to open
+     */
+    private void openNotebook(final NoteBook notebook) {
+        shutdownHook.add(notebook);
+
+        final JFrame f = new JFrame(String.format(Localizer.get(
+                    "Notebook \"%s\""), notebook.getName()));
+        f.setSize(notebook.getSize());
+        f.setLocationRelativeTo(null);
+
+        f.addWindowListener(new NoteBookClosingAdapter(notebook, f));
+        f.setResizable(false);
+
+        try {
+            f.setIconImage(ImageIO.read(
+                        getClass().getResourceAsStream(
+                                "/artwork/jscribble.png")));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        panel = new DrawPanel(notebook, f);
+        f.add(panel);
+
+        f.addKeyListener(new MovementListener(panel));
+
+        notebook.gotoLast();
+
+        CommandListener cl = new CommandListener(panel);
+        f.addKeyListener(cl);
+        cl.addChangeListener(new Redrawer(panel));
+
+
+        if (Toolkit.getDefaultToolkit().getScreenSize().equals(notebook.getSize())) {
+            GraphicsDevice myDevice = java.awt.GraphicsEnvironment.
+                    getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+            if (myDevice.isFullScreenSupported()) {
+                f.setUndecorated(true);
+                f.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+                myDevice.setFullScreenWindow(f);
+
+                f.setLocation(0, 0);
+            }
+        }
+        f.setVisible(true);
+    }
+
+    /**
+     * Starts a scribble mode NoteBook.
+     */
+    protected void scribbleEvent() {
+        openNotebook(new NoteBook(null));
+    }
+
+    /**
+     * Displays the dialogue.
+     */
+    public void showDialog() {
+        frame.setVisible(true);
+    }
+
+    /**
+     * Updates the state of the "open" button. This is needed when the last
+     * NoteBook is deleted or the first one created.
+     */
+    private void updateOpenButton() {
+        buttonOpen.setEnabled(notebooks.size() > 0);
+    }
 }

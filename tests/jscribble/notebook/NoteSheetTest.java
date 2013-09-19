@@ -33,79 +33,79 @@ import junit.framework.TestCase;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class NoteSheetTest extends TestCase {
-	public NoteSheetTest() {
-		super();
-	}
+    public NoteSheetTest() {
+        super();
+    }
 
-	/**
-	 * Generates a temporary NoteSheet for testing.
-	 */
-	private NoteSheet getTempNoteSheet() {
-		return new NoteSheet(new Dimension(1024, 600), 0, null);
-	}
+    /**
+     * Generates a temporary NoteSheet for testing.
+     */
+    private NoteSheet getTempNoteSheet() {
+        return new NoteSheet(new Dimension(1024, 600), 0, null);
+    }
 
-	/**
-	 * Tests whether drawing a line causes a change in color in the image.
-	 */
-	public void testDrawing() {
-		NoteSheet n = getTempNoteSheet();
-		assertNotNull(n);
-		assertNotNull(n.getImg());
-		int previousColor = n.getImg().getRGB(100, 100);
-		n.drawLine(new Line2D.Float(100, 100, 100, 200));
-		assertFalse(n.getImg().getRGB(100, 100) == previousColor);
-	}
+    /**
+     * Tests whether drawing a line causes a change in color in the image.
+     */
+    public void testDrawing() {
+        NoteSheet n = getTempNoteSheet();
+        assertNotNull(n);
+        assertNotNull(n.getImg());
+        int previousColor = n.getImg().getRGB(100, 100);
+        n.drawLine(new Line2D.Float(100, 100, 100, 200));
+        assertFalse(n.getImg().getRGB(100, 100) == previousColor);
+    }
 
-	/**
-	 * Tests whether a line gets erased.
-	 */
-	public void testErasing() {
-		NoteSheet n = getTempNoteSheet();
-		assertNotNull(n);
-		assertNotNull(n.getImg());
-		int previousColor = n.getImg().getRGB(100, 100);
-		n.drawLine(new Line2D.Float(100, 100, 100, 200));
-		int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
-		assertTrue(rgbarray.length > 0);
-		assertFalse(rgbarray[0] == previousColor);
+    /**
+     * Tests whether a line gets erased.
+     */
+    public void testErasing() {
+        NoteSheet n = getTempNoteSheet();
+        assertNotNull(n);
+        assertNotNull(n.getImg());
+        int previousColor = n.getImg().getRGB(100, 100);
+        n.drawLine(new Line2D.Float(100, 100, 100, 200));
+        int rgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
+        assertTrue(rgbarray.length > 0);
+        assertFalse(rgbarray[0] == previousColor);
 
-		// Erase and make sure it was is the background color.
-		n.eraseLine(new Line2D.Float(100, 100, 100, 200));
-		int newrgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
-		assertTrue(newrgbarray[0] == previousColor);
-	}
+        // Erase and make sure it was is the background color.
+        n.eraseLine(new Line2D.Float(100, 100, 100, 200));
+        int newrgbarray[] = n.getImg().getRGB(100, 100, 1, 1, null, 0, 1);
+        assertTrue(newrgbarray[0] == previousColor);
+    }
 
-	/**
-	 * Tests whether a new NoteSheet is untouched and does not need any saving.
-	 */
-	public void testTouched() {
-		NoteSheet n = getTempNoteSheet();
-		assertFalse(n.touched());
-		assertFalse(n.unsaved());
-		n.drawLine(new Line2D.Float(0, 0, 0, 0));
-		assertTrue(n.touched());
-		assertTrue(n.unsaved());
-	}
+    /**
+     * Tests whether a new NoteSheet is untouched and does not need any saving.
+     */
+    public void testTouched() {
+        NoteSheet n = getTempNoteSheet();
+        assertFalse(n.touched());
+        assertFalse(n.unsaved());
+        n.drawLine(new Line2D.Float(0, 0, 0, 0));
+        assertTrue(n.touched());
+        assertTrue(n.unsaved());
+    }
 
-	/**
-	 * Creates a single NoteSheet with an existing temporary file and tests
-	 * whether it is untouched and does not need any saving.
-	 */
-	public void testTouchedWithEmptyTempfile() {
-		try {
-			File tempfile = File.createTempFile("JUnit-", ".png");
-			tempfile.createNewFile();
-			NoteSheet n = new NoteSheet(new Dimension(100, 100), 0, tempfile);
+    /**
+     * Creates a single NoteSheet with an existing temporary file and tests
+     * whether it is untouched and does not need any saving.
+     */
+    public void testTouchedWithEmptyTempfile() {
+        try {
+            File tempfile = File.createTempFile("JUnit-", ".png");
+            tempfile.createNewFile();
+            NoteSheet n = new NoteSheet(new Dimension(100, 100), 0, tempfile);
 
-			assertFalse(n.unsaved());
-			assertFalse(n.touched());
-			n.drawLine(new Line2D.Float(0, 0, 0, 0));
-			assertTrue(n.touched());
-			assertTrue(n.unsaved());
+            assertFalse(n.unsaved());
+            assertFalse(n.touched());
+            n.drawLine(new Line2D.Float(0, 0, 0, 0));
+            assertTrue(n.touched());
+            assertTrue(n.unsaved());
 
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -35,86 +35,86 @@ import jscribble.helpers.Config;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class BufferedImageWrapper {
-	/**
-	 * Image to draw onto.
-	 */
-	private BufferedImage img;
+    /**
+     * Image to draw onto.
+     */
+    private BufferedImage img;
 
-	/**
-	 * Graphics context for the image.
-	 */
-	private Graphics2D graphics;
+    /**
+     * Graphics context for the image.
+     */
+    private Graphics2D graphics;
 
-	/**
-	 * Stroke for drawing.
-	 */
-	private Stroke drawStroke = new BasicStroke(
-	    Config.getInteger("notebook_draw_stroke_width"));
+    /**
+     * Stroke for drawing.
+     */
+    private Stroke drawStroke = new BasicStroke(
+        Config.getInteger("notebook_draw_stroke_width"));
 
-	/**
-	 * Stroke for erasing.
-	 */
-	private Stroke eraseStroke = new BasicStroke(
-	    Config.getInteger("notebook_erase_stroke_width"));
+    /**
+     * Stroke for erasing.
+     */
+    private Stroke eraseStroke = new BasicStroke(
+        Config.getInteger("notebook_erase_stroke_width"));
 
-	/**
-	 * Background color.
-	 */
-	private Color background = Config.getColor("notebook_background_color");
+    /**
+     * Background color.
+     */
+    private Color background = Config.getColor("notebook_background_color");
 
-	/**
-	 * Foreground color.
-	 */
-	private Color foreground = Config.getColor("notebook_foreground_color");
+    /**
+     * Foreground color.
+     */
+    private Color foreground = Config.getColor("notebook_foreground_color");
 
-	/**
-	 * Creates a new wrapper around the given image.
-	 *
-	 * @param image Image to wrap.
-	 */
-	public BufferedImageWrapper(BufferedImage image) {
-		img = image;
+    /**
+     * Creates a new wrapper around the given image.
+     *
+     * @param image Image to wrap.
+     */
+    public BufferedImageWrapper(BufferedImage image) {
+        img = image;
 
-		graphics = (Graphics2D) img.getGraphics();
-		graphics.setRenderingHints(new
-		        RenderingHints(RenderingHints.KEY_ANTIALIASING,
-		                RenderingHints.VALUE_ANTIALIAS_ON));
-	}
+        graphics = (Graphics2D) img.getGraphics();
+        graphics.setRenderingHints(new
+                RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON));
+    }
 
-	/**
-	 * Draws a line on the picture.
-	 *
-	 * @param line Line to draw.
-	 */
-	public void drawLine(Line2D line) {
-		graphics.setColor(foreground);
-		graphics.setStroke(drawStroke);
-		graphics.drawLine((int) line.getX1(),
-		        (int) line.getY1(),
-		        (int) line.getX2(),
-		        (int) line.getY2());
-	}
+    /**
+     * Draws a line on the picture.
+     *
+     * @param line Line to draw.
+     */
+    public void drawLine(Line2D line) {
+        graphics.setColor(foreground);
+        graphics.setStroke(drawStroke);
+        graphics.drawLine((int) line.getX1(),
+                (int) line.getY1(),
+                (int) line.getX2(),
+                (int) line.getY2());
+    }
 
-	/**
-	 * Erases a line from the picture.
-	 *
-	 * @param line Line to erase.
-	 */
-	public void eraseLine(Line2D line) {
-		graphics.setColor(background);
-		graphics.setStroke(eraseStroke);
-		graphics.drawLine((int) line.getX1(),
-		        (int) line.getY1(),
-		        (int) line.getX2(),
-		        (int) line.getY2());
-	}
+    /**
+     * Erases a line from the picture.
+     *
+     * @param line Line to erase.
+     */
+    public void eraseLine(Line2D line) {
+        graphics.setColor(background);
+        graphics.setStroke(eraseStroke);
+        graphics.drawLine((int) line.getX1(),
+                (int) line.getY1(),
+                (int) line.getX2(),
+                (int) line.getY2());
+    }
 
-	/**
-	 * Getter for the wrapped image.
-	 *
-	 * @return Image.
-	 */
-	public BufferedImage getImg() {
-		return img;
-	}
+    /**
+     * Getter for the wrapped image.
+     *
+     * @return Image.
+     */
+    public BufferedImage getImg() {
+        return img;
+    }
 }

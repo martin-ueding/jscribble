@@ -25,5 +25,5 @@ package jscribble.drawPanel;
  * There is graph ruling, line ruling or plain page.
  */
 public enum RulingType {
-	NONE, GRAPH, LINE;
+    NONE, GRAPH, LINE;
 }

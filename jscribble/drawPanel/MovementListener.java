@@ -30,88 +30,88 @@ import jscribble.helpers.Config;
  * @author Martin Ueding <dev@martin-ueding.de>
  */
 public class MovementListener implements KeyListener {
-	/**
-	 * The DrawPanel that displays the current NoteBook.
-	 */
-	private final DrawPanel drawPanel;
+    /**
+     * The DrawPanel that displays the current NoteBook.
+     */
+    private final DrawPanel drawPanel;
 
-	/**
-	 * Creates a MovementListener that relays to the given DrawPanel.
-	 *
-	 * @param drawPanel Notify this.
-	 */
-	public MovementListener(DrawPanel drawPanel) {
-		this.drawPanel = drawPanel;
-	}
+    /**
+     * Creates a MovementListener that relays to the given DrawPanel.
+     *
+     * @param drawPanel Notify this.
+     */
+    public MovementListener(DrawPanel drawPanel) {
+        this.drawPanel = drawPanel;
+    }
 
-	/**
-	 * Determines whether a given KeyEvent should fire going back a page.
-	 *
-	 * @param event KeyEvent to process
-	 * @return Whether this should fire going back a page.
-	 */
-	private boolean isKeyGoBack(KeyEvent event) {
-		return Config.isKeyForCommand(event, "notebook_go_back_key");
-	}
+    /**
+     * Determines whether a given KeyEvent should fire going back a page.
+     *
+     * @param event KeyEvent to process
+     * @return Whether this should fire going back a page.
+     */
+    private boolean isKeyGoBack(KeyEvent event) {
+        return Config.isKeyForCommand(event, "notebook_go_back_key");
+    }
 
-	/**
-	 * Determines whether a given KeyEvent should fire going forward a page.
-	 *
-	 * @param event KeyEvent to process
-	 * @return Whether this should fire going forward a page.
-	 */
-	private boolean isKeyGoForward(KeyEvent event) {
-		return Config.isKeyForCommand(event, "notebook_go_forward_key");
-	}
+    /**
+     * Determines whether a given KeyEvent should fire going forward a page.
+     *
+     * @param event KeyEvent to process
+     * @return Whether this should fire going forward a page.
+     */
+    private boolean isKeyGoForward(KeyEvent event) {
+        return Config.isKeyForCommand(event, "notebook_go_forward_key");
+    }
 
-	/**
-	 * Determines whether a given KeyEvent should fire going to the first page.
-	 *
-	 * @param event KeyEvent to process
-	 * @return Whether this should fire going to the first page.
-	 */
-	private boolean isKeyGotoFirst(KeyEvent event) {
-		return Config.isKeyForCommand(event, "notebook_goto_first_key");
-	}
+    /**
+     * Determines whether a given KeyEvent should fire going to the first page.
+     *
+     * @param event KeyEvent to process
+     * @return Whether this should fire going to the first page.
+     */
+    private boolean isKeyGotoFirst(KeyEvent event) {
+        return Config.isKeyForCommand(event, "notebook_goto_first_key");
+    }
 
-	/**
-	 * Determines whether a given KeyEvent should fire going to the last page.
-	 *
-	 * @param event KeyEvent to process
-	 * @return Whether this should fire going to the last page.
-	 */
-	private boolean isKeyGotoLast(KeyEvent event) {
-		return Config.isKeyForCommand(event, "notebook_goto_last_key");
-	}
+    /**
+     * Determines whether a given KeyEvent should fire going to the last page.
+     *
+     * @param event KeyEvent to process
+     * @return Whether this should fire going to the last page.
+     */
+    private boolean isKeyGotoLast(KeyEvent event) {
+        return Config.isKeyForCommand(event, "notebook_goto_last_key");
+    }
 
-	/**
-	 * Ignored.
-	 */
-	public void keyPressed(KeyEvent event) {}
+    /**
+     * Ignored.
+     */
+    public void keyPressed(KeyEvent event) {}
 
-	/**
-	 * Handles various keys.
-	 */
-	public void keyReleased(KeyEvent event) {
-		if (isKeyGoForward(event)) {
-			drawPanel.goForward();
-		}
+    /**
+     * Handles various keys.
+     */
+    public void keyReleased(KeyEvent event) {
+        if (isKeyGoForward(event)) {
+            drawPanel.goForward();
+        }
 
-		if (isKeyGoBack(event)) {
-			drawPanel.goBackwards();
-		}
+        if (isKeyGoBack(event)) {
+            drawPanel.goBackwards();
+        }
 
-		if (isKeyGotoFirst(event)) {
-			drawPanel.gotoFirst();
-		}
+        if (isKeyGotoFirst(event)) {
+            drawPanel.gotoFirst();
+        }
 
-		if (isKeyGotoLast(event)) {
-			drawPanel.gotoLast();
-		}
-	}
+        if (isKeyGotoLast(event)) {
+            drawPanel.gotoLast();
+        }
+    }
 
-	/**
-	 * Ignored.
-	 */
-	public void keyTyped(KeyEvent event) {}
+    /**
+     * Ignored.
+     */
+    public void keyTyped(KeyEvent event) {}
 }
