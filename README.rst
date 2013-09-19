@@ -9,7 +9,7 @@ just the program
 ----------------
 
 You can obtain a tarball with the latest source code from the `jscribble
-website <http://martin-ueding.de/jscribble/>`_.
+website <http://martin-ueding.de/en/projects/jscribble/#pk_campaign=git>`_.
 
 The following software is needed to compile this program:
 
