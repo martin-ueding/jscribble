@@ -111,11 +111,9 @@ $(signedjar): jscribble.jar
 
 # Put all the files that are tracked in git in a tarball and amend the hard to
 # come by build files.
-$(tarball): surrogates.tar .git/HEAD
+$(tarball): .git/HEAD
 	$(RM) $@
-	git archive --prefix=$(foldername)/ HEAD > $(basename $@ .gz)
-	tar -Af $(basename $@ .gz) $<
-	gzip $(basename $@ .gz)
+	git archive --prefix=$(foldername)/ HEAD > $@
 
 # Creates a changelog file with the information in the git tags.
 CHANGELOG: .git/HEAD
@@ -154,11 +152,6 @@ l10n/jscribble_de.properties: l10n/de.po
 # Extract the strings from all Java source files.
 l10n/jscribble.pot: $(alljavafiles)
 	xgettext -o $@ -k -k"Localizer.get" $^ --from-code=utf-8
-
-# Tar achive which contains files which cannot be generated with out the git
-# repository.
-surrogates.tar: CHANGELOG
-	tar -cf $@ --transform 's,^,/$(foldername)/,' $^
 
 ###########################################################################
 #                             Implicit Rules                              #
