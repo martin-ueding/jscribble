@@ -66,9 +66,9 @@ clean:
 
 doc: doc/jscribble.1
 
-# Extracts all javadoc comments from the source codes and generates HTML pages
-# with that information.
-doc-dev: javadoc/index.html
+# Create standard javadoc.
+html: $(alljavafiles)
+	javadoc -d $@ $^
 
 # Creates the template for translators.
 i18n: l10n/jscribble.pot
@@ -129,10 +129,6 @@ doc/keylist.rst: doc/keylist.php jscribble/default_config.properties
 
 install_files/completion/jscribble: install_files/completion/generate_completion config/config.js
 	$< > $@
-
-# Create standard javadoc.
-javadoc/index.html: $(alljavafiles)
-	javadoc -d javadoc $^
 
 jscribble/default_config.properties: config/generate_properties config/config.js
 	$< > $@
