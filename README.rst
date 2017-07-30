@@ -4,8 +4,6 @@ jscribble
 
 .. figure:: doc/jscribble40h.png
 
-    The jscribble logo.
-
 When doing a derivation in math or just organizing my thoughts, I usually just
 use pen and paper since it seems to be the fastest way to persist my thoughts.
 Typing on a computer is great for great amounts of text, but making diagrams
@@ -47,8 +45,6 @@ pen without worrying about accidentally clicking something.
 .. figure:: doc/jscribble-notebook.png
     :width: 100%
 
-    jscribble in a window with some Math
-
 If you have filled the whole screen, just press the arrow keys (or space bar
 or enter) to advance in your virtual sheet. If you are at the end of it, at
 new page is instantly created. That way, you will never run out of (virtual)
@@ -59,8 +55,6 @@ many pages as you like. On startup you can choose the notebook that you want
 to work in:
 
 .. figure:: doc/jscribble-menu.png
-
-    the notebook selection window at startup
 
 The notebooks are saved in a hidden directory such that one does not have to
 worry about the files on disk. You can still get to the individual images,
@@ -92,6 +86,7 @@ Packages
 
 This program is featured in Debian Sid_ and Wheezy_ as well as Arch_ Linux so
 far.
+
 Building from source
 ====================
 
