@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -25,7 +25,7 @@ import java.awt.event.MouseEvent;
 /**
  * Handles actions from the list that displays all NoteBook.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 class ListListener extends MouseAdapter {
     /**

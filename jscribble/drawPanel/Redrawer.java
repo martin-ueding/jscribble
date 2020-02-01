@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 /**
  * Listens to changes from the NoteBook and updates the panel.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 public class Redrawer implements ActionListener {
     /**

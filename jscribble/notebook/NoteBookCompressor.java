@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -30,7 +30,7 @@ import jscribble.helpers.Logger;
  * Takes a folder which contains a notebook and compresses the file names so
  * that there are no gaps in the numbering.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 public class NoteBookCompressor {
     File folder;

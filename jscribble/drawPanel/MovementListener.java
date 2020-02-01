@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -27,7 +27,7 @@ import jscribble.helpers.Config;
 /**
  * Handles movement commands from the keyboard.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 public class MovementListener implements KeyListener {
     /**

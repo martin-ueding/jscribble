@@ -1,9 +1,9 @@
 # German translations for jscribble package
 # German messages for jscribble.
-# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+# Copyright (c) 2011 Martin Ueding <martin-ueding.de>
 # This file is distributed under the same license as the jscribble package.
 # Maximilian Kirchner <translations@schakalno1.de>, 2011
-# Martin Ueding <dev@martin-ueding.de>, 2011
+# Martin Ueding <martin-ueding.de>, 2011
 #
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-16 14:41+0100\n"
 "PO-Revision-Date: 2011-08-08 20:37+0100\n"
-"Last-Translator: Martin Ueding <dev@martin-ueding.de>\n"
+"Last-Translator: Martin Ueding <martin-ueding.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"

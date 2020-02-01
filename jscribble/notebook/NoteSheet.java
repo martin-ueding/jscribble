@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -42,7 +42,7 @@ import jscribble.notebook.writeoutThread.WriteoutThread;
  * image is displayed, allowing the user to paint on it. Each image has its
  * individual file name that is used automatically.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 public class NoteSheet {
     /**

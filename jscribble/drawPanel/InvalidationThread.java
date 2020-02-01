@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <dev@martin-ueding.de>
+// Copyright © 2011 Martin Ueding <martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -24,7 +24,7 @@ import jscribble.helpers.Config;
 /**
  * Waits until no more events come in and repaints the DrawPanel.
  *
- * @author Martin Ueding <dev@martin-ueding.de>
+ * @author Martin Ueding <martin-ueding.de>
  */
 public class InvalidationThread extends Thread {
     /**
