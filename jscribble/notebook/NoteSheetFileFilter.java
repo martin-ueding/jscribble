@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * Filters filenames that belong to NoteSheet from a specific NoteBook.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 public class NoteSheetFileFilter implements FilenameFilter {
     /**

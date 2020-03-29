@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -44,7 +44,7 @@ import jscribble.notebook.NoteBook;
  * relays the movements to the NoteBook as line drawing commands. It also
  * features a command listener for more user interaction.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 @SuppressWarnings("serial")
 public class DrawPanel extends JPanel {

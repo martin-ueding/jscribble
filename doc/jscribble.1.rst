@@ -1,4 +1,4 @@
-.. Copyright © 2011-2012 Martin Ueding <martin-ueding.de>
+.. Copyright © 2011-2012 Martin Ueding <mu@martin-ueding.de>
 
 #########
 jscribble
@@ -8,7 +8,7 @@ jscribble
 infinite notepad written in Java
 ********************************
 
-:Author: Martin Ueding <martin-ueding.de>
+:Author: Martin Ueding <mu@martin-ueding.de>
 :Date: 2012-04-01
 :Manual section: 1
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2011 Martin Ueding <martin-ueding.de>
+// Copyright (c) 2011 Martin Ueding <mu@martin-ueding.de>
 
 package tests.jscribble;
 

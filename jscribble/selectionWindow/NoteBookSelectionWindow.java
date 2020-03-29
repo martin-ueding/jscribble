@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -55,7 +55,7 @@ import jscribble.notebook.NoteBook;
  * configuration directory for NoteBook entries and provides a list to open
  * them. A NoteBook can then be opened in a DrawPanel.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 public class NoteBookSelectionWindow {
     /**

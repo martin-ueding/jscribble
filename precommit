@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2012 Martin Ueding <martin-ueding.de>
+# Copyright (c) 2012 Martin Ueding <mu@martin-ueding.de>
 
 set -e
 set -u

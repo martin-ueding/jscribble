@@ -1,5 +1,5 @@
 <?php
-# Copyright © 2011-2012 Martin Ueding <martin-ueding.de>
+# Copyright © 2011-2012 Martin Ueding <mu@martin-ueding.de>
 # Parse the default config file and insert the comments and default value
 # here.
 echo "\n";

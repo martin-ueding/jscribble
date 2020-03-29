@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -35,7 +35,7 @@ import jscribble.helpers.Logger;
  * is put into a second thread. That way, the UI does not freeze during the
  * little IO time.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 public class WriteoutThread extends Thread {
     /**

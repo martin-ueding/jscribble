@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -48,7 +48,7 @@ import jscribble.helpers.Logger;
  * the forward() function is called. The whole NoteBook can be saved into
  * individual pictures.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 public class NoteBook implements Comparable<NoteBook> {
     // XXX This list cannot cope with running out of memory.

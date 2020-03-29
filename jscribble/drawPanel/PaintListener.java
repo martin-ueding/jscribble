@@ -1,4 +1,4 @@
-// Copyright © 2011 Martin Ueding <martin-ueding.de>
+// Copyright © 2011 Martin Ueding <mu@martin-ueding.de>
 
 /*
  * This file is part of jscribble.
@@ -30,7 +30,7 @@ import jscribble.helpers.Config;
 /**
  * Listens to mouse movements on the displaying panel and updates the NoteBook.
  *
- * @author Martin Ueding <martin-ueding.de>
+ * @author Martin Ueding <mu@martin-ueding.de>
  */
 public class PaintListener implements MouseMotionListener, MouseListener {
     /**

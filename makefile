@@ -1,4 +1,4 @@
-# Copyright © Martin Ueding <martin-ueding.de>
+# Copyright © Martin Ueding <mu@martin-ueding.de>
 
 # This file is part of jscribble.
 #
